@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import SortingGuideCase from "./pages/SortingGuideCase";
+import HeadsetCase from "./pages/HeadsetCase";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/prosjekter" element={<Projects />} />
           <Route path="/prosjekter/sorteringsguiden" element={<SortingGuideCase />} />
+          <Route path="/prosjekter/headset" element={<HeadsetCase />} />
           <Route path="/prosjekter/:slug" element={<ProjectDetail />} />
           <Route path="/om" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
