@@ -34,9 +34,9 @@ const CaseSidebar = ({ items, className = "" }: CaseSidebarProps) => {
 
   return (
     <>
-      {/* Desktop: Sticky sidebar */}
+      {/* Desktop: Sidebar (not sticky, scrolls with content) */}
       <aside
-        className={`hidden lg:block sticky top-24 self-start ${className}`}
+        className={`hidden lg:block ${className}`}
       >
         <div className="bg-card rounded-lg p-6 space-y-6">
           <h3 className="text-caption">Prosjektinfo</h3>

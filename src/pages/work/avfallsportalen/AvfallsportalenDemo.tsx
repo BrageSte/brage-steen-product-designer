@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { ChevronDown, Trophy, Flame, Recycle, Target } from "lucide-react";
 
 // Timeline data
 const timelineSteps = [
@@ -113,6 +114,26 @@ const stepContent = [
   },
 ];
 
+// Kommune data for comparison
+const kommuneData: Record<string, {
+  name: string;
+  system: string;
+  efficiency: string;
+  population: string;
+  recycling: string;
+  incineration: string;
+  plastic: string;
+  food: string;
+}> = {
+  oslo: { name: 'Oslo', system: 'Optibag', efficiency: '19%', population: '697 000', recycling: '35%', incineration: '58%', plastic: '8%', food: '12%' },
+  bergen: { name: 'Bergen', system: 'Hentesystem', efficiency: '34%', population: '286 000', recycling: '42%', incineration: '51%', plastic: '15%', food: '18%' },
+  trondheim: { name: 'Trondheim', system: 'Sentralisert', efficiency: '86%', population: '210 000', recycling: '55%', incineration: '40%', plastic: '42%', food: '45%' },
+  stavanger: { name: 'Stavanger', system: 'Hentesystem', efficiency: '34%', population: '144 000', recycling: '44%', incineration: '49%', plastic: '18%', food: '20%' },
+  kristiansand: { name: 'Kristiansand', system: 'Bringesystem', efficiency: '31%', population: '113 000', recycling: '38%', incineration: '55%', plastic: '12%', food: '15%' },
+  tromso: { name: 'Tromsø', system: 'Hentesystem', efficiency: '34%', population: '77 000', recycling: '40%', incineration: '52%', plastic: '14%', food: '16%' },
+  drammen: { name: 'Drammen', system: 'Sentralisert', efficiency: '86%', population: '101 000', recycling: '52%', incineration: '43%', plastic: '38%', food: '42%' }
+};
+
 interface StatCardProps {
   number: string;
   label: string;
@@ -202,9 +223,458 @@ const Timeline = ({ currentStep, onStepClick }: TimelineProps) => {
   );
 };
 
+// Compare Section Component
+const CompareSection = () => {
+  const [kommune1, setKommune1] = useState("oslo");
+  const [kommune2, setKommune2] = useState("trondheim");
+  
+  const k1 = kommuneData[kommune1];
+  const k2 = kommuneData[kommune2];
+  
+  const parsePercent = (val: string) => parseInt(val.replace('%', ''));
+  
+  const categories = [
+    { key: 'efficiency', label: 'Sorteringseffektivitet', higher: true },
+    { key: 'recycling', label: 'Materialgjenvinning', higher: true },
+    { key: 'incineration', label: 'Forbrenning', higher: false },
+    { key: 'plastic', label: 'Plast gjenvunnet', higher: true },
+    { key: 'food', label: 'Matavfall gjenvunnet', higher: true },
+  ];
+  
+  const getWinner = (key: keyof typeof k1, higher: boolean) => {
+    const v1 = parsePercent(k1[key]);
+    const v2 = parsePercent(k2[key]);
+    if (v1 === v2) return 'tie';
+    if (higher) return v1 > v2 ? 'k1' : 'k2';
+    return v1 < v2 ? 'k1' : 'k2';
+  };
+  
+  const k1Wins = categories.filter(c => getWinner(c.key as keyof typeof k1, c.higher) === 'k1').length;
+  const k2Wins = categories.filter(c => getWinner(c.key as keyof typeof k1, c.higher) === 'k2').length;
+
+  return (
+    <div className="p-6 md:p-8">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-primary mb-2">⚖️ Sammenlign kommuner</h2>
+        <p className="text-muted-foreground">Se hvordan ulike kommuner presterer på avfallshåndtering</p>
+      </div>
+      
+      {/* Selectors */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 max-w-2xl mx-auto">
+        <div>
+          <label className="text-sm font-semibold block mb-2">Kommune 1</label>
+          <select
+            value={kommune1}
+            onChange={(e) => setKommune1(e.target.value)}
+            className="w-full p-3 rounded-lg bg-card border border-border text-foreground"
+          >
+            {Object.entries(kommuneData).map(([key, data]) => (
+              <option key={key} value={key}>{data.name}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="text-sm font-semibold block mb-2">Kommune 2</label>
+          <select
+            value={kommune2}
+            onChange={(e) => setKommune2(e.target.value)}
+            className="w-full p-3 rounded-lg bg-card border border-border text-foreground"
+          >
+            {Object.entries(kommuneData).map(([key, data]) => (
+              <option key={key} value={key}>{data.name}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+      
+      {/* Comparison cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* Kommune 1 Card */}
+        <div className={cn(
+          "rounded-xl p-6 border-2",
+          k1Wins > k2Wins ? "border-emerald-500 bg-emerald-500/5" : "border-border bg-card"
+        )}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">🏙️</span>
+            <div>
+              <h3 className="text-xl font-bold">{k1.name}</h3>
+              <p className="text-sm text-muted-foreground">{k1.system}</p>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Befolkning</span>
+              <span className="font-semibold">{k1.population}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Effektivitet</span>
+              <span className="font-semibold">{k1.efficiency}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Materialgjenvinning</span>
+              <span className="font-semibold">{k1.recycling}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Forbrenning</span>
+              <span className="font-semibold">{k1.incineration}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Plast gjenvunnet</span>
+              <span className="font-semibold">{k1.plastic}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Matavfall gjenvunnet</span>
+              <span className="font-semibold">{k1.food}</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Kommune 2 Card */}
+        <div className={cn(
+          "rounded-xl p-6 border-2",
+          k2Wins > k1Wins ? "border-emerald-500 bg-emerald-500/5" : "border-border bg-card"
+        )}>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">🏙️</span>
+            <div>
+              <h3 className="text-xl font-bold">{k2.name}</h3>
+              <p className="text-sm text-muted-foreground">{k2.system}</p>
+            </div>
+          </div>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Befolkning</span>
+              <span className="font-semibold">{k2.population}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Effektivitet</span>
+              <span className="font-semibold">{k2.efficiency}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Materialgjenvinning</span>
+              <span className="font-semibold">{k2.recycling}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Forbrenning</span>
+              <span className="font-semibold">{k2.incineration}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Plast gjenvunnet</span>
+              <span className="font-semibold">{k2.plastic}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Matavfall gjenvunnet</span>
+              <span className="font-semibold">{k2.food}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Category comparison */}
+      <div className="bg-card rounded-xl p-6 border border-border mb-6">
+        <h4 className="font-bold mb-4">Kategorianalyse</h4>
+        <div className="space-y-3">
+          {categories.map(cat => {
+            const winner = getWinner(cat.key as keyof typeof k1, cat.higher);
+            return (
+              <div key={cat.key} className="flex items-center justify-between">
+                <span className="text-sm">{cat.label}</span>
+                <div className="flex items-center gap-2">
+                  <span className={cn(
+                    "text-sm font-semibold px-2 py-1 rounded",
+                    winner === 'k1' ? "bg-emerald-500/10 text-emerald-600" : "text-muted-foreground"
+                  )}>
+                    {k1[cat.key as keyof typeof k1]}
+                  </span>
+                  <span className="text-muted-foreground">vs</span>
+                  <span className={cn(
+                    "text-sm font-semibold px-2 py-1 rounded",
+                    winner === 'k2' ? "bg-emerald-500/10 text-emerald-600" : "text-muted-foreground"
+                  )}>
+                    {k2[cat.key as keyof typeof k1]}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      
+      {/* Summary */}
+      <div className={cn(
+        "rounded-xl p-6 text-center",
+        k1Wins !== k2Wins ? "bg-emerald-500/10" : "bg-muted"
+      )}>
+        <div className="text-2xl font-bold mb-2">
+          {k1Wins > k2Wins ? `🏆 ${k1.name} vinner!` : k2Wins > k1Wins ? `🏆 ${k2.name} vinner!` : "🤝 Uavgjort!"}
+        </div>
+        <p className="text-muted-foreground">
+          {k1.name}: {k1Wins} kategorier • {k2.name}: {k2Wins} kategorier
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// Dashboard Section Component
+const DashboardSection = () => {
+  const [activeDetail, setActiveDetail] = useState<string | null>(null);
+  
+  const stats = [
+    {
+      id: 'waste',
+      icon: <Trophy className="w-6 h-6" />,
+      value: '739 kg',
+      label: 'Avfall per person/år',
+      color: '#5C6BC0',
+      details: {
+        title: 'Avfall per innbygger',
+        facts: [
+          'Norge er nest høyest i Europa',
+          'Kun Luxembourg produserer mer',
+          'EU-snitt er ca. 500 kg',
+          'Nordmenn kaster 40% mer enn gjennomsnittet'
+        ],
+        comparison: [
+          { country: 'Luxembourg', value: '791 kg' },
+          { country: 'Norge', value: '739 kg' },
+          { country: 'Danmark', value: '681 kg' },
+          { country: 'Tyskland', value: '609 kg' },
+          { country: 'EU-snitt', value: '502 kg' },
+        ]
+      }
+    },
+    {
+      id: 'recycling',
+      icon: <Recycle className="w-6 h-6" />,
+      value: '39%',
+      label: 'Til materialgjenvinning',
+      color: '#26A69A',
+      details: {
+        title: 'Materialgjenvinning',
+        facts: [
+          'Under EU-gjennomsnittet',
+          'Mye potensiale for forbedring',
+          'Avhenger av kommunens system',
+          'Sentralisert sortering gir best resultat'
+        ],
+        comparison: [
+          { country: 'Tyskland', value: '67%' },
+          { country: 'Østerrike', value: '58%' },
+          { country: 'Nederland', value: '56%' },
+          { country: 'EU-snitt', value: '48%' },
+          { country: 'Norge', value: '39%' },
+        ]
+      }
+    },
+    {
+      id: 'incineration',
+      icon: <Flame className="w-6 h-6" />,
+      value: '54,5%',
+      label: 'Til forbrenning',
+      color: '#EF5350',
+      details: {
+        title: 'Energigjenvinning',
+        facts: [
+          'Over halvparten brennes',
+          'Gir fjernvarme og strøm',
+          'Materialene er tapt for alltid',
+          'Høyere enn de fleste EU-land'
+        ],
+        distribution: [
+          { type: 'Matavfall', percent: 36.3 },
+          { type: 'Restavfall', percent: 26.6 },
+          { type: 'Papir', percent: 9.0 },
+          { type: 'Plast', percent: 8.6 },
+          { type: 'Annet', percent: 19.5 },
+        ]
+      }
+    },
+    {
+      id: 'goal',
+      icon: <Target className="w-6 h-6" />,
+      value: '65%',
+      label: 'EU-mål 2035',
+      color: '#4CAF50',
+      details: {
+        title: 'EU-målet for 2035',
+        facts: [
+          'Norge må øke fra 39% til 65%',
+          'Krever betydelig systemendring',
+          'Sentralisert sortering viser veien',
+          'Med riktig teknologi er det mulig'
+        ],
+        timeline: [
+          { year: '2020', target: '50%', actual: '39%' },
+          { year: '2025', target: '55%', actual: '?' },
+          { year: '2030', target: '60%', actual: '?' },
+          { year: '2035', target: '65%', actual: '?' },
+        ]
+      }
+    }
+  ];
+  
+  const systemEfficiency = [
+    { system: 'Sentralisert', efficiency: 86, color: '#4CAF50' },
+    { system: 'Hentesystem', efficiency: 34, color: '#FFA726' },
+    { system: 'Bringesystem', efficiency: 31, color: '#42A5F5' },
+    { system: 'Optibag', efficiency: 19, color: '#EF5350' },
+  ];
+
+  return (
+    <div className="p-6 md:p-8">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-primary mb-2">📊 Dashboard</h2>
+        <p className="text-muted-foreground">Nøkkeltall fra Norges avfallshåndtering</p>
+      </div>
+      
+      {/* Key stats grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        {stats.map(stat => (
+          <div
+            key={stat.id}
+            onClick={() => setActiveDetail(activeDetail === stat.id ? null : stat.id)}
+            className={cn(
+              "bg-card rounded-xl p-4 border-2 cursor-pointer transition-all hover:-translate-y-1",
+              activeDetail === stat.id ? "border-primary shadow-lg" : "border-border hover:border-primary/50"
+            )}
+          >
+            <div className="flex items-center gap-2 mb-2" style={{ color: stat.color }}>
+              {stat.icon}
+            </div>
+            <div className="text-2xl md:text-3xl font-black" style={{ color: stat.color }}>{stat.value}</div>
+            <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
+            <ChevronDown className={cn(
+              "w-4 h-4 mt-2 text-muted-foreground transition-transform",
+              activeDetail === stat.id && "rotate-180"
+            )} />
+          </div>
+        ))}
+      </div>
+      
+      {/* Expanded detail panel */}
+      {activeDetail && (
+        <div className="bg-card rounded-xl p-6 border border-border mb-8 animate-in fade-in slide-in-from-top-2">
+          {stats.filter(s => s.id === activeDetail).map(stat => (
+            <div key={stat.id}>
+              <h3 className="text-xl font-bold mb-4" style={{ color: stat.color }}>{stat.details.title}</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Facts */}
+                <div>
+                  <h4 className="font-semibold mb-3">Nøkkelfakta</h4>
+                  <ul className="space-y-2">
+                    {stat.details.facts.map((fact, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="text-primary">•</span>
+                        {fact}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {/* Comparison or Distribution */}
+                <div>
+                  {stat.details.comparison && (
+                    <>
+                      <h4 className="font-semibold mb-3">Sammenligning</h4>
+                      <div className="space-y-2">
+                        {stat.details.comparison.map((item, i) => (
+                          <div key={i} className="flex justify-between text-sm">
+                            <span className={item.country === 'Norge' ? 'font-bold text-primary' : 'text-muted-foreground'}>
+                              {item.country}
+                            </span>
+                            <span className={item.country === 'Norge' ? 'font-bold' : ''}>{item.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  
+                  {stat.details.distribution && (
+                    <>
+                      <h4 className="font-semibold mb-3">Feilsortert i restavfall (Oslo)</h4>
+                      <div className="space-y-2">
+                        {stat.details.distribution.map((item, i) => (
+                          <div key={i}>
+                            <div className="flex justify-between text-sm mb-1">
+                              <span className="text-muted-foreground">{item.type}</span>
+                              <span>{item.percent}%</span>
+                            </div>
+                            <div className="h-2 bg-border rounded-full overflow-hidden">
+                              <div 
+                                className="h-full rounded-full transition-all" 
+                                style={{ width: `${item.percent}%`, backgroundColor: stat.color }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  
+                  {stat.details.timeline && (
+                    <>
+                      <h4 className="font-semibold mb-3">Måltrapp</h4>
+                      <div className="space-y-2">
+                        {stat.details.timeline.map((item, i) => (
+                          <div key={i} className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">{item.year}</span>
+                            <span>Mål: <strong>{item.target}</strong></span>
+                            <span className={item.actual === '?' ? 'text-muted-foreground' : item.actual < item.target ? 'text-destructive' : 'text-emerald-500'}>
+                              {item.actual}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      
+      {/* System efficiency chart */}
+      <div className="bg-card rounded-xl p-6 border border-border mb-8">
+        <h3 className="font-bold mb-6">Sorteringseffektivitet per system</h3>
+        <div className="space-y-4">
+          {systemEfficiency.map(item => (
+            <div key={item.system}>
+              <div className="flex justify-between text-sm mb-2">
+                <span>{item.system}</span>
+                <span className="font-bold">{item.efficiency}%</span>
+              </div>
+              <div className="h-8 bg-border rounded-lg overflow-hidden">
+                <div 
+                  className="h-full rounded-lg transition-all duration-500 flex items-center justify-end pr-3"
+                  style={{ width: `${item.efficiency}%`, backgroundColor: item.color }}
+                >
+                  <span className="text-white text-xs font-bold">{item.efficiency}%</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Insight box */}
+      <div className="bg-primary/10 rounded-xl p-6 border border-primary/20">
+        <h4 className="font-bold text-primary mb-2">💡 Innsikt</h4>
+        <p className="text-sm text-muted-foreground">
+          Kommuner med sentralisert sortering (Trondheim, Drammen) oppnår 86% effektivitet – 
+          over 4 ganger bedre enn Oslos Optibag-system. Dette viser at teknologivalg har 
+          enorm påvirkning på gjenvinningsresultatene.
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const AvfallsportalenDemo = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [activeTab, setActiveTab] = useState<"journey" | "quiz">("journey");
+  const [activeTab, setActiveTab] = useState<"journey" | "quiz" | "compare" | "dashboard">("journey");
   
   const content = stepContent[currentStep];
   const stepColor = timelineSteps[currentStep].color;
@@ -221,31 +691,32 @@ const AvfallsportalenDemo = () => {
     }
   };
 
+  const tabs = [
+    { id: "journey" as const, label: "🗺️ Avfallsreisen" },
+    { id: "quiz" as const, label: "❓ Quiz" },
+    { id: "compare" as const, label: "⚖️ Sammenlign" },
+    { id: "dashboard" as const, label: "📊 Dashboard" },
+  ];
+
   return (
     <div className="bg-background rounded-xl border border-border overflow-hidden">
       {/* Nav tabs */}
-      <div className="flex border-b border-border bg-card">
-        <button
-          onClick={() => setActiveTab("journey")}
-          className={cn(
-            "flex-1 py-3 px-4 text-sm font-semibold flex items-center justify-center gap-2 transition-colors",
-            activeTab === "journey" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"
-          )}
-        >
-          🗺️ Avfallsreisen
-        </button>
-        <button
-          onClick={() => setActiveTab("quiz")}
-          className={cn(
-            "flex-1 py-3 px-4 text-sm font-semibold flex items-center justify-center gap-2 transition-colors",
-            activeTab === "quiz" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"
-          )}
-        >
-          ❓ Quiz
-        </button>
+      <div className="flex border-b border-border bg-card overflow-x-auto">
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={cn(
+              "flex-1 py-3 px-4 text-sm font-semibold flex items-center justify-center gap-2 transition-colors whitespace-nowrap min-w-[120px]",
+              activeTab === tab.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"
+            )}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {activeTab === "journey" ? (
+      {activeTab === "journey" && (
         <>
           <Timeline currentStep={currentStep} onStepClick={setCurrentStep} />
           
@@ -315,9 +786,11 @@ const AvfallsportalenDemo = () => {
             </div>
           </div>
         </>
-      ) : (
-        <QuizSection />
       )}
+      
+      {activeTab === "quiz" && <QuizSection />}
+      {activeTab === "compare" && <CompareSection />}
+      {activeTab === "dashboard" && <DashboardSection />}
     </div>
   );
 };
