@@ -2,109 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap');
-
 @layer base {
   :root {
-    /* Warm Scandinavian palette */
-    --background: 40 20% 98%;
-    --foreground: 220 15% 12%;
+    /* Warm off-white Dieter Rams-inspired palette */
+    --background: 40 33% 99%;
+    --foreground: 0 0% 10%;
 
-    --card: 40 15% 96%;
-    --card-foreground: 220 15% 12%;
+    --card: 40 20% 97%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 40 20% 98%;
-    --popover-foreground: 220 15% 12%;
+    --popover: 40 33% 99%;
+    --popover-foreground: 0 0% 10%;
 
-    /* Muted sage accent */
-    --primary: 150 12% 42%;
-    --primary-foreground: 40 20% 98%;
+    --primary: 0 0% 10%;
+    --primary-foreground: 40 33% 99%;
 
-    --secondary: 40 12% 92%;
-    --secondary-foreground: 220 15% 20%;
+    --secondary: 40 15% 94%;
+    --secondary-foreground: 0 0% 20%;
 
-    --muted: 40 10% 90%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 40 12% 95%;
+    --muted-foreground: 0 0% 42%;
 
-    --accent: 150 12% 42%;
-    --accent-foreground: 40 20% 98%;
+    --accent: 35 20% 92%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 65% 50%;
-    --destructive-foreground: 40 20% 98%;
+    --destructive-foreground: 40 33% 99%;
 
-    --border: 40 12% 88%;
-    --input: 40 12% 88%;
-    --ring: 150 12% 42%;
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
+    --ring: 0 0% 10%;
 
     --radius: 0.5rem;
 
-    /* Custom tokens */
-    --stone: 35 8% 60%;
-    --stone-light: 35 10% 85%;
-    --charcoal: 220 15% 12%;
-    --cream: 40 30% 96%;
-    --sage: 150 12% 42%;
-    --sage-light: 150 15% 92%;
-
-    /* Typography */
-    --font-display: 'Syne', system-ui, sans-serif;
-    --font-body: 'Inter', system-ui, sans-serif;
-
-    /* Sidebar defaults */
-    --sidebar-background: 40 20% 98%;
-    --sidebar-foreground: 220 15% 20%;
-    --sidebar-primary: 150 12% 42%;
-    --sidebar-primary-foreground: 40 20% 98%;
-    --sidebar-accent: 40 12% 92%;
-    --sidebar-accent-foreground: 220 15% 20%;
-    --sidebar-border: 40 12% 88%;
-    --sidebar-ring: 150 12% 42%;
+    /* Sidebar */
+    --sidebar-background: 40 33% 99%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 40 33% 99%;
+    --sidebar-accent: 40 15% 94%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 40 15% 90%;
+    --sidebar-ring: 0 0% 10%;
   }
 
   .dark {
-    --background: 220 15% 8%;
+    --background: 0 0% 7%;
     --foreground: 40 15% 92%;
 
-    --card: 220 15% 12%;
+    --card: 0 0% 10%;
     --card-foreground: 40 15% 92%;
 
-    --popover: 220 15% 10%;
+    --popover: 0 0% 8%;
     --popover-foreground: 40 15% 92%;
 
-    --primary: 150 15% 55%;
-    --primary-foreground: 220 15% 8%;
+    --primary: 40 15% 92%;
+    --primary-foreground: 0 0% 7%;
 
-    --secondary: 220 12% 18%;
+    --secondary: 0 0% 14%;
     --secondary-foreground: 40 15% 92%;
 
-    --muted: 220 12% 20%;
+    --muted: 0 0% 16%;
     --muted-foreground: 40 10% 60%;
 
-    --accent: 150 15% 55%;
-    --accent-foreground: 220 15% 8%;
+    --accent: 0 0% 14%;
+    --accent-foreground: 40 15% 92%;
 
     --destructive: 0 62% 45%;
     --destructive-foreground: 40 15% 92%;
 
-    --border: 220 12% 20%;
-    --input: 220 12% 20%;
-    --ring: 150 15% 55%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 40 15% 92%;
 
-    --stone: 35 8% 45%;
-    --stone-light: 220 10% 25%;
-    --charcoal: 40 15% 92%;
-    --cream: 220 15% 12%;
-    --sage: 150 15% 55%;
-    --sage-light: 150 10% 18%;
-
-    --sidebar-background: 220 15% 10%;
+    --sidebar-background: 0 0% 8%;
     --sidebar-foreground: 40 15% 92%;
-    --sidebar-primary: 150 15% 55%;
-    --sidebar-primary-foreground: 220 15% 8%;
-    --sidebar-accent: 220 12% 18%;
+    --sidebar-primary: 40 15% 92%;
+    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-accent: 0 0% 14%;
     --sidebar-accent-foreground: 40 15% 92%;
-    --sidebar-border: 220 12% 20%;
-    --sidebar-ring: 150 15% 55%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 40 15% 92%;
   }
 }
 
@@ -115,37 +93,48 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-body);
+    font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    @apply tracking-tight;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight font-medium;
   }
 }
 
 @layer components {
+  /* Container utilities */
   .container-narrow {
-    @apply mx-auto max-w-4xl px-6 md:px-8;
+    @apply mx-auto max-w-3xl px-6 md:px-8;
   }
 
   .container-wide {
+    @apply mx-auto max-w-5xl px-6 md:px-8;
+  }
+
+  .container-full {
     @apply mx-auto max-w-6xl px-6 md:px-8;
   }
 
+  /* Typography */
   .text-display-xl {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1];
-    font-family: var(--font-display);
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight;
   }
 
   .text-display-lg {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.15];
-    font-family: var(--font-display);
+    @apply text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight;
   }
 
   .text-display-md {
-    @apply text-2xl md:text-3xl font-semibold leading-[1.2];
-    font-family: var(--font-display);
+    @apply text-2xl md:text-3xl font-medium leading-[1.2] tracking-tight;
+  }
+
+  .text-display-sm {
+    @apply text-xl md:text-2xl font-medium leading-[1.25] tracking-tight;
   }
 
   .text-body-lg {
@@ -160,12 +149,22 @@
     @apply text-sm text-muted-foreground tracking-wide uppercase;
   }
 
+  /* Section spacing */
+  .section-spacing {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-spacing-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Link underline animation */
   .link-underline {
     @apply relative inline-block;
   }
 
   .link-underline::after {
-    content: '';
+    content: "";
     @apply absolute bottom-0 left-0 w-full h-px bg-current origin-left scale-x-0 transition-transform duration-300;
   }
 
@@ -173,6 +172,20 @@
     @apply scale-x-100;
   }
 
+  /* Glow background */
+  .glow-bg {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      hsl(40 60% 97% / 0.8) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Project card */
   .project-card {
     @apply bg-card rounded-lg overflow-hidden transition-all duration-300;
   }
@@ -182,68 +195,52 @@
     transform: translateY(-4px);
   }
 
-  .tag {
-    @apply inline-block px-3 py-1 text-xs font-medium tracking-wide uppercase rounded-full;
+  /* Tag pill */
+  .tag-pill {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium tracking-wide rounded-full;
     @apply bg-secondary text-secondary-foreground;
+    @apply transition-colors duration-200;
   }
 
-  .tag-accent {
-    @apply bg-sage-light text-foreground;
-    background-color: hsl(var(--sage-light));
+  .tag-pill:hover {
+    @apply bg-accent;
   }
 
-  .section-spacing {
-    @apply py-16 md:py-24 lg:py-32;
+  .tag-pill-active {
+    @apply bg-foreground text-background;
   }
 
-  .fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+  /* Scroll reveal animation */
+  .reveal {
+    @apply opacity-0 translate-y-6;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   }
 
-  .fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+  .reveal.visible {
+    @apply opacity-100 translate-y-0;
   }
 
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
+  /* Image placeholder gradient */
+  .image-placeholder {
+    @apply bg-gradient-to-br from-muted to-accent;
+  }
 }
 
 @layer utilities {
-  .bg-cream {
-    background-color: hsl(var(--cream));
+  /* Stagger delays for animations */
+  .stagger-1 {
+    animation-delay: 0.1s;
   }
-
-  .bg-sage-light {
-    background-color: hsl(var(--sage-light));
+  .stagger-2 {
+    animation-delay: 0.2s;
   }
-
-  .text-stone {
-    color: hsl(var(--stone));
+  .stagger-3 {
+    animation-delay: 0.3s;
   }
-
-  .border-stone-light {
-    border-color: hsl(var(--stone-light));
+  .stagger-4 {
+    animation-delay: 0.4s;
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .stagger-5 {
+    animation-delay: 0.5s;
   }
 }
