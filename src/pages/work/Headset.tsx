@@ -14,84 +14,94 @@ const Headset = () => {
   if (!project) return null;
 
   const caseMetaItems = [
-    { label: "Rolle", value: project.role },
-    { label: "År", value: project.year },
-    { label: "Type", value: project.category },
+    { label: "Rolle", value: "Produktdesigner" },
+    { label: "Varighet", value: "4 måneder" },
+    { label: "Målmarked", value: "$200–$300" },
+    { label: "Produksjon", value: "100 000 enheter" },
+    { label: "Materialer", value: ["Polyetylen", "Stål", "Lær"] },
+    { label: "Metode", value: "Sprøytestøping" },
     { label: "Verktøy", value: ["Fusion 360", "3D-printing"] },
-    {
-      label: "Leveranser",
-      value: ["CAD-modell", "Fysiske prototyper", "Tekniske tegninger"],
-    },
+  ];
+
+  const briefItems = [
+    { label: "Varighet", value: "4 måneder" },
+    { label: "Målmarked", value: "$200–$300" },
+    { label: "Produksjon", value: "100 000 enheter" },
+    { label: "Materialer", value: "Polyetylen, stål, lær" },
+    { label: "Metode", value: "Sprøytestøping" },
+    { label: "Verktøy", value: "Fusion 360, 3D-print" },
   ];
 
   return (
     <Layout>
       <CaseHero
-        title={project.title}
-        subtitle={project.description}
-        category={project.category}
-        year={project.year}
-        role={project.role}
-        coverImage={project.coverImage}
+        title="3D Printed Headset"
+        subtitle="Design for industrialisering – et sammenleggbart headset for pendlere og kontorbruk, med fokus på sprøytestøping og masseproduksjon."
+        category="Fysisk produkt"
+        year="2021"
+        role="Produktdesigner"
+        coverImage="/images/headset/cover.jpg"
       />
 
       <Section>
         <div className="container-wide">
           <div className="grid lg:grid-cols-[1fr_280px] gap-12">
             {/* Main content */}
-            <div className="space-y-16">
+            <div className="space-y-20">
               {/* Mobile sidebar */}
               <CaseSidebar items={caseMetaItems} className="lg:hidden" />
 
-              {/* Overview */}
+              {/* Project Brief */}
               <div className="space-y-6">
-                <h2 className="text-display-md">Oversikt</h2>
+                <span className="text-caption">01 — Oversikt</span>
+                <h2 className="text-display-md">Prosjektbeskrivelse</h2>
                 <p className="text-body-lg text-muted-foreground">
-                  Dette prosjektet utforsker design av et sammenleggbart headset
-                  for pendlere og kontorbruk, med fokus på industriell
-                  produksjon.
+                  Design et pendler- og kontorvennlig headset med fokus på
+                  industriell produksjon. Den sammenleggbare designen sikrer
+                  portabilitet for reise og daglig bruk.
                 </p>
                 <p className="text-body text-muted-foreground">
-                  Gjennom rask prototyping og iterasjon testet jeg hvordan form,
-                  passform og ergonomi fungerer i virkeligheten – ikke bare på
-                  skjermen.
+                  <strong>Produksjonshensyn:</strong> Hver komponent er
+                  optimalisert for sprøytestøping i plast for å sikre
+                  kostnadseffektiv masseproduksjon. Dette inkluderer design av
+                  deler med passende utslippsvinkler for enkel utløsning fra
+                  former, reduserer produksjonsfeil og slitasje på verktøy.
                 </p>
+
+                {/* Brief grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-6 border-t border-border mt-8">
+                  {briefItems.map((item) => (
+                    <div key={item.label}>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
+                        {item.label}
+                      </p>
+                      <p className="text-sm font-medium">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Problem */}
+              {/* Ideation & Sketches */}
               <div className="space-y-6">
-                <h2 className="text-display-md">Problemet</h2>
+                <span className="text-caption">02 — Idéutvikling</span>
+                <h2 className="text-display-md">Skisser og utforskning</h2>
                 <p className="text-body text-muted-foreground">
-                  Headset må balansere flere motstridende krav: komfort,
-                  stabilitet, vekt og trykkfordeling. Små beslutninger om form
-                  har stor innvirkning på langvarig bruk.
+                  Den innledende fasen involverte utforskning av ulike leddtyper
+                  og formspråk. Et betydelig fokus ble lagt på å designe
+                  headset-koppholderen, med mål om en visuelt distinkt bakdel
+                  som kontrasterer med hovedformen.
                 </p>
-                <ImageWithFallback
-                  src="/images/headset/sketches.jpg"
-                  alt="Tidlige skisser"
-                  aspectRatio="video"
-                  className="rounded-lg"
-                />
-              </div>
 
-              {/* Design Approach */}
-              <div className="space-y-6">
-                <h2 className="text-display-md">Designtilnærming</h2>
-                <p className="text-body text-muted-foreground">
-                  Prosessen startet med skissering og utforskning av ulike
-                  formspråk. I CAD fokuserte jeg på kontaktpunktene: hodebøyle,
-                  øreputer og trykksonene mellom dem.
-                </p>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-4 mt-6">
                   <ImageWithFallback
-                    src="/images/headset/cad-1.jpg"
-                    alt="CAD-modellering"
+                    src="/images/headset/sketch-1.jpg"
+                    alt="Konseptskisser"
                     aspectRatio="wide"
                     className="rounded-lg"
                   />
                   <ImageWithFallback
-                    src="/images/headset/cad-2.jpg"
-                    alt="CAD-detaljer"
+                    src="/images/headset/sketch-2.jpg"
+                    alt="Detaljskisser"
                     aspectRatio="wide"
                     className="rounded-lg"
                   />
@@ -100,78 +110,175 @@ const Headset = () => {
 
               {/* Prototyping */}
               <div className="space-y-6">
-                <h2 className="text-display-md">Prototyping og iterasjon</h2>
+                <span className="text-caption">03 — Prototyping</span>
+                <h2 className="text-display-md">Vinkler og 3D-printing</h2>
                 <p className="text-body text-muted-foreground">
-                  Fysisk prototyping avslørte problemer som ikke var synlige på
-                  skjermen. Jeg itererte på hodebøylens geometri og ørekoppenes
-                  form basert på passform, balanse og trykk.
+                  Å perfeksjonere vinklene for både estetikk og funksjonalitet
+                  var en utfordring, og krevde mange iterasjoner for å oppnå den
+                  ideelle passformen. Siden headsetet er designet for
+                  sprøytestøping, ble det lagt nøye vekt på utslippsvinkler for
+                  å sikre jevn utløsning fra former.
                 </p>
+                <p className="text-body text-muted-foreground">
+                  Lean prototyping-metoder var essensielle – 3D-printing
+                  muliggjorde rask testing av variasjoner for å validere komfort
+                  og ergonomi før designet ble ferdigstilt.
+                </p>
+
+                <div className="grid grid-cols-3 gap-4 mt-6">
+                  <ImageWithFallback
+                    src="/images/headset/prototype-1.jpg"
+                    alt="Vinkelvarianter"
+                    aspectRatio="square"
+                    className="rounded-lg"
+                  />
+                  <ImageWithFallback
+                    src="/images/headset/prototype-2.jpg"
+                    alt="Hodebøyle-iterasjoner"
+                    aspectRatio="square"
+                    className="rounded-lg"
+                  />
+                  <ImageWithFallback
+                    src="/images/headset/prototype-3.jpg"
+                    alt="Ørekopp-prototyper"
+                    aspectRatio="square"
+                    className="rounded-lg"
+                  />
+                </div>
+
                 <ImageWithFallback
-                  src="/images/headset/prototype.jpg"
-                  alt="3D-printet prototype"
+                  src="/images/headset/complete-prototype.jpg"
+                  alt="Komplett prototype"
                   aspectRatio="video"
-                  className="rounded-lg"
+                  className="rounded-lg mt-6"
                 />
+              </div>
+
+              {/* 3D Model / Sketchfab */}
+              <div className="bg-foreground text-background rounded-lg overflow-hidden">
+                <div className="p-8 md:p-12">
+                  <span className="text-xs uppercase tracking-wide opacity-60">
+                    04 — 3D-modell
+                  </span>
+                  <h2 className="text-display-md text-background mt-2 mb-4">
+                    Interaktiv modell
+                  </h2>
+                  <p className="text-background/70 mb-6">
+                    Utforsk den komplette 3D-modellen med alle komponenter.
+                    Designet har modulær konstruksjon for enkel montering og
+                    vedlikehold.
+                  </p>
+                </div>
+
+                {/* Sketchfab embed */}
+                <div className="aspect-video bg-background/10">
+                  <iframe
+                    title="3D Printed Headset Assembly"
+                    className="w-full h-full"
+                    allowFullScreen
+                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                    src="https://sketchfab.com/models/dd8b8b2a1f0645b6b65a4f19227cc69d/embed"
+                  />
+                </div>
+
+                <div className="p-4 text-center">
+                  <a
+                    href="https://sketchfab.com/3d-models/assembly-2-dd8b8b2a1f0645b6b65a4f19227cc69d"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-background/60 hover:text-background transition-colors inline-flex items-center gap-1"
+                  >
+                    Se på Sketchfab
+                    <ArrowUpRight size={14} />
+                  </a>
+                </div>
               </div>
 
               {/* Final Design */}
               <div className="space-y-6">
-                <h2 className="text-display-md">Endelig design</h2>
+                <span className="text-caption">05 — Endelig design</span>
+                <h2 className="text-display-md">Produksjonsklart design</h2>
                 <p className="text-body text-muted-foreground">
                   Det endelige headsetet balanserer visuell identitet med
                   ergonomi og produksjonsvennlighet. Alle deler er designet for
-                  sprøytestøping i polyetylen-plast.
+                  sprøytestøping med 2% utslippsvinkler gjennom hele designet.
                 </p>
-                <ImageWithFallback
-                  src="/images/headset/final.jpg"
-                  alt="Endelig design"
-                  aspectRatio="video"
-                  className="rounded-lg"
-                />
               </div>
 
-              {/* 3D Model CTA */}
-              {project.links.model3d && (
-                <div className="p-8 bg-card rounded-lg">
-                  <h3 className="text-display-sm mb-4">Utforsk 3D-modellen</h3>
-                  <p className="text-body text-muted-foreground mb-6">
-                    Se den interaktive 3D-modellen i Autodesk Fusion 360.
-                  </p>
-                  <a
-                    href={project.links.model3d}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg font-medium hover:bg-foreground/90 transition-colors"
-                  >
-                    Åpne 3D-modell
-                    <ArrowUpRight size={18} />
-                  </a>
+              {/* Full width renders */}
+              <div className="-mx-6 md:-mx-8 lg:mx-0">
+                <div className="bg-foreground">
+                  <ImageWithFallback
+                    src="/images/headset/final-render.jpg"
+                    alt="Endelig headset-design"
+                    aspectRatio="video"
+                  />
                 </div>
-              )}
+                <div className="grid grid-cols-2 bg-foreground">
+                  <ImageWithFallback
+                    src="/images/headset/detail-1.jpg"
+                    alt="Frontvisning"
+                    aspectRatio="square"
+                  />
+                  <ImageWithFallback
+                    src="/images/headset/detail-2.jpg"
+                    alt="Funksjonsdetaljer"
+                    aspectRatio="square"
+                  />
+                </div>
+              </div>
+
+              {/* Technical Drawings */}
+              <div className="space-y-6">
+                <span className="text-caption">06 — Teknisk</span>
+                <h2 className="text-display-md">Produksjonstegninger</h2>
+                <p className="text-body text-muted-foreground">
+                  Detaljerte tekniske tegninger med dimensjoner og toleranser
+                  for alle komponenter. Designet for sprøytestøping med 2%
+                  utslippsvinkler gjennom hele.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-4 mt-6">
+                  <ImageWithFallback
+                    src="/images/headset/technical-exploded.jpg"
+                    alt="Eksplodert monteringsvisning"
+                    aspectRatio="wide"
+                    className="rounded-lg bg-background border border-border"
+                  />
+                  <ImageWithFallback
+                    src="/images/headset/technical-slider.jpg"
+                    alt="Glidemekanisme"
+                    aspectRatio="wide"
+                    className="rounded-lg bg-background border border-border"
+                  />
+                </div>
+              </div>
 
               {/* Reflection */}
               <div className="space-y-6">
-                <h2 className="text-display-md">Refleksjon</h2>
+                <span className="text-caption">Refleksjon</span>
+                <h2 className="text-display-md">Lærdommer</h2>
                 <ul className="space-y-4 text-body text-muted-foreground">
                   <li className="flex gap-3">
                     <span className="text-foreground">•</span>
                     <span>
-                      Fysisk prototyping avslører det CAD ikke kan – spesielt
-                      for produkter som skal føles godt over tid
+                      <strong>Fysisk prototyping avslører det CAD ikke kan</strong>{" "}
+                      – spesielt for produkter som skal føles godt over tid
                     </span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-foreground">•</span>
                     <span>
-                      Produksjonskrav former designet – å designe for
-                      sprøytestøping er et designparameter
+                      <strong>Produksjonskrav former designet</strong> – å
+                      designe for sprøytestøping er ikke en begrensning, det er
+                      et designparameter
                     </span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-foreground">•</span>
                     <span>
-                      Forenkling er en ferdighet – de beste løsningene er ofte
-                      enklere enn de første ideene
+                      <strong>Forenkling er en ferdighet</strong> – de beste
+                      løsningene er ofte enklere enn de første ideene
                     </span>
                   </li>
                 </ul>
