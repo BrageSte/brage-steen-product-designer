@@ -323,10 +323,15 @@ const SortingGuide = () => {
                 <span className="text-caption">Løsningen</span>
                 <h2 className="text-display-md">Kildesorteringsguiden</h2>
                 <p className="text-body-lg text-muted-foreground">
-                  En digital tjeneste som gir brukeren stedsspesifikk
-                  veiledning. Ved å skrive inn postnummer får du skreddersydd
-                  informasjon om hva som kan sorteres hvor i din kommune, samt
-                  produktanbefalinger tilpasset din bolig.
+                  En flerformålsplattform som fungerer både som en butikk for
+                  resirkuleringsprodukter og et pedagogisk verktøy. Den bringer
+                  sammen nøkkelaktører – IKEA, kommuner og brukere – for å gi
+                  personlig veiledning om kildesortering.
+                </p>
+                <p className="text-body text-muted-foreground">
+                  Ved å integrere opplæring i kjøpsprosessen for
+                  sorteringsløsninger, påvirker vi brukerne når de er mest
+                  mottakelige for å lære og beholde informasjon.
                 </p>
                 <ImageWithFallback
                   src="/images/sorting-guide/solution-mockup.jpg"
@@ -334,6 +339,90 @@ const SortingGuide = () => {
                   aspectRatio="video"
                   className="rounded-lg"
                 />
+
+                {/* Solution Features */}
+                <div className="grid sm:grid-cols-2 gap-4 mt-8">
+                  {[
+                    {
+                      num: "01",
+                      title: "Hjemmesorteringsbygger",
+                      desc: "Lag et personlig sorteringssystem basert på boligsituasjon, kommunale retningslinjer og tilgjengelige produkter.",
+                    },
+                    {
+                      num: "02",
+                      title: "Resirkulering i ditt område",
+                      desc: "Skriv inn postnummeret ditt for å forstå nøyaktig hva og hvordan du sorterer i din kommune.",
+                    },
+                    {
+                      num: "03",
+                      title: "Produktguide",
+                      desc: "Produkter merket etter avfallstype med filterfunksjoner for å finne riktig løsning.",
+                    },
+                    {
+                      num: "04",
+                      title: "Tips og triks",
+                      desc: "Smarte løsninger og praktiske tips samlet fra research for enklere hverdagssortering.",
+                    },
+                  ].map((feature) => (
+                    <div key={feature.num} className="bg-card rounded-lg p-6">
+                      <span className="text-3xl font-serif text-muted-foreground/30">
+                        {feature.num}
+                      </span>
+                      <h4 className="font-medium mt-2 mb-1">{feature.title}</h4>
+                      <p className="text-sm text-muted-foreground">
+                        {feature.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Value Proposition */}
+              <div className="space-y-6">
+                <span className="text-caption">Verdi</span>
+                <h2 className="text-display-md">Skaper verdi i hele kjeden</h2>
+                <p className="text-body-lg text-muted-foreground">
+                  Ved å styrke den første linjen av resirkulering med nødvendige
+                  verktøy og ressurser, skaper Kildesorteringsguiden merverdi
+                  langs hele verdikjeden.
+                </p>
+                <div className="grid md:grid-cols-3 gap-6 mt-8">
+                  <div className="bg-foreground text-background rounded-lg p-6">
+                    <h4 className="font-medium mb-2">For brukere</h4>
+                    <p className="text-sm opacity-80">
+                      Tilpassede løsninger som passer hjemmet, økt kunnskap og
+                      trygghet i sorteringsbeslutninger.
+                    </p>
+                  </div>
+                  <div className="bg-foreground text-background rounded-lg p-6">
+                    <h4 className="font-medium mb-2">For bedrifter</h4>
+                    <p className="text-sm opacity-80">
+                      Høyere kundetilfredshet, mulighet for mersalg og styrket
+                      merkevareposisjon innen bærekraft.
+                    </p>
+                  </div>
+                  <div className="bg-foreground text-background rounded-lg p-6">
+                    <h4 className="font-medium mb-2">For miljøet</h4>
+                    <p className="text-sm opacity-80">
+                      Høyere resirkuleringsgrad reduserer avfall, øker
+                      materialutnyttelse og senker behovet for nye råvarer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial */}
+              <div className="bg-secondary rounded-lg p-8 md:p-12">
+                <blockquote className="text-xl md:text-2xl font-serif italic leading-relaxed mb-4">
+                  "Dere treffer spikeren på hodet. Det er definitivt behov for
+                  dette konseptet. Dere bidrar til å begrense den største
+                  lekkasjen i resirkuleringssystemet."
+                </blockquote>
+                <p className="text-muted-foreground">
+                  <strong className="text-foreground">Kenneth Skauge</strong>
+                  <br />
+                  Sustainability Business Partner, IKEA Norway
+                </p>
               </div>
 
               {/* Team */}
