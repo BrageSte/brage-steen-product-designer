@@ -1,73 +1,119 @@
-# Welcome to your Lovable project
+# Brage Steen — Produktdesigner Portfolio
 
-## Project info
+Portfolio-nettsted for Brage Steen, produktdesigner basert i Norge.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Tech Stack
 
-## How can I edit this code?
+- **Vite** — Bygg og utvikling
+- **React** — UI-rammeverk
+- **TypeScript** — Type-sikkerhet
+- **React Router** — Klient-side routing
+- **CSS** — Custom design tokens (ingen Tailwind)
 
-There are several ways of editing your application.
+## Utvikling
 
-**Use Lovable**
+```bash
+# Installer avhengigheter
+npm install
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start utviklingsserver
 npm run dev
+
+# Bygg for produksjon
+npm run build
+
+# Forhåndsvisning av bygget
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## Prosjektstruktur
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+├── components/
+│   ├── layout/          # Header, Footer, Layout
+│   ├── HeroOrb.tsx      # Turrell-inspirert lys-effekt
+│   └── ProjectCard.tsx  # Prosjektkort
+├── content/
+│   └── projects/        # Prosjektinnhold (TS-filer)
+├── pages/               # Sidekomponenter
+├── styles/
+│   ├── tokens.css       # Design tokens (farger, spacing, etc.)
+│   └── base.css         # Reset og grunnstiler
+└── App.tsx              # Hovedapp med routing
+```
 
-**Use GitHub Codespaces**
+## Bilder
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Bilder ligger i `public/images/<prosjekt>/`. Mappestruktur:
 
-## What technologies are used for this project?
+```
+public/images/
+├── sorting-guide/
+│   ├── thumbnail.jpg    # Kortbilde (anbefalt: 800x600)
+│   ├── hero.jpg         # Hero-bilde (anbefalt: 1600x900)
+│   └── *.jpg            # Galleri-bilder
+├── avfallsportalen/
+├── headset/
+├── seaweed/
+├── crimpblock/
+└── og-image.jpg         # OpenGraph-bilde (1200x630)
+```
 
-This project is built with:
+### Anbefalinger for bilder
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Format:** WebP eller JPEG
+- **Hero-bilder:** Maks 1600px bredde
+- **Thumbnails:** 800x600px
+- **Galleri:** 1200px bredde
+- **OpenGraph:** 1200x630px
 
-## How can I deploy this project?
+### Legge til bilder
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+1. Legg bildene i riktig mappe under `public/images/`
+2. Oppdater referansene i `src/content/projects/<slug>.ts`
 
-## Can I connect a custom domain to my Lovable project?
+Eksempel:
+```typescript
+gallery: [
+  {
+    src: '/images/sorting-guide/research-01.jpg',
+    alt: 'Beskrivelse av bildet',
+    caption: 'Valgfri bildetekst',
+  },
+],
+```
 
-Yes, you can!
+## Innholdsmodell
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Prosjektdata ligger i `src/content/projects/`. Hvert prosjekt har:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- **slug** — URL-vennlig ID
+- **title** / **subtitle** — Tittel og undertittel
+- **description** — Kort beskrivelse
+- **tags** — Kategorier/emneord
+- **thumbnail** / **hero** — Bilder
+- **meta** — År, rolle, team, partner, etc.
+- **sections** — Innholdsseksjoner (tekst, sitat, liste)
+- **gallery** — Bildegalleri
+- **links** — Eksterne lenker
+- **subpages** — Undersider (f.eks. prototype, gigamap)
+
+## Design-prinsipper
+
+- **Rams-clean layout:** Funksjonelt, stramt grid, lav visuell støy
+- **Turrell-inspirert:** Subtil lys/glow i hero og på hover
+- **Typografi:** System stack med Helvetica-prioritet
+- **Animasjon:** Subtil (8-16px), fokus på "draw-in"
+
+## Deploy
+
+Bygget genererer statiske filer i `dist/` som kan deployes til hvilken som helst statisk hosting (Netlify, Vercel, GitHub Pages, etc.).
+
+```bash
+npm run build
+```
+
+## Lisens
+
+Privat repository. Alle rettigheter forbeholdt.

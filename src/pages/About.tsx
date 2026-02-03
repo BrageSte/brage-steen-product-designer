@@ -1,149 +1,134 @@
-import Layout from "@/components/Layout";
-import Button from "@/components/Button";
+import { Link } from 'react-router-dom';
+import './About.css';
 
-const About = () => {
-  const principles = [
-    {
-      title: "Design for reell bruk",
-      description: "Ikke ideelle scenarier. De beste løsningene tåler virkeligheten."
-    },
-    {
-      title: "Reduser kompleksitet",
-      description: "Før du legger til funksjoner. Enkelhet er ofte det vanskeligste."
-    },
-    {
-      title: "Bygg for å lære",
-      description: "Prototyper og testing gir innsikt som research alene ikke kan."
-    }
-  ];
+const principles = [
+  {
+    title: 'Design for reell bruk',
+    description: 'Ikke ideelle scenarier. De beste løsningene tåler virkeligheten.',
+  },
+  {
+    title: 'Reduser kompleksitet',
+    description: 'Før du legger til funksjoner. Enkelhet er ofte det vanskeligste.',
+  },
+  {
+    title: 'Bygg for å lære',
+    description: 'Prototyper og testing gir innsikt som research alene ikke kan.',
+  },
+];
 
+const skills = [
+  'Tjenestedesign og brukerreiser',
+  'Fysisk produktdesign',
+  'Prototyping og testing',
+  'Brukerresearch og intervjuer',
+  'Systemtenkning',
+  'CAD og 3D-modellering',
+  'Workshop-fasilitering',
+];
+
+const tools = [
+  'Figma',
+  'Fusion 360 / SolidWorks',
+  '3D-printing (FDM/SLA)',
+  'Adobe Creative Suite',
+  'Miro / FigJam',
+  'Grunnleggende frontend',
+];
+
+export function About() {
   return (
-    <Layout>
+    <div className="about">
       {/* Hero */}
-      <section className="section-spacing">
-        <div className="container-narrow">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Image */}
-            <div className="aspect-[3/4] bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-sm order-1 md:order-2 opacity-0 animate-fade-in">
-              Profilbilde
-            </div>
-
-            {/* Content */}
-            <div className="space-y-6 order-2 md:order-1">
-              <span className="text-caption opacity-0 animate-fade-in">Om meg</span>
-              <h1 className="text-display-lg opacity-0 animate-fade-in-up">
-                Brage Steen
-              </h1>
-              <p className="text-body-lg text-muted-foreground opacity-0 animate-fade-in-up stagger-1">
-                Jeg er en produktdesigner med bakgrunn fra tjenestedesign og 
-                fysiske produkter. Jeg trives best når jeg får jobbe tett på 
-                problemet — enten det er gjennom research, prototyping, eller 
+      <section className="about__hero section">
+        <div className="container container--narrow">
+          <div className="about__hero-grid">
+            <div className="about__hero-content">
+              <span className="about__label">Om meg</span>
+              <h1 className="about__title">Brage Steen</h1>
+              <p className="about__intro">
+                Jeg er en produktdesigner med bakgrunn fra tjenestedesign og
+                fysiske produkter. Jeg trives best når jeg får jobbe tett på
+                problemet — enten det er gjennom research, prototyping, eller
                 bygging av faktiske løsninger.
               </p>
+            </div>
+            <div className="about__image">
+              <div className="about__image-placeholder">
+                Profilbilde
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Extended Bio */}
-      <section className="section-spacing bg-card">
-        <div className="container-narrow">
-          <div className="max-w-2xl space-y-8">
-            <h2 className="text-display-md">
-              Hvordan jeg jobber
-            </h2>
-            <div className="space-y-6 text-body-lg text-muted-foreground">
-              <p>
-                Jeg er komfortabel med å jobbe på tvers av digitale og fysiske 
-                produkter. Det betyr at jeg kan bidra i alt fra tidlig research 
-                og konseptutvikling til detaljert prototyping og testing.
-              </p>
-              <p>
-                Jeg er spesielt interessert i systemer, begrensninger og reell 
-                bruk. Mange av de beste løsningene jeg har vært med på å lage 
-                har kommet fra å forstå begrensningene godt – og designe innenfor 
-                dem, heller enn å prøve å overvinne dem.
-              </p>
-              <p>
-                Jeg verdsetter klarhet, reduksjon og praktiske løsninger. Det 
-                betyr at jeg ofte argumenterer for å fjerne funksjoner, forenkle 
-                flyter, eller akseptere «godt nok» når det er det riktige svaret.
-              </p>
-            </div>
+      <section className="about__bio section">
+        <div className="container container--narrow">
+          <div className="about__bio-content">
+            <h2 className="about__section-title">Hvordan jeg jobber</h2>
+            <p>
+              Jeg er komfortabel med å jobbe på tvers av digitale og fysiske
+              produkter. Det betyr at jeg kan bidra i alt fra tidlig research
+              og konseptutvikling til detaljert prototyping og testing.
+            </p>
+            <p>
+              Jeg er spesielt interessert i systemer, begrensninger og reell
+              bruk. Mange av de beste løsningene jeg har vært med på å lage
+              har kommet fra å forstå begrensningene godt – og designe innenfor
+              dem, heller enn å prøve å overvinne dem.
+            </p>
+            <p>
+              Jeg verdsetter klarhet, reduksjon og praktiske løsninger. Det
+              betyr at jeg ofte argumenterer for å fjerne funksjoner, forenkle
+              flyter, eller akseptere «godt nok» når det er det riktige svaret.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Principles */}
-      <section className="section-spacing">
-        <div className="container-narrow">
-          <h2 className="text-display-md mb-12">
-            Prinsipper
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="about__principles section">
+        <div className="container container--narrow">
+          <h2 className="about__section-title">Prinsipper</h2>
+          <div className="about__principles-grid">
             {principles.map((principle, index) => (
-              <div 
+              <div
                 key={index}
-                className="space-y-4 opacity-0 animate-fade-in-up"
+                className="about__principle animate-fadeInUp"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <span className="text-4xl font-display font-bold text-muted-foreground/30">
+                <span className="about__principle-number">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3 className="font-display font-semibold text-xl">
-                  {principle.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {principle.description}
-                </p>
+                <h3 className="about__principle-title">{principle.title}</h3>
+                <p className="about__principle-description">{principle.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Skills / Areas */}
-      <section className="section-spacing bg-card">
-        <div className="container-narrow">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-display-md mb-8">Kompetanseområder</h2>
-              <ul className="space-y-3">
-                {[
-                  "Tjenestedesign og brukerreiser",
-                  "Fysisk produktdesign",
-                  "Prototyping og testing",
-                  "Brukerresearch og intervjuer",
-                  "Systemtenkning",
-                  "CAD og 3D-modellering",
-                  "Workshop-fasilitering"
-                ].map((skill, index) => (
-                  <li 
-                    key={index}
-                    className="text-body-lg text-muted-foreground flex items-center gap-3"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+      {/* Skills & Tools */}
+      <section className="about__skills section">
+        <div className="container container--narrow">
+          <div className="about__skills-grid">
+            <div className="about__skill-column">
+              <h2 className="about__section-title">Kompetanseområder</h2>
+              <ul className="about__skill-list">
+                {skills.map((skill, index) => (
+                  <li key={index} className="about__skill-item">
+                    <span className="about__skill-dot" />
                     {skill}
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <h2 className="text-display-md mb-8">Verktøy</h2>
-              <ul className="space-y-3">
-                {[
-                  "Figma",
-                  "Fusion 360 / SolidWorks",
-                  "3D-printing (FDM/SLA)",
-                  "Adobe Creative Suite",
-                  "Miro / FigJam",
-                  "Grunnleggende frontend"
-                ].map((tool, index) => (
-                  <li 
-                    key={index}
-                    className="text-body-lg text-muted-foreground flex items-center gap-3"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+            <div className="about__skill-column">
+              <h2 className="about__section-title">Verktøy</h2>
+              <ul className="about__skill-list">
+                {tools.map((tool, index) => (
+                  <li key={index} className="about__skill-item">
+                    <span className="about__skill-dot" />
                     {tool}
                   </li>
                 ))}
@@ -154,25 +139,21 @@ const About = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="section-spacing">
-        <div className="container-narrow text-center">
-          <h2 className="text-display-md mb-6">La oss snakke</h2>
-          <p className="text-body-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Jeg er alltid interessert i å høre om nye prosjekter og muligheter. 
+      <section className="about__cta section">
+        <div className="container container--narrow">
+          <h2 className="about__cta-title">La oss snakke</h2>
+          <p className="about__cta-text">
+            Jeg er alltid interessert i å høre om nye prosjekter og muligheter.
             Ta gjerne kontakt for en uforpliktende prat.
           </p>
-          <Button 
-            href="mailto:brage@example.com" 
-            variant="primary" 
-            size="lg" 
-            showArrow
-          >
-            Send meg en e-post
-          </Button>
+          <Link to="/contact" className="about__cta-button">
+            Kontakt meg
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
       </section>
-    </Layout>
+    </div>
   );
-};
-
-export default About;
+}
