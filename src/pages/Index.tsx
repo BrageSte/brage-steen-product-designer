@@ -1,7 +1,7 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout/Layout";
 import Button from "@/components/Button";
-import ProjectCard from "@/components/ProjectCard";
-import { getFeaturedProjects } from "@/data/projects";
+import ProjectCard from "@/components/ui/ProjectCard";
+import { getFeaturedProjects } from "@/content/projects/index";
 
 const Index = () => {
   const featuredProjects = getFeaturedProjects();
@@ -46,11 +46,7 @@ const Index = () => {
             {featuredProjects.map((project, index) => (
               <ProjectCard
                 key={project.slug}
-                slug={project.slug}
-                title={project.title}
-                description={project.description}
-                category={project.category}
-                index={index}
+                project={project}
               />
             ))}
           </div>

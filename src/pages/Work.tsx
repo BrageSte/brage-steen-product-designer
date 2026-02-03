@@ -2,7 +2,7 @@ import Layout from "@/components/layout/Layout";
 import Section from "@/components/ui/Section";
 import ProjectGrid from "@/components/ui/ProjectGrid";
 import FilterBar from "@/components/ui/FilterBar";
-import { projects, getAllTags } from "@/content/projects";
+import { projects, getAllTags } from "@/content/projects/index";
 
 const Work = () => {
   const tags = getAllTags();

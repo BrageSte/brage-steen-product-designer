@@ -5,13 +5,13 @@ import { headset } from './headset';
 import { seaweed } from './seaweed';
 import { crimpblock } from './crimpblock';
 
-// Ordered list of all projects
+// Ordered list of all projects - add coverImage as alias for thumbnail
 export const projects: Project[] = [
-  sortingGuide,
-  avfallsportalen,
-  headset,
-  seaweed,
-  crimpblock,
+  { ...sortingGuide, coverImage: sortingGuide.thumbnail, featured: true },
+  { ...avfallsportalen, coverImage: avfallsportalen.thumbnail },
+  { ...headset, coverImage: headset.thumbnail },
+  { ...seaweed, coverImage: seaweed.thumbnail },
+  { ...crimpblock, coverImage: crimpblock.thumbnail },
 ];
 
 // Get a project by slug
@@ -21,11 +21,23 @@ export function getProjectBySlug(slug: string): Project | undefined {
 
 // Get the next project in the list
 export function getNextProject(currentSlug: string): Project | undefined {
-  const project = getProjectBySlug(currentSlug);
-  if (project?.nextProject) {
-    return getProjectBySlug(project.nextProject);
+  const currentIndex = projects.findIndex((p) => p.slug === currentSlug);
+  if (currentIndex !== -1 && currentIndex < projects.length - 1) {
+    return projects[currentIndex + 1];
   }
-  return undefined;
+  return projects[0]; // Loop back to first project
+}
+
+// Get featured projects
+export function getFeaturedProjects(): Project[] {
+  return projects.filter((p) => p.featured);
+}
+
+// Get all unique tags
+export function getAllTags(): string[] {
+  const tags = new Set<string>();
+  projects.forEach((p) => p.tags.forEach((t) => tags.add(t)));
+  return Array.from(tags);
 }
 
 // Re-export types

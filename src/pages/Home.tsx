@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Section from "@/components/ui/Section";
 import ProjectGrid from "@/components/ui/ProjectGrid";
 import ImageWithFallback from "@/components/ui/ImageWithFallback";
-import { projects, getFeaturedProjects } from "@/content/projects";
+import { projects, getFeaturedProjects } from "@/content/projects/index";
 
 const Home = () => {
   const featuredProject = getFeaturedProjects()[0];

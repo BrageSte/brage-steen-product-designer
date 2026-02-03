@@ -1,6 +1,6 @@
-export { Home } from './Home';
-export { Work } from './Work';
+export { default as Home } from './Home';
+export { default as Work } from './Work';
 export { ProjectPage } from './ProjectPage';
-export { About } from './About';
-export { Contact } from './Contact';
+export { default as About } from './About';
+export { default as Contact } from './Contact';
 export { NotFound } from './NotFound';
