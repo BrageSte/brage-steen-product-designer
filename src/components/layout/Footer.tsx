@@ -41,8 +41,16 @@ const Footer = () => {
                   to="/about"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
                 >
-                  Om
+                  Om meg
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="https://bsclimbing.no"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+                >
+                  Butikk
+                </a>
               </li>
               <li>
                 <Link
