@@ -1,0 +1,3509 @@
+<!DOCTYPE html>
+<!--
+  Avfallsportalen - Interaktiv læringsportal
+  En del av portfolio-prosjekt
+  Teknologier: HTML5, CSS3, JavaScript (Vanilla)
+  Funksjoner: Timeline-navigasjon, Quiz, Kommune-sammenligning, Dashboard
+-->
+<html lang="no">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Interaktiv læringsportal om avfallshåndtering og resirkulering i Norge. Lær om sorteringssystemer, quiz, sammenlign kommuner og se statistikk."/>
+<meta name="keywords" content="avfall, resirkulering, Norge, sortering, miljø, bærekraft, gjenvinning"/>
+<meta name="author" content="Avfallsportalen"/>
+
+<!-- Open Graph / Social Media -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Avfallsportalen - Lær om resirkulering i Norge"/>
+<meta property="og:description" content="Interaktiv læringsportal om avfallshåndtering og resirkulering i Norge."/>
+<meta property="og:locale" content="nb_NO"/>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Avfallsportalen"/>
+<meta name="twitter:description" content="Lær om avfallshåndtering og resirkulering i Norge"/>
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>"/>
+
+<title>Avfallsportalen - Lær om resirkulering i Norge</title>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f8faf8;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #1a2e1a;
+            --text-secondary: #4a5d4a;
+            --text-muted: #6b7c6b;
+            --border-color: #e0e8e0;
+            --shadow: rgba(0, 80, 40, 0.08);
+            
+            --green-primary: #4CAF50;
+            --green-light: #81C784;
+            --green-dark: #2E7D32;
+            --blue-primary: #42A5F5;
+            --blue-light: #90CAF9;
+            --orange-primary: #FFA726;
+            --orange-light: #FFB74D;
+            --red-primary: #EF5350;
+            --purple-primary: #AB47BC;
+            
+            --world: #5C6BC0;
+            --europe: #42A5F5;
+            --norway: #26A69A;
+            --home: #66BB6A;
+            --collection: #FFA726;
+            --sorting: #AB47BC;
+            --processing: #EF5350;
+            --result: #4CAF50;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f1419;
+            --bg-secondary: #1a1f26;
+            --bg-card: #242d38;
+            --text-primary: #ffffff;
+            --text-secondary: #a8b5c4;
+            --text-muted: #6b7c8a;
+            --border-color: #2d3a4a;
+            --shadow: rgba(0, 0, 0, 0.3);
+            
+            --world: #7986CB;
+            --europe: #64B5F6;
+            --norway: #4DB6AC;
+            --home: #81C784;
+            --collection: #FFB74D;
+            --sorting: #CE93D8;
+            --processing: #EF5350;
+            --result: #81C784;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== MAIN NAVIGATION ===== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--green-primary);
+        }
+
+        .nav-brand span {
+            font-size: 28px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item:hover {
+            background: var(--green-primary);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: var(--green-primary);
+            color: white;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 28px;
+            border-radius: 14px;
+            background: var(--border-color);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle::before {
+            content: '☀️';
+            position: absolute;
+            left: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .theme-toggle::before {
+            content: '🌙';
+            left: auto;
+            right: 4px;
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: white;
+            top: 3px;
+            left: 3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        [data-theme="dark"] .theme-toggle::after {
+            left: 25px;
+        }
+
+        /* ===== PAGE CONTAINERS ===== */
+        .page {
+            display: none;
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ===== TIMELINE PAGE ===== */
+        .timeline-header {
+            background: var(--bg-secondary);
+            padding: 25px 40px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 70px;
+            z-index: 99;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            right: 25px;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--world), var(--result));
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .timeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .step-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 4px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .step-dot .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-step:hover .step-dot .icon {
+            transform: scale(1.2) rotate(10deg);
+            animation: wiggle 0.5s ease;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: scale(1.2) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            75% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        .timeline-step:hover .step-dot {
+            transform: scale(1.1);
+            border-color: var(--step-color);
+            box-shadow: 0 0 20px color-mix(in srgb, var(--step-color) 40%, transparent);
+        }
+
+        .timeline-step.active .step-dot {
+            transform: scale(1.15);
+            border-color: var(--step-color);
+            background: var(--step-color);
+            box-shadow: 0 0 30px color-mix(in srgb, var(--step-color) 50%, transparent);
+        }
+
+        .timeline-step.active .step-dot .icon {
+            filter: brightness(0) invert(1);
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .timeline-step.completed .step-dot {
+            background: var(--step-color);
+            border-color: var(--step-color);
+        }
+
+        .timeline-step.completed .step-dot .icon {
+            filter: brightness(0) invert(1);
+        }
+
+        .step-label {
+            margin-top: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step:hover .step-label,
+        .timeline-step.active .step-label {
+            color: var(--step-color);
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Step content */
+        .step-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Content header */
+        .content-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .content-icon {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .content-icon:hover {
+            animation: dance 0.6s ease;
+        }
+
+        @keyframes dance {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-15deg) scale(1.1); }
+            50% { transform: rotate(15deg) scale(1.2); }
+            75% { transform: rotate(-10deg) scale(1.1); }
+        }
+
+        .content-icon.spinning {
+            animation: spin 1s ease-in-out;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-title {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: var(--step-color);
+        }
+
+        .content-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--step-color);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--step-color);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--step-color);
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px color-mix(in srgb, var(--step-color) 30%, transparent);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .stat-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Expandable info */
+        .stat-card .expand-info {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            text-align: left;
+        }
+
+        .stat-card.expanded .expand-info {
+            max-height: 300px;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .expand-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .expand-hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* Info cards */
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: var(--step-color);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+
+        .info-card h3 .icon {
+            font-size: 24px;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        .info-card li::before {
+            content: '→';
+            color: var(--step-color);
+            font-weight: bold;
+        }
+
+        /* Expandable card content */
+        .info-card .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .info-card.expanded .expand-content {
+            max-height: 500px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Quote box */
+        .quote-box {
+            background: linear-gradient(135deg, color-mix(in srgb, var(--step-color) 10%, var(--bg-card)), var(--bg-card));
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid var(--step-color);
+        }
+
+        .quote-text {
+            font-size: 20px;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .quote-author {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* ===== SORTING ILLUSTRATIONS ===== */
+        .sorting-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .sorting-system {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sorting-system:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow);
+        }
+
+        .sorting-system.best {
+            border-color: var(--green-primary);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--green-primary) 8%, var(--bg-card)), var(--bg-card));
+        }
+
+        .sorting-system.worst {
+            border-color: var(--red-primary);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--red-primary) 8%, var(--bg-card)), var(--bg-card));
+        }
+
+        .sorting-system.best::before {
+            content: '⭐ BEST';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--green-primary);
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .sorting-system.worst::before {
+            content: '⚠️ LAVEST';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--red-primary);
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* Sorting Illustrations */
+        .sorting-illustration {
+            height: 120px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Centralized sorting illustration */
+        .illustration-centralized {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .conveyor-belt {
+            width: 180px;
+            height: 20px;
+            background: linear-gradient(90deg, #555 0%, #777 50%, #555 100%);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conveyor-belt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 15px,
+                rgba(0,0,0,0.3) 15px,
+                rgba(0,0,0,0.3) 20px
+            );
+            animation: conveyorMove 2s linear infinite;
+        }
+
+        @keyframes conveyorMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(20px); }
+        }
+
+        .scanner-beam {
+            width: 100px;
+            height: 60px;
+            position: relative;
+        }
+
+        .scanner-beam::before {
+            content: '🤖';
+            font-size: 40px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .scanner-beam::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--green-primary);
+            box-shadow: 0 0 20px var(--green-primary);
+            animation: scanPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scanPulse {
+            0%, 100% { opacity: 0.5; width: 40px; }
+            50% { opacity: 1; width: 80px; }
+        }
+
+        .sorted-bins {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mini-bin {
+            width: 25px;
+            height: 30px;
+            border-radius: 4px 4px 6px 6px;
+            position: relative;
+        }
+
+        .mini-bin::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 2px;
+            right: 2px;
+            height: 6px;
+            background: inherit;
+            border-radius: 2px;
+            filter: brightness(0.8);
+        }
+
+        /* Hentesystem illustration */
+        .illustration-hente {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .house-icon {
+            font-size: 50px;
+        }
+
+        .arrow-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .bins-row {
+            display: flex;
+            gap: 5px;
+        }
+
+        .truck-icon {
+            font-size: 45px;
+            animation: truckBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes truckBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Bringesystem illustration */
+        .illustration-bringe {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .person-with-bag {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .person-with-bag .person {
+            font-size: 35px;
+            animation: walkAnimation 1.5s ease-in-out infinite;
+        }
+
+        @keyframes walkAnimation {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        .person-with-bag .bag {
+            font-size: 20px;
+            margin-top: -10px;
+        }
+
+        .recycling-station {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .station-sign {
+            font-size: 10px;
+            background: var(--green-primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .big-bins {
+            display: flex;
+            gap: 5px;
+        }
+
+        .big-bin {
+            width: 30px;
+            height: 40px;
+            border-radius: 4px 4px 8px 8px;
+            position: relative;
+        }
+
+        .big-bin::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 3px;
+            right: 3px;
+            height: 8px;
+            background: inherit;
+            border-radius: 3px;
+            filter: brightness(0.8);
+        }
+
+        /* Optibag illustration */
+        .illustration-optibag {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .colored-bags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .color-bag {
+            width: 35px;
+            height: 45px;
+            border-radius: 5px 5px 15px 15px;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .color-bag::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+
+        .color-bag.blue { background: linear-gradient(180deg, #64B5F6, #1E88E5); }
+        .color-bag.green { background: linear-gradient(180deg, #81C784, #43A047); }
+        .color-bag.grey { background: linear-gradient(180deg, #BDBDBD, #757575); }
+
+        .single-bin {
+            font-size: 40px;
+        }
+
+        .optibag-arrow {
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+
+        .sorting-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .sorting-percent {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .sorting-system.best .sorting-percent {
+            color: var(--green-primary);
+        }
+
+        .sorting-system.worst .sorting-percent {
+            color: var(--red-primary);
+        }
+
+        .sorting-system:not(.best):not(.worst) .sorting-percent {
+            color: var(--orange-primary);
+        }
+
+        .sorting-bar {
+            height: 12px;
+            background: var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .sorting-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease;
+        }
+
+        .sorting-system.best .sorting-fill {
+            background: linear-gradient(90deg, var(--green-light), var(--green-primary));
+        }
+
+        .sorting-system.worst .sorting-fill {
+            background: linear-gradient(90deg, #FFCDD2, var(--red-primary));
+        }
+
+        .sorting-system:not(.best):not(.worst) .sorting-fill {
+            background: linear-gradient(90deg, var(--orange-light), var(--orange-primary));
+        }
+
+        .sorting-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .sorting-details {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .sorting-details ul {
+            list-style: none;
+            font-size: 12px;
+        }
+
+        .sorting-details li {
+            padding: 5px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sorting-details li::before {
+            content: '•';
+            color: var(--step-color, var(--green-primary));
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: bobble 2s ease infinite;
+        }
+
+        @keyframes bobble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .scroll-indicator .arrow {
+            font-size: 24px;
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 30px;
+            border-radius: 50px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--step-color);
+            color: var(--step-color);
+            transform: translateX(5px);
+        }
+
+        .nav-btn.prev:hover:not(:disabled) {
+            transform: translateX(-5px);
+        }
+
+        .nav-btn.next {
+            background: var(--step-color);
+            border-color: var(--step-color);
+            color: white;
+        }
+
+        .nav-btn.next:hover:not(:disabled) {
+            filter: brightness(1.1);
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px color-mix(in srgb, var(--step-color) 40%, transparent);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* ===== QUIZ PAGE ===== */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .quiz-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 10px;
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .quiz-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quiz-dot:hover {
+            transform: scale(1.2);
+        }
+
+        .quiz-dot.active {
+            background: var(--blue-primary);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--blue-primary);
+        }
+
+        .quiz-dot.correct {
+            background: var(--green-primary);
+        }
+
+        .quiz-dot.wrong {
+            background: var(--red-primary);
+        }
+
+        .quiz-dot.answered {
+            cursor: pointer;
+        }
+
+        .quiz-question {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            padding: 18px 25px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        .quiz-option:hover:not(.selected):not(.correct):not(.wrong) {
+            border-color: var(--green-primary);
+            background: color-mix(in srgb, var(--green-primary) 10%, var(--bg-secondary));
+        }
+
+        .quiz-option.selected {
+            border-color: var(--blue-primary);
+            background: color-mix(in srgb, var(--blue-primary) 15%, var(--bg-secondary));
+        }
+
+        .quiz-option.correct {
+            border-color: var(--green-primary);
+            background: color-mix(in srgb, var(--green-primary) 20%, var(--bg-secondary));
+        }
+
+        .quiz-option.wrong {
+            border-color: var(--red-primary);
+            background: color-mix(in srgb, var(--red-primary) 15%, var(--bg-secondary));
+        }
+
+        .quiz-feedback {
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .quiz-feedback.correct {
+            background: color-mix(in srgb, var(--green-primary) 15%, var(--bg-card));
+            border: 2px solid var(--green-primary);
+        }
+
+        .quiz-feedback.wrong {
+            background: color-mix(in srgb, var(--red-primary) 15%, var(--bg-card));
+            border: 2px solid var(--red-primary);
+        }
+
+        .quiz-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .quiz-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 25px;
+            border-radius: 50px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-nav-btn:hover:not(:disabled) {
+            border-color: var(--green-primary);
+            color: var(--green-primary);
+        }
+
+        .quiz-nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .quiz-nav-btn.next {
+            background: var(--green-primary);
+            border-color: var(--green-primary);
+            color: white;
+        }
+
+        .quiz-nav-btn.next:hover:not(:disabled) {
+            filter: brightness(1.1);
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .quiz-score {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--green-primary);
+            margin-bottom: 20px;
+        }
+
+        .quiz-message {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-summary {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .quiz-summary h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-summary-item {
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .quiz-summary-item.correct {
+            border-left: 4px solid var(--green-primary);
+        }
+
+        .quiz-summary-item.wrong {
+            border-left: 4px solid var(--red-primary);
+        }
+
+        /* ===== COMPARE PAGE ===== */
+        .compare-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .compare-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .compare-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 10px;
+        }
+
+        .compare-selectors {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .compare-select {
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .compare-vs {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-muted);
+        }
+
+        .compare-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .compare-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+        }
+
+        .compare-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .compare-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .compare-stat:last-child {
+            border-bottom: none;
+        }
+
+        .compare-stat-label {
+            color: var(--text-secondary);
+        }
+
+        .compare-stat-value {
+            font-weight: 700;
+            color: var(--green-primary);
+        }
+
+        /* Compare Analysis Section */
+        .compare-analysis {
+            grid-column: 1 / -1;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 35px;
+            border: 2px solid var(--border-color);
+            margin-top: 15px;
+        }
+
+        .compare-analysis h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .analysis-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .analysis-item:hover {
+            border-color: var(--green-primary);
+            transform: translateY(-2px);
+        }
+
+        .analysis-category {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .analysis-winner {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .analysis-winner.green {
+            color: var(--green-primary);
+        }
+
+        .analysis-winner.blue {
+            color: var(--blue-primary);
+        }
+
+        .analysis-winner.tie {
+            color: var(--text-muted);
+        }
+
+        .analysis-diff {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: color-mix(in srgb, var(--green-primary) 15%, transparent);
+            color: var(--green-primary);
+        }
+
+        .compare-summary {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 25px;
+            align-items: center;
+            padding: 30px 25px;
+            background: var(--bg-secondary);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-side {
+            text-align: center;
+        }
+
+        .summary-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .summary-score {
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+        }
+
+        .summary-score.leading {
+            color: var(--green-primary);
+        }
+
+        .summary-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .summary-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .summary-vs {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--border-color);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .compare-verdict {
+            text-align: center;
+            margin-top: 20px;
+            padding: 18px 25px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border-left: 4px solid var(--green-primary);
+        }
+
+        .verdict-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .verdict-text strong {
+            color: var(--green-primary);
+            font-weight: 600;
+        }
+
+        .compare-card.winner {
+            border-color: var(--green-primary);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--green-primary) 5%, var(--bg-card)), var(--bg-card));
+        }
+
+        .compare-card.winner::before {
+            content: '🏆 VINNER';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--green-primary);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 15px;
+            border-radius: 20px;
+        }
+
+        .compare-card {
+            position: relative;
+        }
+
+        .compare-stat-value.winner {
+            color: var(--green-primary);
+        }
+
+        .compare-stat-value.loser {
+            color: var(--red-primary);
+        }
+
+        /* ===== DASHBOARD PAGE ===== */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 10px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-stat {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-stat:hover {
+            transform: translateY(-5px);
+            border-color: var(--green-primary);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .dashboard-stat.active {
+            border-color: var(--green-primary);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--green-primary) 10%, var(--bg-card)), var(--bg-card));
+        }
+
+        .dashboard-stat-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-stat-value {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--green-primary);
+        }
+
+        .dashboard-stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .dashboard-charts {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-chart {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+        }
+
+        .dashboard-chart h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar-label {
+            width: 120px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 24px;
+            background: var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            transition: width 1s ease;
+        }
+
+        .pie-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pie-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pie-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .pie-label {
+            flex: 1;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .pie-value {
+            font-weight: 700;
+        }
+
+        /* Dashboard detail panel */
+        .dashboard-detail {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+            margin-top: 30px;
+            display: none;
+        }
+
+        .dashboard-detail.active {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .dashboard-detail h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--green-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dashboard-detail .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .detail-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .detail-section h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-section p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .detail-section ul {
+            list-style: none;
+        }
+
+        .detail-section li {
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .detail-section li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-section li span:last-child {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .detail-highlight {
+            background: linear-gradient(135deg, color-mix(in srgb, var(--green-primary) 15%, var(--bg-secondary)), var(--bg-secondary));
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid var(--green-primary);
+        }
+
+        .detail-highlight p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .close-detail {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--border-color);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .close-detail:hover {
+            background: var(--red-primary);
+            color: white;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dashboard-charts {
+                grid-template-columns: 1fr;
+            }
+            .compare-selectors {
+                grid-template-columns: 1fr;
+            }
+            .compare-vs {
+                text-align: center;
+            }
+            .compare-results {
+                grid-template-columns: 1fr;
+            }
+            .compare-summary {
+                padding: 20px 15px;
+                gap: 15px;
+            }
+            .summary-score {
+                font-size: 36px;
+            }
+            .summary-name {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                padding: 0 15px;
+                height: 60px;
+            }
+            .nav-brand span {
+                display: none;
+            }
+            .nav-menu {
+                gap: 4px;
+            }
+            .nav-item {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            .nav-item span:not(.icon) {
+                display: none;
+            }
+            .timeline-header {
+                padding: 15px 20px;
+            }
+            .step-label {
+                display: none;
+            }
+            .step-dot {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .content-title {
+                font-size: 28px;
+            }
+            .stat-number {
+                font-size: 36px;
+            }
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+            .sorting-comparison {
+                grid-template-columns: 1fr;
+            }
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            .analysis-item {
+                padding: 12px 14px;
+            }
+            .analysis-category {
+                font-size: 11px;
+            }
+            .analysis-winner {
+                font-size: 11px;
+            }
+            .compare-analysis {
+                padding: 20px;
+            }
+            .compare-analysis h3 {
+                font-size: 16px;
+            }
+            .compare-summary {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                text-align: center;
+            }
+            .summary-divider {
+                padding: 10px 0;
+            }
+            .summary-score {
+                font-size: 32px;
+            }
+            .verdict-text {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+<!-- Main Navigation -->
+<nav class="main-nav">
+<div class="nav-brand">
+<span>♻️</span>
+            Avfallsportalen
+        </div>
+<div class="nav-menu">
+<button class="nav-item active" onclick="showPage('journey', this)">
+<span class="icon">🗺️</span>
+<span>Reisen</span>
+</button>
+<button class="nav-item" onclick="showPage('quiz', this)">
+<span class="icon">❓</span>
+<span>Quiz</span>
+</button>
+<button class="nav-item" onclick="showPage('compare', this)">
+<span class="icon">⚖️</span>
+<span>Sammenlign</span>
+</button>
+<button class="nav-item" onclick="showPage('dashboard', this)">
+<span class="icon">📊</span>
+<span>Dashboard</span>
+</button>
+</div>
+<div class="nav-controls">
+<button class="theme-toggle" onclick="toggleTheme()" title="Bytt tema" aria-label="Bytt mellom lyst og mørkt tema"></button>
+</div>
+</nav>
+<!-- ===== JOURNEY PAGE ===== -->
+<div class="page active" id="page-journey">
+<div class="timeline-header">
+<div class="timeline">
+<div class="timeline-progress" id="timelineProgress"></div>
+<div class="timeline-step" data-step="0" style="--step-color: var(--world)">
+<div class="step-dot"><span class="icon">🌍</span></div>
+<span class="step-label">Verden</span>
+</div>
+<div class="timeline-step" data-step="1" style="--step-color: var(--europe)">
+<div class="step-dot"><span class="icon">🇪🇺</span></div>
+<span class="step-label">Europa</span>
+</div>
+<div class="timeline-step" data-step="2" style="--step-color: var(--norway)">
+<div class="step-dot"><span class="icon">🇳🇴</span></div>
+<span class="step-label">Norge</span>
+</div>
+<div class="timeline-step" data-step="3" style="--step-color: var(--home)">
+<div class="step-dot"><span class="icon">🏠</span></div>
+<span class="step-label">Hjemme</span>
+</div>
+<div class="timeline-step" data-step="4" style="--step-color: var(--collection)">
+<div class="step-dot"><span class="icon">🚛</span></div>
+<span class="step-label">Innsamling</span>
+</div>
+<div class="timeline-step" data-step="5" style="--step-color: var(--sorting)">
+<div class="step-dot"><span class="icon">🏭</span></div>
+<span class="step-label">Sortering</span>
+</div>
+<div class="timeline-step" data-step="6" style="--step-color: var(--processing)">
+<div class="step-dot"><span class="icon">🔥</span></div>
+<span class="step-label">Behandling</span>
+</div>
+<div class="timeline-step" data-step="7" style="--step-color: var(--result)">
+<div class="step-dot"><span class="icon">🌱</span></div>
+<span class="step-label">Fremtiden</span>
+</div>
+</div>
+</div>
+<div class="main-content">
+<!-- Step 0: Verden -->
+<div class="step-content active" data-step="0" style="--step-color: var(--world)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🌍</span>
+<h1 class="content-title">Verden</h1>
+<p class="content-subtitle">Vi lever over evne. Jorden klarer ikke å fornye ressursene våre i samme tempo som vi bruker dem.</p>
+</div>
+<div class="scroll-indicator">
+<span>Klikk på kortene for mer informasjon</span>
+<span class="arrow">↓</span>
+<span>Scroll ned for mer</span>
+</div>
+<div class="stats-grid">
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">29. juli</div>
+<div class="stat-label">Earth Overshoot Day 2019</div>
+<div class="stat-description">Dagen verden brukte opp årets ressurser</div>
+<div class="expand-info">
+<p><strong>Hva er Earth Overshoot Day?</strong></p>
+<p>Dette er dagen i kalenderåret da verden har brukt opp alle de fornybare ressursene som jorden kan regenerere på ett år.</p>
+<p>I 2019 var denne dagen 29. juli – det betyr at vi fra 30. juli levde "på kreditt" resten av året.</p>
+<p>Hvert år kommer denne dagen tidligere og tidligere.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">1.75</div>
+<div class="stat-label">Jordkloder</div>
+<div class="stat-description">Vi lever som om vi har nesten 2 jordkloder</div>
+<div class="expand-info">
+<p><strong>Hva betyr dette?</strong></p>
+<p>Menneskheten bruker naturens ressurser 1.75 ganger raskere enn planetens økosystemer kan regenerere dem.</p>
+<p>Dette er ikke bærekraftig på lang sikt og fører til tap av biologisk mangfold, overfiske, avskoging og klimaendringer.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">186</div>
+<div class="stat-label">Land i Paris-avtalen</div>
+<div class="stat-description">Mål: Holde temperaturøkningen under 2°C</div>
+<div class="expand-info">
+<p><strong>Paris-avtalen</strong></p>
+<p>En internasjonal avtale som forplikter landene til å redusere klimagassutslipp og holde global oppvarming under 2°C.</p>
+<p>Avfallshåndtering er en viktig del av løsningen – sirkulær økonomi reduserer behovet for nye ressurser.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">⚠️</span> Avfallskrisen 2018</h3>
+<p>Da Kina stoppet import av avfall fra resten av verden, oppsto en global krise.</p>
+<div class="expand-content">
+<p>Kina tok imot <strong>45% av verdens plastavfall</strong> for resirkulering. Da de innførte forbud mot import av 24 typer avfall, hadde mange land plutselig ingen steder å sende søppelet sitt.</p>
+<p>Dette avslørte hvor avhengige vi var av å eksportere problemene våre i stedet for å løse dem lokalt.</p>
+<p>Resultatet: Mange land måtte bygge opp egen infrastruktur for avfallshåndtering, og fokuset på å redusere avfall økte dramatisk.</p>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">🎯</span> FNs Bærekraftsmål</h3>
+<p>17 globale mål for 2030 fokuserer på planeten og mennesker.</p>
+<ul>
+<li>Mål 12: Ansvarlig forbruk og produksjon</li>
+<li>Mål 13: Stoppe klimaendringene</li>
+<li>Mål 14 &amp; 15: Beskytte liv</li>
+</ul>
+<div class="expand-content">
+<p><strong>Mål 12.5:</strong> Innen 2030, vesentlig redusere avfallsmengden gjennom forebygging, reduksjon, materialgjenvinning og ombruk.</p>
+<p>Dette krever endringer i hvordan vi designer produkter, hvordan vi forbruker, og hvordan vi håndterer avfall.</p>
+</div>
+</div>
+</div>
+<div class="quote-box">
+<p class="quote-text">"Avfall er ikke avfall, men en brukt ressurs med kapasitet for gjenbruk og fornyelse."</p>
+<p class="quote-author">— Paris-avtalen om sirkulær økonomi</p>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" disabled="" id="prevBtn" onclick="prevStep()">
+                        ← Forrige
+                    </button>
+<span class="progress-text" id="progressText">Steg 1 av 8</span>
+<button class="nav-btn next" id="nextBtn" onclick="nextStep()">
+                        Neste →
+                    </button>
+</div>
+</div>
+<!-- Step 1-4 abbreviated for space, keeping step 5 with illustrations -->
+<!-- Step 5: Sortering with illustrations -->
+<div class="step-content" data-step="5" style="--step-color: var(--sorting)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🏭</span>
+<h1 class="content-title">Sortering</h1>
+<p class="content-subtitle">Teknologien gjør ENORM forskjell. Moderne sorteringsanlegg kan oppnå over fire ganger bedre resultater.</p>
+</div>
+<div class="scroll-indicator">
+<span class="arrow">↓</span>
+<span>Scroll ned for å sammenligne systemer</span>
+</div>
+<div class="sorting-comparison">
+<!-- Sentralisert sortering -->
+<div class="sorting-system best">
+<div class="sorting-illustration">
+<div class="illustration-centralized">
+<div class="scanner-beam"></div>
+<div class="conveyor-belt"></div>
+<div class="sorted-bins">
+<div class="mini-bin" style="background: #64B5F6;"></div>
+<div class="mini-bin" style="background: #81C784;"></div>
+<div class="mini-bin" style="background: #FFB74D;"></div>
+<div class="mini-bin" style="background: #CE93D8;"></div>
+<div class="mini-bin" style="background: #90A4AE;"></div>
+</div>
+</div>
+</div>
+<div class="sorting-name">Sentralisert sortering</div>
+<div class="sorting-percent">86%</div>
+<div class="sorting-bar"><div class="sorting-fill" style="width: 86%;"></div></div>
+<div class="sorting-desc">Moderne teknologi skanner avfallet og sorterer automatisk. Mindre rom for brukerfeil = høy effektivitet.</div>
+
+</div>
+<!-- Hentesystem -->
+<div class="sorting-system">
+<div class="sorting-illustration">
+<div class="illustration-hente">
+<div class="house-icon">🏠</div>
+<div class="arrow-flow">
+<div class="bins-row">
+<div class="mini-bin" style="background: #64B5F6;"></div>
+<div class="mini-bin" style="background: #81C784;"></div>
+<div class="mini-bin" style="background: #90A4AE;"></div>
+</div>
+<span style="font-size: 16px;">→</span>
+</div>
+<div class="truck-icon">🚛</div>
+</div>
+</div>
+<div class="sorting-name">Hentesystem</div>
+<div class="sorting-percent">34%</div>
+<div class="sorting-bar"><div class="sorting-fill" style="width: 34%;"></div></div>
+<div class="sorting-desc">Renovasjon henter sortert avfall hjemme. Krever at brukeren sorterer riktig i flere beholdere.</div>
+
+</div>
+<!-- Bringesystem -->
+<div class="sorting-system">
+<div class="sorting-illustration">
+<div class="illustration-bringe">
+<div class="person-with-bag">
+<span class="person">🚶</span>
+<span class="bag">🛍️</span>
+</div>
+<span style="font-size: 24px; color: var(--text-muted);">→</span>
+<div class="recycling-station">
+<div class="station-sign">♻️ RETURPUNKT</div>
+<div class="big-bins">
+<div class="big-bin" style="background: #64B5F6;"></div>
+<div class="big-bin" style="background: #81C784;"></div>
+<div class="big-bin" style="background: #FFB74D;"></div>
+<div class="big-bin" style="background: #90A4AE;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sorting-name">Bringesystem</div>
+<div class="sorting-percent">31%</div>
+<div class="sorting-bar"><div class="sorting-fill" style="width: 31%;"></div></div>
+<div class="sorting-desc">Innbyggere leverer avfall på returpunkter. Krever ekstra innsats fra brukeren.</div>
+
+</div>
+<!-- Optibag -->
+<div class="sorting-system worst">
+<div class="sorting-illustration">
+<div class="illustration-optibag">
+<div class="colored-bags">
+<div class="color-bag blue"></div>
+<div class="color-bag green"></div>
+<div class="color-bag grey"></div>
+</div>
+<span class="optibag-arrow">↓</span>
+<div class="single-bin">🗑️</div>
+</div>
+</div>
+<div class="sorting-name">Optibag (Oslo)</div>
+<div class="sorting-percent">19%</div>
+<div class="sorting-bar"><div class="sorting-fill" style="width: 19%;"></div></div>
+<div class="sorting-desc">Fargebasert system med poser. Høyt press på brukeren = lav effektivitet.</div>
+
+</div>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">✅</span> Hvorfor sentralisert fungerer</h3>
+<p>Moderne anlegg bruker sensorer, AI og roboter til å skanne og sortere avfall automatisk.</p>
+<div class="expand-content">
+<p><strong>Fordeler:</strong></p>
+<ul>
+<li>Mindre avhengig av brukerens sortering</li>
+<li>Kan fange opp feilsortert avfall</li>
+<li>Høyere renhet på materialer</li>
+<li>Kontinuerlig forbedring med AI</li>
+</ul>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">❌</span> Optibag-utfordringen</h3>
+<p>Systemet setter for stort press på brukeren.</p>
+<div class="expand-content">
+<p><strong>Problemer:</strong></p>
+<ul>
+<li>Poser over 600g blir automatisk restavfall</li>
+<li>Krever kjøp av spesielle poser</li>
+<li>Brukerfeil har store konsekvenser</li>
+<li>Kun 19% av plasten blir sortert ut</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
+<span class="progress-text">Steg 6 av 8</span>
+<button class="nav-btn next" onclick="nextStep()">Neste →</button>
+</div>
+</div>
+<!-- Other steps (1-4, 6-7) similar structure -->
+<div class="step-content" data-step="1" style="--step-color: var(--europe)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🇪🇺</span>
+<h1 class="content-title">Europa</h1>
+<p class="content-subtitle">20 europeiske partnere jobber sammen for å forbedre avfallsbehandlingen. Men vi har en lang vei å gå.</p>
+</div>
+<div class="scroll-indicator">
+<span class="arrow">↓</span>
+<span>Scroll ned for mer informasjon</span>
+</div>
+<div class="stats-grid">
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">30%</div>
+<div class="stat-label">Plast resirkulert</div>
+<div class="stat-description">Kun 30% av plastavfall resirkuleres i Europa</div>
+<div class="expand-info">
+<p>Tallet er enda lavere i Sør- og Øst-Europa på grunn av manglende infrastruktur.</p>
+<p>Resten går til forbrenning (med energigjenvinning) eller deponi.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">65%</div>
+<div class="stat-label">EU-mål 2035</div>
+<div class="stat-description">Målet er å mer enn doble resirkuleringen</div>
+<div class="expand-info">
+<p>EU har satt ambisiøse mål gjennom Circular Economy Action Plan.</p>
+<p>Dette krever massive investeringer i infrastruktur og endringer i forbrukeratferd.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">475 kg</div>
+<div class="stat-label">Per person/år</div>
+<div class="stat-description">Gjennomsnittlig avfall i Europa</div>
+<div class="expand-info">
+<p>Norge ligger langt over dette gjennomsnittet med 739 kg per person.</p>
+<p>De nordiske landene har generelt høyere avfallsmengder, delvis på grunn av høyere levestandard og forbruk.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+</div>
+<div class="quote-box">
+<p class="quote-text">"Resirkulering av plast kan øke hvis innsamlingsgraden forbedres og vi implementerer ny sorteringsteknologi."</p>
+<p class="quote-author">— César Aliaga, Prosjektkoordinator ITENE</p>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">📉</span> Utfordringen</h3>
+<p>Mange land mangler infrastruktur og teknologi for effektiv avfallshåndtering.</p>
+<div class="expand-content">
+<p>Plastresirkulering er spesielt utfordrende fordi:</p>
+<ul>
+<li>Det finnes hundrevis av plasttyper</li>
+<li>Mange produkter kombinerer flere materialer</li>
+<li>Forurensning reduserer kvaliteten</li>
+<li>Virgin plast er ofte billigere enn resirkulert</li>
+</ul>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">💡</span> Løsningen</h3>
+<p><strong>"Å redusere tap av ressurser fra avfallshåndtering er nøkkelen til sirkulær økonomi."</strong></p>
+<ul>
+<li>Bedre innsamlingssystemer</li>
+<li>Ny sorteringsteknologi</li>
+<li>Felles europeiske standarder</li>
+</ul>
+<div class="expand-content">
+<p>ITENE i Valencia leder et prosjekt med 20 europeiske partnere for å forbedre plastgjenvinning gjennom:</p>
+<ul>
+<li>Kjemisk resirkulering</li>
+<li>AI-basert sortering</li>
+<li>Bedre designstandarder</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
+<span class="progress-text">Steg 2 av 8</span>
+<button class="nav-btn next" onclick="nextStep()">Neste →</button>
+</div>
+</div>
+<div class="step-content" data-step="2" style="--step-color: var(--norway)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🇳🇴</span>
+<h1 class="content-title">Norge</h1>
+<p class="content-subtitle">Vi er blant verstingene i Europa når det gjelder avfallsmengde. Med stort forbruk følger stort ansvar.</p>
+</div>
+<div class="scroll-indicator">
+<span class="arrow">↓</span>
+<span>Scroll ned for mer informasjon</span>
+</div>
+<div class="stats-grid">
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">739 kg</div>
+<div class="stat-label">Per person/år</div>
+<div class="stat-description">Nest høyest i Europa!</div>
+<div class="expand-info">
+<p>Bare Luxembourg har mer avfall per innbygger enn Norge.</p>
+<p>Dette henger sammen med høy levestandard, mye forbruk, og relativt liten befolkning.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">18. april</div>
+<div class="stat-label">Norges Overshoot Day</div>
+<div class="stat-description">Kun 4 måneder inn i året!</div>
+<div class="expand-info">
+<p>Hvis alle i verden levde som nordmenn, ville vi trenge over 3 jordkloder.</p>
+<p>Norge bruker opp sin andel av jordens ressurser blant de tidligste i verden.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">39%</div>
+<div class="stat-label">Til resirkulering</div>
+<div class="stat-description">I 2017 ble 39% sendt til gjenvinning</div>
+<div class="expand-info">
+<p>Resten går til forbrenning (energigjenvinning) eller deponi.</p>
+<p>EU-målet på 65% innen 2035 krever betydelig forbedring.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">373</div>
+<div class="stat-label">Elefanter</div>
+<div class="stat-description">Vekten av Norges husholdningsavfall</div>
+<div class="expand-info">
+<p>21% av alt avfall i Norge kommer fra private husholdninger.</p>
+<p>Det tilsvarer <strong>2 419 000 tonn</strong> per år!</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">📊</span> Norges avfallsfordeling</h3>
+<ul>
+<li>21% fra private husholdninger</li>
+<li>24% fra bygg og anlegg</li>
+<li>21% fra servicenæringen</li>
+<li>14% fra industrien</li>
+<li>20% uspesifisert</li>
+</ul>
+<div class="expand-content">
+<p>Bygg og anlegg er den største kilden, hovedsakelig på grunn av rivning og renovering.</p>
+<p>Mye av dette kan gjenvinnes, men krever bedre sortering på byggeplassen.</p>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">⚖️</span> Regelverk</h3>
+<p><strong>Fra januar 2018:</strong> Bedrifter med over 1000 kg emballasje må være medlem av godkjent returselskap.</p>
+<div class="expand-content">
+<p><strong>Grønt Punkt og Norsirk</strong> sørger for at emballasje blir levert til resirkulering.</p>
+<p>Forurensningsloven pålegger alle kommuner ansvar for å samle inn husholdningsavfall.</p>
+<p><strong>Norges miljømål 4.3</strong> sier at avfallsveksten skal være lavere enn økonomisk vekst – men dette målet er IKKE nådd.</p>
+</div>
+</div>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
+<span class="progress-text">Steg 3 av 8</span>
+<button class="nav-btn next" onclick="nextStep()">Neste →</button>
+</div>
+</div>
+<div class="step-content" data-step="3" style="--step-color: var(--home)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🏠</span>
+<h1 class="content-title">Hjemme</h1>
+<p class="content-subtitle">Du er den første linjen i resirkuleringen. Feil som gjøres hjemme skaper store utfordringer for hele systemet.</p>
+</div>
+<div class="scroll-indicator">
+<span class="arrow">↓</span>
+<span>Scroll ned for mer informasjon</span>
+</div>
+<div class="stats-grid">
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">60%+</div>
+<div class="stat-label">Ikke resirkulert</div>
+<div class="stat-description">Over 60% sendes IKKE til resirkulering</div>
+<div class="expand-info">
+<p>Hovedårsaken er feilsortering hjemme hos folk.</p>
+<p>Når avfall er feilsortert, er det ofte for sent å redde materialene.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">65,7%</div>
+<div class="stat-label">Feilsortert i Oslo</div>
+<div class="stat-description">Andelen restavfall som er sortert feil</div>
+<div class="expand-info">
+<p>I Oslo tilsvarer dette 54 857 tonn avfall årlig som aldri blir resirkulert riktig.</p>
+<p>Matavfall utgjør hele 36,3% av dette!</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">37%</div>
+<div class="stat-label">Googler for hjelp</div>
+<div class="stat-description">Bare 18% bruker emballasjeinfo</div>
+<div class="expand-info">
+<p>Dette viser at informasjonen ikke når frem til folk på en effektiv måte.</p>
+<p>LOOP har derfor utviklet nye, enklere symboler.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">🤔</span> Hvordan resirkulere?</h3>
+<ul>
+<li>Du MÅ sortere – det er lovpålagt!</li>
+<li>Finn ut hva som gjelder der du bor</li>
+<li>Ha en praktisk løsning hjemme</li>
+<li>Gjør det enkelt – ellers gjør du det ikke</li>
+</ul>
+<div class="expand-content">
+<p><strong>Viktig:</strong> Systemene varierer mellom kommuner, så det som gjelder i Oslo gjelder ikke nødvendigvis i Bergen!</p>
+<p>Sjekk din kommunes nettsider for spesifikke regler.</p>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">🚧</span> Barrierer mot sortering</h3>
+<p><strong>Kantar-undersøkelse</strong> viser hovedårsakene:</p>
+<ul>
+<li>Arbeidet med sortering</li>
+<li>Usikkerhet om hva som skal hvor</li>
+<li>Mangel på gode løsninger</li>
+<li>"Det nytter jo ikke uansett"</li>
+</ul>
+<div class="expand-content">
+<p>Folk som ikke sorterer plast føler ofte at det ikke finnes gode løsninger i deres kommune.</p>
+<p>Mange tror faktisk at det ikke hjelper å sortere – men det gjør det!</p>
+</div>
+</div>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
+<span class="progress-text">Steg 4 av 8</span>
+<button class="nav-btn next" onclick="nextStep()">Neste →</button>
+</div>
+</div>
+<div class="step-content" data-step="4" style="--step-color: var(--collection)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🚛</span>
+<h1 class="content-title">Innsamling</h1>
+<p class="content-subtitle">Kommunene har ansvaret for å samle inn husholdningsavfall. Men systemene varierer enormt.</p>
+</div>
+<div class="scroll-indicator">
+<span class="arrow">↓</span>
+<span>Scroll ned for mer informasjon</span>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">🏙️</span> Oslo: Optibag-systemet</h3>
+<p>Hovedstaden bruker fargebasert sortering:</p>
+<ul>
+<li>🔵 Blå pose = Plast</li>
+<li>🟢 Grønn pose = Matavfall</li>
+<li>⚪ Vanlig pose = Restavfall</li>
+</ul>
+<div class="expand-content">
+<p>Alt går i <strong>samme søppeldunk!</strong> Papir og glass/metall sorteres separat.</p>
+<p>Systemet krever at brukeren kjøper spesielle poser og sorterer riktig.</p>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">⚠️</span> Problemet med Optibag</h3>
+<p>Hvis blå plastpose veier over 600 gram, sorteres den automatisk som restavfall – uansett hva som er i den!</p>
+<div class="expand-content">
+<p>Dette setter stort press på at brukeren sorterer riktig og ikke fyller posen for full.</p>
+<p>Resultatet er at mye plast ender opp i forbrenningen.</p>
+</div>
+</div>
+</div>
+<div class="quote-box">
+<p class="quote-text">"Forurensningsloven slår fast at alle kommuner i Norge har ansvar for å samle inn avfall fra husholdninger."</p>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
+<span class="progress-text">Steg 5 av 8</span>
+<button class="nav-btn next" onclick="nextStep()">Neste →</button>
+</div>
+</div>
+<div class="step-content" data-step="6" style="--step-color: var(--processing)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🔥</span>
+<h1 class="content-title">Behandling</h1>
+<p class="content-subtitle">Hva skjer egentlig med avfallet ditt? Mesteparten brennes – verdifulle materialer går tapt for alltid.</p>
+</div>
+<div class="scroll-indicator">
+<span class="arrow">↓</span>
+<span>Scroll ned for mer informasjon</span>
+</div>
+<div class="stats-grid">
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">54,5%</div>
+<div class="stat-label">Forbrent</div>
+<div class="stat-description">Over halvparten brennes for energi</div>
+<div class="expand-info">
+<p>Forbrenning gir fjernvarme og elektrisitet, men materialene er tapt for alltid.</p>
+<p>Det gir også CO2-utslipp.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">~40%</div>
+<div class="stat-label">Materialgjenvinning</div>
+<div class="stat-description">Blir til nye produkter</div>
+<div class="expand-info">
+<p>Dette er det beste utfallet – materialene får nytt liv.</p>
+<p>Glass, metall, papir og noe plast kan gjenvinnes mange ganger.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">~3%</div>
+<div class="stat-label">Deponi</div>
+<div class="stat-description">Graves ned – blant lavest i Europa</div>
+<div class="expand-info">
+<p>Norge har svært lite deponi sammenlignet med mange andre land.</p>
+<p>Forbrenning har i stor grad erstattet deponering.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">🗑️</span> Hva er i restavfallet?</h3>
+<p>I Oslo kommune (65,7% feilsortert!):</p>
+<ul>
+<li>36,3% Matavfall (feilsortert)</li>
+<li>26,6% Faktisk restavfall</li>
+<li>9,0% Papir (feilsortert)</li>
+<li>8,6% Plast (feilsortert)</li>
+</ul>
+<div class="expand-content">
+<p>Alt dette brennes! Materialene er tapt for alltid.</p>
+<p>54 857 tonn i 2019 – bare i Oslo!</p>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">💀</span> Hvorfor er dette så ille?</h3>
+<p>I nesten alle kommuner brennes restavfall for elektrisitet og fjernvarme.</p>
+<div class="expand-content">
+<p><strong>Konsekvensene:</strong></p>
+<ul>
+<li>Materialer går tapt FOR ALLTID</li>
+<li>Vi må utvinne nye råvarer</li>
+<li>Økte CO2-utslipp</li>
+<li>Ressurser som kunne vært gjenbrukt forsvinner</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
+<span class="progress-text">Steg 7 av 8</span>
+<button class="nav-btn next" onclick="nextStep()">Neste →</button>
+</div>
+</div>
+<div class="step-content" data-step="7" style="--step-color: var(--result)">
+<div class="content-header">
+<span class="content-icon" onclick="spinIcon(this)">🌱</span>
+<h1 class="content-title">Fremtiden</h1>
+<p class="content-subtitle">Det finnes håp! Nye løsninger og økt bevissthet kan snu trenden. Men det krever innsats fra alle.</p>
+</div>
+<div class="scroll-indicator">
+<span class="arrow">↓</span>
+<span>Scroll ned for å se hva DU kan gjøre</span>
+</div>
+<div class="stats-grid">
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">65%</div>
+<div class="stat-label">EU-mål 2035</div>
+<div class="stat-description">Målet for materialgjenvinning</div>
+<div class="expand-info">
+<p>Med riktig teknologi og atferd er dette mulig å nå.</p>
+<p>Sentralisert sortering viser at 86% er oppnåelig!</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">10</div>
+<div class="stat-label">Nye LOOP-symboler</div>
+<div class="stat-description">Enklere sortering fra 2020</div>
+<div class="expand-info">
+<p>LOOP har utviklet nye, intuitive symboler som gjør det lettere å vite hvor ting skal.</p>
+<p>Symbolene kommer på både emballasje og avfallsbeholdere.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-number">86%</div>
+<div class="stat-label">Mulig effektivitet</div>
+<div class="stat-description">Med riktig teknologi</div>
+<div class="expand-info">
+<p>Sentralisert sortering beviser at høy effektivitet er mulig.</p>
+<p>Flere kommuner vurderer nå å oppgradere systemene sine.</p>
+</div>
+<div class="expand-hint">Klikk for mer info ↓</div>
+</div>
+</div>
+<div class="info-section">
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">🔄</span> Nye resirkuleringssymboler</h3>
+<p>LOOP har utviklet 10 nye symboler:</p>
+<ul>
+<li>Restavfall, Plast, Papir &amp; Kartong</li>
+<li>Matavfall, Metall, Glass</li>
+<li>Farlig avfall, Batterier</li>
+<li>Tekstiler, EE-avfall</li>
+</ul>
+<div class="expand-content">
+<p>Symbolene er designet for å være intuitive og lette å forstå.</p>
+<p>De rulles ut på emballasje og avfallsbeholdere over hele Norge.</p>
+</div>
+</div>
+<div class="info-card" onclick="toggleCardExpand(this)">
+<h3><span class="icon">💪</span> Hva kan DU gjøre?</h3>
+<ul>
+<li>Lær deg systemet i din kommune</li>
+<li>Ha en praktisk løsning hjemme</li>
+<li>Bruk de nye symbolene</li>
+<li>Ikke gi opp – det NYTTER!</li>
+<li>Spre kunnskapen videre</li>
+</ul>
+<div class="expand-content">
+<p>Hver gang du sorterer riktig, bidrar du til at verdifulle materialer får nytt liv.</p>
+<p>Sammen kan vi nå målene og skape en mer bærekraftig fremtid!</p>
+</div>
+</div>
+</div>
+<div class="quote-box">
+<p class="quote-text">"Dette kan oppnås gjennom langvarig design, vedlikehold, reparasjon, gjenbruk, re-produksjon, oppussing og resirkulering."</p>
+<p class="quote-author">— Paris-avtalen om sirkulær økonomi</p>
+</div>
+<div class="nav-buttons">
+<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
+<span class="progress-text">Steg 8 av 8 ✓</span>
+<button class="nav-btn next" onclick="showPage('quiz')">Ta quizen! 🎯</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ===== QUIZ PAGE ===== -->
+<div class="page" id="page-quiz">
+<div class="quiz-container">
+<div class="quiz-header">
+<h1>🎯 Test kunnskapen din!</h1>
+<p style="color: var(--text-secondary);">10 spørsmål basert på Avfallsreisen</p>
+</div>
+<div class="quiz-progress" id="quizProgress"></div>
+<div id="quizContent">
+<div class="quiz-question" id="quizQuestion"></div>
+</div>
+<div class="quiz-result" id="quizResult" style="display: none;">
+<div class="quiz-score" id="quizScore">0/10</div>
+<div class="quiz-message" id="quizMessage">Bra jobbet!</div>
+<div class="quiz-summary" id="quizSummary"></div>
+<button class="nav-btn next" onclick="resetQuiz()" style="margin: 0 auto;">
+                    Prøv igjen ↺
+                </button>
+</div>
+</div>
+</div>
+<!-- ===== COMPARE PAGE ===== -->
+<div class="page" id="page-compare">
+<div class="compare-container">
+<div class="compare-header">
+<h1>⚖️ Sammenlign kommuner</h1>
+<p style="color: var(--text-secondary);">Se hvordan ulike kommuner håndterer avfall</p>
+</div>
+<div class="compare-selectors">
+<select class="compare-select" id="kommune1" onchange="updateComparison()">
+<option value="oslo">Oslo</option>
+<option value="bergen">Bergen</option>
+<option value="trondheim">Trondheim</option>
+<option value="stavanger">Stavanger</option>
+<option value="kristiansand">Kristiansand</option>
+<option value="tromso">Tromsø</option>
+<option value="drammen">Drammen</option>
+</select>
+<span class="compare-vs">VS</span>
+<select class="compare-select" id="kommune2" onchange="updateComparison()">
+<option value="trondheim">Trondheim</option>
+<option value="oslo">Oslo</option>
+<option value="bergen">Bergen</option>
+<option value="stavanger">Stavanger</option>
+<option value="kristiansand">Kristiansand</option>
+<option value="tromso">Tromsø</option>
+<option value="drammen">Drammen</option>
+</select>
+</div>
+<div class="compare-results" id="compareResults"></div>
+</div>
+</div>
+<!-- ===== DASHBOARD PAGE ===== -->
+<div class="page" id="page-dashboard">
+<div class="dashboard-container">
+<div class="dashboard-header">
+<h1>📊 Avfallsdashboard Norge</h1>
+<p style="color: var(--text-secondary);">Klikk på et tall for detaljert informasjon</p>
+</div>
+<div class="dashboard-grid">
+<div class="dashboard-stat" onclick="showDashboardDetail('avfall')">
+<div class="dashboard-stat-icon">⚖️</div>
+<div class="dashboard-stat-value">739 kg</div>
+<div class="dashboard-stat-label">Avfall per person/år</div>
+</div>
+<div class="dashboard-stat" onclick="showDashboardDetail('resirkulering')">
+<div class="dashboard-stat-icon">♻️</div>
+<div class="dashboard-stat-value">39%</div>
+<div class="dashboard-stat-label">Til materialgjenvinning</div>
+</div>
+<div class="dashboard-stat" onclick="showDashboardDetail('forbrenning')">
+<div class="dashboard-stat-icon">🔥</div>
+<div class="dashboard-stat-value">54,5%</div>
+<div class="dashboard-stat-label">Til forbrenning</div>
+</div>
+<div class="dashboard-stat" onclick="showDashboardDetail('maal')">
+<div class="dashboard-stat-icon">🎯</div>
+<div class="dashboard-stat-value">65%</div>
+<div class="dashboard-stat-label">EU-mål 2035</div>
+</div>
+</div>
+<div class="dashboard-charts">
+<div class="dashboard-chart">
+<h3>📈 Sorteringseffektivitet per system</h3>
+<div class="bar-chart">
+<div class="bar-item">
+<span class="bar-label">Sentralisert</span>
+<div class="bar-track">
+<div class="bar-fill" style="width: 86%; background: var(--green-primary);">86%</div>
+</div>
+</div>
+<div class="bar-item">
+<span class="bar-label">Hentesystem</span>
+<div class="bar-track">
+<div class="bar-fill" style="width: 34%; background: var(--orange-primary);">34%</div>
+</div>
+</div>
+<div class="bar-item">
+<span class="bar-label">Bringesystem</span>
+<div class="bar-track">
+<div class="bar-fill" style="width: 31%; background: var(--orange-primary);">31%</div>
+</div>
+</div>
+<div class="bar-item">
+<span class="bar-label">Optibag</span>
+<div class="bar-track">
+<div class="bar-fill" style="width: 19%; background: var(--red-primary);">19%</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dashboard-chart">
+<h3>🗑️ Feilsortert i restavfall (Oslo)</h3>
+<div class="pie-legend">
+<div class="pie-item">
+<div class="pie-color" style="background: var(--green-primary);"></div>
+<span class="pie-label">Matavfall</span>
+<span class="pie-value" style="color: var(--green-primary);">36,3%</span>
+</div>
+<div class="pie-item">
+<div class="pie-color" style="background: var(--text-muted);"></div>
+<span class="pie-label">Restavfall</span>
+<span class="pie-value">26,6%</span>
+</div>
+<div class="pie-item">
+<div class="pie-color" style="background: var(--blue-primary);"></div>
+<span class="pie-label">Papir</span>
+<span class="pie-value" style="color: var(--blue-primary);">9,0%</span>
+</div>
+<div class="pie-item">
+<div class="pie-color" style="background: var(--purple-primary);"></div>
+<span class="pie-label">Plast</span>
+<span class="pie-value" style="color: var(--purple-primary);">8,6%</span>
+</div>
+<div class="pie-item">
+<div class="pie-color" style="background: var(--orange-primary);"></div>
+<span class="pie-label">Annet</span>
+<span class="pie-value" style="color: var(--orange-primary);">19,5%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard detail panels -->
+<div class="dashboard-detail" id="detail-avfall">
+<h2>⚖️ Avfall per person i Norge</h2>
+<div class="detail-grid">
+<div class="detail-section">
+<h4>📊 Nøkkeltall</h4>
+<ul>
+<li><span>Total per person/år</span><span>739 kg</span></li>
+<li><span>Rangering i Europa</span><span>#2</span></li>
+<li><span>EU-gjennomsnitt</span><span>475 kg</span></li>
+<li><span>Fra husholdninger</span><span>21%</span></li>
+<li><span>Totalt husholdning</span><span>2,4 mill. tonn</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>📈 Fordeling av avfall</h4>
+<ul>
+<li><span>Bygg og anlegg</span><span>24%</span></li>
+<li><span>Service/næring</span><span>21%</span></li>
+<li><span>Husholdning</span><span>21%</span></li>
+<li><span>Industri</span><span>14%</span></li>
+<li><span>Uspesifisert</span><span>20%</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>🌍 Sammenlignet med andre</h4>
+<ul>
+<li><span>Luxembourg</span><span>791 kg</span></li>
+<li><span>Norge</span><span>739 kg</span></li>
+<li><span>Danmark</span><span>681 kg</span></li>
+<li><span>Sverige</span><span>449 kg</span></li>
+<li><span>Romania</span><span>272 kg</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>💡 Hvorfor så mye?</h4>
+<p>Norges høye avfallsmengde skyldes flere faktorer:</p>
+<ul>
+<li><span>Høy kjøpekraft</span><span>+</span></li>
+<li><span>Mye emballasje</span><span>+</span></li>
+<li><span>Engangskultur</span><span>+</span></li>
+<li><span>Store boliger</span><span>+</span></li>
+</ul>
+<div class="detail-highlight">
+<p>2,4 millioner tonn husholdningsavfall = vekten av 373 elefanter!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="dashboard-detail" id="detail-resirkulering">
+<h2>♻️ Materialgjenvinning i Norge</h2>
+<div class="detail-grid">
+<div class="detail-section">
+<h4>📊 Gjenvinningsrater</h4>
+<ul>
+<li><span>Metall</span><span>95%</span></li>
+<li><span>Glass</span><span>91%</span></li>
+<li><span>Papir/kartong</span><span>78%</span></li>
+<li><span>Plast</span><span>30%</span></li>
+<li><span>Tekstil</span><span>~5%</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>🏭 Hvem håndterer hva?</h4>
+<p><strong>Grønt Punkt Norge</strong></p>
+<p>Ansvar for innsamling og gjenvinning av emballasje fra medlemsbedrifter.</p>
+<p><strong>Norsirk</strong></p>
+<p>Håndterer EE-avfall og batterier.</p>
+<p><strong>Kommunene</strong></p>
+<p>Ansvar for husholdningsavfall via Forurensningsloven.</p>
+</div>
+<div class="detail-section">
+<h4>📈 Utvikling over tid</h4>
+<ul>
+<li><span>2010</span><span>34%</span></li>
+<li><span>2015</span><span>37%</span></li>
+<li><span>2017</span><span>39%</span></li>
+<li><span>2020</span><span>~42%</span></li>
+<li><span>Mål 2035</span><span>65%</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>🌱 Hva blir materialene til?</h4>
+<ul>
+<li><span>Papir</span><span>Ny papir, kartong</span></li>
+<li><span>Glass</span><span>Nytt glass, isolasjon</span></li>
+<li><span>Metall</span><span>Nye metallprodukter</span></li>
+<li><span>Plast</span><span>Fleece, møbler, nye flasker</span></li>
+</ul>
+<div class="detail-highlight">
+<p>1 tonn resirkulert plast sparer 1,5 tonn CO2!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="dashboard-detail" id="detail-forbrenning">
+<h2>🔥 Forbrenning i Norge</h2>
+<div class="detail-grid">
+<div class="detail-section">
+<h4>📊 Fakta om forbrenning</h4>
+<ul>
+<li><span>Andel forbrent</span><span>54,5%</span></li>
+<li><span>Antall anlegg</span><span>17</span></li>
+<li><span>Energiproduksjon</span><span>3 TWh/år</span></li>
+<li><span>Husholdninger varmet</span><span>~200 000</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>🏭 Store forbrenningsanlegg</h4>
+<ul>
+<li><span>Klemetsrud (Oslo)</span><span>400 000 t/år</span></li>
+<li><span>Haraldrud (Oslo)</span><span>100 000 t/år</span></li>
+<li><span>Heimdal (Trondheim)</span><span>150 000 t/år</span></li>
+<li><span>Energos (flere)</span><span>Varierer</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>⚠️ Problemer</h4>
+<p><strong>Verdifulle materialer går tapt</strong></p>
+<p>36% av det som brennes er matavfall, 9% papir, 8,6% plast – alt kunne vært gjenvunnet!</p>
+<p><strong>CO2-utslipp</strong></p>
+<p>Forbrenning slipper ut CO2, spesielt fra plast (som er laget av olje).</p>
+</div>
+<div class="detail-section">
+<h4>✅ Fordeler</h4>
+<ul>
+<li><span>Energigjenvinning</span><span>85% effektivitet</span></li>
+<li><span>Fjernvarme</span><span>Varmer boliger</span></li>
+<li><span>Volumreduksjon</span><span>90% reduksjon</span></li>
+<li><span>Hygienisk</span><span>Ødelegger skadelig</span></li>
+</ul>
+<div class="detail-highlight">
+<p>Norge har nesten ingen deponi (3%) takket være forbrenning – men målet er mer gjenvinning!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="dashboard-detail" id="detail-maal">
+<h2>🎯 EU-mål og regelverk</h2>
+<div class="detail-grid">
+<div class="detail-section">
+<h4>📋 EU-direktiver</h4>
+<ul>
+<li><span>2025 - Emballasje</span><span>65%</span></li>
+<li><span>2025 - Plast</span><span>50%</span></li>
+<li><span>2030 - Kommunalt</span><span>60%</span></li>
+<li><span>2035 - Kommunalt</span><span>65%</span></li>
+<li><span>2035 - Max deponi</span><span>10%</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>🇳🇴 Norske mål</h4>
+<p><strong>Norges miljømål 4.3:</strong></p>
+<p>Avfallsveksten skal være vesentlig lavere enn den økonomiske veksten.</p>
+<p><strong>Status:</strong> IKKE NÅDD</p>
+<p>BNP økte 2%, avfall økte 3% (2016-2017).</p>
+</div>
+<div class="detail-section">
+<h4>📜 Viktige lover</h4>
+<ul>
+<li><span>Forurensningsloven</span><span>Kommuneansvar</span></li>
+<li><span>Avfallsforskriften</span><span>Detaljregler</span></li>
+<li><span>Produsentansvar</span><span>Fra 2018</span></li>
+</ul>
+</div>
+<div class="detail-section">
+<h4>💰 Produsentansvar</h4>
+<p>Fra januar 2018: Bedrifter som produserer over 1000 kg emballasje må være medlem av godkjent returselskap (Grønt Punkt eller Norsirk).</p>
+<p>De betaler gebyr basert på mengde og type emballasje.</p>
+<div class="detail-highlight">
+<p>Grønt Punkt rapporterer til Tyskland hvor mye som faktisk blir gjenvunnet!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // ===== THEME TOGGLE =====
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+            localStorage.setItem('theme', body.getAttribute('data-theme'));
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+
+        // ===== PAGE NAVIGATION =====
+        function showPage(pageId, navElement) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            document.getElementById('page-' + pageId).classList.add('active');
+            
+            // Find and activate the correct nav item
+            if (navElement && navElement.classList.contains('nav-item')) {
+                navElement.classList.add('active');
+            } else {
+                // Find nav item by checking onclick attribute for pageId
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(n => {
+                    const onclick = n.getAttribute('onclick');
+                    if (onclick && onclick.includes(`'${pageId}'`)) {
+                        n.classList.add('active');
+                    }
+                });
+            }
+            
+            if (pageId === 'quiz') initQuiz();
+            if (pageId === 'compare') updateComparison();
+        }
+
+        // ===== TIMELINE JOURNEY =====
+        let currentStep = 0;
+        const totalSteps = 8;
+
+        function updateTimeline() {
+            const progress = (currentStep / (totalSteps - 1)) * 100;
+            document.getElementById('timelineProgress').style.width = `calc(${progress}% - 25px)`;
+
+            document.querySelectorAll('.timeline-step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index === currentStep) step.classList.add('active');
+                else if (index < currentStep) step.classList.add('completed');
+            });
+
+            document.querySelectorAll('.step-content').forEach((content) => {
+                const step = parseInt(content.dataset.step, 10);
+                content.classList.toggle('active', step === currentStep);
+            });
+
+            // Update all progress texts
+            document.querySelectorAll('.progress-text').forEach(el => {
+                el.textContent = `Steg ${currentStep + 1} av ${totalSteps}`;
+            });
+
+            // Update prev buttons
+            document.querySelectorAll('.nav-btn.prev').forEach(btn => {
+                btn.disabled = currentStep === 0;
+            });
+        }
+
+        function goToStep(step) {
+            currentStep = step;
+            updateTimeline();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                currentStep++;
+                updateTimeline();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                updateTimeline();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.querySelectorAll('.timeline-step').forEach(step => {
+            step.addEventListener('click', () => goToStep(parseInt(step.dataset.step)));
+        });
+
+        // ===== EXPANDABLE CARDS =====
+        function toggleExpand(element) {
+            element.classList.toggle('expanded');
+        }
+
+        function toggleCardExpand(element) {
+            element.classList.toggle('expanded');
+        }
+
+        // ===== ICON ANIMATIONS =====
+        function spinIcon(element) {
+            element.classList.add('spinning');
+            setTimeout(() => element.classList.remove('spinning'), 1000);
+        }
+
+        // ===== QUIZ WITH PROPER NAVIGATION =====
+        const quizQuestions = [
+            {
+                question: "Når var Earth Overshoot Day i 2019?",
+                options: ["15. juni", "29. juli", "10. august", "1. september"],
+                correct: 1,
+                explanation: "29. juli 2019 var dagen verden hadde brukt opp alle fornybare ressurser for året."
+            },
+            {
+                question: "Hvor mye avfall produserer en gjennomsnittlig nordmann per år?",
+                options: ["492 kg", "587 kg", "739 kg", "824 kg"],
+                correct: 2,
+                explanation: "Norge har 739 kg avfall per person per år - nest høyest i Europa!"
+            },
+            {
+                question: "Hvor stor andel av plastavfall resirkuleres i Europa?",
+                options: ["18,5%", "30%", "42,3%", "56,8%"],
+                correct: 1,
+                explanation: "Kun 30% av plastavfall blir resirkulert i Europa."
+            },
+            {
+                question: "Hva er effektiviteten til sentralisert sortering?",
+                options: ["54%", "68%", "79%", "86%"],
+                correct: 3,
+                explanation: "Sentralisert sortering har 86% effektivitet mot Optibags 19%."
+            },
+            {
+                question: "Hvor stor andel av restavfallet i Oslo er feilsortert?",
+                options: ["42,3%", "54,9%", "65,7%", "78,2%"],
+                correct: 2,
+                explanation: "65,7% av restavfallet i Oslo er feilsortert!"
+            },
+            {
+                question: "Hva er EUs mål for materialgjenvinning innen 2035?",
+                options: ["50%", "55%", "60%", "65%"],
+                correct: 3,
+                explanation: "EU har satt mål om 65% materialgjenvinning innen 2035."
+            },
+            {
+                question: "Hvor stor del av restavfallet i Oslo er matavfall (feilsortert)?",
+                options: ["22,8%", "36,3%", "44,7%", "51,2%"],
+                correct: 1,
+                explanation: "Matavfall utgjør 36,3% av det feilsorterte restavfallet."
+            },
+            {
+                question: "Hvor mange prosent googler når de er usikre på sortering?",
+                options: ["18%", "29%", "37%", "46%"],
+                correct: 2,
+                explanation: "37% googler, mens bare 18% bruker info på emballasjen."
+            },
+            {
+                question: "Hvor stor andel av husholdningsavfall brennes i Norge?",
+                options: ["38,2%", "46,7%", "54,5%", "62,3%"],
+                correct: 2,
+                explanation: "54,5% av husholdningsavfall brennes for energigjenvinning."
+            },
+            {
+                question: "Hva er effektiviteten til Optibag-systemet i Oslo?",
+                options: ["12%", "19%", "27%", "34%"],
+                correct: 1,
+                explanation: "Optibag har kun 19% sorteringseffektivitet for plast."
+            }
+        ];
+
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        let quizAnswers = [];
+
+        function initQuiz() {
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            quizAnswers = new Array(quizQuestions.length).fill(null);
+            document.getElementById('quizResult').style.display = 'none';
+            document.getElementById('quizContent').style.display = 'block';
+            renderQuizProgress();
+            renderQuizQuestion();
+        }
+
+        function renderQuizProgress() {
+            const container = document.getElementById('quizProgress');
+            container.innerHTML = quizQuestions.map((_, i) => {
+                let classes = 'quiz-dot';
+                if (i === currentQuizQuestion) classes += ' active';
+                if (quizAnswers[i] !== null) {
+                    classes += quizAnswers[i].correct ? ' correct' : ' wrong';
+                    classes += ' answered';
+                }
+                return `<div class="${classes}" onclick="goToQuizQuestion(${i})"></div>`;
+            }).join('');
+        }
+
+        function renderQuizQuestion() {
+            const q = quizQuestions[currentQuizQuestion];
+            const answered = quizAnswers[currentQuizQuestion] !== null;
+            
+            let optionsHtml = q.options.map((opt, i) => {
+                let classes = 'quiz-option';
+                if (answered) {
+                    if (i === q.correct) classes += ' correct';
+                    else if (i === quizAnswers[currentQuizQuestion]?.selected) classes += ' wrong';
+                }
+                return `<div class="${classes}" onclick="${answered ? '' : `selectAnswer(${i})`}" style="${answered ? 'cursor: default;' : ''}">${opt}</div>`;
+            }).join('');
+
+            let feedbackHtml = '';
+            if (answered) {
+                const isCorrect = quizAnswers[currentQuizQuestion].correct;
+                feedbackHtml = `
+                    <div class="quiz-feedback show ${isCorrect ? 'correct' : 'wrong'}">
+                        ${isCorrect ? '✓ Riktig!' : '✗ Feil.'} ${q.explanation}
+                    </div>
+                `;
+            }
+
+            document.getElementById('quizQuestion').innerHTML = `
+                <div class="question-number">Spørsmål ${currentQuizQuestion + 1} av ${quizQuestions.length}</div>
+                <div class="question-text">${q.question}</div>
+                <div class="quiz-options">${optionsHtml}</div>
+                ${feedbackHtml}
+                <div class="quiz-nav-buttons">
+                    <button class="quiz-nav-btn" onclick="prevQuizQuestion()" ${currentQuizQuestion === 0 ? 'disabled' : ''}>
+                        ← Forrige
+                    </button>
+                    <button class="quiz-nav-btn next" onclick="nextQuizQuestion()" ${!answered ? 'disabled' : ''}>
+                        ${currentQuizQuestion < quizQuestions.length - 1 ? 'Neste →' : 'Se resultat'}
+                    </button>
+                </div>
+            `;
+        }
+
+        function selectAnswer(index) {
+            if (quizAnswers[currentQuizQuestion] !== null) return;
+            
+            const q = quizQuestions[currentQuizQuestion];
+            const isCorrect = index === q.correct;
+            
+            quizAnswers[currentQuizQuestion] = {
+                selected: index,
+                correct: isCorrect
+            };
+            
+            if (isCorrect) quizScore++;
+            
+            renderQuizProgress();
+            renderQuizQuestion();
+        }
+
+        function goToQuizQuestion(index) {
+            if (quizAnswers[index] !== null || index === currentQuizQuestion) {
+                currentQuizQuestion = index;
+                renderQuizProgress();
+                renderQuizQuestion();
+            }
+        }
+
+        function nextQuizQuestion() {
+            if (quizAnswers[currentQuizQuestion] === null) return;
+            
+            if (currentQuizQuestion < quizQuestions.length - 1) {
+                currentQuizQuestion++;
+                renderQuizProgress();
+                renderQuizQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function prevQuizQuestion() {
+            if (currentQuizQuestion > 0) {
+                currentQuizQuestion--;
+                renderQuizProgress();
+                renderQuizQuestion();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quizContent').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'block';
+            document.getElementById('quizScore').textContent = `${quizScore}/${quizQuestions.length}`;
+            
+            const percent = (quizScore / quizQuestions.length) * 100;
+            let message = '';
+            if (percent === 100) message = '🏆 Perfekt! Du er en avfallsekspert!';
+            else if (percent >= 80) message = '🌟 Veldig bra! Du kan mye om avfall!';
+            else if (percent >= 60) message = '👍 Bra jobbet! Du er på god vei!';
+            else if (percent >= 40) message = '📚 Ikke verst, men ta reisen en gang til!';
+            else message = '🔄 Ta Avfallsreisen på nytt for å lære mer!';
+            
+            document.getElementById('quizMessage').textContent = message;
+
+            // Show summary
+            let summaryHtml = '<h3>📋 Oppsummering</h3>';
+            quizAnswers.forEach((answer, i) => {
+                const q = quizQuestions[i];
+                summaryHtml += `
+                    <div class="quiz-summary-item ${answer.correct ? 'correct' : 'wrong'}">
+                        <span>${answer.correct ? '✓' : '✗'}</span>
+                        <span>${q.question.substring(0, 50)}...</span>
+                    </div>
+                `;
+            });
+            document.getElementById('quizSummary').innerHTML = summaryHtml;
+        }
+
+        function resetQuiz() {
+            initQuiz();
+        }
+
+        // ===== KOMMUNE COMPARISON =====
+        const kommuneData = {
+            oslo: { name: 'Oslo', system: 'Optibag', efficiency: '19%', population: '697 000', recycling: '35%', incineration: '58%', plastic: '8%', food: '12%' },
+            bergen: { name: 'Bergen', system: 'Hentesystem', efficiency: '34%', population: '286 000', recycling: '42%', incineration: '51%', plastic: '15%', food: '18%' },
+            trondheim: { name: 'Trondheim', system: 'Sentralisert', efficiency: '86%', population: '210 000', recycling: '55%', incineration: '40%', plastic: '42%', food: '45%' },
+            stavanger: { name: 'Stavanger', system: 'Hentesystem', efficiency: '34%', population: '144 000', recycling: '44%', incineration: '49%', plastic: '18%', food: '20%' },
+            kristiansand: { name: 'Kristiansand', system: 'Bringesystem', efficiency: '31%', population: '113 000', recycling: '38%', incineration: '55%', plastic: '12%', food: '15%' },
+            tromso: { name: 'Tromsø', system: 'Hentesystem', efficiency: '34%', population: '77 000', recycling: '40%', incineration: '52%', plastic: '14%', food: '16%' },
+            drammen: { name: 'Drammen', system: 'Sentralisert', efficiency: '86%', population: '101 000', recycling: '52%', incineration: '43%', plastic: '38%', food: '42%' }
+        };
+
+        function updateComparison() {
+            const k1 = kommuneData[document.getElementById('kommune1').value];
+            const k2 = kommuneData[document.getElementById('kommune2').value];
+            
+            // Helper to parse percentage strings
+            const parsePercent = (str) => parseFloat(str.replace('%', '').replace(',', '.'));
+            
+            // Define comparison categories (higher is better, except incineration)
+            const categories = [
+                { key: 'efficiency', label: 'Sorteringseffektivitet', higherBetter: true, icon: '🎯' },
+                { key: 'recycling', label: 'Til resirkulering', higherBetter: true, icon: '♻️' },
+                { key: 'plastic', label: 'Plast gjenvunnet', higherBetter: true, icon: '🥤' },
+                { key: 'food', label: 'Mat gjenvunnet', higherBetter: true, icon: '🍎' },
+                { key: 'incineration', label: 'Til forbrenning', higherBetter: false, icon: '🔥' }
+            ];
+            
+            let k1Wins = 0;
+            let k2Wins = 0;
+            let ties = 0;
+            
+            // Calculate winners for each category
+            const results = categories.map(cat => {
+                const v1 = parsePercent(k1[cat.key]);
+                const v2 = parsePercent(k2[cat.key]);
+                const diff = Math.abs(v1 - v2);
+                
+                let winner, winnerName;
+                if (v1 === v2) {
+                    winner = 'tie';
+                    winnerName = 'Likt';
+                    ties++;
+                } else if (cat.higherBetter) {
+                    winner = v1 > v2 ? 'k1' : 'k2';
+                    winnerName = v1 > v2 ? k1.name : k2.name;
+                    if (v1 > v2) k1Wins++; else k2Wins++;
+                } else {
+                    // Lower is better (incineration)
+                    winner = v1 < v2 ? 'k1' : 'k2';
+                    winnerName = v1 < v2 ? k1.name : k2.name;
+                    if (v1 < v2) k1Wins++; else k2Wins++;
+                }
+                
+                return { ...cat, v1, v2, diff, winner, winnerName };
+            });
+            
+            // Determine overall winner
+            const overallWinner = k1Wins > k2Wins ? k1.name : (k2Wins > k1Wins ? k2.name : 'Uavgjort');
+            const k1Class = k1Wins > k2Wins ? 'winner' : '';
+            const k2Class = k2Wins > k1Wins ? 'winner' : '';
+            
+            // Generate analysis items HTML
+            const analysisItemsHtml = results.map(r => {
+                const colorClass = r.winner === 'k1' ? 'green' : (r.winner === 'k2' ? 'blue' : 'tie');
+                const icon = r.winner === 'tie' ? '🤝' : '🏆';
+                return `
+                    <div class="analysis-item">
+                        <span class="analysis-category">${r.icon} ${r.label}</span>
+                        <div class="analysis-winner ${colorClass}">
+                            ${icon} ${r.winnerName}
+                            ${r.diff > 0 ? `<span class="analysis-diff">+${r.diff.toFixed(1)}%</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            // Generate verdict
+            let verdictText = '';
+            if (k1Wins > k2Wins) {
+                const diff = k1Wins - k2Wins;
+                verdictText = `<strong>${k1.name}</strong> vinner sammenligningen med ${k1Wins} av ${categories.length} kategorier. 
+                    Hovedfordelen er ${k1.system}-systemet med <strong>${k1.efficiency}</strong> sorteringseffektivitet. 
+                    ${k2.name} scorer bedre på ${k2Wins} kategori${k2Wins !== 1 ? 'er' : ''}.`;
+            } else if (k2Wins > k1Wins) {
+                const diff = k2Wins - k1Wins;
+                verdictText = `<strong>${k2.name}</strong> vinner sammenligningen med ${k2Wins} av ${categories.length} kategorier. 
+                    Hovedfordelen er ${k2.system}-systemet med <strong>${k2.efficiency}</strong> sorteringseffektivitet. 
+                    ${k1.name} scorer bedre på ${k1Wins} kategori${k1Wins !== 1 ? 'er' : ''}.`;
+            } else {
+                verdictText = `Det er <strong>uavgjort</strong> mellom ${k1.name} og ${k2.name}! 
+                    Begge kommuner vinner ${k1Wins} kategorier hver. 
+                    ${k1.name} bruker ${k1.system} mens ${k2.name} bruker ${k2.system}.`;
+            }
+            
+            // Helper function to determine value class
+            const getValueClass = (cat, isK1) => {
+                const result = results.find(r => r.key === cat);
+                if (!result || result.winner === 'tie') return '';
+                if (isK1) return result.winner === 'k1' ? 'winner' : 'loser';
+                return result.winner === 'k2' ? 'winner' : 'loser';
+            };
+            
+            document.getElementById('compareResults').innerHTML = `
+                <div class="compare-card ${k1Class}">
+                    <h3>${k1.name}</h3>
+                    <div class="compare-stat"><span class="compare-stat-label">System</span><span class="compare-stat-value">${k1.system}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Sorteringseffektivitet</span><span class="compare-stat-value ${getValueClass('efficiency', true)}">${k1.efficiency}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Befolkning</span><span class="compare-stat-value">${k1.population}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Til resirkulering</span><span class="compare-stat-value ${getValueClass('recycling', true)}">${k1.recycling}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Til forbrenning</span><span class="compare-stat-value ${getValueClass('incineration', true)}">${k1.incineration}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Plast gjenvunnet</span><span class="compare-stat-value ${getValueClass('plastic', true)}">${k1.plastic}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Mat gjenvunnet</span><span class="compare-stat-value ${getValueClass('food', true)}">${k1.food}</span></div>
+                </div>
+                <div class="compare-card ${k2Class}">
+                    <h3>${k2.name}</h3>
+                    <div class="compare-stat"><span class="compare-stat-label">System</span><span class="compare-stat-value">${k2.system}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Sorteringseffektivitet</span><span class="compare-stat-value ${getValueClass('efficiency', false)}">${k2.efficiency}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Befolkning</span><span class="compare-stat-value">${k2.population}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Til resirkulering</span><span class="compare-stat-value ${getValueClass('recycling', false)}">${k2.recycling}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Til forbrenning</span><span class="compare-stat-value ${getValueClass('incineration', false)}">${k2.incineration}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Plast gjenvunnet</span><span class="compare-stat-value ${getValueClass('plastic', false)}">${k2.plastic}</span></div>
+                    <div class="compare-stat"><span class="compare-stat-label">Mat gjenvunnet</span><span class="compare-stat-value ${getValueClass('food', false)}">${k2.food}</span></div>
+                </div>
+                
+                <div class="compare-analysis">
+                    <h3>📊 Kategori-analyse</h3>
+                    
+                    <div class="analysis-grid">
+                        ${analysisItemsHtml}
+                    </div>
+                    
+                    <div class="compare-summary">
+                        <div class="summary-side">
+                            <div class="summary-name">${k1.name}</div>
+                            <div class="summary-score ${k1Wins > k2Wins ? 'leading' : ''}">${k1Wins}</div>
+                            <div class="summary-label">kategorier vunnet</div>
+                        </div>
+                        <div class="summary-divider">
+                            <span class="summary-vs">VS</span>
+                        </div>
+                        <div class="summary-side">
+                            <div class="summary-name">${k2.name}</div>
+                            <div class="summary-score ${k2Wins > k1Wins ? 'leading' : ''}">${k2Wins}</div>
+                            <div class="summary-label">kategorier vunnet</div>
+                        </div>
+                    </div>
+                    
+                    <div class="compare-verdict">
+                        <p class="verdict-text">${verdictText}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ===== DASHBOARD DETAILS =====
+        function showDashboardDetail(type) {
+            // Remove active from all stats and details
+            document.querySelectorAll('.dashboard-stat').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.dashboard-detail').forEach(d => d.classList.remove('active'));
+            
+            // Find the clicked stat and add active
+            event.currentTarget.classList.add('active');
+            
+            // Show the detail panel
+            const detailPanel = document.getElementById('detail-' + type);
+            if (detailPanel) {
+                detailPanel.classList.add('active');
+                detailPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // ===== KEYBOARD NAVIGATION =====
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('page-journey').classList.contains('active')) {
+                if (e.key === 'ArrowRight') nextStep();
+                if (e.key === 'ArrowLeft') prevStep();
+            }
+        });
+
+        // Initialize
+        updateTimeline();
+        updateComparison();
+    </script>
+</body>
+</html>
