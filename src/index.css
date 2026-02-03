@@ -1,41 +1,246 @@
-/* ==========================================================================
-   MAIN STYLESHEET - Brage Steen Portfolio
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-   Structure:
-   1. Design Tokens (CSS Variables)
-   2. Base/Reset Styles
-   3. Component styles are colocated with components
-   ========================================================================== */
+@layer base {
+  :root {
+    /* Warm off-white Dieter Rams-inspired palette */
+    --background: 40 33% 99%;
+    --foreground: 0 0% 10%;
 
-@import './styles/tokens.css';
-@import './styles/base.css';
+    --card: 40 20% 97%;
+    --card-foreground: 0 0% 10%;
 
-/* Page transitions */
-.page-enter {
-  opacity: 0;
-  transform: translateY(8px);
+    --popover: 40 33% 99%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 40 33% 99%;
+
+    --secondary: 40 15% 94%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 40 12% 95%;
+    --muted-foreground: 0 0% 42%;
+
+    --accent: 35 20% 92%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 40 33% 99%;
+
+    --border: 40 15% 90%;
+    --input: 40 15% 90%;
+    --ring: 0 0% 10%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: 40 33% 99%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 40 33% 99%;
+    --sidebar-accent: 40 15% 94%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 40 15% 90%;
+    --sidebar-ring: 0 0% 10%;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 40 15% 92%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 40 15% 92%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 15% 92%;
+
+    --primary: 40 15% 92%;
+    --primary-foreground: 0 0% 7%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 40 15% 92%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 0 0% 14%;
+    --accent-foreground: 40 15% 92%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 15% 92%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 40 15% 92%;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 40 15% 92%;
+    --sidebar-primary: 40 15% 92%;
+    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 40 15% 92%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 40 15% 92%;
+  }
 }
 
-.page-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight font-medium;
+  }
 }
 
-/* Smooth scrolling for the whole page */
-html {
-  scroll-behavior: smooth;
+@layer components {
+  /* Container utilities */
+  .container-narrow {
+    @apply mx-auto max-w-3xl px-6 md:px-8;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-5xl px-6 md:px-8;
+  }
+
+  .container-full {
+    @apply mx-auto max-w-6xl px-6 md:px-8;
+  }
+
+  /* Typography */
+  .text-display-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-tight;
+  }
+
+  .text-display-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight;
+  }
+
+  .text-display-md {
+    @apply text-2xl md:text-3xl font-medium leading-[1.2] tracking-tight;
+  }
+
+  .text-display-sm {
+    @apply text-xl md:text-2xl font-medium leading-[1.25] tracking-tight;
+  }
+
+  .text-body-lg {
+    @apply text-lg md:text-xl leading-relaxed;
+  }
+
+  .text-body {
+    @apply text-base leading-relaxed;
+  }
+
+  .text-caption {
+    @apply text-sm text-muted-foreground tracking-wide uppercase;
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-spacing-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Link underline animation */
+  .link-underline {
+    @apply relative inline-block;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-full h-px bg-current origin-left scale-x-0 transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Glow background */
+  .glow-bg {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      hsl(40 60% 97% / 0.8) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Project card */
+  .project-card {
+    @apply bg-card rounded-lg overflow-hidden transition-all duration-300;
+  }
+
+  .project-card:hover {
+    @apply shadow-lg;
+    transform: translateY(-4px);
+  }
+
+  /* Tag pill */
+  .tag-pill {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium tracking-wide rounded-full;
+    @apply bg-secondary text-secondary-foreground;
+    @apply transition-colors duration-200;
+  }
+
+  .tag-pill:hover {
+    @apply bg-accent;
+  }
+
+  .tag-pill-active {
+    @apply bg-foreground text-background;
+  }
+
+  /* Scroll reveal animation */
+  .reveal {
+    @apply opacity-0 translate-y-6;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .reveal.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Image placeholder gradient */
+  .image-placeholder {
+    @apply bg-gradient-to-br from-muted to-accent;
+  }
 }
 
-/* Ensure proper stacking context for modals/overlays */
-#root {
-  isolation: isolate;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Main content area */
-main {
-  flex: 1;
+@layer utilities {
+  /* Stagger delays for animations */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
 }

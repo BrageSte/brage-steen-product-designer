@@ -1,158 +1,186 @@
 
-# 3D-Printed Headset Concept – Case Study Page
+
+# Avfallsportalen Enhancement Plan
 
 ## Summary
 
-Create a polished, professional case study page for the 3D-Printed Headset Concept project, following the established design patterns from SortingGuideCase.tsx. The page will showcase Brage's ability to design, prototype, and iterate on a physical product with emphasis on ergonomics, form, and hands-on making.
+Add two new tabs to the interactive demo: **Sammenlign (Compare)** for municipality comparison and **Dashboard** for statistics overview. Also change the project info sidebar to not be sticky, allowing full-width content viewing when scrolling.
 
 ---
 
-## Page Structure
+## Changes Overview
 
-### 1. Hero Section
-- **Title**: 3D-Printed Headset Concept
-- **Subtitle**: "Utforskning av ergonomi, form og produksjonsdesign gjennom et fullskala fysisk produkt"
-- **Meta chips**: Role (Product Designer), Type (Fysisk produkt), Duration (4 måneder), Tools (Fusion 360, 3D-printing)
-- **Hero image**: Full-width image placeholder using `jadda.47-1.png` or `headphones-bakgrunn.png`
+### 1. Remove Sticky Behavior from CaseSidebar
 
-### 2. Sticky Sidebar (Desktop) / Accordion (Mobile)
-Case summary box containing:
-- **Rolle**: Product Designer
-- **Varighet**: 4 måneder
-- **Type**: Fysisk produkt / Prototyping
-- **Verktøy**: Fusion 360, 3D-printing
-- **Leveranser**: CAD-modell, Fysiske prototyper, Tekniske tegninger
+**File**: `src/components/project/CaseSidebar.tsx`
 
-### 3. Overview Section
-Short introduction explaining:
-- Project context (commuter/office headset with industrial production focus)
-- Exploration of comfort, fit, and form through rapid prototyping
-- Focus on injection molding constraints and manufacturability
+**Change**: Remove the `sticky top-24` classes from the desktop sidebar, making it scroll with the page content instead of staying fixed.
 
-**"Mitt bidrag" bullet list**:
-- Konsept- og formutvikling
-- Ergonomisk utforskning
-- CAD-modellering
-- Prototyping og iterasjon
+**Before**:
+```tsx
+<aside className={`hidden lg:block sticky top-24 self-start ${className}`}>
+```
 
-### 4. Problem Section
-Core challenge explanation:
-- Headsets must balance comfort, stability, weight, and pressure distribution
-- Small form decisions have large impact on long-term use
-- Digital-only design is insufficient for ergonomic products
+**After**:
+```tsx
+<aside className={`hidden lg:block ${className}`}>
+```
 
-### 5. Design Approach Section
-Hands-on approach explanation:
-- Sketching and early form exploration (joint types, cup holder design)
-- CAD modeling with focus on contact points (headband, ears, pressure zones)
-- Designing for injection molding (draft angles, material flow)
+---
 
-**Image placeholders**:
-- Early sketches (`tegninger.png`, `20211128_172826.png`)
-- CAD exploration
+### 2. Update Avfallsportalen Page Layout
 
-### 6. Prototyping and Iteration Section
-How prototyping informed design:
-- Multiple iterations of headband and ear cup geometry
-- Adjustments based on fit, balance, and pressure
-- Challenges with 3D swivel joint leading to simplification
-- Learning through physical testing
+**File**: `src/pages/work/Avfallsportalen.tsx`
 
-**Image placeholders**:
-- Early prototype (`proto-hvit-bakgrunn.png`)
-- Render and function comparison (`render-and-function.png`)
+**Changes**:
+- Remove the two-column grid layout that reserves space for the sidebar
+- Move project info to top of page (not sticky)
+- Allow the interactive demo to use full width
 
-### 7. Final Design Section
-Description of final headset:
-- Overall form and visual design decisions
-- Key ergonomic decisions (weight distribution, cup holder design)
-- Manufacturing considerations (injection molding ready)
+**Current layout**: `grid lg:grid-cols-[1fr_280px]`
+**New layout**: Single column, full-width content
 
-**Image placeholders**:
-- Exploded view (`exploded-1.png`)
-- Technical drawings (`tegninger-v1-1.png`)
-- Slider mechanism detail (`skinne-1.png`)
-- Final product views
+---
 
-### 8. 3D Model CTA
-Button linking to interactive 3D model:
-- Link: https://a360.co/4bEJ4bR
+### 3. Expand AvfallsportalenDemo with Two New Tabs
 
-### 9. Reflection Section
-Three bullet points:
-1. Physical prototyping reveals issues that CAD cannot – especially for ergonomics
-2. Designing for production constraints (injection molding) shapes the entire design process
-3. Iterative testing builds confidence in decisions that look good on screen but must feel good in use
+**File**: `src/pages/work/avfallsportalen/AvfallsportalenDemo.tsx`
 
-### 10. Next Project Section
-Link to next case study (Klatretak / climbing holds)
+Add two new tabs to the existing demo:
+
+#### Tab Navigation (4 tabs total):
+1. Avfallsreisen (existing)
+2. Quiz (existing)  
+3. Sammenlign (NEW)
+4. Dashboard (NEW)
+
+---
+
+### 4. Sammenlign (Compare) Tab Implementation
+
+**Features**:
+- Two dropdown selectors for municipalities (Oslo, Bergen, Trondheim, Stavanger, Kristiansand, Tromso, Drammen)
+- Side-by-side comparison cards showing:
+  - System type
+  - Sorting efficiency
+  - Population
+  - Recycling rate
+  - Incineration rate
+  - Plastic recovered
+  - Food waste recovered
+- Category analysis showing winner in each category
+- Summary with scores and verdict
+
+**Data structure** (from HTML source):
+```typescript
+const kommuneData = {
+  oslo: { name: 'Oslo', system: 'Optibag', efficiency: '19%', population: '697 000', recycling: '35%', incineration: '58%', plastic: '8%', food: '12%' },
+  bergen: { name: 'Bergen', system: 'Hentesystem', efficiency: '34%', population: '286 000', recycling: '42%', incineration: '51%', plastic: '15%', food: '18%' },
+  trondheim: { name: 'Trondheim', system: 'Sentralisert', efficiency: '86%', population: '210 000', recycling: '55%', incineration: '40%', plastic: '42%', food: '45%' },
+  stavanger: { name: 'Stavanger', system: 'Hentesystem', efficiency: '34%', population: '144 000', recycling: '44%', incineration: '49%', plastic: '18%', food: '20%' },
+  kristiansand: { name: 'Kristiansand', system: 'Bringesystem', efficiency: '31%', population: '113 000', recycling: '38%', incineration: '55%', plastic: '12%', food: '15%' },
+  tromso: { name: 'Tromsø', system: 'Hentesystem', efficiency: '34%', population: '77 000', recycling: '40%', incineration: '52%', plastic: '14%', food: '16%' },
+  drammen: { name: 'Drammen', system: 'Sentralisert', efficiency: '86%', population: '101 000', recycling: '52%', incineration: '43%', plastic: '38%', food: '42%' }
+};
+```
+
+---
+
+### 5. Dashboard Tab Implementation
+
+**Features**:
+- 4 key stat cards (clickable for more detail):
+  - 739 kg - Avfall per person/ar
+  - 39% - Til materialgjenvinning
+  - 54.5% - Til forbrenning
+  - 65% - EU-mal 2035
+- Bar chart: Sorteringseffektivitet per system
+- Pie legend: Feilsortert i restavfall (Oslo)
+- Expandable detail panels for each stat showing:
+  - Key facts
+  - Distribution data
+  - Comparisons with other countries
+  - Historical trends
 
 ---
 
 ## Technical Implementation
 
-### File to Create
-`src/pages/HeadsetCase.tsx`
-
-### Routing Update
-Update `src/App.tsx` to add route:
-```
-/prosjekter/headset → HeadsetCase
-```
-
 ### Component Structure
-Following the same pattern as SortingGuideCase.tsx:
-- useState for mobile accordion toggle
-- caseData object for metadata
-- Structured sections with consistent spacing
-- Image placeholders with descriptive labels
-- Sticky sidebar on desktop (top-24)
-- Mobile accordion for case summary
 
-### Image Placeholders
-All images will initially be placeholders with descriptions. The following WordPress images are available for future integration:
-- Hero: `jadda.47-1.png`, `headphones-bakgrunn.png`
-- Sketches: `tegninger.png`, `20211128_172826.png`
-- Prototypes: `proto-hvit-bakgrunn.png`, `render-and-function.png`
-- Technical: `exploded-1.png`, `skinne-1.png`, `tegninger-v1-1.png`
+```text
+AvfallsportalenDemo.tsx
+  - Tab navigation (4 tabs)
+  - Journey section (existing)
+  - Quiz section (existing)
+  - CompareSection (new)
+  - DashboardSection (new)
+```
+
+### State Management
+
+```typescript
+const [activeTab, setActiveTab] = useState<"journey" | "quiz" | "compare" | "dashboard">("journey");
+const [kommune1, setKommune1] = useState("oslo");
+const [kommune2, setKommune2] = useState("trondheim");
+const [activeDetail, setActiveDetail] = useState<string | null>(null);
+```
+
+### Styling Approach
+
+- Use existing Tailwind classes for consistency
+- Cards with hover effects matching existing design
+- Green/red color coding for winner/loser comparisons
+- Responsive grid layouts that collapse on mobile
 
 ---
 
-## Full Copy (Norwegian)
+## Files to Modify
 
-### Hero
-**Title**: 3D-Printed Headset Concept
+1. **`src/components/project/CaseSidebar.tsx`**
+   - Remove sticky positioning
 
-**Subtitle**: Utforskning av ergonomi, form og produksjonsdesign gjennom et fullskala fysisk produkt
+2. **`src/pages/work/Avfallsportalen.tsx`**
+   - Change grid layout to single column
+   - Move CaseSidebar to top of content (not in grid)
+   - Allow full-width for interactive demo
 
-### Overview
-Dette prosjektet utforsker design av et sammenleggbart headset for pendlere og kontorbruk, med fokus på industriell produksjon. Gjennom rask prototyping og iterasjon testet jeg hvordan form, passform og ergonomi fungerer i virkeligheten – ikke bare på skjermen. Målet var å designe et produkt klart for sprøytestøping, med alle de begrensningene og mulighetene det medfører.
+3. **`src/pages/work/avfallsportalen/AvfallsportalenDemo.tsx`**
+   - Add two new tabs to navigation
+   - Implement CompareSection component
+   - Implement DashboardSection component
+   - Add kommune comparison data and logic
+   - Add dashboard statistics data and expandable panels
 
-**Mitt bidrag**:
-- Konsept- og formutvikling
-- Ergonomisk utforskning
-- CAD-modellering i Fusion 360
-- Prototyping og iterasjon med 3D-printing
+---
 
-### Problemet
-Headset må balansere flere motstridende krav: komfort, stabilitet, vekt og trykkfordeling. Små beslutninger om form har stor innvirkning på langvarig bruk. Å designe kun digitalt er utilstrekkelig for ergonomiske produkter – man må kjenne hvordan ting faktisk føles mot hodet.
+## Visual Comparison
 
-### Designtilnærming
-Prosessen startet med skissering og utforskning av ulike formspråk. Jeg studerte eksisterende produkter og testet konsepter for leddmekanismer, inkludert et tidlig forsøk på et 3D-svivelledd som senere ble forenklet.
+### Before (Current Layout):
+```text
++---------------------------+-------+
+| Hero                              |
++---------------------------+-------+
+| Content               | Sidebar   |
+| (constrained)         | (sticky)  |
+|                       |           |
+| Interactive Demo      |           |
+| (narrow)              |           |
++---------------------------+-------+
+```
 
-I CAD fokuserte jeg på kontaktpunktene: hodebøyle, øreputer og trykksonene mellom dem. Siden målet var sprøytestøping, måtte hver del designes med riktige utslippsvinkler og materialflyt i tankene.
+### After (New Layout):
+```text
++----------------------------------+
+| Hero                             |
++----------------------------------+
+| Project Info (top, not sticky)   |
++----------------------------------+
+| Content (full width)             |
+|                                  |
+| Interactive Demo (full width)    |
+| [Reisen] [Quiz] [Sammenlign] [Dashboard]
+|                                  |
++----------------------------------+
+```
 
-### Prototyping og iterasjon
-Fysisk prototyping avslørte problemer som ikke var synlige på skjermen. Jeg itererte på hodebøylens geometri og ørekoppenes form basert på passform, balanse og trykk.
-
-Et viktig læringspunkt var å forenkle. Det opprinnelige svivel-leddet var elegant i teorien, men for komplekst for produksjon. Den endelige mekanismen er enklere, mer robust, og like funksjonell.
-
-### Endelig design
-Det endelige headsetet balanserer visuell identitet med ergonomi og produksjonsvennlighet. Ørekoppholderen har en kontrasterende bakdel som gir produktet et distinkt utseende. Vektfordelingen er optimalisert for lange arbeidsøkter.
-
-Alle deler er designet for sprøytestøping i polyetylen-plast, med metallelementer der det trengs for styrke.
-
-### Refleksjon
-1. **Fysisk prototyping avslører det CAD ikke kan** – spesielt for produkter som skal føles godt over tid
-2. **Produksjonskrav former designet** – å designe for sprøytestøping er ikke en begrensning, det er et designparameter
-3. **Forenkling er en ferdighet** – de beste løsningene er ofte enklere enn de første ideene

@@ -1,23 +1,21 @@
-import { ReactNode } from 'react';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import './Layout.css';
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import GlowBackground from "@/components/ui/GlowBackground";
 
 interface LayoutProps {
-  children: ReactNode;
+  children: React.ReactNode;
+  showGlow?: boolean;
 }
 
-export function Layout({ children }: LayoutProps) {
+const Layout = ({ children, showGlow = true }: LayoutProps) => {
   return (
-    <div className="layout">
-      <a href="#main-content" className="skip-link">
-        Hopp til hovedinnhold
-      </a>
-      <Header />
-      <main id="main-content" className="layout__main">
-        {children}
-      </main>
+    <div className="min-h-screen flex flex-col relative">
+      {showGlow && <GlowBackground />}
+      <Navbar />
+      <main className="flex-1 pt-16 md:pt-20 relative z-10">{children}</main>
       <Footer />
     </div>
   );
-}
+};
+
+export default Layout;

@@ -1,67 +1,96 @@
-import { Link } from 'react-router-dom';
-import './Footer.css';
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
-
+const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer__inner">
-        <div className="footer__brand">
-          <Link to="/" className="footer__logo">
-            Brage Steen
-          </Link>
-          <p className="footer__tagline">
-            Produktdesigner med fokus på funksjonelle, gjennomtenkte løsninger.
-          </p>
-        </div>
-
-        <nav className="footer__nav" aria-label="Footer navigasjon">
-          <div className="footer__nav-group">
-            <h4 className="footer__nav-title">Sider</h4>
-            <ul className="footer__nav-list">
-              <li><Link to="/work">Arbeid</Link></li>
-              <li><Link to="/about">Om meg</Link></li>
-              <li><Link to="/contact">Kontakt</Link></li>
-            </ul>
+    <footer className="border-t border-border">
+      <div className="container-wide section-spacing-sm">
+        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+          {/* Info */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Brage Steen</h3>
+            <p className="text-muted-foreground text-sm">
+              Produktdesigner
+              <br />
+              Oslo, Norge
+            </p>
           </div>
 
-          <div className="footer__nav-group">
-            <h4 className="footer__nav-title">Prosjekter</h4>
-            <ul className="footer__nav-list">
-              <li><Link to="/work/sorting-guide">Sorting Guide</Link></li>
-              <li><Link to="/work/avfallsportalen">Avfallsportalen</Link></li>
-              <li><Link to="/work/headset">Headset</Link></li>
-              <li><Link to="/work/seaweed">Seaweed</Link></li>
-              <li><Link to="/work/crimpblock">Crimpblock</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer__nav-group">
-            <h4 className="footer__nav-title">Kontakt</h4>
-            <ul className="footer__nav-list">
+          {/* Navigation */}
+          <div className="space-y-4">
+            <h4 className="text-caption">Navigasjon</h4>
+            <ul className="space-y-2">
               <li>
-                <a href="mailto:brage@example.com">E-post</a>
+                <Link
+                  to="/"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+                >
+                  Hjem
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/work"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+                >
+                  Arbeid
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+                >
+                  Om
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline"
+                >
+                  Kontakt
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="space-y-4">
+            <h4 className="text-caption">Kontakt</h4>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="mailto:hei@bragesteen.no"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline inline-flex items-center gap-1"
+                >
+                  hei@bragesteen.no
+                  <ArrowUpRight size={14} />
+                </a>
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/bragesteen/"
+                  href="https://linkedin.com/in/bragesteen"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline inline-flex items-center gap-1"
                 >
                   LinkedIn
+                  <ArrowUpRight size={14} />
                 </a>
               </li>
             </ul>
           </div>
-        </nav>
+        </div>
 
-        <div className="footer__bottom">
-          <p className="footer__copyright">
-            &copy; {currentYear} Brage Steen. Alle rettigheter reservert.
+        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Brage Steen
           </p>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
