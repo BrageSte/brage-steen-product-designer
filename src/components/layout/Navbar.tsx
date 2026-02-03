@@ -7,8 +7,9 @@ const Navbar = () => {
   const location = useLocation();
 
   const navItems = [
+    { label: "Hjem", path: "/" },
     { label: "Arbeid", path: "/work" },
-    { label: "Om meg", path: "/about" },
+    { label: "Om", path: "/about" },
     { label: "Kontakt", path: "/contact" },
   ];
 
@@ -18,16 +19,15 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container-wide">
         <nav className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link
             to="/"
-            className="text-base md:text-lg font-medium tracking-tight hover:text-muted-foreground transition-colors"
+            className="text-lg font-medium tracking-tight hover:text-muted-foreground transition-colors"
           >
-            <span className="hidden sm:inline">Brage Steen — Product Designer</span>
-            <span className="sm:hidden">Brage Steen</span>
+            Brage Steen
           </Link>
 
           {/* Desktop Navigation */}
@@ -46,14 +46,6 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <li>
-              <a
-                href="https://bsclimbing.no"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors link-underline"
-              >
-                Butikk
-              </a>
-            </li>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -68,7 +60,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-border/50 py-6 animate-fade-in">
+          <div className="md:hidden border-t border-border py-6 animate-fade-in">
             <ul className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <li key={item.path}>
@@ -85,15 +77,6 @@ const Navbar = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a
-                  href="https://bsclimbing.no"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block text-lg font-medium text-muted-foreground transition-colors"
-                >
-                  Butikk
-                </a>
-              </li>
             </ul>
           </div>
         )}

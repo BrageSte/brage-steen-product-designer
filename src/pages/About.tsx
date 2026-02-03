@@ -1,6 +1,26 @@
 import Layout from "@/components/layout/Layout";
+import Section from "@/components/ui/Section";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 const About = () => {
+  const values = [
+    {
+      title: "Hands-on",
+      description:
+        "Jeg trives best når jeg får bygge og teste – ikke bare tegne og presentere.",
+    },
+    {
+      title: "Systemtenkning",
+      description:
+        "God design krever forståelse av helheten, ikke bare enkeltdelene.",
+    },
+    {
+      title: "Enkelhet",
+      description:
+        "De beste løsningene er ofte de enkleste. Kompleksitet er lett – enkelhet er vanskelig.",
+    },
+  ];
+
   const skills = [
     "Tjenestedesign og brukerreiser",
     "Fysisk produktdesign",
@@ -22,52 +42,65 @@ const About = () => {
 
   return (
     <Layout>
-      <section className="section-spacing">
-        <div className="container-narrow">
-          <div className="space-y-12">
-            {/* Header */}
-            <div className="space-y-6">
-              <span className="text-caption block">Om meg</span>
-              <h1 className="text-display-xl">Brage Steen</h1>
+      <Section animate={false}>
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            {/* Portrait */}
+            <div className="order-2 lg:order-1">
+              <ImageWithFallback
+                src="/images/portrait.jpg"
+                alt="Brage Steen"
+                aspectRatio="portrait"
+                className="rounded-lg"
+              />
             </div>
 
-            {/* Main bio */}
-            <div className="space-y-6 text-body-lg text-muted-foreground">
-              <p>
-                Jeg heter Brage — en nysgjerrig og engasjert designer som drives
-                av å skape meningsfulle, funksjonelle og bærekraftige løsninger.
-                Jeg har en bachelorgrad i produktdesign fra OsloMet, og fullførte
-                ett år av en master i industriell design ved NTNU før jeg valgte
-                andre muligheter som passet bedre med min hands-on mentalitet og
-                eventyrlyst.
-              </p>
-              <p>
-                Nysgjerrigheten min startet tidlig. Som 12-åring seilte jeg jorda
-                rundt med familien i ett år — en erfaring som lærte meg robusthet,
-                tilpasningsevne og kreativ problemløsning. Jeg vokste opp med
-                friluftsliv, teltturer med pappa, klatring og sykling, og brukte
-                utallige timer i garasjen med å fikse ting eller jobbe på båten.
-                Det har formet måten jeg tenker design på: praktisk,
-                løsningsorientert og alltid ivrig etter å forstå hvordan ting
-                fungerer.
-              </p>
-              <p>
-                Jeg trives best når jeg får kombinere kreativitet med struktur,
-                og når jeg kan samarbeide med andre om komplekse utfordringer —
-                enten det handler om å utvikle produkter, forbedre tjenester
-                eller bygge prototyper som tar ideer videre.
-              </p>
-              <p>
-                Utenom jobb finner du meg ofte i fjellet, i et klatretau, på vei
-                mot en ny seildestinasjon, eller midt i neste store eventyr.
-              </p>
+            {/* Content */}
+            <div className="order-1 lg:order-2 space-y-12">
+              <div className="space-y-6">
+                <h1 className="text-display-xl">Om meg</h1>
+                <p className="text-body-lg text-muted-foreground">
+                  Jeg er Brage, en produktdesigner basert i Oslo. Jeg jobber i
+                  skjæringspunktet mellom tjenester, fysiske produkter og
+                  digitale løsninger.
+                </p>
+                <p className="text-body text-muted-foreground">
+                  Jeg er opptatt av å gjøre komplekse problemer forståelige,
+                  brukbare og robuste. Enten det er gjennom research,
+                  prototyping, eller bygging av faktiske løsninger – jeg liker å
+                  forstå ting fra innsiden.
+                </p>
+                <p className="text-body text-muted-foreground">
+                  For tiden jobber jeg med prosjekter som spenner fra
+                  tjenestedesign for offentlig sektor til fysisk produktutvikling
+                  og egne produkter.
+                </p>
+              </div>
+
+              {/* Values */}
+              <div className="space-y-6">
+                <h2 className="text-display-sm">Prinsipper</h2>
+                <div className="grid gap-4">
+                  {values.map((value) => (
+                    <div
+                      key={value.title}
+                      className="p-5 bg-card rounded-lg"
+                    >
+                      <h3 className="font-medium mb-2">{value.title}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {value.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* Skills & Tools */}
-      <section className="section-spacing bg-card/30">
+      <Section className="bg-card/50">
         <div className="container-wide">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Skills */}
@@ -101,7 +134,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
     </Layout>
   );
 };
