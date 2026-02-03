@@ -45,6 +45,7 @@ export interface Project {
   description: string;
   tags: string[];
   thumbnail: string;
+  coverImage?: string; // Alias for thumbnail, used by some components
   hero?: string;
   meta: ProjectMeta;
   sections: ProjectSection[];
@@ -52,4 +53,5 @@ export interface Project {
   links?: ProjectLink[];
   subpages?: ProjectSubpage[];
   nextProject?: string;
+  featured?: boolean;
 }

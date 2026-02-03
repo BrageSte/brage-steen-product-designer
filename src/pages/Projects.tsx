@@ -1,6 +1,6 @@
-import Layout from "@/components/Layout";
-import ProjectCard from "@/components/ProjectCard";
-import { projects } from "@/data/projects";
+import Layout from "@/components/layout/Layout";
+import ProjectCard from "@/components/ui/ProjectCard";
+import { projects } from "@/content/projects/index";
 
 const Projects = () => {
   return (
@@ -20,14 +20,10 @@ const Projects = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <ProjectCard
                 key={project.slug}
-                slug={project.slug}
-                title={project.title}
-                description={project.description}
-                category={project.category}
-                index={index}
+                project={project}
               />
             ))}
           </div>

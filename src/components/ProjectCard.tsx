@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { Project } from '@/content/projects';
+import type { Project } from '@/content/projects/index';
 import './ProjectCard.css';
 
 interface ProjectCardProps {
@@ -12,7 +12,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <Link to={`/work/${project.slug}`} className="project-card__link">
         <div className="project-card__image">
           <img
-            src={project.thumbnail}
+            src={project.coverImage}
             alt={`${project.title} - forhåndsvisning`}
             loading="lazy"
             onError={(e) => {
@@ -32,9 +32,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
             ))}
           </div>
           <h3 className="project-card__title">{project.title}</h3>
-          {project.subtitle && (
-            <p className="project-card__subtitle">{project.subtitle}</p>
-          )}
           <p className="project-card__description">{project.description}</p>
           <span className="project-card__cta">
             Se prosjekt
@@ -60,3 +57,5 @@ export function ProjectCard({ project }: ProjectCardProps) {
     </article>
   );
 }
+
+export default ProjectCard;

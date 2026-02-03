@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import ImageWithFallback from "./ImageWithFallback";
 import TagPill from "./TagPill";
-import type { Project } from "@/content/projects";
+import type { Project } from "@/content/projects/index";
 
 interface ProjectCardProps {
   project: Project;
@@ -18,7 +18,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
     >
       {/* Cover image */}
       <ImageWithFallback
-        src={project.coverImage}
+        src={project.thumbnail}
         alt={project.title}
         aspectRatio="wide"
       />
@@ -28,16 +28,18 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-3">
             <div className="flex flex-wrap gap-2">
-              <TagPill label={project.category} />
-              <span className="text-xs text-muted-foreground self-center">
-                {project.year}
-              </span>
+              {project.tags[0] && <TagPill label={project.tags[0]} />}
+              {project.meta.year && (
+                <span className="text-xs text-muted-foreground self-center">
+                  {project.meta.year}
+                </span>
+              )}
             </div>
             <h3 className="text-display-sm group-hover:text-muted-foreground transition-colors">
               {project.title}
             </h3>
             <p className="text-body text-muted-foreground line-clamp-2">
-              {project.summary}
+              {project.description}
             </p>
           </div>
           <ArrowRight
