@@ -1,37 +1,26 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Projects from "./pages/Projects";
-import ProjectDetail from "./pages/ProjectDetail";
-import SortingGuideCase from "./pages/SortingGuideCase";
-import HeadsetCase from "./pages/HeadsetCase";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Layout } from '@/components/layout';
+import { Home } from '@/pages/Home';
+import { Work } from '@/pages/Work';
+import { ProjectPage } from '@/pages/ProjectPage';
+import { About } from '@/pages/About';
+import { Contact } from '@/pages/Contact';
+import { NotFound } from '@/pages/NotFound';
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Layout>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/prosjekter" element={<Projects />} />
-          <Route path="/prosjekter/sorteringsguiden" element={<SortingGuideCase />} />
-          <Route path="/prosjekter/headset" element={<HeadsetCase />} />
-          <Route path="/prosjekter/:slug" element={<ProjectDetail />} />
-          <Route path="/om" element={<About />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/work/:slug" element={<ProjectPage />} />
+          <Route path="/work/:slug/:subpage" element={<ProjectPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+      </Layout>
+    </BrowserRouter>
+  );
+}
