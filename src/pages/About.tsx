@@ -38,26 +38,6 @@ const About = () => {
     "Miro",
   ];
 
-const skills = [
-  'Tjenestedesign og brukerreiser',
-  'Fysisk produktdesign',
-  'Prototyping og testing',
-  'Brukerresearch og intervjuer',
-  'Systemtenkning',
-  'CAD og 3D-modellering',
-  'Workshop-fasilitering',
-];
-
-const tools = [
-  'Figma',
-  'Fusion 360 / SolidWorks',
-  '3D-printing (FDM/SLA)',
-  'Adobe Creative Suite',
-  'Miro / FigJam',
-  'Grunnleggende frontend',
-];
-
-export function About() {
   return (
     <Layout>
       <Section animate={false}>
@@ -155,4 +135,6 @@ export function About() {
       </Section>
     </Layout>
   );
-}
+};
+
+export default About;
