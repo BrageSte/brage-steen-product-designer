@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sorting Guide – Bachelor Project | Brage Steen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-deep: #1a3329;
+            --green-forest: #2d5a47;
+            --green-main: #3d7a5f;
+            --green-soft: #5a9a7a;
+            --green-pale: #a8d4bc;
+            --cream: #fdfbf7;
+            --warm-gray: #f5f3ef;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #7a7a7a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.15;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: var(--green-deep);
+            position: relative;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            overflow: hidden;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(26, 51, 41, 0.85) 0%,
+                rgba(45, 90, 71, 0.75) 50%,
+                rgba(26, 51, 41, 0.85) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(93, 156, 126, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(168, 212, 188, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.25rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 100px;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--green-pale);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            color: #fff;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--green-pale);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.75);
+            max-width: 580px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .meta-item {
+            text-align: left;
+        }
+
+        .meta-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 0.35rem;
+        }
+
+        .meta-value {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+
+        .hero-scroll {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 0.8; transform: scaleY(1.1); }
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 7rem 2rem;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .container-narrow {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green-main);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-intro {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        /* PROBLEM */
+        .problem-section {
+            background: var(--warm-gray);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .problem-visual {
+            position: relative;
+        }
+
+        .problem-image {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+        }
+
+        .problem-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .stat-floating {
+            position: absolute;
+            background: #fff;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .stat-floating.top-right {
+            top: -20px;
+            right: -30px;
+        }
+
+        .stat-floating.bottom-left {
+            bottom: -20px;
+            left: -30px;
+        }
+
+        .stat-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            color: var(--green-main);
+            line-height: 1;
+        }
+
+        .stat-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .problem-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: var(--green-deep);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-top: 2rem;
+        }
+
+        .highlight-box p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--green-pale);
+        }
+
+        /* DESIGN QUESTION */
+        .question-section {
+            background: var(--green-forest);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .question-section blockquote {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            color: #fff;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .question-section blockquote::before,
+        .question-section blockquote::after {
+            content: '"';
+            color: var(--green-pale);
+            opacity: 0.5;
+        }
+
+        /* RESEARCH */
+        .research-section {
+            background: var(--cream);
+        }
+
+        .research-intro {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+            align-items: start;
+        }
+
+        .research-text {
+            padding-top: 1rem;
+        }
+
+        .methods-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .method-tag {
+            padding: 0.5rem 1rem;
+            background: var(--green-pale);
+            color: var(--green-deep);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .research-stats-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .research-gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(2, 280px);
+            gap: 1.25rem;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:nth-child(1) { grid-column: 1 / 6; }
+        .gallery-item:nth-child(2) { grid-column: 6 / 9; }
+        .gallery-item:nth-child(3) { grid-column: 9 / 13; }
+        .gallery-item:nth-child(4) { grid-column: 1 / 5; }
+        .gallery-item:nth-child(5) { grid-column: 5 / 9; }
+        .gallery-item:nth-child(6) { grid-column: 9 / 13; }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,51,41,0.8) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-caption {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* KEY INSIGHTS */
+        .insights-section {
+            background: #fff;
+        }
+
+        .insights-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .insights-header .section-intro {
+            margin: 0 auto;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .insight-card {
+            background: var(--warm-gray);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        }
+
+        .insight-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--green-main), var(--green-forest));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .insight-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: #fff;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .insight-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .insight-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* PROCESS */
+        .process-section {
+            background: var(--green-deep);
+            color: #fff;
+        }
+
+        .process-section .section-label {
+            color: var(--green-pale);
+        }
+
+        .process-section .section-title {
+            color: #fff;
+        }
+
+        .process-section .section-intro {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 48px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, var(--green-soft), var(--green-main));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            color: #fff;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .process-step h4 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 180px;
+            margin: 0 auto;
+        }
+
+        /* SOLUTION */
+        .solution-section {
+            background: var(--cream);
+        }
+
+        .solution-hero {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .solution-mockup {
+            position: relative;
+        }
+
+        .mockup-browser {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.25rem;
+            background: var(--warm-gray);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e0e0e0;
+        }
+
+        .browser-dot.red { background: #ff5f57; }
+        .browser-dot.yellow { background: #febc2e; }
+        .browser-dot.green { background: #28c840; }
+
+        .browser-content {
+            padding: 3rem 2rem;
+            background: var(--green-main);
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .browser-content .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .browser-content .logo-sub {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.7;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .browser-content .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 300px;
+        }
+
+        .browser-btn {
+            padding: 1rem 2.5rem;
+            background: #fff;
+            color: var(--green-main);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .browser-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .solution-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .solution-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .solution-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--green-pale);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--green-deep);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .feature-text h5 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* FEATURES DETAIL */
+        .features-detail {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 40px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .feature-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--green-pale);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* VALUE */
+        .value-section {
+            background: var(--warm-gray);
+        }
+
+        .value-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .value-header .section-intro {
+            margin: 0 auto;
+        }
+
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: linear-gradient(145deg, var(--green-main), var(--green-forest));
+            color: #fff;
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .value-card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .value-card-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: #fff;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .value-card h4 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .value-card p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        /* TESTIMONIAL */
+        .testimonial-section {
+            background: var(--green-soft);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .testimonial-section blockquote {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            color: #fff;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.5;
+        }
+
+        .testimonial-author {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author strong {
+            display: block;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* TEAM */
+        .team-section {
+            background: #fff;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .team-image {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+        }
+
+        .team-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .team-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .team-members {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .member {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .member-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-pale), var(--green-soft));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--green-deep);
+            font-size: 1.1rem;
+        }
+
+        .member-info h5 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .member-info span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* PARTNERS */
+        .partners-section {
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .partners-grid {
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .partner {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .partner:hover {
+            opacity: 1;
+            color: var(--text-primary);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--green-deep);
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-buttons {
+            margin-bottom: 2rem;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--green-main);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-download:hover {
+            background: transparent;
+            border-color: var(--green-pale);
+            color: var(--green-pale);
+            transform: translateY(-2px);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--green-pale);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .problem-grid,
+            .research-intro,
+            .solution-hero,
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .insights-grid,
+            .value-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .features-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .research-gallery {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 220px);
+            }
+
+            .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+            .gallery-item:nth-child(2) { grid-column: 1 / 2; }
+            .gallery-item:nth-child(3) { grid-column: 2 / 3; }
+            .gallery-item:nth-child(4) { grid-column: 1 / 2; }
+            .gallery-item:nth-child(5) { grid-column: 2 / 3; }
+            .gallery-item:nth-child(6) { grid-column: 1 / 3; }
+
+            .stat-floating {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .meta-item {
+                text-align: center;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .solution-features {
+                grid-template-columns: 1fr;
+            }
+
+            .team-members {
+                flex-direction: column;
+            }
+
+            .research-gallery {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 200px);
+            }
+
+            .gallery-item:nth-child(n) {
+                grid-column: 1 / 2;
+            }
+
+            .partners-grid {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg-image">
+            <img src="images-153.png" alt="Let's Sort This Out - Campaign mockup">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-badge">Bachelor Project 2020</span>
+            <h1>The Sorting Guide</h1>
+            <p class="hero-subtitle">Kildesorteringsguiden</p>
+            <p class="hero-description">
+                A service design project empowering Norwegian households to recycle correctly 
+                through personalized guidance and smart product recommendations.
+            </p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Duration</div>
+                    <div class="meta-value">Jan – May 2020</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Partner</div>
+                    <div class="meta-value">IKEA Norway</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Institution</div>
+                    <div class="meta-value">OsloMet University</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Discipline</div>
+                    <div class="meta-value">Service Design</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="problem-section">
+        <div class="container">
+            <span class="section-label">The Challenge</span>
+            <h2 class="section-title">A System Under Pressure</h2>
+            <p class="section-intro">
+                In the complex system of systems that is recycling, there is a major responsibility 
+                resting on the household's shoulders – the first line of recycling.
+            </p>
+
+            <div class="problem-grid">
+                <div class="problem-visual">
+                    <div class="problem-image">
+                        <img src="images-010.png" alt="Haraldrud sorting station in Oslo">
+                    </div>
+                    <div class="stat-floating top-right">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-text">of household waste<br>not recycled</div>
+                    </div>
+                    <div class="stat-floating bottom-left">
+                        <div class="stat-number">#2</div>
+                        <div class="stat-text">Norway's waste<br>per capita in Europe</div>
+                    </div>
+                </div>
+                <div class="problem-content">
+                    <h3>The First Line of Recycling</h3>
+                    <p>
+                        Most households are uneducated on the topic of recycling and not equipped 
+                        with the resources necessary to recycle correctly. When sorting errors are 
+                        made at the household level, it creates major challenges for the entire 
+                        recycling process.
+                    </p>
+                    <p>
+                        Different municipalities have different systems, making it confusing for 
+                        people who move or travel. The complexity alienates people from participating 
+                        fully in the recycling mission.
+                    </p>
+                    <div class="highlight-box">
+                        <p>
+                            <strong>Earth Overshoot Day 2019:</strong> July 29th – the day when humanity 
+                            had used all the regenerative resources of that year. Improving recycling 
+                            rates is crucial for a sustainable future.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESIGN QUESTION -->
+    <section class="question-section">
+        <div class="container-narrow">
+            <blockquote>
+                How can we improve household recycling by guiding people looking for recycling 
+                solutions, to information and offerings based on their household needs, that 
+                leads to minimizing general waste?
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="research-section">
+        <div class="container">
+            <div class="research-intro">
+                <div class="research-text">
+                    <span class="section-label">Research Phase</span>
+                    <h2 class="section-title">Understanding the Complexity</h2>
+                    <p class="section-intro">
+                        The research process was conducted using a qualitative approach. We used 
+                        observation, interviews, design probes, and desktop research to gain empathy 
+                        and understand the complexity of the recycling problem.
+                    </p>
+                    <div class="methods-list">
+                        <span class="method-tag">Home Visits</span>
+                        <span class="method-tag">Workshops</span>
+                        <span class="method-tag">Field Research</span>
+                        <span class="method-tag">User Interviews</span>
+                        <span class="method-tag">Design Probes</span>
+                        <span class="method-tag">Journey Mapping</span>
+                    </div>
+                </div>
+                <div class="research-stats-grid">
+                    <div class="stat-floating" style="position: relative;">
+                        <div class="stat-number">67+</div>
+                        <div class="stat-text">Workshop participants</div>
+                    </div>
+                    <div class="stat-floating" style="position: relative;">
+                        <div class="stat-number">5</div>
+                        <div class="stat-text">Home visits conducted</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-gallery">
+                <div class="gallery-item">
+                    <img src="images-044.png" alt="Design session with team">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Co-creation sessions with partners</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images-030.png" alt="Research at IKEA">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Field research at IKEA</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images-063.png" alt="OBOS Living Lab model">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">OBOS Living Lab visit</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images-154.png" alt="Journey mapping session">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">User journey mapping</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images-016.png" alt="The project team">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">The project team</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images-137.png" alt="Marketing mockup">
+                    <div class="gallery-overlay">
+                        <span class="gallery-caption">Service marketing concept</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY INSIGHTS -->
+    <section class="insights-section">
+        <div class="container">
+            <div class="insights-header">
+                <span class="section-label">Key Findings</span>
+                <h2 class="section-title">Three Barriers to Recycling</h2>
+                <p class="section-intro">
+                    After mapping insights from research, we identified three critical barriers 
+                    that prevent households from recycling effectively.
+                </p>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h4>Availability</h4>
+                    <p>
+                        The placement and availability of recycling bins directly impact recycling rates. 
+                        More space and convenient placement lead to increased recycling. Space constraints 
+                        in homes limit where people can place sorting solutions.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h4>Education</h4>
+                    <p>
+                        People lack sufficient knowledge to recycle efficiently. The complexity of the 
+                        system and variety of materials confuse and alienate people, distancing them 
+                        from the recycling mission.
+                    </p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>Trust</h4>
+                    <p>
+                        Personal barriers include lack of trust in the system. When people don't understand 
+                        the system, they don't believe in it. It becomes difficult to see how individual 
+                        actions make a difference.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="section-label">Design Process</span>
+                <h2 class="section-title">From Research to Solution</h2>
+                <p class="section-intro" style="margin: 0 auto;">
+                    Our iterative design process moved through four core activities, continuously 
+                    overlapping to refine our understanding and solution.
+                </p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Research</h4>
+                    <p>Qualitative methods to gain empathy and map insights</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Ideation</h4>
+                    <p>40+ ideas generated and evaluated against criteria</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Prototyping</h4>
+                    <p>From paper wireframes to interactive Adobe XD prototype</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Implementation</h4>
+                    <p>User testing, validation with partners, and refinement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="solution-hero">
+                <div class="solution-mockup">
+                    <div class="mockup-browser">
+                        <div class="browser-bar">
+                            <span class="browser-dot red"></span>
+                            <span class="browser-dot yellow"></span>
+                            <span class="browser-dot green"></span>
+                        </div>
+                        <div class="browser-content">
+                            <div class="logo">S♻RTING</div>
+                            <div class="logo-sub">guide</div>
+                            <p class="tagline">Build your perfect home recycling system</p>
+                            <a href="prototype.html" class="browser-btn">Try Prototype</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-text">
+                    <span class="section-label">The Solution</span>
+                    <h3>The Sorting Guide</h3>
+                    <p>
+                        A multi-purpose service platform that serves as both a recycling product 
+                        store and an educational tool. It brings together key stakeholders – IKEA, 
+                        local municipalities, and users – to provide personalized recycling guidance.
+                    </p>
+                    <p>
+                        By incorporating education into the purchasing process of recycling solutions, 
+                        we impact users when they're most receptive to learning and retaining information.
+                    </p>
+                    <div class="solution-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Personalized</h5>
+                                <p>Solutions based on your specific needs</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Local Guidelines</h5>
+                                <p>Adapted to your municipality's rules</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Product Database</h5>
+                                <p>Curated IKEA recycling products</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Tips & Tricks</h5>
+                                <p>Smart workarounds for easier sorting</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-detail">
+                <div class="feature-card">
+                    <div class="feature-number">01</div>
+                    <h4>Home Recycling Builder</h4>
+                    <p>
+                        The core feature allows users to create a personalized home recycling system 
+                        based on their living situation, local municipal guidelines, and available products. 
+                        Enter basic details and receive a tailored setup with clear instructions.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">02</div>
+                    <h4>Recycling in Your Area</h4>
+                    <p>
+                        A user-friendly directory providing quick access to location-specific recycling 
+                        information. Simply enter your zip code to understand exactly what and how to 
+                        sort in your municipality.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <h4>Product Guide</h4>
+                    <p>
+                        Products are tagged by waste type, with filter functions helping users quickly 
+                        find items matching their specific recycling needs. No more guessing which bin 
+                        works for what.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-number">04</div>
+                    <h4>Tips & Tricks</h4>
+                    <p>
+                        Smart solutions and practical workarounds gathered during research to make 
+                        recycling easier and more convenient for everyday life.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUE -->
+    <section class="value-section">
+        <div class="container">
+            <div class="value-header">
+                <span class="section-label">Impact</span>
+                <h2 class="section-title">Creating Value Across the Chain</h2>
+                <p class="section-intro">
+                    By empowering the first-line of recycling with the necessary tools and resources, 
+                    The Sorting Guide creates added value along the entire recycling value chain.
+                </p>
+            </div>
+
+            <div class="value-cards">
+                <div class="value-card">
+                    <div class="value-card-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                    </div>
+                    <h4>For Users</h4>
+                    <p>
+                        Customized solutions that fit their home constraints, increased knowledge, 
+                        and confidence in making correct sorting decisions.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18"/></svg>
+                    </div>
+                    <h4>For Business</h4>
+                    <p>
+                        Higher customer satisfaction through personalized offerings, opportunity for 
+                        up-selling, and strengthened brand position in sustainability.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-card-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h4>For Environment</h4>
+                    <p>
+                        Higher recycling rates reduce waste lost in the system, increase material 
+                        reuse, and lower demand for virgin products.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="testimonial-section">
+        <div class="container-narrow">
+            <blockquote>
+                "You are spot on. There is definitely a need for this concept. You are contributing 
+                to limiting the largest leakage in the recycling system."
+            </blockquote>
+            <div class="testimonial-author">
+                <strong>Kenneth Skauge</strong>
+                Sustainability Business Partner, IKEA Norway
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team-section">
+        <div class="container">
+            <div class="team-grid">
+                <div class="team-image">
+                    <img src="images-016.png" alt="Team photo - Regina von Koch and Brage Steen">
+                </div>
+                <div class="team-content">
+                    <span class="section-label">The Team</span>
+                    <h3>Designed with Purpose</h3>
+                    <p>
+                        This bachelor project was developed at Oslo Metropolitan University as the 
+                        concluding thesis for a three-year Product Design education. Our shared 
+                        passion for sustainability and making a real difference drove us to tackle 
+                        the complex challenge of household recycling.
+                    </p>
+                    <div class="team-members">
+                        <div class="member">
+                            <div class="member-avatar">BS</div>
+                            <div class="member-info">
+                                <h5>Brage Steen</h5>
+                                <span>Product Designer</span>
+                            </div>
+                        </div>
+                        <div class="member">
+                            <div class="member-avatar">RK</div>
+                            <div class="member-info">
+                                <h5>Regina von Koch</h5>
+                                <span>Product Designer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="partners-section">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="section-label">Partners & Collaborators</span>
+                <h2 class="section-title">In Collaboration With</h2>
+            </div>
+            <div class="partners-grid">
+                <span class="partner">IKEA</span>
+                <span class="partner">Grønt Punkt</span>
+                <span class="partner">Loop</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">The Sorting Guide</div>
+            <p class="footer-text">
+                A bachelor project exploring how service design can improve household recycling 
+                through personalized guidance and education.
+            </p>
+            <div class="footer-buttons">
+                <a href="TheSortingGuide_Report.pdf" class="btn-download" download>
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Project Report
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="prototype.html">Interactive Prototype</a>
+                <a href="gigamap.html">Gigamap: Waste in the World</a>
+                <a href="https://bragesteen.wordpress.com" target="_blank">Portfolio</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
