@@ -18,14 +18,10 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
@@ -40,9 +36,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+      </Layout>
+    </BrowserRouter>
+  );
+}
