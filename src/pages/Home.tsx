@@ -160,13 +160,13 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
   }
 
   return (
-    <a
-      href={project.href}
+    <Link
+      to={project.href}
       className={`block opacity-0 animate-fade-up-reveal`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {cardContent}
-    </a>
+    </Link>
   );
 };
 

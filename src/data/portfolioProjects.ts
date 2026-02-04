@@ -15,7 +15,7 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2020",
     description: "Tjenestedesign for enklere kildesortering i norske hjem — bachelorprosjekt med IKEA Norge.",
     tags: ["Tjenestedesign", "UX", "Bachelor"],
-    href: "/projects/sorting-guide/",
+    href: "/work/sorting-guide",
   },
   {
     id: "headset",
@@ -23,7 +23,7 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2019",
     description: "Ergonomisk hodtelefondesign med fokus på komfort og materialvalg.",
     tags: ["Produktdesign", "3D"],
-    href: "/projects/headset/",
+    href: "/work/headset",
   },
   {
     id: "seaweed",
@@ -31,7 +31,7 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2019",
     description: "Utforskning av tang som bærekraftig materiale for produktdesign.",
     tags: ["Materialforskning", "Bærekraft"],
-    href: "/projects/seaweed/",
+    href: "/work/seaweed",
   },
   {
     id: "crimpblock",
@@ -39,7 +39,7 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2024",
     description: "Treningsverktøy for klatring — designet og produsert for BS Climbing.",
     tags: ["Produktdesign", "Klatring"],
-    href: "https://bsclimbing.no",
+    href: "/work/crimpblock",
   },
   {
     id: "avfallsportalen",
@@ -47,6 +47,6 @@ export const portfolioProjects: PortfolioProject[] = [
     year: "2021",
     description: "Digital tjeneste for bedre avfallshåndtering i kommuner.",
     tags: ["UX", "Digital tjeneste"],
-    href: "/projects/avfallsportalen/",
+    href: "/work/avfallsportalen",
   },
 ];
