@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { portfolioProjects } from "@/data/portfolioProjects";
 
@@ -66,15 +67,26 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     </div>
   );
 
+  if (isExternal) {
+    return (
+      <a
+        href={project.href}
+        className={`block opacity-0 animate-fade-up-reveal`}
+        style={{ animationDelay: `${index * 0.1}s` }}
+      >
+        {cardContent}
+      </a>
+    );
+  }
+
   return (
-    <a
-      href={project.href}
+    <Link
+      to={project.href}
       className={`block opacity-0 animate-fade-up-reveal`}
       style={{ animationDelay: `${index * 0.1}s` }}
-      {...(isExternal ? {} : {})}
     >
       {cardContent}
-    </a>
+    </Link>
   );
 };
 
