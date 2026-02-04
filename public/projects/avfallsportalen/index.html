@@ -1089,6 +1089,7 @@
             filter: brightness(1.1);
             transform: translateX(5px);
             box-shadow: 0 10px 25px color-mix(in srgb, var(--step-color) 40%, transparent);
+            color: #fff;
         }
 
         .nav-btn:disabled {
@@ -3031,6 +3032,11 @@
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             
             document.getElementById('page-' + pageId).classList.add('active');
+
+            const journeyNav = document.querySelector('.journey-nav');
+            if (journeyNav) {
+                journeyNav.style.display = pageId === 'journey' ? 'block' : 'none';
+            }
             
             // Find and activate the correct nav item
             if (navElement && navElement.classList.contains('nav-item')) {
