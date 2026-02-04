@@ -738,17 +738,37 @@
             66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
     </style>
+    <link rel="stylesheet" href="/projects/site-nav.css">
 </head>
 <body>
-    <nav>
-        <a href="https://bragesteen.wordpress.com">Brage Steen</a>
-        <div class="nav-links">
-            <a href="#overview">Overview</a>
-            <a href="#process">Process</a>
-            <a href="#concepts">Concepts</a>
-            <a href="#reflection">Reflection</a>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="site-brand" href="/">Brage Steen — Product Designer</a>
+            <div class="site-nav" role="navigation" aria-label="Hovedmeny">
+                <a href="/work/" aria-current="page">Arbeid</a>
+                <a href="/about/">Om meg</a>
+                <a href="/contact/">Kontakt</a>
+                <a href="https://bsclimbing.no">Butikk</a>
+            </div>
         </div>
-    </nav>
+    </header>
+
+    <div class="project-bar">
+        <div class="project-bar__inner">
+            <div class="project-bar__left">
+                <a class="project-back" href="/work/">Tilbake til arbeid</a>
+                <span class="project-title">Seaweed — Ting av Tang</span>
+            </div>
+            <div class="project-bar__right">
+                <div class="project-links" role="navigation" aria-label="Prosjektmeny">
+                    <a href="#overview">Overview</a>
+                    <a href="#process">Process</a>
+                    <a href="#concepts">Concepts</a>
+                    <a href="#reflection">Reflection</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="hero">
         <div class="float-element float-1"></div>

@@ -504,15 +504,29 @@
             transform: translateY(0);
         }
     </style>
+    <link rel="stylesheet" href="/projects/site-nav.css">
 </head>
 <body>
-    <nav>
-        <div class="logo"><a href="#">Brage Steen Design</a></div>
-        <ul class="nav-links">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="site-brand" href="/">Brage Steen — Product Designer</a>
+            <div class="site-nav" role="navigation" aria-label="Hovedmeny">
+                <a href="/work/" aria-current="page">Arbeid</a>
+                <a href="/about/">Om meg</a>
+                <a href="/contact/">Kontakt</a>
+                <a href="https://bsclimbing.no">Butikk</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="project-bar">
+        <div class="project-bar__inner">
+            <div class="project-bar__left">
+                <a class="project-back" href="/work/">Tilbake til arbeid</a>
+                <span class="project-title">3D Printed Headset</span>
+            </div>
+        </div>
+    </div>
 
     <!-- ==================== HERO ==================== -->
     <section class="hero">

@@ -212,14 +212,36 @@
             text-decoration: underline;
         }
     </style>
+    <link rel="stylesheet" href="/projects/site-nav.css">
 </head>
 <body>
-    <a href="index.html" class="back-link">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15 18 9 12 15 6"/>
-        </svg>
-        Back to Project
-    </a>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="site-brand" href="/">Brage Steen — Product Designer</a>
+            <div class="site-nav" role="navigation" aria-label="Hovedmeny">
+                <a href="/work/" aria-current="page">Arbeid</a>
+                <a href="/about/">Om meg</a>
+                <a href="/contact/">Kontakt</a>
+                <a href="https://bsclimbing.no">Butikk</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="project-bar">
+        <div class="project-bar__inner">
+            <div class="project-bar__left">
+                <a class="project-back" href="index.html">Tilbake til prosjektet</a>
+                <span class="project-title">The Sorting Guide</span>
+            </div>
+            <div class="project-bar__right">
+                <div class="project-links" role="navigation" aria-label="Prosjektmeny">
+                    <a href="index.html">Prosjekt</a>
+                    <a href="prototype.html">Prototype</a>
+                    <a href="gigamap.html" aria-current="page">Gigamap</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <header class="header">
         <h1>Gigamap: Waste in the World</h1>

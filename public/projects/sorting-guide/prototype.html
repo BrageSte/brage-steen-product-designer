@@ -270,41 +270,55 @@
             border-radius: 0;
         }
     </style>
+    <link rel="stylesheet" href="/projects/site-nav.css">
 </head>
 <body>
-    <header class="header">
-        <a href="index.html" class="back-link">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 18 9 12 15 6"/>
-            </svg>
-            Back to Project
-        </a>
-        
-        <div class="header-title">
-            <h1>The Sorting Guide</h1>
-            <span class="badge">Interactive Prototype</span>
-        </div>
-        
-        <div class="header-actions">
-            <a href="https://xd.adobe.com/view/60cd8d3c-32ed-435d-7295-8826c2431807-16fc/?fullscreen&hints=on" target="_blank" class="btn">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-                Open in Adobe XD
-            </a>
-            <button onclick="toggleFullscreen()" class="btn btn-primary">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 3 21 3 21 9"/>
-                    <polyline points="9 21 3 21 3 15"/>
-                    <line x1="21" y1="3" x2="14" y2="10"/>
-                    <line x1="3" y1="21" x2="10" y2="14"/>
-                </svg>
-                Fullscreen
-            </button>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="site-brand" href="/">Brage Steen — Product Designer</a>
+            <div class="site-nav" role="navigation" aria-label="Hovedmeny">
+                <a href="/work/" aria-current="page">Arbeid</a>
+                <a href="/about/">Om meg</a>
+                <a href="/contact/">Kontakt</a>
+                <a href="https://bsclimbing.no">Butikk</a>
+            </div>
         </div>
     </header>
+
+    <div class="project-bar">
+        <div class="project-bar__inner">
+            <div class="project-bar__left">
+                <a class="project-back" href="index.html">Tilbake til prosjektet</a>
+                <span class="project-title">The Sorting Guide</span>
+            </div>
+            <div class="project-bar__right">
+                <div class="project-links" role="navigation" aria-label="Prosjektmeny">
+                    <a href="index.html">Prosjekt</a>
+                    <a href="prototype.html" aria-current="page">Prototype</a>
+                    <a href="gigamap.html">Gigamap</a>
+                </div>
+                <div class="project-actions">
+                    <a href="https://xd.adobe.com/view/60cd8d3c-32ed-435d-7295-8826c2431807-16fc/?fullscreen&hints=on" target="_blank" class="project-action">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        Open in Adobe XD
+                    </a>
+                    <button onclick="toggleFullscreen()" class="project-action project-action--primary">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 3 21 3 21 9"/>
+                            <polyline points="9 21 3 21 3 15"/>
+                            <line x1="21" y1="3" x2="14" y2="10"/>
+                            <line x1="3" y1="21" x2="10" y2="14"/>
+                        </svg>
+                        Fullscreen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main class="prototype-container">
         <div class="prototype-frame">

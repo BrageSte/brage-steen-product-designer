@@ -1,0 +1,208 @@
+:root {
+  --site-nav-height: 72px;
+  --project-bar-height: 56px;
+  --site-nav-bg: rgba(250, 249, 247, 0.94);
+  --site-nav-border: rgba(26, 26, 26, 0.12);
+  --site-nav-text: #1a1a1a;
+  --site-nav-muted: rgba(26, 26, 26, 0.6);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  background: var(--site-nav-bg);
+  border-bottom: 1px solid var(--site-nav-border);
+  backdrop-filter: blur(12px);
+}
+
+.site-header__inner {
+  height: var(--site-nav-height);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.site-brand {
+  font-family: "IBM Plex Sans", "DM Sans", -apple-system, "Helvetica Neue", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--site-nav-text);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  font-family: "IBM Plex Sans", "DM Sans", -apple-system, "Helvetica Neue", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-nav a {
+  color: var(--site-nav-muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--site-nav-text);
+}
+
+.project-bar {
+  position: sticky;
+  top: var(--site-nav-height);
+  z-index: 1500;
+  background: rgba(250, 249, 247, 0.96);
+  border-bottom: 1px solid var(--site-nav-border);
+  backdrop-filter: blur(10px);
+}
+
+.project-bar__inner {
+  min-height: var(--project-bar-height);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.project-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-back {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--site-nav-muted);
+  text-decoration: none;
+}
+
+.project-back:hover {
+  color: var(--site-nav-text);
+}
+
+.project-title {
+  font-family: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+  font-size: 1rem;
+  color: var(--site-nav-text);
+}
+
+.project-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.project-links a {
+  color: var(--site-nav-muted);
+  text-decoration: none;
+}
+
+.project-links a:hover,
+.project-links a[aria-current="page"] {
+  color: var(--site-nav-text);
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.project-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--site-nav-border);
+  background: transparent;
+  color: var(--site-nav-text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.project-action:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.project-action--primary {
+  background: var(--site-nav-text);
+  color: #fff;
+  border-color: var(--site-nav-text);
+}
+
+.project-action--primary:hover {
+  opacity: 0.9;
+}
+
+.project-action svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --site-nav-height: 120px;
+  }
+
+  .site-header__inner,
+  .project-bar__inner {
+    padding: 0.75rem 1.5rem;
+    height: auto;
+  }
+
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-nav {
+    gap: 0.8rem;
+  }
+
+  .project-bar__inner {
+    align-items: flex-start;
+  }
+}
+
+.main-nav {
+  top: var(--site-nav-height);
+}
+
+.page {
+  margin-top: calc(70px + var(--site-nav-height));
+}
