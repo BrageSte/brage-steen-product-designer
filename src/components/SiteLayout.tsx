@@ -25,7 +25,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
               aria-label="Hovedmeny"
             >
               <NavLink
-                to="/work"
+                to="/work/"
                 className={({ isActive }) =>
                   cn("nav-link", isActive && "nav-link-active")
                 }
@@ -33,7 +33,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
                 Arbeid
               </NavLink>
               <NavLink
-                to="/about"
+                to="/about/"
                 className={({ isActive }) =>
                   cn("nav-link", isActive && "nav-link-active")
                 }
@@ -41,7 +41,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
                 Om meg
               </NavLink>
               <NavLink
-                to="/contact"
+                to="/contact/"
                 className={({ isActive }) =>
                   cn("nav-link", isActive && "nav-link-active")
                 }

@@ -21,7 +21,7 @@ const Home = () => {
               <a className="btn btn-primary" href="#arbeid">
                 Se arbeid
               </a>
-              <Link className="btn btn-ghost" to="/about">
+              <Link className="btn btn-ghost" to="/about/">
                 Om meg
               </Link>
             </div>
