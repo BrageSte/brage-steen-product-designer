@@ -547,6 +547,7 @@
         /* Research Data */
         .research {
             background: var(--foam);
+            padding-top: 12px;
         }
 
         .research-content {
@@ -561,7 +562,7 @@
             flex-direction: column;
             gap: 2rem;
             position: sticky;
-            top: 120px;
+            top: calc(var(--site-nav-height, 0px) + var(--project-bar-height, 0px) + 24px);
         }
 
         .stat {
@@ -756,7 +757,6 @@
     <div class="project-bar">
         <div class="project-bar__inner">
             <div class="project-bar__left">
-                <a class="project-back" href="/work/">Tilbake til arbeid</a>
                 <span class="project-title">Seaweed — Ting av Tang</span>
             </div>
             <div class="project-bar__right">

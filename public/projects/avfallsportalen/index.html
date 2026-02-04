@@ -1029,6 +1029,21 @@
             border-top: 2px solid var(--border-color);
         }
 
+        .journey-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--border-color);
+            padding: 18px 40px;
+        }
+
+        #page-journey .main-content {
+            padding-bottom: 120px;
+        }
+
         .nav-btn {
             display: flex;
             align-items: center;
@@ -2105,15 +2120,6 @@
 <p class="quote-text">"Avfall er ikke avfall, men en brukt ressurs med kapasitet for gjenbruk og fornyelse."</p>
 <p class="quote-author">— Paris-avtalen om sirkulær økonomi</p>
 </div>
-<div class="nav-buttons">
-<button class="nav-btn prev" disabled="" id="prevBtn" onclick="prevStep()">
-                        ← Forrige
-                    </button>
-<span class="progress-text" id="progressText">Steg 1 av 8</span>
-<button class="nav-btn next" id="nextBtn" onclick="nextStep()">
-                        Neste →
-                    </button>
-</div>
 </div>
 <!-- Step 1-4 abbreviated for space, keeping step 5 with illustrations -->
 <!-- Step 5: Sortering with illustrations -->
@@ -2245,11 +2251,7 @@
 </div>
 </div>
 </div>
-<div class="nav-buttons">
-<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
-<span class="progress-text">Steg 6 av 8</span>
-<button class="nav-btn next" onclick="nextStep()">Neste →</button>
-</div>
+
 </div>
 <!-- Other steps (1-4, 6-7) similar structure -->
 <div class="step-content" data-step="1" style="--step-color: var(--europe)">
@@ -2330,11 +2332,7 @@
 </div>
 </div>
 </div>
-<div class="nav-buttons">
-<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
-<span class="progress-text">Steg 2 av 8</span>
-<button class="nav-btn next" onclick="nextStep()">Neste →</button>
-</div>
+
 </div>
 <div class="step-content" data-step="2" style="--step-color: var(--norway)">
 <div class="content-header">
@@ -2413,11 +2411,7 @@
 </div>
 </div>
 </div>
-<div class="nav-buttons">
-<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
-<span class="progress-text">Steg 3 av 8</span>
-<button class="nav-btn next" onclick="nextStep()">Neste →</button>
-</div>
+
 </div>
 <div class="step-content" data-step="3" style="--step-color: var(--home)">
 <div class="content-header">
@@ -2490,11 +2484,7 @@
 </div>
 </div>
 </div>
-<div class="nav-buttons">
-<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
-<span class="progress-text">Steg 4 av 8</span>
-<button class="nav-btn next" onclick="nextStep()">Neste →</button>
-</div>
+
 </div>
 <div class="step-content" data-step="4" style="--step-color: var(--collection)">
 <div class="content-header">
@@ -2532,11 +2522,7 @@
 <div class="quote-box">
 <p class="quote-text">"Forurensningsloven slår fast at alle kommuner i Norge har ansvar for å samle inn avfall fra husholdninger."</p>
 </div>
-<div class="nav-buttons">
-<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
-<span class="progress-text">Steg 5 av 8</span>
-<button class="nav-btn next" onclick="nextStep()">Neste →</button>
-</div>
+
 </div>
 <div class="step-content" data-step="6" style="--step-color: var(--processing)">
 <div class="content-header">
@@ -2609,11 +2595,7 @@
 </div>
 </div>
 </div>
-<div class="nav-buttons">
-<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
-<span class="progress-text">Steg 7 av 8</span>
-<button class="nav-btn next" onclick="nextStep()">Neste →</button>
-</div>
+
 </div>
 <div class="step-content" data-step="7" style="--step-color: var(--result)">
 <div class="content-header">
@@ -2691,12 +2673,15 @@
 <p class="quote-text">"Dette kan oppnås gjennom langvarig design, vedlikehold, reparasjon, gjenbruk, re-produksjon, oppussing og resirkulering."</p>
 <p class="quote-author">— Paris-avtalen om sirkulær økonomi</p>
 </div>
+
+</div>
+</div>
+</div>
+<div class="journey-nav">
 <div class="nav-buttons">
-<button class="nav-btn prev" onclick="prevStep()">← Forrige</button>
-<span class="progress-text">Steg 8 av 8 ✓</span>
-<button class="nav-btn next" onclick="showPage('quiz')">Ta quizen! 🎯</button>
-</div>
-</div>
+<button class="nav-btn prev" disabled id="prevBtn" onclick="prevStep()">← Forrige</button>
+<span class="progress-text" id="progressText">Steg 1 av 8</span>
+<button class="nav-btn next" id="nextBtn" onclick="nextStep()" data-default-label="Neste →" data-final-label="Ta quizen! 🎯" data-final-action="showPage('quiz')">Neste →</button>
 </div>
 </div>
 <!-- ===== QUIZ PAGE ===== -->
@@ -3079,10 +3064,28 @@
                 el.textContent = `Steg ${currentStep + 1} av ${totalSteps}`;
             });
 
-            // Update prev buttons
-            document.querySelectorAll('.nav-btn.prev').forEach(btn => {
-                btn.disabled = currentStep === 0;
-            });
+            // Update nav buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (prevBtn) prevBtn.disabled = currentStep === 0;
+
+            if (nextBtn) {
+                if (currentStep >= totalSteps - 1) {
+                    nextBtn.textContent = nextBtn.dataset.finalLabel || 'Ta quizen! 🎯';
+                    nextBtn.onclick = () => showPage('quiz');
+                } else {
+                    nextBtn.textContent = nextBtn.dataset.defaultLabel || 'Neste →';
+                    nextBtn.onclick = () => nextStep();
+                }
+            }
+
+            const activeStep = document.querySelector('.timeline-step.active');
+            if (activeStep) {
+                const stepColor = getComputedStyle(activeStep).getPropertyValue('--step-color');
+                if (stepColor) {
+                    document.getElementById('page-journey').style.setProperty('--step-color', stepColor.trim());
+                }
+            }
         }
 
         function goToStep(step) {
