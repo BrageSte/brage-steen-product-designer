@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
+import type { CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
-import ImageWithFallback from "./ImageWithFallback";
-import type { Project } from "@/content/projects";
+import type { Project } from "@/content/projects/index";
 
 interface NextProjectProps {
   project: Project;
@@ -12,17 +11,14 @@ const NextProject = ({ project }: NextProjectProps) => {
     <div className="border-t border-border pt-16 md:pt-24">
       <div className="container-wide">
         <span className="text-caption block mb-4">Neste prosjekt</span>
-        <Link
-          to={`/work/${project.slug}`}
-          className="group block"
-        >
+        <a href={project.href} className="group block">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2">
               <h3 className="text-display-md group-hover:text-muted-foreground transition-colors">
                 {project.title}
               </h3>
-              <p className="text-body text-muted-foreground">
-                {project.summary}
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                {project.excerpt}
               </p>
             </div>
             <ArrowRight
@@ -31,14 +27,20 @@ const NextProject = ({ project }: NextProjectProps) => {
             />
           </div>
           <div className="mt-8 max-w-md">
-            <ImageWithFallback
-              src={project.coverImage}
-              alt={project.title}
-              aspectRatio="wide"
-              className="rounded-lg"
-            />
+            <div
+              className="project-cover"
+              style={
+                {
+                  "--cover-gradient": project.coverGradient,
+                } as CSSProperties
+              }
+            >
+              {project.cover && (
+                <img src={project.cover} alt={project.title} loading="lazy" />
+              )}
+            </div>
           </div>
-        </Link>
+        </a>
       </div>
     </div>
   );

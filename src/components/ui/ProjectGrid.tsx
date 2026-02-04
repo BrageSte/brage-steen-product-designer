@@ -7,9 +7,9 @@ interface ProjectGridProps {
 
 const ProjectGrid = ({ projects }: ProjectGridProps) => {
   return (
-    <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+    <div className="grid gap-8 md:grid-cols-2">
       {projects.map((project, index) => (
-        <ProjectCard key={project.slug} project={project} index={index} />
+        <ProjectCard key={project.href} project={project} index={index} />
       ))}
     </div>
   );

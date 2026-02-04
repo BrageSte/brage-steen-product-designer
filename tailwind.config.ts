@@ -20,12 +20,14 @@ export default {
     extend: {
       fontFamily: {
         sans: [
+          "IBM Plex Sans",
           "Helvetica Neue",
           "Helvetica",
           "Arial",
           "system-ui",
           "sans-serif",
         ],
+        serif: ["Instrument Serif", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
