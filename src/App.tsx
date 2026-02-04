@@ -1,36 +1,32 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Pages
-import Home from "./pages/Home";
-import Work from "./pages/Work";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import { NotFound } from "./pages/NotFound";
+function Home() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <main className="text-center px-4">
+        <h1 className="text-4xl font-bold tracking-tight">Portfolio</h1>
+        <p className="text-muted-foreground mt-4">Under construction...</p>
+      </main>
+    </div>
+  );
+}
 
-// Work pages
-import SortingGuide from "./pages/work/SortingGuide";
-import SortingGuidePrototype from "./pages/work/SortingGuidePrototype";
-import SortingGuideGigamap from "./pages/work/SortingGuideGigamap";
-import Avfallsportalen from "./pages/work/Avfallsportalen";
-import Headset from "./pages/work/Headset";
-import Seaweed from "./pages/work/Seaweed";
-import Crimpblock from "./pages/work/Crimpblock";
+function NotFound() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <main className="text-center px-4">
+        <h1 className="text-4xl font-bold">404</h1>
+        <p className="text-muted-foreground mt-2">Page not found</p>
+      </main>
+    </div>
+  );
+}
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/work" element={<Work />} />
-        <Route path="/work/sorting-guide" element={<SortingGuide />} />
-        <Route path="/work/sorting-guide/prototype" element={<SortingGuidePrototype />} />
-        <Route path="/work/sorting-guide/gigamap" element={<SortingGuideGigamap />} />
-        <Route path="/work/avfallsportalen" element={<Avfallsportalen />} />
-        <Route path="/work/headset" element={<Headset />} />
-        <Route path="/work/seaweed" element={<Seaweed />} />
-        <Route path="/work/crimpblock" element={<Crimpblock />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
