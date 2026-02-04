@@ -47,7 +47,7 @@ export const projects: Project[] = [
     title: "Avfallsportalen",
     year: "2026",
     excerpt:
-      "Moderne visualisering av data fra The Sorting Guide, laget før implementeringen av Avfallsportalen-siden.",
+      "Moderne visualisering av avfallsdata, basert på innsikten fra bachelorprosjektet The Sorting Guide (2020).",
     tags: ["Datavisualisering", "Bærekraft", "Tjeneste"],
     href: "/projects/avfallsportalen/index.html",
     coverGradient:

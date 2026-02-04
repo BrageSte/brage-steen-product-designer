@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SiteLayout from "@/components/SiteLayout";
 
 const NotFound = () => {
@@ -12,9 +13,9 @@ const NotFound = () => {
               Gå tilbake til forsiden for å fortsette.
             </p>
             <div className="mt-8">
-              <a className="btn btn-ghost" href="/">
+              <Link className="btn btn-ghost" to="/">
                 Til forsiden
-              </a>
+              </Link>
             </div>
           </div>
         </section>
