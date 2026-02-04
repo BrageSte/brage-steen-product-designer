@@ -1036,24 +1036,33 @@
             right: 0;
             z-index: 900;
             background: var(--bg-secondary);
-            border-top: 2px solid var(--border-color);
-            padding: 18px 40px;
+            border-top: 1px solid var(--border-color);
+            padding: 10px 24px;
+        }
+
+        .journey-nav .nav-buttons {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #page-journey .main-content {
-            padding-bottom: 120px;
+            padding-bottom: 90px;
         }
 
         .nav-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 30px;
+            gap: 8px;
+            padding: 10px 20px;
             border-radius: 50px;
             border: 2px solid var(--border-color);
             background: var(--bg-secondary);
             color: var(--text-primary);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -1070,9 +1079,10 @@
         }
 
         .nav-btn.next {
-            background: var(--step-color);
-            border-color: var(--step-color);
+            background: var(--step-color, #4CAF50);
+            border-color: var(--step-color, #4CAF50);
             color: white;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
         }
 
         .nav-btn.next:hover:not(:disabled) {
@@ -1087,7 +1097,7 @@
         }
 
         .progress-text {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-muted);
             font-weight: 600;
         }
@@ -3084,6 +3094,10 @@
                 const stepColor = getComputedStyle(activeStep).getPropertyValue('--step-color');
                 if (stepColor) {
                     document.getElementById('page-journey').style.setProperty('--step-color', stepColor.trim());
+                    const journeyNav = document.querySelector('.journey-nav');
+                    if (journeyNav) {
+                        journeyNav.style.setProperty('--step-color', stepColor.trim());
+                    }
                 }
             }
         }
