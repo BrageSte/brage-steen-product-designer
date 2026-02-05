@@ -1027,6 +1027,8 @@ const sortingGuideSections = [
   { id: "insights", label: "Insights" },
   { id: "solution", label: "Solution" },
   { id: "team", label: "Team" },
+  { href: "/projects/sorting-guide/gigamap.html", label: "Gigamap", primary: true },
+  { href: "/projects/sorting-guide/prototype.html", label: "Prototype", primary: true },
 ];
 
 export default function SortingGuideProject() {
