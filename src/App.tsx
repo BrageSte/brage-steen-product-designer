@@ -5,6 +5,8 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
 import HeadsetProject from "@/pages/projects/HeadsetProject";
+import SortingGuideProject from "@/pages/projects/SortingGuideProject";
+import SeaweedProject from "@/pages/projects/SeaweedProject";
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
         <Route path="/about/*" element={<About />} />
         <Route path="/contact/*" element={<Contact />} />
         <Route path="/projects/headset" element={<HeadsetProject />} />
+        <Route path="/projects/sorting-guide" element={<SortingGuideProject />} />
+        <Route path="/projects/seaweed" element={<SeaweedProject />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
