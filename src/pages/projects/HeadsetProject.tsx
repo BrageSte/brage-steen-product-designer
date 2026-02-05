@@ -259,7 +259,7 @@ function TechnicalSection() {
 export default function HeadsetProject() {
   return (
     <SiteLayout>
-      <main className="bg-background">
+      <main id="main-content" className="bg-background">
         <HeroSection />
         <OverviewSection />
         <IdeationSection />
