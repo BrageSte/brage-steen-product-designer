@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+cd "${repo_root}"
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit: node not found; skipping preview generation" >&2
+  exit 0
+fi
+
+changed=$(node scripts/previews.mjs --print-changed || true)
+if [[ -n "${changed}" ]]; then
+  echo "pre-commit: updated previews"
+  while IFS= read -r file; do
+    [[ -n "${file}" ]] && git add "${file}"
+  done <<< "${changed}"
+fi

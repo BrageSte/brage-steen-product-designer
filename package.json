@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "previews:build": "node scripts/previews.mjs",
+    "previews:watch": "node scripts/previews.mjs --watch",
+    "hooks:install": "node scripts/setup-hooks.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
