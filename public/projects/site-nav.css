@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap");
+
 :root {
   --site-nav-height: 72px;
   --project-bar-height: 56px;
@@ -28,8 +30,8 @@
 }
 
 .site-brand {
-  font-family: "IBM Plex Sans", "DM Sans", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 0.9rem;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--site-nav-text);
@@ -41,10 +43,10 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1.25rem;
-  font-family: "IBM Plex Sans", "DM Sans", -apple-system, "Helvetica Neue", sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .site-nav a {
@@ -180,6 +182,12 @@
   .site-header__inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-brand {
+    font-size: 1rem;
   }
 }
 
