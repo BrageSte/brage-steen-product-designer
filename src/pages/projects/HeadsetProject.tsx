@@ -6,6 +6,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import SiteLayout from "@/components/SiteLayout";
+import ProjectBar from "@/components/ProjectBar";
 
 const basePath = "/projects/headset";
 
@@ -37,7 +38,7 @@ function HeroSection() {
 // Overview Section - 2-column grid
 function OverviewSection() {
   return (
-    <section className="py-24 px-8">
+    <section id="overview" className="py-24 px-8">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         <div className="opacity-0 animate-fade-in-up">
           <span className="text-caption">Overview</span>
@@ -84,7 +85,7 @@ function OverviewSection() {
 // Ideation Section - Sketch grid
 function IdeationSection() {
   return (
-    <section className="py-24 px-8">
+    <section id="ideation" className="py-24 px-8">
       <div className="max-w-6xl mx-auto">
         <span className="text-caption">01 — Ideation</span>
         <h2 className="text-display-md mt-4 mb-6">Sketches & Exploration</h2>
@@ -121,7 +122,7 @@ function PrototypingSection() {
   ];
 
   return (
-    <section className="py-24 px-8">
+    <section id="prototyping" className="py-24 px-8">
       <div className="max-w-6xl mx-auto">
         <span className="text-caption">02 — Prototyping</span>
         <h2 className="text-display-md mt-4 mb-6">From Digital to Physical</h2>
@@ -191,7 +192,7 @@ function ProductShowcase() {
 // 3D Model Section
 function ModelSection() {
   return (
-    <section className="py-24 bg-neutral-900 text-white">
+    <section id="model" className="py-24 bg-neutral-900 text-white">
       <div className="max-w-4xl mx-auto px-8">
         <span className="text-caption text-white/50">03 — 3D Model</span>
         <h2 className="text-display-md mt-4 mb-6">Interactive Model</h2>
@@ -223,7 +224,7 @@ function TechnicalSection() {
   ];
 
   return (
-    <section className="py-24">
+    <section id="technical" className="py-24">
       <div className="max-w-4xl mx-auto px-8 mb-12">
         <span className="text-caption">04 — Technical</span>
         <h2 className="text-display-md mt-4 mb-6">Production Drawings</h2>
@@ -256,9 +257,18 @@ function TechnicalSection() {
 }
 
 // Main Component
+const headsetSections = [
+  { id: "overview", label: "Overview" },
+  { id: "ideation", label: "Ideation" },
+  { id: "prototyping", label: "Prototyping" },
+  { id: "model", label: "3D Model" },
+  { id: "technical", label: "Technical" },
+];
+
 export default function HeadsetProject() {
   return (
     <SiteLayout>
+      <ProjectBar title="Headset" sections={headsetSections} />
       <main id="main-content" className="bg-background">
         <HeroSection />
         <OverviewSection />
