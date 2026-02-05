@@ -15,7 +15,7 @@ export const projects: Project[] = [
     excerpt:
       "Bachelorprosjekt om sortering: innsikt, gigamap og interaktiv prototype som gjør avfall enklere å forstå.",
     tags: ["Tjenestedesign", "Bærekraft", "Innsikt"],
-    href: "/projects/sorting-guide/index.html",
+    href: "/projects/sorting-guide",
     coverGradient:
       "linear-gradient(140deg, #dfe8e1 0%, #f7f3ee 55%, #e2ede7 100%)",
     cover: "/projects/sorting-guide/images-153.png",
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     excerpt:
       "Utforsker tang som bærekraftig materiale for emballasje og produkter.",
     tags: ["Materialutforskning", "Bærekraft", "Konsept"],
-    href: "/projects/seaweed/index.html",
+    href: "/projects/seaweed",
     coverGradient:
       "linear-gradient(140deg, #dbe7e1 0%, #f5f2ed 55%, #d9e3d8 100%)",
     cover:
