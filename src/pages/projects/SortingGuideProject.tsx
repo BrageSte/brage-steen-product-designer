@@ -913,7 +913,7 @@ function TestimonialSection() {
   );
 }
 
-// Team Section
+// Team Section (includes Partners)
 function TeamSection() {
   return (
     <section id="team" className="py-28 px-8 bg-white">
@@ -977,43 +977,26 @@ function TeamSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-// Partners Section
-function PartnersSection() {
-  return (
-    <section className="py-28 px-8 text-center" style={{ background: colors.cream }}>
-      <div className="max-w-[1140px] mx-auto">
-        <span
-          className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-          style={{ color: colors.greenMain }}
-        >
-          Partners & Collaborators
-        </span>
-        <h2
-          className="mb-12"
-          style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
-            fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.15,
-          }}
-        >
-          In Collaboration With
-        </h2>
-        <div className="flex justify-center gap-20 flex-wrap">
-          {["IKEA", "Grønt Punkt", "Loop"].map((partner) => (
-            <span
-              key={partner}
-              className="text-2xl font-bold opacity-50 hover:opacity-100 transition-opacity"
-              style={{ color: "var(--text-muted)" }}
-            >
-              {partner}
-            </span>
-          ))}
+        {/* Partners subsection */}
+        <div className="mt-20 pt-16 border-t border-gray-100 text-center">
+          <span
+            className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
+            style={{ color: colors.greenMain }}
+          >
+            In Collaboration With
+          </span>
+          <div className="flex justify-center gap-16 flex-wrap mt-6">
+            {["IKEA", "Grønt Punkt", "Loop"].map((partner) => (
+              <span
+                key={partner}
+                className="text-xl font-semibold opacity-40 hover:opacity-80 transition-opacity"
+                style={{ color: colors.greenDeep }}
+              >
+                {partner}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -1023,12 +1006,12 @@ function PartnersSection() {
 // Main Component
 const sortingGuideSections = [
   { id: "challenge", label: "Challenge" },
+  { id: "team", label: "Team" },
   { id: "research", label: "Research" },
   { id: "insights", label: "Insights" },
   { id: "solution", label: "Solution" },
-  { id: "team", label: "Team" },
-  { href: "/projects/sorting-guide/gigamap.html", label: "Gigamap", primary: true },
-  { href: "/projects/sorting-guide/prototype.html", label: "Prototype", primary: true },
+  { href: "/projects/sorting-guide/gigamap.html", label: "Gigamap" },
+  { href: "/projects/sorting-guide/prototype.html", label: "Prototype" },
 ];
 
 export default function SortingGuideProject() {
@@ -1041,6 +1024,7 @@ export default function SortingGuideProject() {
       <main id="main-content" className="bg-background">
         <HeroSection />
         <ProblemSection />
+        <TeamSection />
         <QuestionSection />
         <ResearchSection />
         <InsightsSection />
@@ -1048,8 +1032,6 @@ export default function SortingGuideProject() {
         <SolutionSection />
         <ValueSection />
         <TestimonialSection />
-        <TeamSection />
-        <PartnersSection />
       </main>
     </SiteLayout>
   );
