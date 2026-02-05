@@ -36,52 +36,6 @@
             font-weight: 300;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: rgba(250, 250, 249, 0.95);
-            backdrop-filter: blur(20px);
-        }
-
-        .logo {
-            font-family: var(--sans);
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .logo a {
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.02em;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text);
-        }
-
         /* ==================== HERO ==================== */
         .hero {
             height: 100vh;
@@ -97,8 +51,9 @@
         .hero img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
+            padding: 2rem;
         }
 
         .hero-overlay {
@@ -107,7 +62,7 @@
             left: 0;
             right: 0;
             padding: 3rem 2rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
         }
 
@@ -140,6 +95,21 @@
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ==================== DETAIL TEASE ==================== */
+        .detail-tease {
+            width: 100%;
+            background: var(--bg);
+            padding: 4rem 2rem;
+        }
+
+        .detail-tease img {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
         }
 
         /* ==================== SECTIONS ==================== */
@@ -203,6 +173,24 @@
 
         .section-dark p strong {
             color: white;
+        }
+
+        /* ==================== PRODUCT SHOWCASE ==================== */
+        .product-showcase {
+            padding: 4rem 2rem;
+            background: #0a0a0a;
+        }
+
+        .product-showcase img {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .product-showcase .functions-img {
+            margin-top: 4rem;
+            max-width: 1000px;
         }
 
         /* ==================== BRIEF GRID ==================== */
@@ -288,13 +276,6 @@
         }
 
         /* ==================== IMAGE GRIDS ==================== */
-        .image-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
         .image-grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -302,7 +283,6 @@
             margin: 2rem 0;
         }
 
-        .image-grid-3 img,
         .image-grid-2 img {
             width: 100%;
             height: auto;
@@ -320,6 +300,48 @@
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* ==================== PROTOTYPE SECTION ==================== */
+        .prototype-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .prototype-hero img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .prototype-carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 2rem 0 1rem;
+        }
+
+        .prototype-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .prototype-carousel-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 280px;
+        }
+
+        .prototype-carousel-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
         }
 
         /* ==================== SKETCHFAB EMBED ==================== */
@@ -361,27 +383,14 @@
             text-underline-offset: 2px;
         }
 
-        /* ==================== RENDERS SHOWCASE ==================== */
-        .renders-hero {
-            width: 100%;
-            background: #0a0a0a;
-            padding: 4rem 2rem;
-        }
-
-        .renders-hero img {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: block;
-        }
-
+        /* ==================== DETAIL RENDERS ==================== */
         .detail-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 4rem 2rem;
             background: #0a0a0a;
         }
 
@@ -389,6 +398,7 @@
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 4px;
         }
 
         /* ==================== TECHNICAL DRAWINGS CAROUSEL ==================== */
@@ -440,14 +450,6 @@
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
             .section, .section-wide {
                 padding: 4rem 1.5rem;
             }
@@ -456,17 +458,13 @@
                 padding: 4rem 1.5rem;
             }
 
-            .image-grid-3 {
-                grid-template-columns: 1fr;
-            }
-
             .image-grid-2 {
                 grid-template-columns: 1fr;
             }
 
             .detail-grid {
                 grid-template-columns: 1fr;
-                padding: 1rem 1.5rem;
+                padding: 2rem 1.5rem;
             }
 
             .carousel-item {
@@ -479,6 +477,22 @@
 
             .brief-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .prototype-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .prototype-carousel-item {
+                width: 220px;
+            }
+
+            .prototype-carousel-item img {
+                height: 160px;
+            }
+
+            .hero img {
+                padding: 1rem;
             }
         }
 
@@ -527,9 +541,9 @@
         </div>
     </div>
 
-    <!-- ==================== HERO ==================== -->
+    <!-- ==================== HERO - EXPLODED VIEW ==================== -->
     <section class="hero">
-        <img src="jadda_47.png" alt="3D Printed Headset">
+        <img src="Header.png" alt="Exploded view of 3D Printed Headset showing all components">
         <div class="hero-overlay">
             <h1 class="hero-title">3D Printed Headset</h1>
             <p class="hero-subtitle">Design for Industrialization — 4 Months Project</p>
@@ -537,13 +551,126 @@
         <span class="scroll-indicator">Scroll</span>
     </section>
 
-    <!-- ==================== PROJECT BRIEF ==================== -->
+    <!-- ==================== DETAIL TEASE ==================== -->
+    <section class="detail-tease fade-in">
+        <img src="details-render-3.png" alt="Close-up of hinge mechanism">
+    </section>
+
+    <!-- ==================== PRODUCT SHOWCASE ==================== -->
+    <section class="product-showcase">
+        <img src="full-headset.png" alt="Complete headset design">
+        <img src="Functions.png" alt="Headset with annotated features" class="functions-img">
+    </section>
+
+    <!-- ==================== IDEATION & SKETCHES ==================== -->
+    <section class="section-full">
+        <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
+            <span class="section-number">01 — Ideation</span>
+            <h2>Sketches & Exploration</h2>
+            <p>The initial phase involved exploring various joint types and form languages. A significant focus was placed on designing the headset cup holder, aiming for a visually distinct back piece that contrasts with the main form.</p>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel" id="sketchCarousel">
+                <div class="carousel-item">
+                    <img src="sketch-1.png" alt="Earcup concept sketches">
+                </div>
+                <div class="carousel-item">
+                    <img src="sketch-2.png" alt="Button and detail sketches">
+                </div>
+            </div>
+            <div class="carousel-nav" id="sketchNav"></div>
+        </div>
+    </section>
+
+    <!-- ==================== PROTOTYPING ==================== -->
     <section class="section fade-in">
-        <span class="section-number">01 — Overview</span>
+        <span class="section-number">02 — Prototyping</span>
+        <h2>From Digital to Physical</h2>
+        <p>Perfecting the angles for both aesthetics and functionality was a challenge, requiring numerous iterations to achieve the ideal fit. Since the headset is designed for injection molding, careful attention was given to draft angles to ensure smooth ejection from molds.</p>
+        <p>Lean prototyping methods were essential — 3D printing allowed rapid testing of variations to validate comfort and ergonomics before finalizing the design.</p>
+
+        <div class="prototype-hero">
+            <img src="prototype-1.png" alt="Testing the prototype">
+            <img src="Prototype.png" alt="White 3D printed prototype">
+        </div>
+
+        <div class="prototype-carousel" id="protoCarousel">
+            <div class="prototype-carousel-item">
+                <img src="prototype-2.jpg" alt="Earcup 3D printed parts">
+            </div>
+            <div class="prototype-carousel-item">
+                <img src="prototype-3.jpg" alt="Headband slider parts">
+            </div>
+            <div class="prototype-carousel-item">
+                <img src="prototype-4.jpg" alt="Headband yoke parts">
+            </div>
+            <div class="prototype-carousel-item">
+                <img src="prototype-5.jpg" alt="Close-up of headband parts">
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3D MODEL ==================== -->
+    <section class="section-dark">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <span class="section-number">03 — 3D Model</span>
+            <h2>Interactive Model</h2>
+            <p>Explore the complete 3D model with all components. The design features modular construction for easy assembly and serviceability.</p>
+        </div>
+
+        <div class="sketchfab-container">
+            <div class="sketchfab-embed">
+                <iframe
+                    title="assembly 2"
+                    allowfullscreen
+                    mozallowfullscreen="true"
+                    webkitallowfullscreen="true"
+                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                    src="https://sketchfab.com/models/dd8b8b2a1f0645b6b65a4f19227cc69d/embed">
+                </iframe>
+            </div>
+            <p class="sketchfab-caption">
+                <a href="https://sketchfab.com/3d-models/assembly-2-dd8b8b2a1f0645b6b65a4f19227cc69d" target="_blank">View on Sketchfab</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- ==================== DETAIL RENDERS ==================== -->
+    <div class="detail-grid">
+        <img src="details-render.png" alt="Button close-up side view">
+        <img src="details-render-2.png" alt="Button close-up top view">
+    </div>
+
+    <!-- ==================== TECHNICAL DRAWINGS ==================== -->
+    <section class="section fade-in">
+        <span class="section-number">04 — Technical</span>
+        <h2>Production Drawings</h2>
+        <p>Detailed technical drawings with dimensions and tolerances for all components. Designed for injection molding with 2% draft angles throughout.</p>
+    </section>
+
+    <div class="tech-carousel" id="techCarousel">
+        <div class="tech-item">
+            <img src="Technical-drawing-1.png" alt="Angle adjustment mechanism">
+        </div>
+        <div class="tech-item">
+            <img src="technical-drawing-3.png" alt="Headband assembly">
+        </div>
+        <div class="tech-item">
+            <img src="technical-drawing-4.png" alt="Left side view">
+        </div>
+        <div class="tech-item">
+            <img src="jadda.65.png" alt="Exploded assembly view">
+        </div>
+    </div>
+
+    <!-- ==================== OVERVIEW (MOVED TO END) ==================== -->
+    <section class="section fade-in">
+        <span class="section-number">05 — Overview</span>
         <h2>Project Brief</h2>
         <p>Design a commuter- and office-friendly headset with a focus on industrialized production. The foldable design ensures portability for travel and everyday use.</p>
         <p><strong>Production Considerations:</strong> Every component is optimized for plastic injection molding to ensure cost-efficient mass production. This includes designing parts with appropriate draft angles to allow easy release from molds, reducing production defects and wear on tooling.</p>
-        
+
         <div class="brief-grid">
             <div class="brief-item">
                 <h4>Duration</h4>
@@ -572,116 +699,9 @@
         </div>
     </section>
 
-    <!-- ==================== IDEATION & SKETCHES ==================== -->
-    <section class="section-full">
-        <div class="section" style="padding-top: 0; padding-bottom: 2rem;">
-            <span class="section-number">02 — Ideation</span>
-            <h2>Sketches & Exploration</h2>
-            <p>The initial phase involved exploring various joint types and form languages. A significant focus was placed on designing the headset cup holder, aiming for a visually distinct back piece that contrasts with the main form.</p>
-        </div>
-        
-        <div class="carousel-container">
-            <div class="carousel" id="sketchCarousel">
-                <div class="carousel-item">
-                    <img src="Tegnign_1.png" alt="Concept sketches">
-                </div>
-                <div class="carousel-item">
-                    <img src="Tegging_2.png" alt="Detail sketches">
-                </div>
-                <div class="carousel-item">
-                    <img src="tegning_3.png" alt="Form exploration">
-                </div>
-                <div class="carousel-item">
-                    <img src="tegninger.png" alt="Sketch overview">
-                </div>
-            </div>
-            <div class="carousel-nav" id="sketchNav"></div>
-        </div>
-    </section>
-
-    <!-- ==================== PROTOTYPING ==================== -->
-    <section class="section fade-in">
-        <span class="section-number">03 — Prototyping</span>
-        <h2>Angles & 3D Printing</h2>
-        <p>Perfecting the angles for both aesthetics and functionality was a challenge, requiring numerous iterations to achieve the ideal fit. Since the headset is designed for injection molding, careful attention was given to draft angles to ensure smooth ejection from molds.</p>
-        <p>Lean prototyping methods were essential — 3D printing allowed rapid testing of variations to validate comfort and ergonomics before finalizing the design.</p>
-        
-        <div class="image-grid-3">
-            <img src="20211128_174645.jpg" alt="Angle variations">
-            <img src="vinkel_2.jpg" alt="Headband iterations">
-            <img src="kopp.jpg" alt="Earcup prototypes">
-        </div>
-        
-        <div class="full-image">
-            <img src="proto_hvit_bakgrunn.png" alt="Complete prototype">
-        </div>
-    </section>
-
-    <!-- ==================== 3D MODEL ==================== -->
-    <section class="section-dark">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <span class="section-number">04 — 3D Model</span>
-            <h2>Interactive Model</h2>
-            <p>Explore the complete 3D model with all components. The design features modular construction for easy assembly and serviceability.</p>
-        </div>
-        
-        <div class="sketchfab-container">
-            <div class="sketchfab-embed">
-                <iframe 
-                    title="assembly 2" 
-                    allowfullscreen 
-                    mozallowfullscreen="true" 
-                    webkitallowfullscreen="true" 
-                    allow="autoplay; fullscreen; xr-spatial-tracking" 
-                    src="https://sketchfab.com/models/dd8b8b2a1f0645b6b65a4f19227cc69d/embed">
-                </iframe>
-            </div>
-            <p class="sketchfab-caption">
-                <a href="https://sketchfab.com/3d-models/assembly-2-dd8b8b2a1f0645b6b65a4f19227cc69d" target="_blank">View on Sketchfab →</a>
-            </p>
-        </div>
-    </section>
-
-    <!-- ==================== FINAL DESIGN ==================== -->
-    <section class="renders-hero">
-        <img src="full.png" alt="Final headset design">
-    </section>
-    
-    <div class="detail-grid">
-        <img src="headphones_bakgrunn.png" alt="Front view">
-        <img src="Render_and_function.png" alt="Function details">
-    </div>
-    
-    <div class="detail-grid">
-        <img src="DETALJER_57.png" alt="Joint detail">
-        <img src="DETALJER_62.png" alt="Button detail">
-    </div>
-
-    <!-- ==================== TECHNICAL DRAWINGS ==================== -->
-    <section class="section fade-in">
-        <span class="section-number">05 — Technical</span>
-        <h2>Production Drawings</h2>
-        <p>Detailed technical drawings with dimensions and tolerances for all components. Designed for injection molding with 2% draft angles throughout.</p>
-    </section>
-    
-    <div class="tech-carousel" id="techCarousel">
-        <div class="tech-item">
-            <img src="exploded-1.png" alt="Exploded assembly view">
-        </div>
-        <div class="tech-item">
-            <img src="venstre_side-1.png" alt="Earcup dimensions">
-        </div>
-        <div class="tech-item">
-            <img src="skinne-1.png" alt="Slider mechanism">
-        </div>
-        <div class="tech-item">
-            <img src="tegninger_v1-1.png" alt="Headband details">
-        </div>
-    </div>
-
     <!-- ==================== FOOTER ==================== -->
     <footer>
-        <p>© 2021 Eirik Brage Steen — Design for Industrialization</p>
+        <p>2021 Eirik Brage Steen — Design for Industrialization</p>
     </footer>
 
     <script>
@@ -701,9 +721,9 @@
             const carousel = document.getElementById(carouselId);
             const nav = document.getElementById(navId);
             if (!carousel || !nav) return;
-            
+
             const items = carousel.querySelectorAll('.carousel-item');
-            
+
             items.forEach((_, i) => {
                 const dot = document.createElement('button');
                 dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
@@ -717,7 +737,7 @@
                 const scrollLeft = carousel.scrollLeft;
                 const itemWidth = items[0].offsetWidth + 16;
                 const activeIndex = Math.round(scrollLeft / itemWidth);
-                
+
                 nav.querySelectorAll('.carousel-dot').forEach((dot, i) => {
                     dot.classList.toggle('active', i === activeIndex);
                 });

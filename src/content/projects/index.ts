@@ -29,7 +29,7 @@ export const projects: Project[] = [
     href: "/projects/headset/index.html",
     coverGradient:
       "linear-gradient(140deg, #e6e1db 0%, #f6f2ec 55%, #ddd6cf 100%)",
-    cover: "/projects/headset/jadda_47.png",
+    cover: "/projects/headset/details-render-2.png",
   },
   {
     title: "Seaweed",
