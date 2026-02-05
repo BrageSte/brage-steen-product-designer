@@ -1,4 +1,5 @@
 import SiteLayout from "@/components/SiteLayout";
+import ProjectBar from "@/components/ProjectBar";
 
 const basePath = "/projects/sorting-guide";
 
@@ -135,7 +136,7 @@ function HeroSection() {
 // Problem Section
 function ProblemSection() {
   return (
-    <section className="py-28 px-8" style={{ background: colors.warmGray }}>
+    <section id="challenge" className="py-28 px-8" style={{ background: colors.warmGray }}>
       <div className="max-w-[1140px] mx-auto">
         <span
           className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
@@ -303,7 +304,7 @@ function ResearchSection() {
   ];
 
   return (
-    <section className="py-28 px-8" style={{ background: colors.cream }}>
+    <section id="research" className="py-28 px-8" style={{ background: colors.cream }}>
       <div className="max-w-[1140px] mx-auto">
         <div className="grid md:grid-cols-[1.3fr_0.7fr] gap-16 mb-20 items-start max-lg:grid-cols-1">
           <div className="pt-4">
@@ -449,7 +450,7 @@ function InsightsSection() {
   ];
 
   return (
-    <section className="py-28 px-8 bg-white">
+    <section id="insights" className="py-28 px-8 bg-white">
       <div className="max-w-[1140px] mx-auto">
         <div className="text-center mb-16">
           <span
@@ -654,7 +655,7 @@ function SolutionSection() {
   ];
 
   return (
-    <section className="py-28 px-8" style={{ background: colors.cream }}>
+    <section id="solution" className="py-28 px-8" style={{ background: colors.cream }}>
       <div className="max-w-[1140px] mx-auto">
         {/* Hero */}
         <div className="grid md:grid-cols-[1.1fr_1fr] gap-20 items-center mb-24 max-lg:grid-cols-1">
@@ -915,7 +916,7 @@ function TestimonialSection() {
 // Team Section
 function TeamSection() {
   return (
-    <section className="py-28 px-8 bg-white">
+    <section id="team" className="py-28 px-8 bg-white">
       <div className="max-w-[1140px] mx-auto">
         <div className="grid md:grid-cols-2 gap-20 items-center max-lg:grid-cols-1">
           <div
@@ -1020,9 +1021,23 @@ function PartnersSection() {
 }
 
 // Main Component
+const sortingGuideSections = [
+  { id: "challenge", label: "Challenge" },
+  { id: "research", label: "Research" },
+  { id: "insights", label: "Insights" },
+  { id: "solution", label: "Solution" },
+  { id: "team", label: "Team" },
+  { href: "/projects/sorting-guide/gigamap.html", label: "Gigamap", primary: true },
+  { href: "/projects/sorting-guide/prototype.html", label: "Prototype", primary: true },
+];
+
 export default function SortingGuideProject() {
   return (
     <SiteLayout>
+      <ProjectBar
+        title="The Sorting Guide — Kildesorteringsguiden"
+        sections={sortingGuideSections}
+      />
       <main id="main-content" className="bg-background">
         <HeroSection />
         <ProblemSection />

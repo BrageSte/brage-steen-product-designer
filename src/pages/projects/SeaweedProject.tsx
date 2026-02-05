@@ -1,4 +1,5 @@
 import SiteLayout from "@/components/SiteLayout";
+import ProjectBar from "@/components/ProjectBar";
 
 // Color tokens matching the original design
 const colors = {
@@ -686,9 +687,20 @@ function ReflectionSection() {
 }
 
 // Main Component
+const seaweedSections = [
+  { id: "overview", label: "Overview" },
+  { id: "process", label: "Process" },
+  { id: "concepts", label: "Concepts" },
+  { id: "reflection", label: "Reflection" },
+];
+
 export default function SeaweedProject() {
   return (
     <SiteLayout>
+      <ProjectBar
+        title="Seaweed — Ting av Tang"
+        sections={seaweedSections}
+      />
       <main id="main-content" className="bg-background">
         <HeroSection />
         <OverviewSection />
