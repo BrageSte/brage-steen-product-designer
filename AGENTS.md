@@ -5,8 +5,9 @@
 - Previews live alongside originals in a `previews/` folder and use the same filenames.
 - Always use the original images in the actual site/project output.
 - When adding or replacing images anywhere in `public/`, generate previews with max 2000 px on the longest side.
-- After running `npm run hooks:install`, previews are generated automatically on commit.
+ - After running `npm run hooks:install`, previews are generated automatically on commit.
  - Preview generation uses macOS `sips`.
+ - To disable auto previews: `git config --unset core.hooksPath` (or set it back to `.git/hooks`).
 
 ## Commands
 Generate previews once: `npm run previews:build`
