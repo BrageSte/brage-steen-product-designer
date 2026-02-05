@@ -5,6 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import SiteLayout from "@/components/SiteLayout";
 
 const basePath = "/projects/headset";
 
@@ -26,7 +27,7 @@ function HeroSection() {
     <section className="h-screen w-full">
       <img
         src={`${basePath}/Header.png`}
-        className="w-full h-full object-contain bg-neutral-950"
+        className="w-full h-full object-cover"
         alt="Exploded view of headset components"
       />
     </section>
@@ -83,8 +84,8 @@ function OverviewSection() {
 // Ideation Section - Sketch grid
 function IdeationSection() {
   return (
-    <section className="py-24 bg-secondary/30">
-      <div className="max-w-5xl mx-auto px-8">
+    <section className="py-24 px-8">
+      <div className="max-w-6xl mx-auto">
         <span className="text-caption">01 — Ideation</span>
         <h2 className="text-display-md mt-4 mb-6">Sketches & Exploration</h2>
         <p className="text-muted-foreground max-w-2xl mb-12">
@@ -187,31 +188,6 @@ function ProductShowcase() {
   );
 }
 
-// Detail Renders - Dark background
-function DetailRenders() {
-  return (
-    <section className="py-24 bg-neutral-900">
-      <div className="max-w-6xl mx-auto px-8 grid md:grid-cols-3 gap-4">
-        <img
-          src={`${basePath}/details-render.png`}
-          alt="Button close-up side view"
-          className="rounded-xl"
-        />
-        <img
-          src={`${basePath}/details-render-2.png`}
-          alt="Button close-up top view"
-          className="rounded-xl"
-        />
-        <img
-          src={`${basePath}/details-render-3.png`}
-          alt="Hinge mechanism detail"
-          className="rounded-xl"
-        />
-      </div>
-    </section>
-  );
-}
-
 // 3D Model Section
 function ModelSection() {
   return (
@@ -279,32 +255,19 @@ function TechnicalSection() {
   );
 }
 
-// Footer
-function ProjectFooter() {
-  return (
-    <footer className="py-12 border-t border-border">
-      <div className="max-w-4xl mx-auto px-8 text-center">
-        <p className="text-sm text-muted-foreground">
-          2021 Eirik Brage Steen — Design for Industrialization
-        </p>
-      </div>
-    </footer>
-  );
-}
-
 // Main Component
 export default function HeadsetProject() {
   return (
-    <main className="bg-background min-h-screen">
-      <HeroSection />
-      <OverviewSection />
-      <IdeationSection />
-      <PrototypingSection />
-      <ProductShowcase />
-      <DetailRenders />
-      <ModelSection />
-      <TechnicalSection />
-      <ProjectFooter />
-    </main>
+    <SiteLayout>
+      <main className="bg-background">
+        <HeroSection />
+        <OverviewSection />
+        <IdeationSection />
+        <PrototypingSection />
+        <ProductShowcase />
+        <ModelSection />
+        <TechnicalSection />
+      </main>
+    </SiteLayout>
   );
 }
