@@ -4,6 +4,13 @@ Denne porteføljen er bygget med Vite + React og er klar for Lovable deploy.
 
 ## Oppdatere bilder
 
+### Bilde-previews (for enklere gjennomgang)
+- For alle bilder i `public/` genereres det en mindre preview i en `previews/`-mappe med samme filnavn.
+- Les alltid preview først; bruk originalen i faktisk prosjekt/produksjon.
+- Generer previews manuelt: `npm run previews:build`
+- Kjør watcher mens du jobber: `npm run previews:watch`
+- Aktiver auto‑preview på commit: `npm run hooks:install` (macOS `sips` kreves)
+
 ### Prosjekt‑HTML (statisk)
 - Prosjektsidene ligger i `public/projects/...`.
 - Alle bilder som brukes av HTML‑sidene må ligge i samme mappe som HTML‑filen.
