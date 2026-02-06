@@ -17,7 +17,7 @@ const colors = {
 function HeroSection() {
   return (
     <section
-      className="min-h-screen relative flex flex-col justify-center items-center overflow-hidden"
+      className="min-h-screen relative flex flex-col justify-center items-center overflow-hidden pt-[120px] pb-[280px]"
       style={{
         background: `linear-gradient(180deg, ${colors.oceanDeep} 0%, ${colors.oceanMid} 50%, ${colors.kelpDark} 100%)`,
       }}
@@ -98,9 +98,9 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator - removed bounce, positioned above waves */}
+      {/* Scroll indicator - positioned above waves */}
       <div
-        className="absolute bottom-[200px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
+        className="absolute bottom-[190px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
         style={{ color: colors.sand }}
       >
         SCROLL
