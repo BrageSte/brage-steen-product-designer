@@ -28,7 +28,7 @@ function HeroSection() {
     <section className="h-screen w-full">
       <img
         src={`${basePath}/Header.png`}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover object-center md:object-top"
         alt="Exploded view of headset components"
       />
     </section>
@@ -167,21 +167,21 @@ function PrototypingSection() {
   );
 }
 
-// Product Showcase - WHITE background
+// Product Showcase - WHITE background (Functions first, then full render)
 function ProductShowcase() {
   return (
     <section className="py-24 bg-white">
-      <div className="max-w-4xl mx-auto px-8">
-        <img
-          src={`${basePath}/full-headset.png`}
-          alt="Complete headset design"
-          className="w-full"
-        />
-      </div>
-      <div className="max-w-5xl mx-auto px-8 mt-16">
+      <div className="max-w-5xl mx-auto px-8">
         <img
           src={`${basePath}/Functions.png`}
           alt="Headset with annotated features"
+          className="w-full"
+        />
+      </div>
+      <div className="max-w-4xl mx-auto px-8 mt-16">
+        <img
+          src={`${basePath}/full-headset.png`}
+          alt="Complete headset design"
           className="w-full"
         />
       </div>
@@ -194,9 +194,9 @@ function ModelSection() {
   return (
     <section id="model" className="py-24 bg-neutral-900 text-white">
       <div className="max-w-4xl mx-auto px-8">
-        <span className="text-caption text-white/50">03 — 3D Model</span>
-        <h2 className="text-display-md mt-4 mb-6">Interactive Model</h2>
-        <p className="text-white/70 mb-8">
+        <span className="text-xs uppercase tracking-widest text-amber-400 font-medium">03 — 3D Model</span>
+        <h2 className="text-display-md mt-4 mb-6 text-white">Interactive Model</h2>
+        <p className="text-neutral-300 mb-8">
           Explore the complete 3D model with all components. The design features
           modular construction for easy assembly and serviceability.
         </p>
@@ -220,7 +220,6 @@ function TechnicalSection() {
     "Technical-drawing-1.png",
     "technical-drawing-3.png",
     "technical-drawing-4.png",
-    "jadda.65.png",
   ];
 
   return (
@@ -252,6 +251,17 @@ function TechnicalSection() {
         <CarouselPrevious className="left-4" />
         <CarouselNext className="right-4" />
       </Carousel>
+
+      {/* Closing image */}
+      <div className="max-w-4xl mx-auto px-8 mt-16">
+        <div className="bg-white border border-border rounded-2xl p-6">
+          <img
+            src={`${basePath}/jadda.65.png`}
+            alt="Final technical overview"
+            className="w-full"
+          />
+        </div>
+      </div>
     </section>
   );
 }
