@@ -468,11 +468,11 @@ function InsightsSection() {
           {insights.map((insight) => (
             <div
               key={insight.title}
-              className="p-10 rounded-3xl transition-all duration-400 hover:-translate-y-2 hover:shadow-xl"
+              className="p-10 rounded-3xl transition-all duration-400 hover:-translate-y-2 hover:shadow-xl max-lg:text-center"
               style={{ background: colors.warmGray }}
             >
               <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
+                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 max-lg:mx-auto"
                 style={{
                   background: `linear-gradient(135deg, ${colors.greenMain}, ${colors.greenForest})`,
                 }}
@@ -535,7 +535,7 @@ function ProcessSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8 mt-16 relative max-lg:grid-cols-2 max-md:grid-cols-1">
+        <div className="grid md:grid-cols-4 gap-8 mt-16 relative max-lg:grid-cols-2 max-md:grid-cols-2">
           {/* Connection line */}
           <div
             className="absolute top-12 left-[12.5%] right-[12.5%] h-0.5 max-lg:hidden"
@@ -544,25 +544,28 @@ function ProcessSection() {
           {steps.map((step) => (
             <div key={step.num} className="text-center relative z-10">
               <div
-                className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+                className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
                 style={{
                   background: `linear-gradient(135deg, ${colors.greenSoft}, ${colors.greenMain})`,
                   boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
                   fontFamily: "'Instrument Serif', serif",
-                  fontSize: "2rem",
+                  fontSize: "1.75rem",
                 }}
               >
                 {step.num}
               </div>
               <h4
                 className="text-lg mb-2"
-                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
+                style={{
+                  fontFamily: "'Instrument Serif', Georgia, serif",
+                  color: colors.greenPale,
+                }}
               >
                 {step.title}
               </h4>
               <p
                 className="text-sm max-w-[180px] mx-auto"
-                style={{ color: "rgba(255,255,255,0.6)" }}
+                style={{ color: "rgba(255,255,255,0.75)" }}
               >
                 {step.desc}
               </p>
@@ -679,15 +682,18 @@ function SolutionSection() {
                 </div>
                 <div
                   className="text-base font-light uppercase tracking-[3px] mb-6"
-                  style={{ opacity: 0.7 }}
+                  style={{ color: colors.greenPale }}
                 >
                   guide
                 </div>
-                <p className="text-lg mb-8 max-w-[300px]" style={{ opacity: 0.9 }}>
+                <p
+                  className="text-lg mb-8 max-w-[300px]"
+                  style={{ color: colors.cream }}
+                >
                   Build your perfect home recycling system
                 </p>
                 <a
-                  href={`${basePath}/prototype.html`}
+                  href="#prototype"
                   className="inline-block px-10 py-4 bg-white rounded-lg font-semibold text-[0.95rem] transition-all hover:-translate-y-0.5 hover:shadow-lg"
                   style={{ color: colors.greenMain }}
                 >
@@ -844,57 +850,54 @@ function ValueSection() {
           {values.map((v) => (
             <div
               key={v.title}
-              className="p-10 rounded-3xl text-white text-center"
+              className="p-10 rounded-3xl text-center"
               style={{
                 background: `linear-gradient(145deg, ${colors.greenMain}, ${colors.greenForest})`,
               }}
             >
               <div
                 className="w-[60px] h-[60px] rounded-full flex items-center justify-center mx-auto mb-6"
-                style={{ background: "rgba(255,255,255,0.15)" }}
+                style={{ background: "rgba(255,255,255,0.2)" }}
               >
                 {v.icon}
               </div>
               <h4
-                className="text-xl mb-3"
+                className="text-xl mb-3 text-white"
                 style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
               >
                 {v.title}
               </h4>
-              <p className="text-sm leading-relaxed" style={{ opacity: 0.85 }}>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: colors.cream }}
+              >
                 {v.desc}
               </p>
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
 
-// Testimonial Section
-function TestimonialSection() {
-  return (
-    <section
-      className="py-20 px-8 text-center"
-      style={{ background: colors.greenSoft }}
-    >
-      <div className="max-w-[860px] mx-auto">
-        <blockquote
-          className="text-white mb-6 leading-relaxed"
-          style={{
-            fontFamily: "'Instrument Serif', serif",
-            fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-          }}
+        {/* Testimonial integrated */}
+        <div
+          className="mt-16 p-10 rounded-3xl text-center"
+          style={{ background: colors.greenDeep }}
         >
-          "You are spot on. There is definitely a need for this concept. You are
-          contributing to limiting the largest leakage in the recycling system."
-        </blockquote>
-        <div className="text-[0.95rem]" style={{ color: "rgba(255,255,255,0.8)" }}>
-          <strong className="block text-white font-semibold">
-            Kenneth Skauge
-          </strong>
-          Sustainability Business Partner, IKEA Norway
+          <blockquote
+            className="text-white mb-6 leading-relaxed"
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
+            }}
+          >
+            "You are spot on. There is definitely a need for this concept. You are
+            contributing to limiting the largest leakage in the recycling system."
+          </blockquote>
+          <div className="text-sm" style={{ color: colors.greenPale }}>
+            <strong className="block text-white font-semibold mb-1">
+              Kenneth Skauge
+            </strong>
+            Sustainability Business Partner, IKEA Norway
+          </div>
         </div>
       </div>
     </section>
@@ -1311,7 +1314,6 @@ export default function SortingGuideProject() {
         <ProcessSection />
         <SolutionSection />
         <ValueSection />
-        <TestimonialSection />
         <GigamapSection />
         <PrototypeSection />
       </main>

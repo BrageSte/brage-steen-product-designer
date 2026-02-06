@@ -98,9 +98,9 @@ function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - removed bounce, positioned above waves */}
       <div
-        className="absolute bottom-[180px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] animate-bounce"
+        className="absolute bottom-[200px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
         style={{ color: colors.sand }}
       >
         SCROLL
@@ -113,7 +113,7 @@ function HeroSection() {
       </div>
 
       {/* Wave container */}
-      <div className="absolute bottom-0 left-0 right-0 h-[150px] overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-[180px] overflow-hidden">
         <div
           className="absolute bottom-0 -left-full w-[300%] h-full"
           style={{
@@ -334,10 +334,20 @@ function ProcessSection() {
   return (
     <section
       id="process"
-      className="py-32 px-8 md:px-16"
+      className="py-32 px-8 md:px-16 relative overflow-hidden"
       style={{ background: colors.sandLight }}
     >
-      <div className="max-w-[1140px] mx-auto">
+      {/* Background image placeholder - blurry/grainy effect */}
+      <div
+        className="absolute inset-0 opacity-[0.08] pointer-events-none"
+        style={{
+          backgroundImage: `url("https://bragesteen.wordpress.com/wp-content/uploads/2025/05/img_20190911_140238.jpg?w=768")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "blur(8px) grayscale(50%)",
+        }}
+      />
+      <div className="max-w-[1140px] mx-auto relative z-10">
         <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.kelpLight }}>
           Methodology
         </p>
@@ -428,33 +438,27 @@ function MaterialsSection() {
           scale of 1-5 by a focus group.
         </p>
 
-        <div className="grid grid-cols-6 gap-4 mt-16 max-lg:grid-cols-3 max-md:grid-cols-2">
-          {images.map((img, i) => {
-            const colSpan =
-              i === 0
-                ? "col-span-2 row-span-2 max-lg:col-span-2 max-lg:row-span-1 max-md:col-span-1"
-                : i === 3
-                ? "col-span-2 max-lg:col-span-1"
-                : "";
-            return (
+        <div className="grid grid-cols-3 gap-4 mt-16 max-md:grid-cols-2">
+          {images.map((img) => (
+            <div
+              key={img.src}
+              className="aspect-square relative overflow-hidden rounded-xl cursor-pointer group"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
               <div
-                key={img.src}
-                className={`${colSpan} aspect-square relative overflow-hidden rounded-lg cursor-pointer group`}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4"
+                style={{
+                  background: `linear-gradient(to top, rgba(10, 22, 40, 0.8) 0%, transparent 60%)`,
+                }}
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                  style={{
-                    background: `linear-gradient(to top, rgba(10, 22, 40, 0.7) 0%, transparent 50%)`,
-                  }}
-                />
+                <span className="text-white text-sm font-medium">{img.alt}</span>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -559,8 +563,26 @@ function ResearchDataSection() {
   ];
 
   return (
-    <section className="py-32 px-8 md:px-16 pt-4" style={{ background: colors.foam }}>
-      <div className="max-w-[1140px] mx-auto">
+    <section
+      className="py-32 px-8 md:px-16 pt-4 relative overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, ${colors.foam} 0%, ${colors.sandLight} 100%)`,
+      }}
+    >
+      {/* Decorative elements */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none opacity-20"
+        style={{
+          background: `radial-gradient(circle, ${colors.kelpLight} 0%, transparent 70%)`,
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none opacity-15"
+        style={{
+          background: `radial-gradient(circle, ${colors.accent} 0%, transparent 70%)`,
+        }}
+      />
+      <div className="max-w-[1140px] mx-auto relative z-10">
         <div className="grid md:grid-cols-[1fr_2fr] gap-16 items-start max-lg:grid-cols-1">
           <div className="flex flex-col gap-8 md:sticky md:top-[148px]">
             {stats.map((stat) => (
