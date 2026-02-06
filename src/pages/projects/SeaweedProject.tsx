@@ -17,7 +17,7 @@ const colors = {
 function HeroSection() {
   return (
     <section
-      className="min-h-screen relative flex flex-col justify-center items-center overflow-hidden pt-[120px] pb-[280px]"
+      className="min-h-screen relative flex flex-col justify-center items-center overflow-hidden -mt-[120px] pt-[220px] pb-[240px] max-md:pt-[160px] max-md:pb-[200px]"
       style={{
         background: `linear-gradient(180deg, ${colors.oceanDeep} 0%, ${colors.oceanMid} 50%, ${colors.kelpDark} 100%)`,
       }}
@@ -46,16 +46,16 @@ function HeroSection() {
       {/* Content */}
       <div className="text-center z-10 px-8 animate-fade-in-up">
         <p
-          className="text-xs uppercase tracking-[0.3em] mb-8"
+          className="text-xs uppercase tracking-[0.3em] mb-8 max-md:mb-4"
           style={{ color: colors.accent }}
         >
           Material Research Project
         </p>
         <h1
-          className="mb-6"
+          className="mb-6 max-md:mb-4"
           style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: "clamp(4rem, 12vw, 10rem)",
+            fontSize: "clamp(3rem, 12vw, 10rem)",
             color: colors.foam,
             lineHeight: 0.9,
           }}
@@ -72,7 +72,7 @@ function HeroSection() {
           </span>
         </h1>
         <p
-          className="text-lg max-w-[500px] mx-auto mb-12"
+          className="text-lg max-w-[500px] mx-auto mb-12 max-md:mb-8 max-md:text-base"
           style={{ color: colors.sand }}
         >
           Exploring the potential of kelp as a sustainable material for product
@@ -100,7 +100,7 @@ function HeroSection() {
 
       {/* Scroll indicator - positioned above waves */}
       <div
-        className="absolute bottom-[190px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
+        className="absolute bottom-[190px] max-md:bottom-[150px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
         style={{ color: colors.sand }}
       >
         SCROLL
@@ -113,7 +113,7 @@ function HeroSection() {
       </div>
 
       {/* Wave container */}
-      <div className="absolute bottom-0 left-0 right-0 h-[180px] overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 h-[180px] max-md:h-[120px] overflow-hidden">
         <div
           className="absolute bottom-0 -left-full w-[300%] h-full"
           style={{
