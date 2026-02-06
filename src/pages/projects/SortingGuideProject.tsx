@@ -1,18 +1,6 @@
 import SiteLayout from "@/components/SiteLayout";
 import ProjectBar from "@/components/ProjectBar";
-
-const basePath = "/projects/sorting-guide";
-
-// Color tokens matching the original design
-const colors = {
-  greenDeep: "#1a3329",
-  greenForest: "#2d5a47",
-  greenMain: "#3d7a5f",
-  greenSoft: "#5a9a7a",
-  greenPale: "#a8d4bc",
-  cream: "#fdfbf7",
-  warmGray: "#f5f3ef",
-};
+import { sortingGuideSections, colors, basePath } from "./sorting-guide/navigation";
 
 // Hero Section
 function HeroSection() {
@@ -1004,16 +992,6 @@ function TeamSection() {
 }
 
 // Main Component
-const sortingGuideSections = [
-  { id: "challenge", label: "Challenge" },
-  { id: "team", label: "Team" },
-  { id: "research", label: "Research" },
-  { id: "insights", label: "Insights" },
-  { id: "solution", label: "Solution" },
-  { href: "/projects/sorting-guide/gigamap.html", label: "Gigamap" },
-  { href: "/projects/sorting-guide/prototype.html", label: "Prototype" },
-];
-
 export default function SortingGuideProject() {
   return (
     <SiteLayout>
