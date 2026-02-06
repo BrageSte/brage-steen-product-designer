@@ -5,8 +5,8 @@ export const sortingGuideSections = [
   { id: "research", label: "Research" },
   { id: "insights", label: "Insights" },
   { id: "solution", label: "Solution" },
-  { href: "/projects/sorting-guide/gigamap", label: "Gigamap" },
-  { href: "/projects/sorting-guide/prototype", label: "Prototype" },
+  { id: "gigamap", label: "Gigamap" },
+  { id: "prototype", label: "Prototype" },
 ];
 
 // Color tokens matching the original design
