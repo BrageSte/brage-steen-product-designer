@@ -25,12 +25,14 @@ function BriefItem({ label, value }: { label: string; value: string }) {
 // Hero Section - Full screen, edge-to-edge, NO text
 function HeroSection() {
   return (
-    <section className="h-screen w-full">
-      <img
-        src={`${basePath}/Header.png`}
-        className="w-full h-full object-cover object-center md:object-top"
-        alt="Exploded view of headset components"
-      />
+    <section className="h-screen w-full bg-neutral-950">
+      <div className="flex h-full w-full items-center justify-center p-6 md:p-10">
+        <img
+          src={`${basePath}/Header.png`}
+          className="h-full w-full object-contain object-center"
+          alt="Exploded view of headset components"
+        />
+      </div>
     </section>
   );
 }
