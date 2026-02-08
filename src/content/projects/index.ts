@@ -49,7 +49,7 @@ export const projects: Project[] = [
     excerpt:
       "Moderne visualisering av avfallsdata, basert på innsikten fra bachelorprosjektet The Sorting Guide (2020).",
     tags: ["Datavisualisering", "Bærekraft", "Tjeneste"],
-    href: "/projects/avfallsportalen/index.html",
+    href: "/projects/avfallsportalen",
     coverGradient:
       "linear-gradient(140deg, #e1e6ee 0%, #f4f1ec 55%, #e2e1dc 100%)",
     cover: "/projects/avfallsportalen/cover.png",
