@@ -1,6 +1,8 @@
 import SiteLayout from "@/components/SiteLayout";
 import ProjectBar from "@/components/ProjectBar";
 
+const basePath = "/projects/seaweed";
+
 // Color tokens matching the original design
 const colors = {
   oceanDeep: "#0a1628",
@@ -203,7 +205,7 @@ function OverviewSection() {
           style={{ aspectRatio: "4/5", borderRadius: "0 100px 0 100px" }}
         >
           <img
-            src="https://bragesteen.wordpress.com/wp-content/uploads/2025/05/fooodruewyrh12-copy.png?w=1024"
+            src={`${basePath}/overview.png`}
             alt="Seaweed material research"
             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
             loading="lazy"
@@ -343,7 +345,7 @@ function ProcessSection() {
       <div
         className="absolute inset-0 opacity-[0.08] pointer-events-none"
         style={{
-          backgroundImage: `url("https://bragesteen.wordpress.com/wp-content/uploads/2025/05/img_20190911_140238.jpg?w=768")`,
+          backgroundImage: `url("${basePath}/seaweed-collection.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "blur(8px) grayscale(50%)",
@@ -405,12 +407,12 @@ function ProcessSection() {
 // Materials Gallery Section
 function MaterialsSection() {
   const images = [
-    { src: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/img_20190911_140238.jpg?w=768", alt: "Seaweed collection" },
-    { src: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/img_20191021_124215.jpg?w=1024", alt: "Material processing" },
-    { src: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/dsc_0720.jpg?w=575", alt: "Lab work" },
-    { src: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/img_0660.jpg?w=768", alt: "Material testing" },
-    { src: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/img_20190904_122137.jpg?w=1024", alt: "Research process" },
-    { src: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/skjermbilde-2019-10-29-kl.-17.04.33.png?w=1024", alt: "Material samples" },
+    { src: `${basePath}/seaweed-collection.jpg`, alt: "Seaweed collection" },
+    { src: `${basePath}/material-processing.jpg`, alt: "Material processing" },
+    { src: `${basePath}/lab-work.jpg`, alt: "Lab work" },
+    { src: `${basePath}/material-testing.jpg`, alt: "Material testing" },
+    { src: `${basePath}/research-process.jpg`, alt: "Research process" },
+    { src: `${basePath}/material-samples.png`, alt: "Material samples" },
   ];
 
   return (
@@ -476,19 +478,19 @@ function ConceptsSection() {
       num: "01",
       title: "Takeaway Packaging",
       desc: "A biodegradable alternative to cardboard packaging for food delivery services. The material breaks down naturally if it ends up in nature, while limiting CO2 emissions during production. Could be used for services like Foodora and other delivery platforms.",
-      image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80",
+      image: `${basePath}/takeaway.jpg`,
     },
     {
       num: "02",
       title: "Restaurant Servingware",
       desc: "The material becomes hard enough for serving, and the organic shrinking during drying creates unique, wave-like edges reminiscent of seaweed in its natural form. Perfect for high-end seafood restaurants where it enhances the dining experience with subtle ocean scents and tactile qualities.",
-      image: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/servering-2-1.png",
+      image: `${basePath}/servering.png`,
     },
     {
       num: "03",
       title: "Biodegradable Plant Pots",
       desc: "A sustainable alternative to plastic pots that can be planted directly in the soil. The seaweed-based container decomposes and acts as fertilizer for the plant. The inside could be waxed to maintain moisture while still allowing decomposition from the outside.",
-      image: "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/blomsterpotte1.png?w=768",
+      image: `${basePath}/blomsterpotte.png`,
     },
   ];
 
