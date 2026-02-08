@@ -26,13 +26,13 @@ function BriefItem({ label, value }: { label: string; value: string }) {
 function HeroSection() {
   return (
     <section className="h-screen w-full bg-neutral-950">
-      <div className="flex h-full w-full items-center justify-center p-6 md:p-10">
-        <img
-          src={`${basePath}/Header.png`}
-          className="h-full w-full object-contain object-center"
-          alt="Exploded view of headset components"
-        />
-      </div>
+      <img
+        src={`${basePath}/Header.png`}
+        className="h-full w-full object-cover"
+        alt="Exploded view of headset components"
+        fetchPriority="high"
+        decoding="async"
+      />
     </section>
   );
 }
@@ -77,6 +77,8 @@ function OverviewSection() {
             src={`${basePath}/details-render.png`}
             alt="Headset detail close-up"
             className="w-full rounded-2xl"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -102,11 +104,15 @@ function IdeationSection() {
             src={`${basePath}/sketch-1.png`}
             alt="Earcup concept sketches"
             className="rounded-2xl bg-white"
+            loading="lazy"
+            decoding="async"
           />
           <img
             src={`${basePath}/sketch-2.png`}
             alt="Button and detail sketches"
             className="rounded-2xl bg-white"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -141,11 +147,15 @@ function PrototypingSection() {
             src={`${basePath}/prototype-1.png`}
             alt="Testing the prototype"
             className="rounded-2xl"
+            loading="lazy"
+            decoding="async"
           />
           <img
             src={`${basePath}/Prototype.png`}
             alt="White 3D printed prototype"
             className="rounded-2xl"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -157,6 +167,8 @@ function PrototypingSection() {
                   src={`${basePath}/${img}`}
                   alt="3D printed prototype parts"
                   className="rounded-xl h-56 object-cover w-full"
+                  loading="lazy"
+                  decoding="async"
                 />
               </CarouselItem>
             ))}
@@ -178,6 +190,8 @@ function ProductShowcase() {
           src={`${basePath}/Functions.png`}
           alt="Headset with annotated features"
           className="w-full"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="max-w-4xl mx-auto px-8 mt-16">
@@ -185,6 +199,8 @@ function ProductShowcase() {
           src={`${basePath}/full-headset.png`}
           alt="Complete headset design"
           className="w-full"
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </section>
@@ -245,6 +261,8 @@ function TechnicalSection() {
                   src={`${basePath}/${img}`}
                   alt="Technical drawing"
                   className="w-full"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </CarouselItem>
@@ -254,15 +272,15 @@ function TechnicalSection() {
         <CarouselNext className="right-4" />
       </Carousel>
 
-      {/* Closing image */}
-      <div className="max-w-4xl mx-auto px-8 mt-16">
-        <div className="bg-white border border-border rounded-2xl p-6">
-          <img
-            src={`${basePath}/jadda.65.png`}
-            alt="Final technical overview"
-            className="w-full"
-          />
-        </div>
+      {/* Closing image — full bleed */}
+      <div className="mt-16">
+        <img
+          src={`${basePath}/jadda.65.png`}
+          alt="Final technical overview"
+          className="w-full"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </section>
   );
