@@ -206,6 +206,8 @@ function OverviewSection() {
             src="https://bragesteen.wordpress.com/wp-content/uploads/2025/05/fooodruewyrh12-copy.png?w=1024"
             alt="Seaweed material research"
             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            loading="lazy"
+            decoding="async"
           />
           <div
             className="absolute inset-0 pointer-events-none"
@@ -448,6 +450,8 @@ function MaterialsSection() {
                 src={img.src}
                 alt={img.alt}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
               />
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4"
@@ -543,6 +547,8 @@ function ConceptsSection() {
                   src={concept.image}
                   alt={concept.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

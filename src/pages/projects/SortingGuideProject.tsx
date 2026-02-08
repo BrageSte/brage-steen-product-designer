@@ -15,6 +15,8 @@ function HeroSection() {
           src={`${basePath}/images-153.png`}
           alt="Let's Sort This Out - Campaign mockup"
           className="w-full h-full object-cover object-center"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
 
@@ -160,6 +162,8 @@ function ProblemSection() {
                 src={`${basePath}/images-010.png`}
                 alt="Haraldrud sorting station in Oslo"
                 className="w-full block"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             {/* Floating stats */}
@@ -385,6 +389,8 @@ function ResearchSection() {
                   src={`${basePath}/${img.src}`}
                   alt={img.caption}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,51,41,0.8)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-6">
                   <span className="text-white text-sm font-medium">
@@ -918,6 +924,8 @@ function TeamSection() {
               src={`${basePath}/images-016.png`}
               alt="Team photo - Regina von Koch and Brage Steen"
               className="w-full block"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div>
@@ -1082,6 +1090,8 @@ function GigamapSection() {
               src={`${basePath}/gigamap.png`}
               alt="Gigamap: Waste in the World - comprehensive research visualization"
               className="w-full h-auto block"
+              loading="lazy"
+              decoding="async"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = "none";
