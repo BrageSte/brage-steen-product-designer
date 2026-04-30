@@ -32,14 +32,17 @@ const About = () => {
                     {
                       "--cover-gradient":
                         "linear-gradient(140deg, #ece6df 0%, #f8f4ef 55%, #e2ddd6 100%)",
+                      aspectRatio: "4 / 5",
                     } as CSSProperties
                   }
                 >
-                  <img src="/images/portrait.jpg" alt="Portrett av Brage Steen" />
+                  <img
+                    src="/images/portrait.jpg"
+                    alt="Portrett av Brage Steen"
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: "center 15%" }}
+                  />
                 </div>
-                <p className="mt-4 text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                  Portrett (placeholder)
-                </p>
               </div>
             </div>
           </div>
