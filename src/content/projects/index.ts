@@ -10,6 +10,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "BS Climbing",
+    year: "2026",
+    excerpt:
+      "Fullstack nettbutikk for skreddersydde klatreblokker — bygget med Claude Code og Codex, med 3D-konfigurator, Stripe-betaling og Fusion 360-eksport.",
+    tags: ["Fullstack", "AI-utvikling", "E-commerce"],
+    href: "/projects/bsclimbing",
+    coverGradient:
+      "linear-gradient(140deg, #e8e0d8 0%, #f5f0ea 55%, #e0d8d0 100%)",
+    cover: "/projects/bsclimbing/hero-product.jpg",
+  },
+  {
     title: "The Sorting Guide",
     year: "2020",
     excerpt:

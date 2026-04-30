@@ -70,9 +70,6 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
               >
                 Kontakt
               </NavLink>
-              <a className="nav-link" href="https://bsclimbing.no">
-                Butikk
-              </a>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -172,12 +169,6 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
             >
               Kontakt
             </NavLink>
-            <a
-              className="py-3 text-lg text-[rgba(26,26,26,0.7)]"
-              href="https://bsclimbing.no"
-            >
-              Butikk
-            </a>
           </nav>
         </div>
 

@@ -8,6 +8,7 @@ import HeadsetProject from "@/pages/projects/HeadsetProject";
 import SortingGuideProject from "@/pages/projects/SortingGuideProject";
 import SeaweedProject from "@/pages/projects/SeaweedProject";
 import AvfallsportalenProject from "@/pages/projects/AvfallsportalenProject";
+import BSClimbingProject from "@/pages/projects/BSClimbingProject";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/projects/sorting-guide" element={<SortingGuideProject />} />
         <Route path="/projects/seaweed" element={<SeaweedProject />} />
         <Route path="/projects/avfallsportalen" element={<AvfallsportalenProject />} />
+        <Route path="/projects/bsclimbing" element={<BSClimbingProject />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
