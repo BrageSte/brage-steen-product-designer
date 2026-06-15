@@ -1,19 +1,19 @@
-# Portfolio - Clean Slate
 
-Repository har blitt resatt til et rent utgangspunkt.
+## Problem
+På `/projects/avfallsportalen` vises hovedmenyen to ganger:
+1. Den ytre React-headeren (`SiteLayout`) + `ProjectBar` — riktig.
+2. En kopi av samme "Brage Steen — Product Designer"-header som ligger inne i den standalone HTML-filen `public/projects/avfallsportalen/index.html` (linje 1979–1989), pluss portalens egen `main-nav`.
 
-## Status
-- Alle gamle prosjektfiler er fjernet
-- Minimal App.tsx placeholder er på plass
-- shadcn/ui komponenter er bevart
-- Klar for ny design prompt
+Iframen viser altså en hel "side i siden" i stedet for bare portalinnholdet.
 
-## Referansefiler
-HTML-filer i roten inneholder originalinnhold for prosjektene:
-- `thesortingguide.html` - The Sorting Guide (bachelorprosjekt)
-- `headphone-portfolio_3.html` - 3D Printed Headset
-- `seaweed-portfolio_1.html` - Seaweed materialforskning
-- `avfallsportalen-portfolio_3.html` - Avfallsportalen
+## Endring
+Rediger `public/projects/avfallsportalen/index.html`:
 
-## Neste steg
-Vent på ny design prompt fra bruker.
+- Fjern `<header class="site-header">…</header>`-blokken (linje 1979–1989) som dupliserer hovedmenyen.
+- Fjern også `<link rel="stylesheet" href="/projects/site-nav.css">` (linje 1976) siden den kun brukes av den fjernede headeren.
+
+Da blir kun portalens egen `main-nav` (Reisen / Quiz / Sammenlign / Dashboard) synlig inne i iframen, og den ytre React-headeren + ProjectBar håndterer portfolio-navigasjonen.
+
+## Ingen endringer
+- `SiteLayout`, `ProjectBar` og `AvfallsportalenProject.tsx` rører jeg ikke.
+- Portalens egen funksjonalitet (timeline, quiz, m.m.) er uberørt.
