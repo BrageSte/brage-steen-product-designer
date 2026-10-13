@@ -256,6 +256,22 @@ originaler er best; prosesseringen gjøres i repoet.
 | Caddy-camper: før/under/etter, skisser, plantegning, el-skjema | `_innboks/prosjekter/caddy-camper/` | 4 |
 | Stikkord/historie per prosjekt | `notater.md` i hver prosjektmappe | 1–4 |
 
+### Lokale kildemapper per prosjekt
+
+Hentes fra ved behov; **les, ikke endre**. Finnes kun på Brages Mac. Bilder prosesseres etter
+reglene i AGENTS.md før de havner i repoet.
+
+| Prosjekt | Kilde | Hva som finnes |
+|---|---|---|
+| GripSense | `~/Documents/GripSense` (eget repo) | README, `docs/` (beslutningslogg, pitch, brand), PCB-renders (`hardware/arkiv/PCB/fab/`), app-skjermbilder (`output/playwright/`, `output/xcode/`), logo (`docs/brand/`). Eldre: `~/Documents/Sensegrip :gammep`, `~/Documents/Krimblokk_4 fingre v*` |
+| BS Climbing | `~/Documents/Klatring/bs-climbing-2` (nettsiderepo, eget designsystem) og `~/BS Climbing/app` (samme GitHub-repo) | Produktbilder (`Klatring/bilder/produkter/`), produksjonsfiler/STL/tekstur (`Klatring/produksjon/`), forskning på kraft/sensorer (`Klatring/forskning/`), butikkplakat/målestasjon (`Klatring/design/butikk/`), print-kø (`~/BS Climbing/BS_PrintQueue`) |
+| Kildesortering | `~/Documents/Skole backup /BACHELOR` | IKEA-materiale, personas, service blueprint, konseptvalg, ikoner, PowerBI, prosjekttidslinje. Gigamap og prototype-skjermer også i `_innboks/` |
+| Avfallsportalen | `public/embeds/avfallsportalen/` | Selve appen (statisk HTML) |
+| Headset | `~/Documents/Portolfio/Headsett` + `_innboks/prosjekter/headset/kilde/` | Renders (`jadda.*`), skisser (`Untitled_Artwork*`), prototyping, tekniske tegninger |
+| Seaweed | `~/Documents/Skole backup /bap3010` + `~/Documents/Portolfio/BAPD3100.TingavTANG.pdf` | Prosjektrapport, refleksjonsnotat, bilder, illustrasjoner |
+| Caddy-camper | `~/Documents/Caddy the Baddie` | 24 foto av **fotograf Vilde Abrahamsen** (krever kreditering + avklart bruk), egne bilder, video (`IMG_3989.MOV`) |
+| Om meg / CV | `_innboks/cv/CV_BrageSteen.pdf` | Erfaring, utdanning, ferdigheter. **Publiser ikke** adresse, fødselsdato eller telefon fra CV-en |
+
 ---
 
 ## 9. Fremdrift
