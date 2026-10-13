@@ -1,0 +1,77 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+// «Slik testet jeg det»: prototypene i rekkefølge, og hva hver av dem lærte meg.
+// Nummereringen (P1, P2 …) er ekte rekkefølge, ikke pynt.
+interface Prototype {
+  bilde: ImageMetadata;
+  alt: string;
+  navn: string;
+  laerdom: string;
+}
+interface Props {
+  prototyper: Prototype[];
+}
+const { prototyper } = Astro.props;
+---
+
+<ol class="blokk prototyper">
+  {
+    prototyper.map((p, i) => (
+      <li>
+        <Picture
+          src={p.bilde}
+          alt={p.alt}
+          formats={["avif", "webp"]}
+          widths={[400, 800, 1200].filter((w) => w <= p.bilde.width)}
+          sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 50vw, 100vw"
+          loading="lazy"
+        />
+        <p class="nummer">P{i + 1}</p>
+        <h3>{p.navn}</h3>
+        <p class="laerdom">{p.laerdom}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .prototyper {
+    display: grid;
+    gap: 2.5rem 1.25rem;
+    list-style: none;
+    padding: 0;
+    counter-reset: none;
+  }
+  @media (min-width: 40rem) {
+    .prototyper { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 64rem) {
+    .prototyper { grid-template-columns: repeat(3, 1fr); }
+  }
+  .prototyper :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--color-ark);
+  }
+  .nummer {
+    margin-top: 0.9rem;
+    color: var(--color-kulepenn);
+    font-size: var(--text-liten);
+    font-weight: 600;
+  }
+  h3 {
+    margin-top: 0.15rem;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .laerdom {
+    margin-top: 0.4rem;
+    color: var(--color-blyant);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+</style>

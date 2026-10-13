@@ -13,7 +13,7 @@ mappe som gjelder hva. Mappen lagres ikke i git, så behold originalene også et
 
 ```bash
 npm install
-npm run dev        # http://localhost:8080
+npm run dev        # http://localhost:4321
 npm run build      # bygger til dist/
 ```
 

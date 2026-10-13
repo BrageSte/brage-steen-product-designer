@@ -1,0 +1,47 @@
+---
+import type { Prosjekt } from "@/lib/prosjekter";
+interface Props {
+  prosjekt: Prosjekt;
+}
+const { prosjekt } = Astro.props;
+---
+
+<nav class="neste" aria-label="Neste prosjekt">
+  <p>Neste prosjekt</p>
+  <a href={`/prosjekter/${prosjekt.id}`} style={`--aksent: ${prosjekt.data.aksentfarge}`}>
+    {prosjekt.data.tittel}
+  </a>
+  <p class="ingress">{prosjekt.data.ingress}</p>
+</nav>
+
+<style>
+  .neste {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-grafitt);
+  }
+  p:first-child {
+    font-size: var(--text-liten);
+    color: var(--color-blyant);
+  }
+  a {
+    display: inline-block;
+    margin-top: 0.3rem;
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    font-weight: 780;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--aksent);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.12em;
+  }
+  .ingress {
+    margin-top: 0.8rem;
+    max-width: 34rem;
+    color: var(--color-blyant);
+  }
+</style>

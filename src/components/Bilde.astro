@@ -1,0 +1,71 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+// Bilde med bildetekst. bredde: tekst (følger tekstspalten), bred (hele innholdsbredden),
+// kant (fra kant til kant).
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  tekst?: string;
+  kreditt?: string;
+  bredde?: "tekst" | "bred" | "kant";
+  prioritet?: boolean;
+  class?: string;
+}
+const { src, alt, tekst, kreditt, bredde = "bred", prioritet = false, class: klasse } = Astro.props;
+const sizes = {
+  tekst: "(min-width: 48rem) 38rem, 100vw",
+  bred: "(min-width: 80rem) 76rem, 100vw",
+  kant: "100vw",
+}[bredde];
+---
+
+<figure class:list={["bilde", `bilde--${bredde}`, klasse]}>
+  <Picture
+    src={src}
+    alt={alt}
+    formats={["avif", "webp"]}
+    widths={[480, 800, 1200, 1600, 2400].filter((w) => w <= src.width)}
+    sizes={sizes}
+    loading={prioritet ? "eager" : "lazy"}
+    fetchpriority={prioritet ? "high" : "auto"}
+  />
+  {
+    (tekst || kreditt) && (
+      <figcaption>
+        {tekst}
+        {kreditt && <span class="kreditt">Foto: {kreditt}</span>}
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .bilde :global(img) {
+    width: 100%;
+    background: var(--color-ark);
+  }
+  .bilde--tekst {
+    max-width: 38rem;
+  }
+  .bilde--kant {
+    margin-inline: calc(50% - 50vw);
+  }
+  figcaption {
+    margin-top: 0.7rem;
+    max-width: 38rem;
+    font-size: var(--text-liten);
+    line-height: var(--text-liten--line-height);
+    color: var(--color-blyant);
+  }
+  .bilde--kant figcaption {
+    padding-inline: var(--kantmarg, 1.25rem);
+  }
+  .kreditt {
+    display: block;
+  }
+  figcaption:has(> :first-child) .kreditt {
+    margin-top: 0.15rem;
+  }
+</style>

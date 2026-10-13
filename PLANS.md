@@ -83,8 +83,11 @@ Innholdsmodellen får feltet `niva: case | kort`.
   (185.158.133.1). Navnetjenerne flyttes til Cloudflare (gratis) — nødvendig for å bruke
   rotdomenet på Cloudflare. Sjekket 2026-10-13: ingen MX- eller TXT-poster, så ingen
   e-post å flytte.
-- **Visuelt utgangspunkt:** dagens typografi (Instrument Serif + IBM Plex Sans) og varme
-  off-white bakgrunn beholdes som start og spisses i fase 2.
+- **Visuelt språk (fase 2):** arbeidstegningen. Kjølig kalkerpapir (#eef0ed), grafitt (#1c1f22),
+  kulepenn-blå (#2340c8) til markering. Schibsted Grotesk som eneste skriftfamilie (selvhostet).
+  Kjennetegn: *målestreken* (dimensjonslinje) som alltid bærer ekte informasjon (periode/mål), og
+  faktaboks som *tittelfelt* fra en arbeidstegning. Bevisst unngått: krem + serif + terrakotta,
+  ALL CAPS-etiketter, kort-skygger. Se `/stilguide`.
 
 ## 6. Målstruktur etter ombyggingen
 
@@ -223,12 +226,13 @@ Mål: live-siden virker og er uavhengig av Lovable, mens vi bygger nytt.
 
 ### Fase 2 — Astro-oppsett og designmal (gren `rebuild/astro`)
 
-- [ ] Nytt Astro-prosjekt i repoet (erstatter Vite-appen i grenen)
-- [ ] Tokens: farger, typografi, avstand, aksentfarger
-- [ ] Byggeklossene i seksjon 6
-- [ ] Prosjektmal + innholdsmodell (content collection med skjema)
-- [ ] Skjult stilguide-side (`/_stilguide`) som viser alle byggeklosser
+- [x] Nytt Astro-prosjekt i repoet (Astro 7, MDX, Tailwind 4; Vite-appen og preview-systemet fjernet)
+- [x] Tokens: farger, typografi, avstand, aksentfarger (`src/styles/global.css`)
+- [x] Byggeklossene: Målestrek, Tittelfelt, Bilde, Bilderutenett, Innsikt, Prototyper, Demo, ProsjektKort, MerArbeid, NesteProsjekt, topp-/bunntekst
+- [x] Prosjektmal + innholdsmodell (`src/content.config.ts`, `src/pages/prosjekter/[slug].astro`); Headset som pilot (utkast)
+- [x] Skjult stilguide-side (`/stilguide`, noindex) som viser alle byggeklosser
 - [ ] Cloudflare forhåndsvisnings-URL for grenen
+- [x] Om meg-utkast fra CV, 404-side, `_redirects` for gamle URL-er, bildeskript (`scripts/prosesser-bilder.mjs`, `scripts/kontaktark.mjs`)
 
 ### Fase 3 — Flytte eksisterende prosjekter
 
@@ -317,6 +321,10 @@ Logg med dato, nyeste nederst.
 - 2026-10-13 — PR #24 merget, produksjon bygget og verifisert. Custom Domain kan ikke
   legges til før Lovable-A-posten (185.158.133.1) slettes i Cloudflare-DNS; slettingen må
   Brage gjøre/godkjenne selv. Norid viste fortsatt hyp.net etter merge.
+- 2026-10-13 — Fase 2 på `rebuild/astro`: Astro-oppsett, designtokens, alle byggeklosser,
+  prosjektmal, stilguide, Om meg-utkast (fra CV) og Headset som pilotprosjekt (utkast, med
+  `SJEKK`-kommentarer i MDX for usikre fakta). Verifisert lokalt med `wrangler dev`: alle sider,
+  301 fra gamle URL-er, 404-side, mobil uten horisontal scroll.
 
 ## 10. Beslutningslogg
 
@@ -334,6 +342,7 @@ Logg med dato, nyeste nederst.
 | 2026-10-13 | Kun e-post synlig på nettsiden; telefon kun i nedlastbar CV | Brages valg; adresse og fødselsdato publiseres ikke |
 | 2026-10-13 | Master-formulering: valgte andre muligheter; da han skulle fullføre, var det toårige løpet avsluttet | Brages egen formulering |
 | 2026-10-13 | Caddy-bilder fra Vilde Abrahamsen kan brukes, krediteres | Brage har tillatelse |
+| 2026-10-13 | Visuelt språk: arbeidstegningen (målestrek, tittelfelt), Schibsted Grotesk, kulepenn-blå | Spesifikt for en produktdesigner som tegner og bygger; unngår generisk portefølje-estetikk |
 | 2026-10-13 | Råmateriale i `_innboks/`, ikke i git | Offentlig repo; råbilder er store og kan ha GPS/EXIF; CV kan inneholde personopplysninger |
 
 ## 11. Åpne spørsmål

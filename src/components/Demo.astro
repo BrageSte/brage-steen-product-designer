@@ -1,0 +1,68 @@
+---
+// Innebygd demo: video (mp4) eller interaktiv side (iframe).
+interface Props {
+  type: "video" | "iframe";
+  src: string;
+  tittel: string;
+  plakat?: string;
+  forhold?: string; // CSS aspect-ratio, f.eks. "16 / 9"
+  tekst?: string;
+  lenke?: { tekst: string; url: string };
+}
+const { type, src, tittel, plakat, forhold = "16 / 9", tekst, lenke } = Astro.props;
+---
+
+<figure class="blokk demo">
+  <div class="ramme" style={`aspect-ratio: ${forhold}`}>
+    {
+      type === "video" ? (
+        <video src={src} poster={plakat} controls preload="none" playsinline title={tittel}>
+          <a href={src}>Last ned videoen</a>
+        </video>
+      ) : (
+        <iframe src={src} title={tittel} loading="lazy" />
+      )
+    }
+  </div>
+  {
+    (tekst || lenke) && (
+      <figcaption>
+        {tekst}
+        {lenke && (
+          <>
+            {" "}
+            <a class="lenke" href={lenke.url}>
+              {lenke.tekst}
+            </a>
+          </>
+        )}
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .ramme {
+    width: 100%;
+    border: 1px solid var(--color-grafitt);
+    background: var(--color-ark);
+    overflow: hidden;
+  }
+  video,
+  iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #000;
+  }
+  iframe {
+    background: var(--color-ark);
+  }
+  figcaption {
+    margin-top: 0.7rem;
+    max-width: 38rem;
+    font-size: var(--text-liten);
+    color: var(--color-blyant);
+  }
+</style>

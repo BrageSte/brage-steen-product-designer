@@ -11,7 +11,10 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
 ## Status (oppdater når fasen endres)
 
 - Ombygging pågår. Aktiv fase: **Fase 2** på gren `rebuild/astro` (fase 0 er merget; domenekobling gjenstår).
-- Dagens kode: Vite + React + Tailwind (opprinnelig Lovable-mal). Erstattes av Astro i fase 2–3.
+- På `rebuild/astro`: Astro 7 + MDX + Tailwind 4. `main` kjører fortsatt Vite-appen til grenen merges.
+- Prosjekter: `src/content/prosjekter/<slug>/index.mdx` + `bilder/`. Skjema i `src/content.config.ts`.
+- Byggeklosser i `src/components/`; alle vises på `/stilguide`. Bruk dem, ikke lag engangsstiler.
+- Usikre fakta i MDX markeres med `{/* SJEKK (Brage): … */}` og `utkast: true`.
 - Lovable brukes ikke lenger. Ikke legg til Lovable-avhengigheter.
 - Hosting: Cloudflare Workers (statiske filer), konfig i `wrangler.jsonc`. Lokal test av
   produksjonsoppsettet: `npm run build && npx wrangler dev`.
@@ -48,17 +51,17 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
   - **Fjern EXIF/GPS** (bruk `sharp`, som fjerner metadata som standard).
   - Filnavn i kebab-case som beskriver innholdet: `prototype-v2-grep.jpg`.
   - Alle bilder skal ha meningsfull alt-tekst på norsk.
-- Ferdige bilder: `src/content/prosjekter/<slug>/bilder/` (etter Astro-oppsettet).
-  Før det: `public/projects/<slug>/`.
+- Ferdige bilder: `src/content/prosjekter/<slug>/bilder/` (eller `src/assets/` for sidebilder).
+  Bruk `scripts/prosesser-bilder.mjs`.
 - Rør aldri originalene i `_innboks/`; kopier ut og prosesser.
 
-## Kommandoer (dagens Vite-app)
+## Kommandoer
 
 ```bash
 npm install
-npm run dev        # http://localhost:8080
-npm run build      # utdata i dist/
+npm run dev                # http://localhost:4321
+npm run build              # utdata i dist/
+npm run preview            # bygg + wrangler dev (som i produksjon)
+node scripts/prosesser-bilder.mjs <målmappe> <kilde>=<navn.jpg> ...   # gjør bilder nettklare, fjerner EXIF/GPS
+node scripts/kontaktark.mjs <ut.jpg> <bilder...>                       # oversikt for å velge bilder
 ```
-
-Preview-systemet (`npm run previews:*`, `.githooks/`, `previews/`-mapper) er under utfasing og
-fjernes i fase 3. Ikke generer nye previews.

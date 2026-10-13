@@ -1,0 +1,207 @@
+---
+import { Picture } from "astro:assets";
+import Side from "@/layouts/Side.astro";
+import Malestrek from "@/components/Malestrek.astro";
+import ProsjektKort from "@/components/ProsjektKort.astro";
+import MerArbeid from "@/components/MerArbeid.astro";
+import { caseProsjekter, korteProsjekter } from "@/lib/prosjekter";
+
+import maling from "@/assets/forside/maling-fingerbredde.jpg";
+import blokk from "@/assets/forside/klatreblokk-i-hand.jpg";
+import headset from "@/assets/forside/headset-prototype.jpg";
+import tang from "@/assets/forside/tang-materialprover.jpg";
+
+const benk = [
+  { bilde: maling, alt: "Skyvelære som måler bredden på en finger", tekst: "Måling av fingerbredde", prosjekt: "BS Climbing" },
+  { bilde: blokk, alt: "Hånd med kalk som holder en mørk 3D-printet klatreblokk", tekst: "Ferdig blokk i bruk", prosjekt: "BS Climbing" },
+  { bilde: headset, alt: "Hvit 3D-printet prototype av et headset", tekst: "Printet prototype", prosjekt: "Headset" },
+  { bilde: tang, alt: "Hvite materialprøver laget av tang på en arbeidsbenk", tekst: "Materialprøver av tang", prosjekt: "Seaweed" },
+];
+
+const prosjekter = await caseProsjekter();
+const fremhevet = prosjekter.filter((p) => p.data.fremhevet);
+const ovrige = prosjekter.filter((p) => !p.data.fremhevet);
+const korte = await korteProsjekter();
+
+const aar = prosjekter.flatMap((p) => [
+  p.data.start,
+  p.data.slutt ?? (p.data.status === "pagaende" ? new Date().getFullYear() : p.data.start),
+]);
+const tidsrom = aar.length ? `${Math.min(...aar)} – ${Math.max(...aar)}` : "";
+---
+
+<Side>
+  <section class="innhold hero">
+    <h1>Jeg designer produkter, og bygger dem for å finne ut om de virker.</h1>
+    <p class="under">Produktdesigner. Industridesign, tjenestedesign og prototyping.</p>
+  </section>
+
+  <section class="innhold benk" aria-label="Fra arbeidsbenken">
+    <ul>
+      {
+        benk.map((b) => (
+          <li>
+            <figure>
+              <Picture
+                src={b.bilde}
+                alt={b.alt}
+                formats={["avif", "webp"]}
+                widths={[320, 480, 720].filter((w) => w <= b.bilde.width)}
+                sizes="(min-width: 64rem) 18rem, (min-width: 40rem) 45vw, 70vw"
+                loading="eager"
+              />
+              <figcaption>
+                {b.tekst}
+                <span>{b.prosjekt}</span>
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section id="arbeid" class="innhold arbeid">
+    <div class="seksjonshode">
+      <h2>Utvalgte prosjekter</h2>
+      {tidsrom && <Malestrek tekst={tidsrom} tegn class="tidsrom" />}
+    </div>
+
+    {
+      fremhevet.length > 0 && (
+        <div class="fremhevet">
+          {fremhevet.map((p, i) => (
+            <ProsjektKort prosjekt={p} variant="stor" speilet={i % 2 === 1} />
+          ))}
+        </div>
+      )
+    }
+
+    <div class="rutenett">
+      {ovrige.map((p) => <ProsjektKort prosjekt={p} />)}
+    </div>
+  </section>
+
+  {
+    korte.length > 0 && (
+      <section class="innhold mer">
+        <h2>Mer arbeid</h2>
+        <p class="tekst forklaring">Oppdrag, frilans og prosjekter som ikke har egen side.</p>
+        <MerArbeid prosjekter={korte} />
+      </section>
+    )
+  }
+</Side>
+
+<style>
+  .hero {
+    padding-top: clamp(3rem, 2rem + 6vw, 8rem);
+  }
+  h1 {
+    max-width: 18ch;
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    letter-spacing: -0.035em;
+  }
+  .under {
+    margin-top: 1.5rem;
+    font-size: var(--text-ingress);
+    line-height: var(--text-ingress--line-height);
+    color: var(--color-blyant);
+  }
+
+  .benk {
+    margin-top: clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+  .benk ul {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(14rem, 70vw);
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    list-style: none;
+    padding: 0 0 1rem;
+    margin-inline: calc(-1 * var(--kantmarg));
+    padding-inline: var(--kantmarg);
+    scroll-padding-inline: var(--kantmarg);
+  }
+  @media (min-width: 40rem) {
+    .benk ul {
+      grid-auto-columns: minmax(14rem, 45vw);
+    }
+  }
+  @media (min-width: 64rem) {
+    .benk ul {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: visible;
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+  }
+  .benk li {
+    scroll-snap-align: start;
+  }
+  .benk :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: var(--color-ark);
+  }
+  .benk figcaption {
+    margin-top: 0.6rem;
+    font-size: var(--text-liten);
+    line-height: 1.4;
+  }
+  .benk figcaption span {
+    display: block;
+    color: var(--color-blyant);
+  }
+
+  .arbeid {
+    padding-top: var(--spacing-seksjon);
+  }
+  .seksjonshode {
+    display: grid;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 48rem) {
+    .seksjonshode {
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+    }
+  }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+  }
+  :global(.tidsrom) {
+    padding-bottom: 0.45rem;
+  }
+  .fremhevet {
+    display: grid;
+    gap: clamp(4rem, 3rem + 4vw, 7rem);
+    margin-bottom: clamp(4rem, 3rem + 4vw, 7rem);
+  }
+  .rutenett {
+    display: grid;
+    gap: 4rem 2rem;
+  }
+  @media (min-width: 48rem) {
+    .rutenett {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .mer {
+    padding-top: var(--spacing-seksjon);
+  }
+  .forklaring {
+    margin-top: 0.6rem;
+    margin-bottom: 2rem;
+    color: var(--color-blyant);
+  }
+</style>

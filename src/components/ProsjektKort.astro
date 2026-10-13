@@ -1,0 +1,108 @@
+---
+import { Picture } from "astro:assets";
+import Malestrek from "./Malestrek.astro";
+import { periode, type Prosjekt } from "@/lib/prosjekter";
+
+// stor: fremhevet prosjekt over hele bredden (bilde og tekst side om side, annenhver vei).
+// liten: i rutenettet under.
+interface Props {
+  prosjekt: Prosjekt;
+  variant?: "stor" | "liten";
+  speilet?: boolean;
+}
+const { prosjekt, variant = "liten", speilet = false } = Astro.props;
+const d = prosjekt.data;
+const href = `/prosjekter/${prosjekt.id}`;
+---
+
+<article class:list={["kort", `kort--${variant}`, { speilet }]} style={`--aksent: ${d.aksentfarge}`}>
+  <a href={href} class="bilde" tabindex="-1" aria-hidden="true">
+    <Picture
+      src={d.cover}
+      alt=""
+      formats={["avif", "webp"]}
+      widths={[480, 800, 1200, 1600].filter((w) => w <= d.cover.width)}
+      sizes={variant === "stor" ? "(min-width: 64rem) 46rem, 100vw" : "(min-width: 48rem) 37rem, 100vw"}
+      loading="lazy"
+    />
+  </a>
+  <div class="tekst">
+    <Malestrek tekst={periode(d)} farge="var(--aksent)" class="periode" />
+    <h3><a href={href}>{d.tittel}</a></h3>
+    <p class="ingress">{d.ingress}</p>
+    {d.disipliner.length > 0 && <p class="disipliner">{d.disipliner.join(", ")}</p>}
+  </div>
+</article>
+
+<style>
+  .kort {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .bilde {
+    display: block;
+    overflow: hidden;
+    background: var(--color-ark);
+  }
+  .bilde :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .kort:hover .bilde :global(img) {
+    transform: scale(1.02);
+  }
+  :global(.periode) {
+    max-width: 16rem;
+  }
+  h3 {
+    margin-top: 0.9rem;
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+  }
+  h3 a {
+    text-decoration: none;
+  }
+  h3 a::after {
+    /* Hele kortet klikkbart via tittelen */
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+  .kort {
+    position: relative;
+  }
+  .kort:hover h3 a,
+  h3 a:focus-visible {
+    text-decoration: underline;
+    text-decoration-color: var(--aksent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.15em;
+  }
+  .ingress {
+    margin-top: 0.5rem;
+    max-width: 34rem;
+    color: var(--color-grafitt);
+  }
+  .disipliner {
+    margin-top: 0.6rem;
+    font-size: var(--text-liten);
+    color: var(--color-blyant);
+  }
+
+  @media (min-width: 64rem) {
+    .kort--stor {
+      grid-template-columns: 7fr 5fr;
+      align-items: end;
+      gap: 2.5rem;
+    }
+    .kort--stor.speilet .bilde {
+      order: 2;
+    }
+    .kort--stor h3 {
+      font-size: var(--text-h2);
+      line-height: var(--text-h2--line-height);
+    }
+  }
+</style>

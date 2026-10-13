@@ -1,0 +1,94 @@
+---
+// Målestrek: dimensjonslinjen fra tekniske tegninger. Bærer alltid ekte informasjon
+// (en periode, et mål, en lengde) — aldri bare pynt.
+interface Props {
+  tekst: string;
+  tegn?: boolean; // tegnes inn ved sidelast (brukes én gang per side)
+  farge?: string;
+  class?: string;
+}
+const { tekst, tegn = false, farge = "var(--color-kulepenn)", class: klasse = "" } = Astro.props;
+---
+
+<div
+  class:list={["malestrek", { tegn }, klasse]}
+  style={`--strek: ${farge}`}
+  role="img"
+  aria-label={tekst}
+>
+  <span class="ende" aria-hidden="true"></span>
+  <span class="linje" aria-hidden="true"></span>
+  <span class="tekst" aria-hidden="true">{tekst}</span>
+  <span class="linje" aria-hidden="true"></span>
+  <span class="ende" aria-hidden="true"></span>
+</div>
+
+<style>
+  .malestrek {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--strek);
+    font-size: var(--text-liten);
+    line-height: 1;
+    font-weight: 500;
+  }
+  .ende {
+    width: 1px;
+    height: 0.9rem;
+    background: currentColor;
+    flex: none;
+  }
+  .linje {
+    position: relative;
+    height: 1px;
+    flex: 1;
+    background: currentColor;
+  }
+  /* Pilspisser mot endestrekene */
+  .linje:first-of-type::before,
+  .linje:last-of-type::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    border-block: 3.5px solid transparent;
+  }
+  .linje:first-of-type::before {
+    left: -1px;
+    border-right: 7px solid currentColor;
+  }
+  .linje:last-of-type::after {
+    right: -1px;
+    border-left: 7px solid currentColor;
+  }
+  .tekst {
+    flex: none;
+    white-space: nowrap;
+    font-feature-settings: "tnum";
+  }
+
+  .tegn .linje {
+    animation: tegn 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 250ms both;
+  }
+  .tegn .linje:first-of-type {
+    transform-origin: right;
+  }
+  .tegn .linje:last-of-type {
+    transform-origin: left;
+  }
+  .tegn .tekst,
+  .tegn .ende {
+    animation: vis 400ms ease-out both;
+  }
+  .tegn .ende {
+    animation-delay: 1000ms;
+  }
+  @keyframes tegn {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes vis {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>

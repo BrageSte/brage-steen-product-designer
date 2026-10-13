@@ -1,0 +1,26 @@
+---
+import Side from "@/layouts/Side.astro";
+---
+
+<Side tittel="Fant ikke siden" ikkeIndekser>
+  <section class="innhold">
+    <h1>Fant ikke siden</h1>
+    <p>Adressen finnes ikke, eller siden er flyttet.</p>
+    <p><a class="lenke" href="/">Gå til forsiden</a> eller <a class="lenke" href="/#arbeid">se prosjektene</a>.</p>
+  </section>
+</Side>
+
+<style>
+  section {
+    padding-top: clamp(3rem, 2rem + 6vw, 8rem);
+  }
+  h1 {
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    letter-spacing: -0.035em;
+    margin-bottom: 1.5rem;
+  }
+  p + p {
+    margin-top: 0.5rem;
+  }
+</style>

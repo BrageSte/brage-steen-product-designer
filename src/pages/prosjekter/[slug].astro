@@ -1,0 +1,133 @@
+---
+import { render } from "astro:content";
+import Side from "@/layouts/Side.astro";
+import Bilde from "@/components/Bilde.astro";
+import Malestrek from "@/components/Malestrek.astro";
+import Tittelfelt from "@/components/Tittelfelt.astro";
+import NesteProsjekt from "@/components/NesteProsjekt.astro";
+import { caseProsjekter, periode, type Prosjekt } from "@/lib/prosjekter";
+
+export async function getStaticPaths() {
+  const alle = await caseProsjekter();
+  return alle.map((prosjekt, i) => ({
+    params: { slug: prosjekt.id },
+    props: { prosjekt, neste: alle[(i + 1) % alle.length] },
+  }));
+}
+
+interface Props {
+  prosjekt: Prosjekt;
+  neste: Prosjekt;
+}
+const { prosjekt, neste } = Astro.props;
+const d = prosjekt.data;
+const { Content } = await render(prosjekt);
+---
+
+<Side tittel={d.tittel} beskrivelse={d.ingress} delingsbilde={d.cover.src}>
+  <article class="innhold" style={`--aksent: ${d.aksentfarge}`}>
+    {d.utkast && <p class="utkast">Utkast — teksten er ikke godkjent ennå.</p>}
+
+    <header class="hode">
+      <a class="tilbake" href="/#arbeid">Alle prosjekter</a>
+      <h1>{d.tittel}</h1>
+      <p class="ingress">{d.ingress}</p>
+    </header>
+
+    <Malestrek tekst={periode(d)} farge="var(--aksent)" tegn class="periode" />
+    <Bilde src={d.cover} alt={d.coverAlt} kreditt={d.fotokreditt} prioritet />
+
+    <div class="fakta">
+      <Tittelfelt
+        felt={[
+          { etikett: "Periode", verdi: periode(d) },
+          { etikett: "Rolle", verdi: d.rolle },
+          { etikett: "Team", verdi: d.team },
+          { etikett: "Varighet", verdi: d.varighet },
+          { etikett: "Oppdragsgiver", verdi: d.oppdragsgiver },
+          { etikett: "Verktøy", verdi: d.verktoy },
+          { etikett: "Status", verdi: d.status === "pagaende" ? "Pågående" : undefined },
+        ]}
+      />
+      {
+        d.lenker.length > 0 && (
+          <ul class="lenker">
+            {d.lenker.map((l) => (
+              <li>
+                <a class="lenke" href={l.url}>
+                  {l.tekst}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <div class="prosa">
+      <Content />
+    </div>
+
+    {neste.id !== prosjekt.id && (
+      <div class="neste">
+        <NesteProsjekt prosjekt={neste} />
+      </div>
+    )}
+  </article>
+</Side>
+
+<style>
+  .utkast {
+    margin-top: 1.5rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px dashed var(--color-kulepenn);
+    color: var(--color-kulepenn);
+    font-size: var(--text-liten);
+    width: fit-content;
+  }
+  .hode {
+    padding-top: clamp(2.5rem, 2rem + 4vw, 6rem);
+    padding-bottom: 2.5rem;
+  }
+  .tilbake {
+    font-size: var(--text-liten);
+    color: var(--color-blyant);
+    text-decoration: none;
+  }
+  .tilbake:hover {
+    color: var(--color-grafitt);
+    text-decoration: underline;
+  }
+  h1 {
+    margin-top: 1rem;
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    letter-spacing: -0.035em;
+  }
+  .ingress {
+    margin-top: 1.25rem;
+    max-width: 40rem;
+    font-size: var(--text-ingress);
+    line-height: var(--text-ingress--line-height);
+  }
+  :global(.periode) {
+    margin-bottom: 1rem;
+  }
+  .fakta {
+    margin-top: 2rem;
+  }
+  .lenker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+  .prosa {
+    margin-top: 1rem;
+  }
+  .neste {
+    margin-top: var(--spacing-seksjon);
+  }
+</style>

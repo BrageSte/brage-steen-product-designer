@@ -1,0 +1,235 @@
+---
+import Side from "@/layouts/Side.astro";
+import Bilde from "@/components/Bilde.astro";
+import portrett from "@/assets/portrett.jpg";
+
+// UTKAST basert på CV (april 2026). Brage godkjenner før lansering.
+const erfaring = [
+  {
+    periode: "2023 – nå",
+    rolle: "Klatreinstruktør og rutesetter",
+    sted: "Gneis Lilleaker",
+    tekst: "Instruktør for barnegrupper, klatrevakt, resepsjonist og rutesetter. Kombinerer jobb med lidenskapen for klatring.",
+  },
+  {
+    periode: "2022 – 2024",
+    rolle: "Murer",
+    sted: "Mur Med Mer",
+    tekst: "Bad, hus og garasjer sammen med murermesteren min. Lærte byggteknikk og materialer, og å skissere og planlegge før man bygger.",
+  },
+  {
+    periode: "2021",
+    rolle: "Tjenestedesigner, frilans",
+    sted: "Looping AS",
+    tekst: "Utforsket hvordan Loopings sporing av produkter gjennom hele livsløpet kunne bli en tjeneste for andre næringer. Utviklet et kontrollsystem for produktflåten til Algeco / Modulaire Group.",
+  },
+  {
+    periode: "2020 – 2022",
+    rolle: "Medgründer og ko-festivalsjef",
+    sted: "Kaia Tel Han Kai",
+    tekst: "En vennefest som vokste til en samskapingsfestival med 300 deltakere: musikk, design og workshops. Ansvar for bygging, logistikk, søknader og budsjett.",
+  },
+  {
+    periode: "2021",
+    rolle: "Lærerassistent",
+    sted: "Asker kommune, Den alternative skolen",
+    tekst: "Lærte ungdom 3D-printing, tredreiing og seiling.",
+  },
+];
+
+const utdanning = [
+  {
+    periode: "2021 – 2023",
+    rolle: "Master i industriell design",
+    sted: "NTNU, med utveksling til Aalto-universitetet",
+    tekst: "Én av 15 som ble tatt opp, av 290 søkere. Utveksling i Creative Sustainability ved Aalto, et tverrfaglig program for designere, økonomer og ingeniører. Jeg valgte å ta en pause for å jobbe; da jeg skulle fullføre, var det toårige programmet avsluttet.",
+  },
+  {
+    periode: "2017 – 2020",
+    rolle: "Bachelor i produktdesign",
+    sted: "OsloMet",
+    tekst: "Bacheloroppgaven om kildesortering i hjemmet ble skrevet sammen med IKEA Norge og Grønt Punkt, og fikk karakteren A.",
+  },
+];
+
+const ferdigheter = [
+  "Prototyping og 3D-printing",
+  "3D-modellering (Fusion 360)",
+  "Design for produksjon",
+  "Tjenestedesign og systemkartlegging",
+  "Workshops og brukerinnsikt",
+  "Adobe-pakken",
+];
+---
+
+<Side tittel="Om meg" beskrivelse="Brage Steen er produktdesigner med bakgrunn fra OsloMet, NTNU, murfaget og klatring.">
+  <div class="innhold">
+    <p class="utkast">Utkast — teksten er ikke godkjent ennå.</p>
+
+    <section class="intro">
+      <div class="tekstdel">
+        <h1>Om meg</h1>
+        <p class="ingress">
+          Jeg er produktdesigner, og jeg lærer mest når jeg kan holde ideen i hånden. Derfor bygger jeg
+          prototyper tidlig, enten det er en 3D-printet klatreblokk, et headset eller en tjeneste.
+        </p>
+        <p>
+          Som tolvåring seilte jeg jorda rundt med familien i ett år. Siden har jeg vært ute i fjellet, i
+          klatreveggen og i verkstedet. Det har gjort meg praktisk og løsningsorientert, og alltid nysgjerrig
+          på hvordan ting fungerer.
+        </p>
+        <p>
+          Jeg trives best når kreativitet møter struktur, og når jeg kan løse krevende problemer sammen med
+          andre: utvikle produkter, forbedre tjenester eller bygge prototyper som tar ideer et steg videre.
+        </p>
+        <p class="kontakt" id="kontakt">
+          Ta kontakt på <a class="lenke" href="mailto:brage.steen@gmail.com">brage.steen@gmail.com</a>.
+        </p>
+      </div>
+      <Bilde src={portrett} alt="Portrett av Brage Steen i snekkerbukse, smilende" bredde="tekst" prioritet class="portrett" />
+    </section>
+
+    <section class="del">
+      <h2>Erfaring</h2>
+      <ul class="liste">
+        {
+          erfaring.map((e) => (
+            <li>
+              <p class="periode">{e.periode}</p>
+              <div>
+                <h3>{e.rolle}</h3>
+                <p class="sted">{e.sted}</p>
+              </div>
+              <p>{e.tekst}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="del">
+      <h2>Utdanning</h2>
+      <ul class="liste">
+        {
+          utdanning.map((e) => (
+            <li>
+              <p class="periode">{e.periode}</p>
+              <div>
+                <h3>{e.rolle}</h3>
+                <p class="sted">{e.sted}</p>
+              </div>
+              <p>{e.tekst}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="del">
+      <h2>Det jeg jobber med</h2>
+      <ul class="ferdigheter">
+        {ferdigheter.map((f) => <li>{f}</li>)}
+      </ul>
+    </section>
+  </div>
+</Side>
+
+<style>
+  .utkast {
+    margin-top: 1.5rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px dashed var(--color-kulepenn);
+    color: var(--color-kulepenn);
+    font-size: var(--text-liten);
+    width: fit-content;
+  }
+  .intro {
+    display: grid;
+    gap: 3rem;
+    padding-top: clamp(2.5rem, 2rem + 4vw, 6rem);
+  }
+  @media (min-width: 64rem) {
+    .intro {
+      grid-template-columns: 1fr 22rem;
+      align-items: start;
+      gap: 5rem;
+    }
+  }
+  h1 {
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    letter-spacing: -0.035em;
+  }
+  .tekstdel > * + * {
+    margin-top: 1.1rem;
+    max-width: 38rem;
+  }
+  .ingress {
+    margin-top: 1.5rem;
+    font-size: var(--text-ingress);
+    line-height: var(--text-ingress--line-height);
+  }
+  .kontakt {
+    padding-top: 0.5rem;
+  }
+  .intro :global(.portrett img) {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 15%;
+  }
+
+  .del {
+    padding-top: var(--spacing-seksjon);
+  }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    margin-bottom: 2rem;
+  }
+  .liste {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--color-grafitt);
+  }
+  .liste li {
+    display: grid;
+    gap: 0.4rem 2rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--color-linje);
+  }
+  @media (min-width: 48rem) {
+    .liste li {
+      grid-template-columns: 8rem 1fr 1.6fr;
+    }
+  }
+  .periode,
+  .sted {
+    font-size: var(--text-liten);
+    color: var(--color-blyant);
+  }
+  .periode {
+    padding-top: 0.25rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .liste li > p:last-child {
+    max-width: 38rem;
+  }
+  .ferdigheter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+    max-width: 46rem;
+  }
+  .ferdigheter li {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--color-linje);
+    background: var(--color-ark);
+    font-size: 1rem;
+  }
+</style>

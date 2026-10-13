@@ -1,0 +1,74 @@
+---
+const sti = Astro.url.pathname;
+const lenker = [
+  { tekst: "Arbeid", href: "/#arbeid", aktiv: sti === "/" || sti.startsWith("/prosjekter") },
+  { tekst: "Om meg", href: "/om-meg", aktiv: sti.startsWith("/om-meg") },
+];
+---
+
+<header class="topptekst">
+  <div class="innhold rad">
+    <a href="/" class="navn">Brage Steen</a>
+    <nav aria-label="Hovedmeny">
+      <ul>
+        {
+          lenker.map((l) => (
+            <li>
+              <a href={l.href} aria-current={l.aktiv ? "page" : undefined}>
+                {l.tekst}
+              </a>
+            </li>
+          ))
+        }
+        <li><a href="mailto:brage.steen@gmail.com">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .topptekst {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--color-papir) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-linje);
+  }
+  .rad {
+    display: flex;
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.1rem;
+  }
+  .navn {
+    white-space: nowrap;
+    font-weight: 750;
+    letter-spacing: -0.015em;
+    text-decoration: none;
+  }
+  ul {
+    display: flex;
+    gap: clamp(0.9rem, 3vw, 2rem);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  nav a {
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--color-blyant);
+  }
+  nav a:hover,
+  nav a[aria-current="page"] {
+    color: var(--color-grafitt);
+  }
+  nav a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-color: var(--color-kulepenn);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.35em;
+  }
+</style>

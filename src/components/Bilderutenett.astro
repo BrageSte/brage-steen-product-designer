@@ -1,0 +1,22 @@
+---
+// Rutenett for to eller tre bilder side om side. Legg <Bilde>-er inni.
+interface Props {
+  kolonner?: 2 | 3;
+}
+const { kolonner = 2 } = Astro.props;
+---
+
+<div class:list={["blokk", "rutenett", `rutenett--${kolonner}`]}>
+  <slot />
+</div>
+
+<style>
+  .rutenett {
+    display: grid;
+    gap: 2rem 1.25rem;
+  }
+  @media (min-width: 48rem) {
+    .rutenett--2 { grid-template-columns: repeat(2, 1fr); }
+    .rutenett--3 { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+const aar = new Date().getFullYear();
+---
+
+<footer class="bunntekst">
+  <div class="innhold">
+    <p class="oppfordring">Har du et produkt som skal fra idé til noe som virker?</p>
+    <a class="epost" href="mailto:brage.steen@gmail.com">brage.steen@gmail.com</a>
+    <div class="fot">
+      <span>© {aar} Brage Steen</span>
+      <a href="/om-meg">Om meg</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .bunntekst {
+    margin-top: var(--spacing-seksjon);
+    padding-block: 4rem 2rem;
+    border-top: 1px solid var(--color-grafitt);
+  }
+  .oppfordring {
+    color: var(--color-blyant);
+    max-width: 30rem;
+  }
+  .epost {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: var(--text-h2);
+    line-height: 1.1;
+    font-weight: 750;
+    letter-spacing: -0.025em;
+    color: var(--color-grafitt);
+    text-decoration: underline;
+    text-decoration-color: var(--color-kulepenn);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.15em;
+    overflow-wrap: anywhere;
+  }
+  .epost:hover {
+    color: var(--color-kulepenn);
+  }
+  .fot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    font-size: var(--text-liten);
+    color: var(--color-blyant);
+  }
+  .fot a {
+    color: inherit;
+  }
+</style>

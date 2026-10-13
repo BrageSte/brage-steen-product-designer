@@ -1,0 +1,251 @@
+---
+// Skjult stilguide: alle byggeklossene samlet. Ikke lenket fra menyen, ikke indeksert.
+import Side from "@/layouts/Side.astro";
+import Malestrek from "@/components/Malestrek.astro";
+import Tittelfelt from "@/components/Tittelfelt.astro";
+import Bilde from "@/components/Bilde.astro";
+import Bilderutenett from "@/components/Bilderutenett.astro";
+import Innsikt from "@/components/Innsikt.astro";
+import Prototyper from "@/components/Prototyper.astro";
+import Demo from "@/components/Demo.astro";
+import ProsjektKort from "@/components/ProsjektKort.astro";
+import MerArbeid from "@/components/MerArbeid.astro";
+import NesteProsjekt from "@/components/NesteProsjekt.astro";
+import { caseProsjekter } from "@/lib/prosjekter";
+
+import ferdig from "@/content/prosjekter/headset/bilder/ferdig-headset.jpg";
+import knapper from "@/content/prosjekter/headset/bilder/detalj-knapper.jpg";
+import hengsel from "@/content/prosjekter/headset/bilder/detalj-hengsel.jpg";
+import eksplodert from "@/content/prosjekter/headset/bilder/eksplodert-perspektiv.jpg";
+import pKopper from "@/content/prosjekter/headset/bilder/prototype-kopper.jpg";
+import pBoyle from "@/content/prosjekter/headset/bilder/prototype-boyle.jpg";
+import pTest from "@/content/prosjekter/headset/bilder/prototype-test.jpg";
+
+const [eksempel] = await caseProsjekter();
+
+const farger = [
+  { navn: "papir", hex: "#eef0ed", bruk: "Bakgrunn" },
+  { navn: "ark", hex: "#f8f9f7", bruk: "Løftede flater, tittelfelt" },
+  { navn: "grafitt", hex: "#1c1f22", bruk: "Tekst, kraftige streker" },
+  { navn: "blyant", hex: "#5b6268", bruk: "Sekundærtekst" },
+  { navn: "linje", hex: "#c3c8c5", bruk: "Tynne streker" },
+  { navn: "kulepenn", hex: "#2340c8", bruk: "Lenker, markering, målestrek" },
+];
+
+const skala = [
+  { navn: "Display", klasse: "display", tekst: "Jeg designer produkter" },
+  { navn: "H2", klasse: "h2", tekst: "Slik testet jeg det" },
+  { navn: "H3", klasse: "h3", tekst: "Produksjonstegninger" },
+  { navn: "Ingress", klasse: "ingress", tekst: "Et sammenleggbart headset for pendling og kontor." },
+  { navn: "Brødtekst", klasse: "brod", tekst: "Det betydde at hver del måtte tegnes for sprøytestøping i plast." },
+  { navn: "Liten", klasse: "liten", tekst: "Bildetekst og etiketter" },
+];
+---
+
+<Side tittel="Stilguide" ikkeIndekser>
+  <div class="innhold stilguide">
+    <h1>Stilguide</h1>
+    <p class="tekst forklaring">
+      Alle byggeklossene på ett sted. Endringer i designet testes her før de brukes i prosjektene.
+      Prinsipp: arbeidstegningen. Kjennetegnet er målestreken, og den skal alltid bære ekte informasjon.
+    </p>
+
+    <section>
+      <h2>Farger</h2>
+      <ul class="farger">
+        {
+          farger.map((f) => (
+            <li>
+              <span class="prove" style={`background:${f.hex}`} />
+              <strong>{f.navn}</strong>
+              <span>{f.hex}</span>
+              <span class="bruk">{f.bruk}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h2>Typografi</h2>
+      <p class="tekst forklaring">Schibsted Grotesk, én familie. Hierarki gjennom størrelse og vekt.</p>
+      <dl class="skala">
+        {
+          skala.map((s) => (
+            <div>
+              <dt>{s.navn}</dt>
+              <dd class={`t-${s.klasse}`}>{s.tekst}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section>
+      <h2>Målestrek</h2>
+      <p class="tekst forklaring">Brukes for perioder og mål. Tegnes inn én gang per side (<code>tegn</code>).</p>
+      <div class="stabel">
+        <Malestrek tekst="2021" />
+        <Malestrek tekst="2025 – nå" farge="#3d6b5c" />
+        <Malestrek tekst="2019 – 2026" tegn />
+      </div>
+    </section>
+
+    <section>
+      <h2>Tittelfelt</h2>
+      <Tittelfelt
+        felt={[
+          { etikett: "Periode", verdi: "2021" },
+          { etikett: "Rolle", verdi: "Industridesign, 3D-modellering og prototyping" },
+          { etikett: "Varighet", verdi: "4 måneder" },
+          { etikett: "Verktøy", verdi: ["Fusion 360", "3D-print"] },
+        ]}
+      />
+    </section>
+
+    <section class="prosa">
+      <h2>Bilde</h2>
+      <Bilde src={ferdig} alt="Det ferdige headsettet" bredde="tekst" tekst="bredde=tekst — følger tekstspalten." />
+      <Bilde src={eksplodert} alt="Eksplodert visning" bredde="bred" tekst="bredde=bred — hele innholdsbredden." kreditt="Navn Navnesen" />
+      <Bilde src={eksplodert} alt="Eksplodert visning" bredde="kant" tekst="bredde=kant — fra kant til kant." />
+
+      <h2>Bilderutenett</h2>
+      <Bilderutenett>
+        <Bilde src={knapper} alt="Knapper" tekst="To kolonner" />
+        <Bilde src={hengsel} alt="Hengsel" tekst="To kolonner" />
+      </Bilderutenett>
+
+      <h2>Innsikt</h2>
+      <Innsikt kilde="Fra brukerintervju, 2020">
+        Folk vil gjerne sortere riktig, men de vet ikke hvor ting skal, og løsningen hjemme gjør det tungvint.
+      </Innsikt>
+
+      <h2>Prototyper</h2>
+      <Prototyper
+        prototyper={[
+          { bilde: pKopper, alt: "Printede øreskåler", navn: "Øreskåler", laerdom: "Hva prototypen viste, i én–to setninger." },
+          { bilde: pBoyle, alt: "Printede hodebøyler", navn: "Hodebøyle", laerdom: "Hva prototypen viste, i én–to setninger." },
+          { bilde: pTest, alt: "Prototype på hodet", navn: "Test på hodet", laerdom: "Hva prototypen viste, i én–to setninger." },
+        ]}
+      />
+
+      <h2>Demo</h2>
+      <Demo
+        type="video"
+        src="/projects/sorting-guide/prototype-gjennomgang.mp4"
+        plakat="/projects/sorting-guide/prototype-gjennomgang-poster.jpg"
+        tittel="Gjennomgang av prototypen"
+        tekst="Video eller iframe i samme ramme."
+      />
+    </section>
+
+    {
+      eksempel && (
+        <section>
+          <h2>Prosjektkort</h2>
+          <div class="stabel stor-avstand">
+            <ProsjektKort prosjekt={eksempel} variant="stor" />
+            <div class="to">
+              <ProsjektKort prosjekt={eksempel} />
+              <ProsjektKort prosjekt={eksempel} />
+            </div>
+          </div>
+
+          <h2>Mer arbeid</h2>
+          <MerArbeid prosjekter={[eksempel]} />
+
+          <h2>Neste prosjekt</h2>
+          <NesteProsjekt prosjekt={eksempel} />
+        </section>
+      )
+    }
+  </div>
+</Side>
+
+<style>
+  .stilguide {
+    padding-top: clamp(2.5rem, 2rem + 4vw, 6rem);
+  }
+  h1 {
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    letter-spacing: -0.035em;
+  }
+  section {
+    padding-top: 5rem;
+  }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    margin-bottom: 1.5rem;
+  }
+  section h2:not(:first-child) {
+    margin-top: 5rem;
+  }
+  .forklaring {
+    margin-top: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-blyant);
+  }
+  code {
+    font-size: 0.9em;
+  }
+  .farger {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 1.5rem 1rem;
+    list-style: none;
+    padding: 0;
+  }
+  .farger li {
+    display: grid;
+    font-size: var(--text-liten);
+  }
+  .prove {
+    height: 5rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid var(--color-linje);
+  }
+  .bruk {
+    color: var(--color-blyant);
+  }
+  .skala > div {
+    display: grid;
+    gap: 0.25rem 2rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--color-linje);
+  }
+  @media (min-width: 48rem) {
+    .skala > div {
+      grid-template-columns: 8rem 1fr;
+      align-items: baseline;
+    }
+  }
+  .skala dt {
+    font-size: var(--text-liten);
+    color: var(--color-blyant);
+  }
+  .t-display { font-size: var(--text-display); line-height: var(--text-display--line-height); font-weight: 780; letter-spacing: -0.035em; }
+  .t-h2 { font-size: var(--text-h2); line-height: var(--text-h2--line-height); font-weight: 780; letter-spacing: -0.025em; }
+  .t-h3 { font-size: var(--text-h3); line-height: var(--text-h3--line-height); font-weight: 780; letter-spacing: -0.025em; }
+  .t-ingress { font-size: var(--text-ingress); line-height: var(--text-ingress--line-height); }
+  .t-liten { font-size: var(--text-liten); color: var(--color-blyant); }
+  .stabel {
+    display: grid;
+    gap: 2rem;
+    max-width: 40rem;
+  }
+  .stor-avstand {
+    gap: 5rem;
+    max-width: none;
+  }
+  .to {
+    display: grid;
+    gap: 3rem 2rem;
+  }
+  @media (min-width: 48rem) {
+    .to {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

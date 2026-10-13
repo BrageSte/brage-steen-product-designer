@@ -1,0 +1,102 @@
+---
+tittel: Headset
+ingress: Et sammenleggbart headset for pendling og kontor, designet for sprøytestøping og testet gjennom 3D-printede prototyper.
+niva: case
+rekkefolge: 4
+utkast: true
+start: 2021
+disipliner: [Industridesign, Prototyping, Design for produksjon]
+rolle: Industridesign, 3D-modellering og prototyping
+varighet: 4 måneder
+verktoy: [Fusion 360, 3D-print, Procreate]
+oppdragsgiver: NTNU, emnet Design for Industrialization
+aksentfarge: "#3d6b5c"
+cover: ./bilder/eksplodert-oversikt.jpg
+coverAlt: Eksplodert visning av alle delene i headsettet, lagt ut symmetrisk på grå bakgrunn
+---
+
+import Bilde from "@/components/Bilde.astro";
+import Bilderutenett from "@/components/Bilderutenett.astro";
+import Prototyper from "@/components/Prototyper.astro";
+import Demo from "@/components/Demo.astro";
+
+import ferdig from "./bilder/ferdig-headset.jpg";
+import knapper from "./bilder/detalj-knapper.jpg";
+import hengsel from "./bilder/detalj-hengsel.jpg";
+import funksjoner from "./bilder/funksjoner.jpg";
+import skisserKopp from "./bilder/skisser-kopp.jpg";
+import skisserDetaljer from "./bilder/skisser-detaljer.jpg";
+import pKopper from "./bilder/prototype-kopper.jpg";
+import pBoyle from "./bilder/prototype-boyle.jpg";
+import pHengsel from "./bilder/prototype-hengsel.jpg";
+import pHvit from "./bilder/prototype-hvit.jpg";
+import pTest from "./bilder/prototype-test.jpg";
+import tJustering from "./bilder/tegning-justering.png";
+import tBoyle from "./bilder/tegning-boyle.png";
+import tVenstre from "./bilder/tegning-venstre-side.png";
+import eksplodert from "./bilder/eksplodert-perspektiv.jpg";
+
+{/* SJEKK (Brage): Oppdragsgiver/emne, verktøy (Procreate?) og om dette var et soloprosjekt. */}
+
+## Utfordringen
+
+Oppgaven var å designe et headset for folk som pendler og jobber på kontor, med industriell produksjon som premiss fra første skisse. Headsettet skulle kunne legges sammen og tas med, ligge i prisklassen 200–300 dollar og kunne produseres i 100 000 eksemplarer.
+
+Det betydde at hver del måtte tegnes for sprøytestøping i plast. Formen kunne ikke bare se riktig ut, den måtte også slippe fra formen: alle flater fikk slippvinkler, og veggtykkelser og skillelinjer ble planlagt sammen med uttrykket.
+
+<Bilde src={ferdig} alt="Det ferdige headsettet i grått og brunt, sett skrått forfra" bredde="tekst" />
+
+## Prosess
+
+Jeg startet med å utforske leddtyper og formspråk i skisser. Mye av arbeidet gikk til holderen for øreskålen. Jeg ville at baksiden skulle ha et tydelig eget uttrykk som skilte seg fra den myke koppen.
+
+<Bilderutenett>
+  <Bilde src={skisserKopp} alt="Fargelagte skisser av øreskåler og holdere sett fra siden" tekst="Skisser av øreskål og holder." />
+  <Bilde src={skisserDetaljer} alt="Skisser av knapper, ledd og detaljer i sterke farger" tekst="Detaljer: knapper, ledd og overganger." />
+</Bilderutenett>
+
+## Slik testet jeg det
+
+Vinklene var det vanskeligste. Både for uttrykk og passform krevde de mange runder, og hver justering måtte samtidig fungere med slippvinklene. Derfor 3D-printet jeg delene fortløpende og testet dem fysisk før modellen ble låst.
+
+<Prototyper
+  prototyper={[
+    { bilde: pKopper, alt: "Fem printede øreskåler i svart, grått og hvitt", navn: "Øreskåler", laerdom: "Varianter av koppen side om side, for å sammenligne form og størrelse i hånden." },
+    { bilde: pBoyle, alt: "Tre hvite printede hodebøyler med ulik krumning", navn: "Hodebøyle", laerdom: "Ulike krumninger på bøylen, testet på hodet for trykk og passform." },
+    { bilde: pHengsel, alt: "Printede hengseldeler i hvit plast", navn: "Hengsel og ledd", laerdom: "Leddet som lar headsettet legges sammen, printet i flere versjoner for å finne riktig bevegelse." },
+    { bilde: pHvit, alt: "Komplett hvit prototype av headsettet holdt opp i en hånd", navn: "Hel prototype", laerdom: "Alle delene satt sammen, for å teste helheten før detaljene ble frosset." },
+    { bilde: pTest, alt: "Brage med den hvite prototypen på hodet", navn: "Test på hodet", laerdom: "Prototypen i bruk: komfort og ergonomi vurdert på faktisk hode, ikke bare på skjerm." },
+  ]}
+/>
+
+## Resultat
+
+Det ferdige headsettet er modulært bygget, slik at det er enkelt å sette sammen og å reparere. Knappene sitter samlet på kanten av koppen, og et hengsel med vinkeljustering lar det legges sammen.
+
+<Bilderutenett>
+  <Bilde src={knapper} alt="Nærbilde av knapperaden og ladeporten på kanten av øreskålen" tekst="Knapper og lading samlet på kanten av koppen." />
+  <Bilde src={hengsel} alt="Nærbilde av hengselet mellom bøyle og øreskål" tekst="Hengselet som lar headsettet legges sammen." />
+</Bilderutenett>
+
+<Bilde src={funksjoner} alt="Headsettet med forklaringer: justerbar bøyle, fleksibelt hengsel og knapper" bredde="tekst" />
+
+<Demo
+  type="iframe"
+  src="https://sketchfab.com/models/dd8b8b2a1f0645b6b65a4f19227cc69d/embed"
+  tittel="3D-modell av headsettet"
+  tekst="Hele 3D-modellen med alle komponenter. Dra for å rotere."
+/>
+
+### Produksjonstegninger
+
+Alle komponentene er dokumentert med mål og toleranser, klare for verktøymaker.
+
+<Bilderutenett kolonner={3}>
+  <Bilde src={tJustering} alt="Teknisk tegning: justering av vinkel i midten" tekst="Vinkeljustering" />
+  <Bilde src={tBoyle} alt="Teknisk tegning av hodebøylen med mål" tekst="Bøyle" />
+  <Bilde src={tVenstre} alt="Teknisk tegning av venstre side med snitt" tekst="Venstre side" />
+</Bilderutenett>
+
+<Bilde src={eksplodert} alt="Eksplodert perspektivvisning av alle delene i headsettet" bredde="bred" />
+
+{/* SJEKK (Brage): «Hva jeg lærte» mangler — skriv stikkord i _innboks/prosjekter/headset/notater.md */}
