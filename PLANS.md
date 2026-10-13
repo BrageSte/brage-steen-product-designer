@@ -186,8 +186,13 @@ Mål: live-siden virker og er uavhengig av Lovable, mens vi bygger nytt.
 - [x] Brage: Cloudflare-konto opprettet, repoet koblet til Workers Builds
 - [x] `wrangler.jsonc` (assets fra `dist/`, SPA-fallback) — første bygg feilet uten den;
       verifisert lokalt med `wrangler dev`
-- [ ] Grønt bygg i Cloudflare på PR #24
-- [ ] Brage: legg bragesteen.no til i Cloudflare og bytt navnetjenere hos Domeneshop
+- [x] Grønt bygg i Cloudflare på PR #24 (forhåndsvisning verifisert: alle prosjekter via direkte lenke, 0 ødelagte bilder)
+- [x] Brage: bragesteen.no lagt til i Cloudflare, navnetjenere byttet hos Domeneshop
+      (aragorn/elsa.ns.cloudflare.com). Venter på at Norid tar inn endringen
+- [x] Gammel Lovable-A-post satt til «DNS only» så siden virker som før når sonen aktiveres
+- [ ] Merge PR #24 → `main` (med Brages ja) → produksjonsbygg
+- [ ] Når sonen er aktiv og `main` er bygget: koble `bragesteen.no` + `www` som Custom Domain
+      på Workeren (erstatter Lovable-A-posten)
 - [x] Lagt til `ScrollToTop` (klientnavigasjon startet ellers midt på siden)
 - [x] Verifisert lokalt på produksjonsbygg (`vite preview`): klikk, direkte lenke, 0 ødelagte bilder, mobil uten horisontal scroll
 - [ ] Verifiser på live: alle prosjekter via klikk, direkte lenke og oppdatering — desktop og mobil
@@ -267,6 +272,12 @@ Logg med dato, nyeste nederst.
 - 2026-10-13 — Grenen pushet, PR #24 åpnet. Cloudflare opprettet en Worker (ikke Pages);
   bygget feilet uten konfig → lagt til `wrangler.jsonc` + `wrangler` som dev-avhengighet.
   DNS-flytting pågår (Brage).
+- 2026-10-13 — Cloudflare-oppsett gjennomgått i dashbordet. Bygg feilet pga. utdatert
+  `bun.lock` (Lovable-rest) → fjernet. Forhåndsvisning krevde `"previews": {}` i
+  `wrangler.jsonc` → lagt til. Preview-URL-er slått på. Bygget grønt; forhåndsvisning:
+  https://fase-0-hosting-og-nodfiks-brage-steen-product-designer.brage-steen.workers.dev
+  Domeneshop: navnetjenere byttet, ingen DS-poster i ny konfig (gamle DNSSEC-nøkler hos
+  Norid forsvinner med endringen). Norid viste fortsatt hyp.net kl. 10.00.
 
 ## 10. Beslutningslogg
 
