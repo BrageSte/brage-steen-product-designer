@@ -190,7 +190,8 @@ Mål: live-siden virker og er uavhengig av Lovable, mens vi bygger nytt.
 - [x] Brage: bragesteen.no lagt til i Cloudflare, navnetjenere byttet hos Domeneshop
       (aragorn/elsa.ns.cloudflare.com). Venter på at Norid tar inn endringen
 - [x] Gammel Lovable-A-post satt til «DNS only» så siden virker som før når sonen aktiveres
-- [ ] Merge PR #24 → `main` (med Brages ja) → produksjonsbygg
+- [x] Merge PR #24 → `main` (med Brages ja) → produksjonsbygg grønt, verifisert på
+      https://brage-steen-product-designer.brage-steen.workers.dev
 - [ ] Når sonen er aktiv og `main` er bygget: koble `bragesteen.no` + `www` som Custom Domain
       på Workeren (erstatter Lovable-A-posten)
 - [x] Lagt til `ScrollToTop` (klientnavigasjon startet ellers midt på siden)
@@ -278,6 +279,9 @@ Logg med dato, nyeste nederst.
   https://fase-0-hosting-og-nodfiks-brage-steen-product-designer.brage-steen.workers.dev
   Domeneshop: navnetjenere byttet, ingen DS-poster i ny konfig (gamle DNSSEC-nøkler hos
   Norid forsvinner med endringen). Norid viste fortsatt hyp.net kl. 10.00.
+- 2026-10-13 — PR #24 merget, produksjon bygget og verifisert. Custom Domain kan ikke
+  legges til før Lovable-A-posten (185.158.133.1) slettes i Cloudflare-DNS; slettingen må
+  Brage gjøre/godkjenne selv. Norid viste fortsatt hyp.net etter merge.
 
 ## 10. Beslutningslogg
 
