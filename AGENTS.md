@@ -10,7 +10,7 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
 
 ## Status (oppdater når fasen endres)
 
-- Ombygging pågår. Aktiv fase: **Fase 0** (se PLANS.md).
+- Ombygging pågår. Aktiv fase: **Fase 2** på gren `rebuild/astro` (fase 0 er merget; domenekobling gjenstår).
 - Dagens kode: Vite + React + Tailwind (opprinnelig Lovable-mal). Erstattes av Astro i fase 2–3.
 - Lovable brukes ikke lenger. Ikke legg til Lovable-avhengigheter.
 - Hosting: Cloudflare Workers (statiske filer), konfig i `wrangler.jsonc`. Lokal test av
@@ -35,6 +35,8 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
 - GripSense: følg GripSense-prosjektets regler for tillatt produkttekst. Ikke påstå validert
   måling, treningseffekt eller skadeforebygging.
 - Ikke finn på fakta (tall, team, resultater). Mangler noe: spør eller la seksjonen stå ute.
+- Personvern: kun e-post synlig på nettsiden. Aldri adresse, fødselsdato eller telefon.
+- Krediter fotografer (f.eks. «Foto: Vilde Abrahamsen» på Caddy-bildene).
 
 ## Råmateriale og bilder
 

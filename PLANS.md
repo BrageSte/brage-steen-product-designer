@@ -56,6 +56,22 @@ i innholdsfilene og kan endres uten kodeendring.
 
 Ikke med (besluttet): Air PnP, Bryggr.
 
+### To nivåer: utvalgte prosjekter + «Mer arbeid» (besluttet 2026-10-13)
+
+Brage har mer å vise enn seks prosjektsider rommer. Derfor:
+
+1. **Utvalgte prosjekter** — de seks over, med full prosjektside fra malen.
+2. **Mer arbeid** — korte oppføringer under prosjektene på forsiden: bilde, 2–3 setninger,
+   rolle, år og evt. lenke. Ingen egen side (kan få det senere). Kandidater:
+   - Harkokt — nettside, logo m.m. for kokk Markus Dybwad (`~/Documents/Markus Jobb`)
+   - Kaia Tel Han Kai — «samskapingsfestival» med 300 deltakere, medgründer og ko-festivalsjef (2020–2022)
+   - Looping AS — frilans tjenestedesign: kontrollsystem for produktflåten til Algeco/Modulaire (2021)
+   - Flere etter hvert (samme innholdsmodell med `niva: kort`)
+3. **Om meg** — erfaring som tidslinje (murer, Gneis, TT Meat, lærerassistent osv.) med kort
+   kobling til hva hver erfaring ga som designer.
+
+Innholdsmodellen får feltet `niva: case | kort`.
+
 ## 5. Teknisk retning (besluttet)
 
 - **Rammeverk:** Astro (statisk HTML per side, innebygd bildeoptimalisering, content
@@ -76,7 +92,7 @@ Ikke med (besluttet): Air PnP, Bryggr.
 
 | URL | Innhold |
 |---|---|
-| `/` | Intro + alle prosjekter (erstatter også `/work`) |
+| `/` | Intro + utvalgte prosjekter + «Mer arbeid» (erstatter også `/work`) |
 | `/prosjekter/<slug>` | Prosjektside fra felles mal |
 | `/om-meg` | Hvem jeg er, erfaring/CV, verktøy, kontakt |
 | `/cv/brage-steen-cv.pdf` | Nedlastbar CV |
@@ -124,6 +140,7 @@ _innboks/                  # råmateriale fra Brage — ikke i git (se _innboks/
 ```yaml
 tittel: GripSense
 slug: gripsense
+niva: case               # case = full side, kort = oppføring i «Mer arbeid»
 ingress: Én setning som brukes på kortet og øverst på siden.
 periode: "2025–2026"
 status: ferdig | pagaende
@@ -227,7 +244,8 @@ Mål: live-siden virker og er uavhengig av Lovable, mens vi bygger nytt.
 - [ ] GripSense (følg GripSense-prosjektets egne regler for tillatt produkttekst — ikke
       påstå validert målenøyaktighet før det er dokumentert)
 - [ ] Caddy-camper
-- [ ] Om meg + CV-PDF + portrett
+- [ ] Om meg + CV-PDF (uten adresse/fødselsdato) + portrett
+- [ ] «Mer arbeid»: Harkokt, Kaia Tel Han Kai, Looping AS
 
 ### Fase 5 — Lansering
 
@@ -269,8 +287,9 @@ reglene i AGENTS.md før de havner i repoet.
 | Avfallsportalen | `public/embeds/avfallsportalen/` | Selve appen (statisk HTML) |
 | Headset | `~/Documents/Portolfio/Headsett` + `_innboks/prosjekter/headset/kilde/` | Renders (`jadda.*`), skisser (`Untitled_Artwork*`), prototyping, tekniske tegninger |
 | Seaweed | `~/Documents/Skole backup /bap3010` + `~/Documents/Portolfio/BAPD3100.TingavTANG.pdf` | Prosjektrapport, refleksjonsnotat, bilder, illustrasjoner |
-| Caddy-camper | `~/Documents/Caddy the Baddie` | 24 foto av **fotograf Vilde Abrahamsen** (krever kreditering + avklart bruk), egne bilder, video (`IMG_3989.MOV`) |
-| Om meg / CV | `_innboks/cv/CV_BrageSteen.pdf` | Erfaring, utdanning, ferdigheter. **Publiser ikke** adresse, fødselsdato eller telefon fra CV-en |
+| Caddy-camper | `~/Documents/Caddy the Baddie` | 24 foto av fotograf Vilde Abrahamsen (bruk avklart av Brage; krediter «Foto: Vilde Abrahamsen»), egne bilder, video (`IMG_3989.MOV`) |
+| Harkokt (kort) | `~/Documents/Markus Jobb` | Logo-/artboard-filer (PNG/SVG), Stormkjøkkenet, MT Hurricane |
+| Om meg / CV | `_innboks/cv/CV_BrageSteen.pdf` | Erfaring, utdanning, ferdigheter. På nettsiden: kun e-post. Nedlastbar CV-PDF kan ha telefon, men ikke adresse eller fødselsdato |
 
 ---
 
@@ -311,6 +330,10 @@ Logg med dato, nyeste nederst.
 | 2026-10-13 | Posisjonering: produktdesigner, prototyping som styrke; kode/elektronikk er verktøy | Brage søker ikke kode-/kretskortjobber |
 | 2026-10-13 | Bort fra Lovable → Astro + Cloudflare Pages | Lovable-abonnement avsluttet; Astro passer innholdsdrevet portefølje |
 | 2026-10-13 | Cloudflare Workers (statiske filer) i stedet for Pages | Cloudflare satte opp Workers Builds; samme gratis hosting, konfig i `wrangler.jsonc` |
+| 2026-10-13 | To nivåer: utvalgte prosjekter + «Mer arbeid» | Mye å vise (festival, frilans tjenestedesign, Harkokt) uten å blåse opp antall prosjektsider |
+| 2026-10-13 | Kun e-post synlig på nettsiden; telefon kun i nedlastbar CV | Brages valg; adresse og fødselsdato publiseres ikke |
+| 2026-10-13 | Master-formulering: valgte andre muligheter; da han skulle fullføre, var det toårige løpet avsluttet | Brages egen formulering |
+| 2026-10-13 | Caddy-bilder fra Vilde Abrahamsen kan brukes, krediteres | Brage har tillatelse |
 | 2026-10-13 | Råmateriale i `_innboks/`, ikke i git | Offentlig repo; råbilder er store og kan ha GPS/EXIF; CV kan inneholde personopplysninger |
 
 ## 11. Åpne spørsmål
@@ -318,3 +341,5 @@ Logg med dato, nyeste nederst.
 - Endelig tittel og forsidetekst (fase 1).
 - Skal CV-en lages på nytt (f.eks. generert fra `cv-info.md`) eller bruker vi en eksisterende?
 - Plassering av Caddy-camper i rekkefølgen — vurderes når bildene er inne.
+- Harkokt: riktig domene/lenke (harkokt.no svarte ikke 2026-10-13), og hva Brage laget utover nettside og logo.
+- Festival og Looping: finnes det bilder?
