@@ -60,11 +60,12 @@ Ikke med (besluttet): Air PnP, Bryggr.
 
 - **Rammeverk:** Astro (statisk HTML per side, innebygd bildeoptimalisering, content
   collections). React kun for interaktive øyer der det trengs. Tailwind for styling.
-- **Hosting:** Cloudflare Pages, koblet til GitHub. Push til `main` = produksjon,
-  andre grener = forhåndsvisnings-URL.
+- **Hosting:** Cloudflare Workers med statiske filer (Cloudflares nye standard i stedet for
+  Pages), koblet til GitHub via Workers Builds. Konfig i `wrangler.jsonc`. Push til `main` =
+  produksjon, andre grener = forhåndsvisnings-URL.
 - **DNS:** bragesteen.no ligger hos Domeneshop (ns*.hyp.net) og peker i dag på Lovable
   (185.158.133.1). Navnetjenerne flyttes til Cloudflare (gratis) — nødvendig for å bruke
-  rotdomenet på Cloudflare Pages. Sjekket 2026-10-13: ingen MX- eller TXT-poster, så ingen
+  rotdomenet på Cloudflare. Sjekket 2026-10-13: ingen MX- eller TXT-poster, så ingen
   e-post å flytte.
 - **Visuelt utgangspunkt:** dagens typografi (Instrument Serif + IBM Plex Sans) og varme
   off-white bakgrunn beholdes som start og spisses i fase 2.
@@ -83,7 +84,7 @@ Ikke med (besluttet): Air PnP, Bryggr.
 
 Kontaktinfo ligger i bunnteksten på alle sider og på `/om-meg`.
 
-### Videresendinger (Cloudflare `_redirects`, 301)
+### Videresendinger (`_redirects` i statiske filer, 301)
 
 | Gammel | Ny |
 |---|---|
@@ -182,8 +183,10 @@ Mål: live-siden virker og er uavhengig av Lovable, mens vi bygger nytt.
 - [x] Flytt `public/projects/headset-pictures/` (110 MB kildebilder, ubrukt av siden) ut av
       `public/` til `_innboks/prosjekter/headset/kilde/`
 - [x] Fjern `lovable-tagger` og `.lovable/`
-- [ ] Brage: opprett Cloudflare-konto, koble repoet til Cloudflare Pages
-      (bygg: `npm run build`, utdata: `dist`)
+- [x] Brage: Cloudflare-konto opprettet, repoet koblet til Workers Builds
+- [x] `wrangler.jsonc` (assets fra `dist/`, SPA-fallback) — første bygg feilet uten den;
+      verifisert lokalt med `wrangler dev`
+- [ ] Grønt bygg i Cloudflare på PR #24
 - [ ] Brage: legg bragesteen.no til i Cloudflare og bytt navnetjenere hos Domeneshop
 - [x] Lagt til `ScrollToTop` (klientnavigasjon startet ellers midt på siden)
 - [x] Verifisert lokalt på produksjonsbygg (`vite preview`): klikk, direkte lenke, 0 ødelagte bilder, mobil uten horisontal scroll
@@ -261,6 +264,9 @@ Logg med dato, nyeste nederst.
   Cloudflare Pages + DNS (Brage). Merk: gigamap-originalen hadde e-post/telefon til Brage og
   Regina nederst — maskert i nettversjonen. Video komprimert lokalt med Swift/AVFoundation
   (ffmpeg ikke installert).
+- 2026-10-13 — Grenen pushet, PR #24 åpnet. Cloudflare opprettet en Worker (ikke Pages);
+  bygget feilet uten konfig → lagt til `wrangler.jsonc` + `wrangler` som dev-avhengighet.
+  DNS-flytting pågår (Brage).
 
 ## 10. Beslutningslogg
 
@@ -273,6 +279,7 @@ Logg med dato, nyeste nederst.
 | 2026-10-13 | GripSense og Caddy-camper med; Air PnP og Bryggr ikke | Styrker prototyping-profilen |
 | 2026-10-13 | Posisjonering: produktdesigner, prototyping som styrke; kode/elektronikk er verktøy | Brage søker ikke kode-/kretskortjobber |
 | 2026-10-13 | Bort fra Lovable → Astro + Cloudflare Pages | Lovable-abonnement avsluttet; Astro passer innholdsdrevet portefølje |
+| 2026-10-13 | Cloudflare Workers (statiske filer) i stedet for Pages | Cloudflare satte opp Workers Builds; samme gratis hosting, konfig i `wrangler.jsonc` |
 | 2026-10-13 | Råmateriale i `_innboks/`, ikke i git | Offentlig repo; råbilder er store og kan ha GPS/EXIF; CV kan inneholde personopplysninger |
 
 ## 11. Åpne spørsmål

@@ -13,7 +13,8 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
 - Ombygging pågår. Aktiv fase: **Fase 0** (se PLANS.md).
 - Dagens kode: Vite + React + Tailwind (opprinnelig Lovable-mal). Erstattes av Astro i fase 2–3.
 - Lovable brukes ikke lenger. Ikke legg til Lovable-avhengigheter.
-- Hosting flyttes til Cloudflare Pages i fase 0.
+- Hosting: Cloudflare Workers (statiske filer), konfig i `wrangler.jsonc`. Lokal test av
+  produksjonsoppsettet: `npm run build && npx wrangler dev`.
 
 ## Arbeidsregler
 
