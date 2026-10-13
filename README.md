@@ -1,36 +1,22 @@
-# Brage Steen Portfolio
+# bragesteen.no
 
-Denne porteføljen er bygget med Vite + React og er klar for Lovable deploy.
+Porteføljen til Brage Steen, produktdesigner. Live på https://bragesteen.no.
 
-## Oppdatere bilder
+> **Ombygging pågår.** Planen, beslutningene og fremdriften står i [PLANS.md](PLANS.md).
 
-### Bilde-previews (for enklere gjennomgang)
-- For alle bilder i `public/` genereres det en mindre preview i en `previews/`-mappe med samme filnavn.
-- Les alltid preview først; bruk originalen i faktisk prosjekt/produksjon.
-- Generer previews manuelt: `npm run previews:build`
-- Kjør watcher mens du jobber: `npm run previews:watch`
-- Aktiver auto‑preview på commit: `npm run hooks:install` (macOS `sips` kreves)
+## Legge til materiale (bilder, CV, notater)
 
-### Prosjekt‑HTML (statisk)
-- Prosjektsidene ligger i `public/projects/...`.
-- Alle bilder som brukes av HTML‑sidene må ligge i samme mappe som HTML‑filen.
-- Når du bytter bilde, bruk nøyaktig samme filnavn som i HTML‑en (eller oppdater `src="..."` i HTML‑en).
+Legg originalfiler i `_innboks/` — se [_innboks/README.md](_innboks/README.md) for hvilken
+mappe som gjelder hva. Mappen lagres ikke i git, så behold originalene også et annet sted.
 
-### Om meg‑portrett
-- Bytt ut `public/images/portrait.jpg` med ditt portrett.
-- Bildet vises automatisk på `/about`.
-
-### Open Graph‑bilde
-- Bytt ut `public/images/og-image.jpg` for deling i sosiale medier.
-- Pass på at bildet er i 1200x630 (eller lignende 1.91:1‑format).
-
-### Prosjekt‑covers på forsiden
-- Oppdater `src/content/projects/index.ts`.
-- For ekte bilder, legg filen i `public/images/` og sett `cover` til `/images/filnavn.jpg`.
-- Vil du beholde gradienter, juster `coverGradient`‑verdien.
-
-## Bygg
+## Kjøre lokalt
 
 ```bash
-npm run build
+npm install
+npm run dev        # http://localhost:8080
+npm run build      # bygger til dist/
 ```
+
+## For AI-agenter
+
+Se [AGENTS.md](AGENTS.md).
