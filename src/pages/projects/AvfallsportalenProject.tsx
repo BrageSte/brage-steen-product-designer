@@ -5,7 +5,7 @@ export default function AvfallsportalenProject() {
     <SiteLayout>
       <main id="main-content" className="bg-background">
         <iframe
-          src="/projects/avfallsportalen/index.html"
+          src="/embeds/avfallsportalen/"
           title="Avfallsportalen - Interaktiv læringsportal"
           className="w-full border-none block"
           style={{ height: "calc(100vh - 72px)" }}

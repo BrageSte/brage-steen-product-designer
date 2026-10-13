@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Råmateriale fra Brage — kun lokalt (offentlig repo, store filer, EXIF/GPS, personopplysninger)
+/_innboks/*
+!/_innboks/README.md
