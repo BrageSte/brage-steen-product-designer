@@ -4,6 +4,7 @@ import Work from "@/pages/Work";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
+import ScrollToTop from "@/components/ScrollToTop";
 import HeadsetProject from "@/pages/projects/HeadsetProject";
 import SortingGuideProject from "@/pages/projects/SortingGuideProject";
 import SeaweedProject from "@/pages/projects/SeaweedProject";
@@ -13,6 +14,7 @@ import BSClimbingProject from "@/pages/projects/BSClimbingProject";
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work/*" element={<Work />} />

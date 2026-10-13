@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import TagPill from "./TagPill";
 import type { Project } from "@/content/projects/index";
 
@@ -9,8 +10,8 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
   return (
-    <a
-      href={project.href}
+    <Link
+      to={project.href}
       className="group project-card opacity-0 animate-fade-in-up"
       style={{ animationDelay: `${index * 0.08}s` }}
     >
@@ -41,7 +42,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
           {project.excerpt}
         </p>
       </div>
-    </a>
+    </Link>
   );
 };
 

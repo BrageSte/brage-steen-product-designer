@@ -52,7 +52,7 @@ export const projects: Project[] = [
     coverGradient:
       "linear-gradient(140deg, #dbe7e1 0%, #f5f2ed 55%, #d9e3d8 100%)",
     cover:
-      "https://bragesteen.wordpress.com/wp-content/uploads/2025/05/fooodruewyrh12-copy.png?w=1024",
+      "/projects/seaweed/overview.png",
   },
   {
     title: "Avfallsportalen",

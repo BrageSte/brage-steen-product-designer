@@ -1085,50 +1085,33 @@ function GigamapSection() {
           className="bg-white rounded-3xl p-6 md:p-8"
           style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}
         >
-          <div className="rounded-2xl overflow-hidden" style={{ background: colors.warmGray }}>
+          <a
+            href={`${basePath}/gigamap-stor.jpg`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-2xl overflow-hidden max-w-[900px] mx-auto"
+            style={{ background: colors.warmGray }}
+          >
             <img
-              src={`${basePath}/gigamap.png`}
-              alt="Gigamap: Waste in the World - comprehensive research visualization"
+              src={`${basePath}/gigamap.jpg`}
+              alt="Gigamap «Resource Map»: avfall i verden, Europa, Norge og Oslo, og hvordan folk sorterer hjemme"
+              width={1400}
+              height={3219}
               className="w-full h-auto block"
               loading="lazy"
               decoding="async"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = "none";
-                const placeholder = target.nextElementSibling as HTMLElement;
-                if (placeholder) placeholder.style.display = "flex";
-              }}
             />
-            {/* Fallback placeholder */}
-            <div
-              className="hidden flex-col items-center justify-center text-center p-12"
-              style={{ aspectRatio: "16/9" }}
+          </a>
+          <p className="text-center text-sm text-gray-500 mt-6">
+            <a
+              href={`${basePath}/gigamap-stor.jpg`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-gray-800"
             >
-              <svg
-                viewBox="0 0 24 24"
-                className="w-20 h-20 mb-6"
-                style={{
-                  stroke: colors.greenMain,
-                  strokeWidth: 1,
-                  fill: "none",
-                  opacity: 0.6,
-                }}
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <line x1="3" y1="9" x2="21" y2="9" />
-                <line x1="9" y1="21" x2="9" y2="9" />
-              </svg>
-              <h3
-                className="text-2xl mb-3"
-                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-              >
-                Gigamap Visualization
-              </h3>
-              <p className="text-gray-500 max-w-[400px]">
-                The full Gigamap visualization will be displayed here.
-              </p>
-            </div>
-          </div>
+              Open full-size gigamap
+            </a>
+          </p>
         </div>
       </div>
     </section>
@@ -1137,10 +1120,23 @@ function GigamapSection() {
 
 // Prototype Section
 function PrototypeSection() {
-  const ADOBE_XD_URL =
-    "https://xd.adobe.com/embed/60cd8d3c-32ed-435d-7295-8826c2431807-16fc/?fullscreen&hints=on";
-  const ADOBE_XD_VIEW_URL =
-    "https://xd.adobe.com/view/60cd8d3c-32ed-435d-7295-8826c2431807-16fc/?fullscreen&hints=on";
+  const screens = [
+    {
+      src: `${basePath}/prototype-forside.jpg`,
+      alt: "Forsiden i Sorting Guide-prototypen med Home Recycling Builder",
+      caption: "Front page",
+    },
+    {
+      src: `${basePath}/prototype-anbefaling.jpg`,
+      alt: "Anbefalt sorteringsløsning basert på brukerens svar",
+      caption: "Personal recommendation",
+    },
+    {
+      src: `${basePath}/prototype-ditt-omrade.jpg`,
+      alt: "Sorteringsregler for brukerens kommune",
+      caption: "Recycling in your area",
+    },
+  ];
 
   return (
     <section
@@ -1155,7 +1151,7 @@ function PrototypeSection() {
             className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
             style={{ color: colors.greenPale }}
           >
-            Interactive Prototype
+            Prototype
           </span>
           <h2
             className="text-white mb-4"
@@ -1166,140 +1162,57 @@ function PrototypeSection() {
               lineHeight: 1.15,
             }}
           >
-            Try the Sorting Guide
+            Walkthrough of the Sorting Guide
           </h2>
           <p
             className="text-lg max-w-[640px] mx-auto leading-relaxed"
             style={{ color: "rgba(255,255,255,0.7)" }}
           >
-            Experience the interactive prototype we developed in Adobe XD.
-            Navigate through the service and see how it guides users to better
-            recycling habits.
+            A guided walkthrough of the clickable prototype: from the front page,
+            through the Home Recycling Builder, to local guidelines, tips and
+            the product guide.
           </p>
         </div>
 
-        {/* Desktop: iframe */}
-        <div className="hidden md:block">
-          <div
-            className="bg-white rounded-2xl overflow-hidden mx-auto"
-            style={{
-              maxWidth: "1200px",
-              aspectRatio: "16/10",
-              boxShadow: "0 50px 100px rgba(0,0,0,0.3)",
-            }}
+        <div
+          className="rounded-2xl overflow-hidden mx-auto bg-black"
+          style={{
+            maxWidth: "1200px",
+            boxShadow: "0 50px 100px rgba(0,0,0,0.3)",
+          }}
+        >
+          <video
+            src={`${basePath}/prototype-gjennomgang.mp4`}
+            poster={`${basePath}/prototype-gjennomgang-poster.jpg`}
+            controls
+            preload="none"
+            playsInline
+            className="w-full h-auto block aspect-video"
           >
-            <iframe
-              src={ADOBE_XD_URL}
-              title="The Sorting Guide Interactive Prototype"
-              className="w-full h-full border-none"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-
-          {/* Instructions */}
-          <div className="flex justify-center gap-8 mt-8">
-            <div
-              className="flex items-center gap-2 text-sm"
-              style={{ color: "rgba(255,255,255,0.6)" }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="none"
-                stroke={colors.greenPale}
-                strokeWidth="2"
-              >
-                <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" />
-              </svg>
-              Click to interact
-            </div>
-            <div
-              className="flex items-center gap-2 text-sm"
-              style={{ color: "rgba(255,255,255,0.6)" }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="none"
-                stroke={colors.greenPale}
-                strokeWidth="2"
-              >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="none"
-                stroke={colors.greenPale}
-                strokeWidth="2"
-                style={{ marginLeft: -8 }}
-              >
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-              Navigate screens
-            </div>
-            <div
-              className="flex items-center gap-2 text-sm"
-              style={{ color: "rgba(255,255,255,0.6)" }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="none"
-                stroke={colors.greenPale}
-                strokeWidth="2"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-              Hover for hints
-            </div>
-          </div>
+            <a href={`${basePath}/prototype-gjennomgang.mp4`}>Last ned videoen</a>
+          </video>
         </div>
 
-        {/* Mobile: Warning message */}
-        <div className="block md:hidden text-center">
-          <div
-            className="rounded-2xl p-8"
-            style={{ background: "rgba(255,255,255,0.05)" }}
-          >
-            <h3
-              className="text-xl text-white mb-3"
-              style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-            >
-              Best Viewed on Desktop
-            </h3>
-            <p className="mb-6" style={{ color: "rgba(255,255,255,0.6)" }}>
-              This interactive prototype is optimized for larger screens.
-            </p>
-            <a
-              href={ADOBE_XD_VIEW_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white transition-all hover:-translate-y-0.5"
-              style={{ background: colors.greenMain }}
-            >
-              Open in Adobe XD
-              <svg
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
+        <div className="grid gap-6 md:grid-cols-3 mt-12 max-w-[1200px] mx-auto">
+          {screens.map((screen) => (
+            <figure key={screen.src}>
+              <img
+                src={screen.src}
+                alt={screen.alt}
+                width={1600}
+                height={1000}
+                className="w-full h-auto rounded-xl bg-white"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption
+                className="mt-3 text-sm"
+                style={{ color: "rgba(255,255,255,0.6)" }}
               >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-            </a>
-          </div>
+                {screen.caption}
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>

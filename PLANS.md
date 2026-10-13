@@ -170,21 +170,23 @@ Header/footer.
 
 Mål: live-siden virker og er uavhengig av Lovable, mens vi bygger nytt.
 
-- [ ] Prosjektkort bruker `<Link>` i stedet for `<a href>` (`src/components/ui/ProjectCard.tsx`)
-- [ ] Slett gamle statiske prosjektsider som overstyrer React-sidene:
+- [x] Prosjektkort bruker `<Link>` i stedet for `<a href>` (`src/components/ui/ProjectCard.tsx`)
+- [x] Slett gamle statiske prosjektsider som overstyrer React-sidene:
       `public/projects/{headset,seaweed,sorting-guide}/index.html`,
       `public/projects/sorting-guide/{prototype,gigamap}.html`, `public/projects/site-nav.css`,
       `portfolio.html`
-- [ ] Flytt Avfallsportalen-appen til `public/embeds/avfallsportalen/` og oppdater iframe + cover-sti
-- [ ] Seaweed-cover: bytt WordPress-URL med lokalt bilde
-- [ ] Sorting Guide: manglende `gigamap.png` (trenger fil fra Brage) og død Adobe XD-embed
-      (bytt til skjermbilder/lenke; skjul seksjonen til materiale finnes)
-- [ ] Flytt `public/projects/headset-pictures/` (110 MB kildebilder, ubrukt av siden) ut av
+- [x] Flytt Avfallsportalen-appen til `public/embeds/avfallsportalen/` og oppdater iframe + cover-sti
+- [x] Seaweed-cover: bytt WordPress-URL med lokalt bilde
+- [x] Sorting Guide: gigamap (fra .ai, kontaktinfo maskert) + stor versjon; død Adobe XD-embed
+      byttet med gjennomgangsvideo (20 MB, 720p) og tre skjermbilder
+- [x] Flytt `public/projects/headset-pictures/` (110 MB kildebilder, ubrukt av siden) ut av
       `public/` til `_innboks/prosjekter/headset/kilde/`
-- [ ] Fjern `lovable-tagger` og `.lovable/`
+- [x] Fjern `lovable-tagger` og `.lovable/`
 - [ ] Brage: opprett Cloudflare-konto, koble repoet til Cloudflare Pages
       (bygg: `npm run build`, utdata: `dist`)
 - [ ] Brage: legg bragesteen.no til i Cloudflare og bytt navnetjenere hos Domeneshop
+- [x] Lagt til `ScrollToTop` (klientnavigasjon startet ellers midt på siden)
+- [x] Verifisert lokalt på produksjonsbygg (`vite preview`): klikk, direkte lenke, 0 ødelagte bilder, mobil uten horisontal scroll
 - [ ] Verifiser på live: alle prosjekter via klikk, direkte lenke og oppdatering — desktop og mobil
 
 ### Fase 1 — Hvem du er (innhold, ingen kode)
@@ -255,6 +257,10 @@ Logg med dato, nyeste nederst.
   sider med ødelagte bilder (Headset 18/18, Sorting Guide 9/9, Seaweed 9/9); Seaweed-cover
   fra WordPress ødelagt; `gigamap.png` mangler; Adobe XD-embed blank. Plan skrevet,
   dokumentasjon ryddet, `_innboks/` opprettet.
+- 2026-10-13 — Fase 0 kodeendringer ferdig på gren `fase-0/hosting-og-nodfiks`. Gjenstår:
+  Cloudflare Pages + DNS (Brage). Merk: gigamap-originalen hadde e-post/telefon til Brage og
+  Regina nederst — maskert i nettversjonen. Video komprimert lokalt med Swift/AVFoundation
+  (ffmpeg ikke installert).
 
 ## 10. Beslutningslogg
 
