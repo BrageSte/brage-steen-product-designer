@@ -2,7 +2,9 @@
 
 Porteføljen til Brage Steen, produktdesigner. Live på https://bragesteen.no.
 
-> **Ombygging pågår.** Planen, beslutningene og fremdriften står i [PLANS.md](PLANS.md).
+> **Portefølje klar for jobbsøking.** Vi videreutvikler den eksisterende Vite/React-siden.
+> [Hovedplanen](PLANS.md) samler prioritering, prosjektplaner og ferdigkriterier.
+> Se også [kontrollrapporten fra 22. oktober 2026](docs/portefolje/kontroll/2026-10-22.md).
 
 ## Legge til materiale (bilder, CV, notater)
 

@@ -77,12 +77,13 @@ function HeroSection() {
           className="text-lg max-w-[500px] mx-auto mb-12 max-md:mb-8 max-md:text-base"
           style={{ color: colors.sand }}
         >
-          Exploring the potential of kelp as a sustainable material for product
-          design and manufacturing.
+          Exploring seaweed as a material for product concepts through hands-on
+          experiments.
         </p>
         <div className="flex flex-wrap gap-12 justify-center text-sm max-md:flex-col max-md:gap-6">
           {[
             { label: "Team", value: "Brage Steen, Thomas Rokstad, Ly Nguyen" },
+            { label: "Brage's contribution", value: "Developing test methods" },
             { label: "Duration", value: "11 Weeks" },
             { label: "Year", value: "2019" },
           ].map((item) => (
@@ -102,7 +103,7 @@ function HeroSection() {
 
       {/* Scroll indicator - positioned above waves */}
       <div
-        className="absolute bottom-[190px] max-md:bottom-[150px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
+        className="absolute bottom-[190px] max-md:static max-md:translate-x-0 max-md:mt-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
         style={{ color: colors.sand }}
       >
         SCROLL
@@ -182,22 +183,13 @@ function OverviewSection() {
             simple products?
           </h2>
           <p
-            className="text-lg leading-relaxed mb-4"
-            style={{ color: colors.oceanMid, maxWidth: "700px" }}
-          >
-            In today's society, finding alternative resources to replace
-            materials that harm the environment is a growing challenge.
-            Materials like plastic, concrete, and aluminum are often
-            non-recyclable and non-biodegradable.
-          </p>
-          <p
             className="text-lg leading-relaxed"
             style={{ color: colors.oceanMid, maxWidth: "700px" }}
           >
-            Norway aims to produce 20 million tons of seaweed by 2050, creating
-            values of approximately 40 billion NOK. With this project, we wanted
-            to explore the possibilities of using seaweed as a physical material
-            that could contribute positively to the green shift.
+            The team explored whether seaweed could be processed into a material
+            for simple product concepts. The experiments documented challenges
+            with drying, cracking and shrinkage; they did not establish
+            environmental or commercial performance.
           </p>
         </div>
         <div
@@ -229,16 +221,16 @@ function OverviewSection() {
 function BackgroundSection() {
   const cards = [
     {
-      title: "Historical Use",
-      desc: "In the 18th-19th centuries, seaweed was burned to produce ash for glass production and soap manufacturing. The ash was exported primarily to England and Scotland.",
+      title: "Project question",
+      desc: "Could seaweed be developed into a material for simple product concepts? The team explored this through hands-on material experiments.",
     },
     {
-      title: "Environmental Benefits",
-      desc: "Seaweed consumes CO2 during growth, produces oxygen, and acts as a filter for the ocean—absorbing nitrogen, heavy metals, and pollution from fish farms.",
+      title: "Material experiments",
+      desc: "The report describes processing, additives and drying trials, including difficulties with cracking and shrinkage.",
     },
     {
-      title: "Future Potential",
-      desc: "Norway's long coastline offers near-perfect conditions for seaweed production. The Norwegian Institute for Water Research believes seaweed farming could become the next major industry.",
+      title: "Product directions",
+      desc: "The project explored packaging, servingware and plant pots as possible applications.",
     },
   ];
 
@@ -321,7 +313,7 @@ function ProcessSection() {
     {
       num: 2,
       title: "Processing",
-      desc: "The seaweed was ground before cooking, then boiled for 3 hours with sodium carbonate (1 tbsp per 100ml water) to extract alginate and create a workable paste.",
+      desc: "The report describes grinding and boiling seaweed with sodium carbonate to make a workable paste; the method was part of the team's material experiments.",
     },
     {
       num: 3,
@@ -437,9 +429,9 @@ function MaterialsSection() {
           Material Testing & Analysis
         </h2>
         <p className="text-lg leading-relaxed max-w-[700px]" style={{ color: colors.oceanMid }}>
-          We produced over 90 material samples, testing different combinations
-          for strength, texture, smell, and appearance. Each was evaluated on a
-          scale of 1-5 by a focus group.
+          We made material samples and compared combinations for properties
+          such as texture and appearance. The report also describes a focus
+          group; these explorations were not standardized material testing.
         </p>
 
         <div className="grid grid-cols-3 gap-4 mt-16 max-md:grid-cols-2">
@@ -476,20 +468,20 @@ function ConceptsSection() {
   const concepts = [
     {
       num: "01",
-      title: "Takeaway Packaging",
-      desc: "A biodegradable alternative to cardboard packaging for food delivery services. The material breaks down naturally if it ends up in nature, while limiting CO2 emissions during production. Could be used for services like Foodora and other delivery platforms.",
+      title: "Takeaway packaging concept",
+      desc: "Packaging for takeaway food.",
       image: `${basePath}/takeaway.jpg`,
     },
     {
       num: "02",
-      title: "Restaurant Servingware",
-      desc: "The material becomes hard enough for serving, and the organic shrinking during drying creates unique, wave-like edges reminiscent of seaweed in its natural form. Perfect for high-end seafood restaurants where it enhances the dining experience with subtle ocean scents and tactile qualities.",
+      title: "Servingware concept",
+      desc: "Servingware for restaurant settings.",
       image: `${basePath}/servering.png`,
     },
     {
       num: "03",
-      title: "Biodegradable Plant Pots",
-      desc: "A sustainable alternative to plastic pots that can be planted directly in the soil. The seaweed-based container decomposes and acts as fertilizer for the plant. The inside could be waxed to maintain moisture while still allowing decomposition from the outside.",
+      title: "Plant pot concept",
+      desc: "A plant pot for growing plants.",
       image: `${basePath}/blomsterpotte.png`,
     },
   ];
@@ -512,8 +504,12 @@ function ConceptsSection() {
             maxWidth: "800px",
           }}
         >
-          Three concepts for seaweed-based products
+          Three seaweed-based product concepts
         </h2>
+        <p className="text-lg leading-relaxed max-w-[700px] mb-12" style={{ color: colors.sand }}>
+          These were concept proposals. The project did not validate the
+          material for packaging, servingware or planting.
+        </p>
 
         <div className="space-y-0">
           {concepts.map((concept, i) => (
@@ -563,13 +559,6 @@ function ConceptsSection() {
 
 // Research Data Section
 function ResearchDataSection() {
-  const stats = [
-    { value: "90+", label: "Material samples tested" },
-    { value: "4", label: "Seaweed species used" },
-    { value: "50%", label: "Typical shrinkage rate" },
-    { value: "15t", label: "Pressure tolerance in tests" },
-  ];
-
   return (
     <section
       className="py-32 px-8 md:px-16 pt-4 relative overflow-hidden"
@@ -593,23 +582,15 @@ function ResearchDataSection() {
       <div className="max-w-[1140px] mx-auto relative z-10">
         <div className="grid md:grid-cols-[1fr_2fr] gap-16 items-start max-lg:grid-cols-1">
           <div className="flex flex-col gap-8 md:sticky md:top-[148px]">
-            {stats.map((stat) => (
-              <div key={stat.label} className="p-6 rounded-lg" style={{ background: colors.sandLight }}>
-                <p
-                  className="leading-none"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "3rem",
-                    color: colors.kelpDark,
-                  }}
-                >
-                  {stat.value}
-                </p>
-                <p className="text-sm mt-2" style={{ color: colors.oceanMid }}>
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+            <div className="p-6 rounded-lg" style={{ background: colors.sandLight }}>
+              <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.kelpLight }}>
+                Method
+              </p>
+              <p className="leading-relaxed" style={{ color: colors.oceanMid }}>
+                The team prepared seaweed samples, explored additives and
+                compared drying methods.
+              </p>
+            </div>
           </div>
           <div>
             <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.kelpLight }}>
@@ -625,49 +606,16 @@ function ResearchDataSection() {
               Challenges & Discoveries
             </h3>
             <p className="mb-6" style={{ color: colors.oceanMid }}>
-              The biggest challenge was drying the seaweed mass without cracking.
-              Seaweed holds moisture extremely well, making the drying process
-              take 4-5 days. Combined with significant shrinkage (up to 50%),
-              this made controlling the final form very difficult.
+              Drying the mixture proved difficult: samples cracked and shrank,
+              which made it hard to control the final form.
             </p>
             <p className="mb-6" style={{ color: colors.oceanMid }}>
-              Sugar kelp and sawtooth kelp produced the strongest, most
-              homogeneous materials. Adding oat juice to the mixture created
-              surprisingly hard results—small dried pieces withstood 15 tons of
-              pressure without breaking.
+              In one workshop trial, small dry pieces were placed between steel
+              plates in a hydraulic press. The report says the press was stopped
+              at 15 tons; this was not a standardized strength test or a general
+              material tolerance.
             </p>
 
-            <h3
-              className="text-3xl mb-4 mt-8"
-              style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                color: colors.oceanDeep,
-              }}
-            >
-              Material Cost Projection
-            </h3>
-            <p className="mb-6" style={{ color: colors.oceanMid }}>
-              Current cost: 8-16 NOK per kg of dried seaweed. By 2050, this is
-              projected to drop to 2-4 NOK per kg. Material cost per product
-              (100-500g seaweed) ranges from 0.8-4 NOK per unit, making it
-              economically viable for disposable applications.
-            </p>
-
-            <h3
-              className="text-3xl mb-4 mt-8"
-              style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                color: colors.oceanDeep,
-              }}
-            >
-              Best Practices Discovered
-            </h3>
-            <p style={{ color: colors.oceanMid }}>
-              Grinding seaweed before cooking extracts more alginate. Sodium
-              carbonate produces better results than vinegar without adding odor.
-              Plaster molds work best for drying as they absorb moisture while
-              allowing the material to shrink naturally.
-            </p>
           </div>
         </div>
       </div>
@@ -699,17 +647,15 @@ function ReflectionSection() {
           Looking Forward
         </h2>
         <p
-          className="text-2xl leading-relaxed italic"
+          className="text-xl leading-relaxed"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: colors.sand,
           }}
         >
-          "Seaweed has fascinating properties and we believe it can be utilized
-          in many different contexts. While we didn't fully solve the challenge
-          we set for ourselves, the material's extreme hardness and durability
-          show real promise for future development with more time and
-          specialized expertise."
+          One lesson from the project: evaluate the methods and change direction
+          earlier when drying, cracking and shrinkage become persistent
+          obstacles.
         </p>
       </div>
     </section>

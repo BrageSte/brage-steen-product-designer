@@ -1,304 +1,231 @@
-# PLANS — Ombygging av bragesteen.no
+# Portefølje klar for jobbsøking
 
-Levende plan for ombyggingen av porteføljen. Dette dokumentet er **kilden til sannhet** for
-hva som skal gjøres, hva som er besluttet og hvor vi står. Oppdater «Fremdrift» og
-«Beslutningslogg» fortløpende — en plan som ikke er oppdatert er feil.
+Oppdatert 2026-10-23. Dette er gjeldende plan for bragesteen.no. Nettside- og kildekontrollen
+ble utført 2026-10-22; planen ble ferdigstilt og kvalitetssikret 2026-10-23.
+**Retning godkjent av Brage:** behold den eksisterende Vite/React-siden og forbedre den.
+Dagens Astro-design skal ikke brukes. J1 er implementert og kontrollert lokalt på egen gren;
+produksjonsstatus føres separat. Se [arbeidsloggen for J1](docs/portefolje/implementering/j1-2026-10-23.md).
 
-Startet: 2026-10-13
+## 1. Målet og hvem vi skriver for
 
----
+En arbeidsgiver skal raskt forstå at Brage er **produktdesigner med prototyping som styrke**,
+og kunne følge konkrete valg fra problem og innsikt til fysisk/digital prototype og læring.
+Hovedretning: produktutvikling der fysisk og digitalt møtes, med industridesign og
+tjenestedesign som dokumentert bredde. Kode, elektronikk og AI omtales som verktøy.
 
-## 1. Mål
+**Brages presisering 2026-10-23:** søker produktutvikling, produktdesign og industridesign,
+men også fullstack-/AI-utvikling og implementering. Styrken er «fra idé til en prototype som
+fungerer på kort tid». Tilgjengelig fortløpende. Dette utvider det tidligere rollevalget;
+det digitale arbeidet skal synliggjøres relevant, samtidig som produktdesigner er hovedprofilen.
 
-En samlet, ferdig portefølje på bragesteen.no som:
+**UX-strategi**
 
-- presenterer Brage som **produktdesigner med prototyping som styrke**,
-- er rettet mot **jobbsøking og frilans i Norge**,
-- har **én felles designmal** slik at alle prosjekter henger sammen,
-- er enkel å utvide: nytt prosjekt = én innholdsfil + bilder,
-- hostes uten Lovable (Lovable-abonnementet er avsluttet).
+- **Målgruppe:** designleder, produktutvikler eller rekrutterer i Norge, ofte på mobil og med kort tid.
+- **Viktigste behov:** se relevans, Brages eget bidrag og bevis på designarbeid før lange bakgrunnstekster.
+- **Valg:** tydelig profil; få sterke prosjekter først; konkret rolle og læring; synlig CV/kontakt.
+- **Største risiko:** at teknologitekst og ubekreftede resultater overskygger designkompetansen.
 
-## 2. Posisjonering (besluttet)
+## 2. Hva «klar» betyr
 
-- **Tittel:** Produktdesigner.
-- **Kjerne:** Jeg designer produkter — og bygger dem for å finne ut om de virker.
-  Undertekst-utkast: *Industridesign · Tjenestedesign · Prototyping.*
-- **Kode og elektronikk er verktøy, ikke salgsargument.** Brage søker ikke «kode- eller
-  kretskortjobber». Teknikk nevnes der den hørte hjemme i prosjektet, aldri som overskrift.
-  Hvert prosjekt får en seksjon «Slik testet jeg det» som viser prototypen og hva den lærte oss.
-- **AI-verktøy** (Claude Code, Codex) omtales som verktøy for å bygge raskere. Brage er den
-  som designer og bestemmer.
-- **Drømmerolle** å skrive mot: produktutvikling/prototyping der fysisk og digitalt møtes.
-  Formuleringene spisses i fase 1.
+### Første jobbsøkingsklare versjon
 
-## 3. Språk (besluttet)
+Søknader trenger ikke vente på alle nye prosjekter. Første leveranse bruker eksisterende
+materiale og forbedrer BS Climbing, bacheloren og Headset. Seaweed beholdes etter nødvendig
+faktarydding; Avfallsportalen presenteres tydelig som en senere demonstrator.
 
-- Hele nettstedet på **norsk**, inkludert bachelorprosjektet.
-- Originalmateriale på engelsk (bacheloroppgave-PDF, plakater, gigamap) beholdes som det er
-  og lenkes/vises som vedlegg: «Les bacheloroppgaven (engelsk, PDF)».
-- URL-er på norsk: `/prosjekter/...`, `/om-meg`.
+- [ ] Forsiden sier produktdesigner og viser relevant arbeid før lange forklaringer.
+- [ ] Minst tre sterke prosjekter har forståelig problem, egen rolle, designvalg, prototype og læring.
+- [ ] Alle synlige prosjekter har korrekte sitater/tall og tydelig skille mellom resultat, konsept og ambisjon.
+- [ ] Om meg og CV gir konsistente datoer, roller og utdanningsstatus. E-post og CV er lette å finne.
+- [ ] Norske introduksjoner, navigasjon, prosjekttekster og tilgjengelighetstekster er gjennomgått.
+- [ ] Ingen feil i prosjektlenker, medier, hovedflyter eller tastaturnavigasjon som er nødvendige for å vurdere arbeidet.
+- [ ] Direkte lenker, seksjonslenker og oppdatering virker i produksjon på desktop og mobil.
+- [ ] Forhåndsvisningen er visuelt kontrollert, Brage har godkjent merge, og produksjonen er kontrollert etterpå.
 
-## 4. Prosjekter og rekkefølge (besluttet)
+### Utvidet portefølje
 
-Rekkefølgen følger hva Brage vil vise frem, ikke årstall.
+GripSense som et tydelig pågående hovedprosjekt, Caddy-camper og en liten «Mer arbeid»-seksjon.
+Disse skal styrke porteføljen, men ikke forsinke første søknadsrunde dersom materiale mangler.
 
-| # | Prosjekt | Kort | Status i dag | Kilde |
-|---|---|---|---|---|
-| 1 | GripSense | Stort | Nytt | `~/Documents/GripSense` + innboks |
-| 2 | BS Climbing | Stort | Finnes, vinkles om (produkt først, teknikk sist) | eksisterende side + innboks |
-| 3 | Kildesortering (Sorting Guide 2020 → Avfallsportalen 2026) | Rutenett | To sider slås sammen til én historie | eksisterende sider + innboks |
-| 4 | Headset | Rutenett | Finnes, rett budskap (designet for sprøytestøping, 3D-print = prototyper) | eksisterende side |
-| 5 | Caddy-camper | Rutenett | Nytt | innboks |
-| 6 | Seaweed | Rutenett | Finnes | eksisterende side |
+## 3. Prosjektutvalg og rekkefølge
 
-Layout på forsiden: 2 store kort + rutenett 2 × 2. Rekkefølgen styres av feltet `rekkefolge`
-i innholdsfilene og kan endres uten kodeendring.
+Dette viderefører prosjektutvalget fra tidligere plan. Arbeidsrekkefølgen i seksjon 6 er
+annerledes enn den endelige rekkefølgen på forsiden: reparer det som allerede ligger ute først.
 
-Ikke med (besluttet): Air PnP, Bryggr.
+| Endelig plass | Prosjekt | Hvorfor det er med | Leveranse |
+|---|---|---|---|
+| 1 | [GripSense](docs/portefolje/prosjekter/gripsense.md) | Fysisk/digital produktutvikling, iterasjon og kritisk testing | Ny hovedcase, merket «Pågående». BS Climbing står først frem til denne er klar |
+| 2 | [BS Climbing](docs/portefolje/prosjekter/bs-climbing.md) | Tilpasset fysisk produkt og sammenhengende tjeneste fra måling til produksjon | Omskrive eksisterende case, beholde gode bilder og uttrykk |
+| 3 | [Kildesortering / bachelor](docs/portefolje/prosjekter/kildesortering.md) | Innsikt, samarbeid, systemforståelse og tjenestedesign | Norsk case med engelske originalvedlegg; tydelig hovedhistorie fra 2020 |
+| – | [Avfallsportalen](docs/portefolje/prosjekter/avfallsportalen.md) | Senere utforskning av formidling og interaksjon | Egen demo, knyttet til bachelorcasen som viderearbeid fra 2026 |
+| 4 | [Headset](docs/portefolje/prosjekter/headset.md) | Industridesign, mekanikk, skisser og fysiske prototyper | Norsk case med tydelig oppgavepremiss og fungerende medier |
+| 5 | [Caddy-camper](docs/portefolje/prosjekter/caddy-camper.md) | Rom, praktisk problemløsning, bygging og bruk | Kort, visuelt sterk case når egen rolle og designvalg er dokumentert |
+| 6 | [Seaweed / Ting av tang](docs/portefolje/prosjekter/seaweed.md) | Materialutforskning, eksperimenter og refleksjon | Kortere case med ærlige funn og dokumenterte begrensninger |
 
-## 5. Teknisk retning (besluttet)
+[Mer arbeid](docs/portefolje/mer-arbeid.md): Looping AS, Harkokt og Kaia Tel Han Kai som korte
+oppføringer. Looping kan senere få en full case dersom det finnes materiale som kan vises.
+Air PnP og Bryggr er fortsatt utelatt. Antall prosjekter er ikke et mål i seg selv.
 
-- **Rammeverk:** Astro (statisk HTML per side, innebygd bildeoptimalisering, content
-  collections). React kun for interaktive øyer der det trengs. Tailwind for styling.
-- **Hosting:** Cloudflare Workers med statiske filer (Cloudflares nye standard i stedet for
-  Pages), koblet til GitHub via Workers Builds. Konfig i `wrangler.jsonc`. Push til `main` =
-  produksjon, andre grener = forhåndsvisnings-URL.
-- **DNS:** bragesteen.no ligger hos Domeneshop (ns*.hyp.net) og peker i dag på Lovable
-  (185.158.133.1). Navnetjenerne flyttes til Cloudflare (gratis) — nødvendig for å bruke
-  rotdomenet på Cloudflare. Sjekket 2026-10-13: ingen MX- eller TXT-poster, så ingen
-  e-post å flytte.
-- **Visuelt utgangspunkt:** dagens typografi (Instrument Serif + IBM Plex Sans) og varme
-  off-white bakgrunn beholdes som start og spisses i fase 2.
+Tilpass søknadslenken til rollen: GripSense/BS Climbing/Headset for fysisk produktutvikling;
+bachelor/Looping/BS Climbing for tjenestedesign. Behold én konsistent hovedportefølje.
 
-## 6. Målstruktur etter ombyggingen
+## 4. Språk: norsk presentasjon, engelske originaler
 
-### Sider
+**Anbefaling, i tråd med tidligere språkvalg:** behold bachelorens navn «The Sorting Guide»,
+men skriv introduksjon, prosjektfortelling, bildetekster og navigasjon på norsk.
+Bachelorrapporten, originale skjermbilder, plakater og gigamap beholdes på engelsk.
+En rapport skrevet på engelsk er ikke et krav om at hele prosjektsiden må være engelsk.
 
-| URL | Innhold |
-|---|---|
-| `/` | Intro + alle prosjekter (erstatter også `/work`) |
-| `/prosjekter/<slug>` | Prosjektside fra felles mal |
-| `/om-meg` | Hvem jeg er, erfaring/CV, verktøy, kontakt |
-| `/cv/brage-steen-cv.pdf` | Nedlastbar CV |
-| `/embeds/...` | Frittstående interaktive demoer (Avfallsportalen m.fl.) |
+- Merk vedlegg tydelig: «Les bachelorrapporten (engelsk, PDF, 106 sider)» og oppgi faktisk filstørrelse.
+- Behold direkte sitater på originalspråket. En norsk gjengivelse merkes som oversettelse;
+  ikke utvid eller slå sammen sitater uten kilde.
+- Bruk norsk på Headset og Seaweed, inkludert alt-tekster, galleriknapper og seksjonsmenyer.
+- Originalbilder med engelsk tekst får norsk forklaring, ikke kunstig omtegnet innhold.
+- Bachelorfunn og statistikk dateres til prosjektperioden. Historiske tall skal ikke fremstå som dagens status.
+- Engelsk versjon vurderes først ved konkrete internasjonale søknader. Da brukes en hel,
+  sammenhengende engelsk versjon eller et separat casevedlegg, ikke tilfeldig språkbytte.
+- Nye adresser skal være norske. Eksisterende engelske URL-er bevares med 301 når norske
+  ruter faktisk er bygget og testet. Ingen videresending til en side som ennå ikke finnes.
 
-Kontaktinfo ligger i bunnteksten på alle sider og på `/om-meg`.
+## 5. Felles presentasjonsstandard
 
-### Videresendinger (`_redirects` i statiske filer, 301)
+Behold den gamle sidens visuelle utgangspunkt. Standardiser først navigasjon, fakta,
+lesbarhet, bildebehandling og fortellingsstruktur. Prosjektbilder og særpreg kan variere.
+Ingen ny total visuell retning eller rammeverksmigrering inngår.
 
-| Gammel | Ny |
-|---|---|
-| `/work`, `/work/` | `/` |
-| `/about`, `/about/` | `/om-meg` |
-| `/contact`, `/contact/` | `/om-meg#kontakt` |
-| `/projects/bsclimbing` | `/prosjekter/bs-climbing` |
-| `/projects/headset` | `/prosjekter/headset` |
-| `/projects/seaweed` | `/prosjekter/seaweed` |
-| `/projects/sorting-guide` | `/prosjekter/kildesortering` |
-| `/projects/avfallsportalen` | `/prosjekter/kildesortering` |
+Hver full case skal som hovedregel inneholde:
 
-### Mappestruktur (Astro)
+1. Tittel, kort norsk ingress, relevant bilde og status/år.
+2. Brages rolle, team/samarbeidspartner og prosjektets rammer.
+3. Problemet og hvem det gjaldt.
+4. To–tre viktige designvalg med begrunnelse og konkrete bilder.
+5. «Slik testet jeg det»: hva som faktisk ble gjort, hva som ble observert og hva som ble endret.
+6. Resultat og begrensninger. Konsept, prototype og lansert produkt beskrives presist.
+7. Læring og hva Brage ville gjort videre.
+8. Relevant neste prosjekt og tydelig kontakt.
 
-```
-src/
-  content/
-    prosjekter/
-      <slug>/
-        index.mdx          # tekst + frontmatter (se modellen under)
-        bilder/            # web-klare bilder (prosessert fra _innboks)
-    om-meg.mdx
-  components/              # byggeklossene
-  layouts/                 # sidemal + prosjektmal
-  pages/                   # ruter
-  styles/                  # tokens + base
-public/
-  cv/brage-steen-cv.pdf
-  embeds/<navn>/           # frittstående HTML-demoer
-  og/                      # delingsbilder
-  _redirects
-_innboks/                  # råmateriale fra Brage — ikke i git (se _innboks/README.md)
-```
+Seksjoner uten dokumentasjon utelates. Bruk «jeg» om eget arbeid og «vi» om teamarbeid.
+Fotograf og meddesignere krediteres. Ikke fremstill en bestilling, interesse eller demonstrasjon
+som bevis på produktets effekt.
 
-### Innholdsmodell for et prosjekt (frontmatter)
+## 6. Gjennomføring – én fase, én gren og én PR
 
-```yaml
-tittel: GripSense
-slug: gripsense
-ingress: Én setning som brukes på kortet og øverst på siden.
-periode: "2025–2026"
-status: ferdig | pagaende
-rekkefolge: 1
-fremhevet: true            # stort kort på forsiden
-disipliner: [Industridesign, Prototyping]
-rolle: Hva Brage gjorde
-team: [Navn, Navn]         # tom hvis solo
-varighet: "4 måneder"
-verktoy: [Fusion 360, 3D-print]
-aksentfarge: "#c4622d"
-cover: ./bilder/cover.jpg
-coverAlt: Beskrivelse av coverbildet
-lenker:
-  - { tekst: Besøk bsclimbing.no, url: https://bsclimbing.no }
-```
+Fremtidige kodegrener opprettes fra oppdatert `main`. Planen og historikken fra Astro-grenen
+skal tas med som dokumentasjon, uten å ta med den forkastede implementasjonen.
+Ingen merge til `main` uten Brages ja. Omfang under er anbefalt rekkefølge; ingen frister er oppfunnet.
 
-### Fast oppbygging av en prosjektside
+### Fase J1 – rett troverdighets- og funksjonsfeil
 
-1. Toppseksjon — tittel, ingress, coverbilde (aksentfarge per prosjekt)
-2. Faktaboks — periode, rolle, team, varighet, verktøy
-3. Utfordringen
-4. Prosess — innsikt, skisser, valg
-5. **Slik testet jeg det** — prototyper og hva de viste
-6. Resultat
-7. Min rolle (når det var et team)
-8. Hva jeg lærte
-9. Neste prosjekt
+- [x] Bachelor: «67+» korrigert mot rapporten, sitatet forkortet og forventet effekt avgrenset.
+- [x] Headset: produksjonsmål skilt fra faktisk produksjon; udokumentert draft-vinkel utelatt.
+- [x] Seaweed: miljøpåstander avgrenset og verkstedforsøk satt i riktig kontekst.
+- [x] Avfallsportalen: prototypedata merket, usikre rangeringer og feil regneeksempel fjernet.
+- [x] Fragmentlenker og oppdatering lokalt kontrollert (`#model`, `#prototype`, `#reflection`).
+- [x] Mobilmeny lokalt kontrollert for Tab, Escape, fokusretur, lenkevalg og historikknavigasjon.
+- [x] Hele grafetiketter og Seaweeds mobilintro visuelt kontrollert.
 
-Seksjoner uten innhold utelates — ikke fyll med tom tekst.
+**Ferdig når:** samme scenarier som i [kontrollrapporten](docs/portefolje/kontroll/2026-10-22.md)
+er kontrollert på nytt, og påstander/sitater er sporbare. Avkrysningene over gjelder lokal
+implementering og verifikasjon 2026-10-23; merge og kontroll av publisert produksjon gjenstår.
 
-### Byggeklosser (fase 2)
+### Fase J2 – gjør eksisterende portefølje jobbsøkingsklar
 
-Toppseksjon · Faktaboks · Tekstseksjon · Bilde (enkelt, fullbredde) · Bilderutenett ·
-Galleri · Innsikt/sitat · Innebygd demo (iframe/video) · Prosjektkort · Neste prosjekt ·
-Header/footer.
+- [ ] Spiss forside og BS Climbing mot produktdesign og prototyping.
+- [ ] Ferdigstill norsk bachelor- og Headset-case med personlig rolle og dokumentert læring.
+- [ ] Gjør Seaweed kortere og tydelig; knytt Avfallsportalen til bachelorens historie.
+- [ ] Ferdigstill [Om meg og CV](docs/portefolje/om-meg-og-cv.md), med en faktisk PDF-lenke.
+- [ ] Komprimer tunge foto/renders og gi bilder dimensjoner; behold skarpe tegninger og fullstørrelsesvedlegg.
+- [ ] Oppdater sidetitler, beskrivelser, absolutte delingsbilder og canonical-adresser.
+- [ ] Bygg og test norske ruter og nødvendige 301-er samlet. Behold fungerende gamle innganger.
+- [ ] Sett HTTP og `www` til den kanoniske HTTPS-adressen med sti/query bevart.
+- [ ] Gjennomfør lanseringskontrollen i seksjon 8 og få Brages godkjenning av innhold/merge.
 
----
+**Ferdig når:** «Første jobbsøkingsklare versjon» er kontrollert på live. Søknader kan bruke
+siden mens J3/J4 fortsetter.
 
-## 7. Faser
+### Fase J3 – legg til GripSense
 
-Én fase = én gren og én PR. Ingenting merges til `main` uten at Brage har sagt ja.
+- [ ] Velg fysisk prototypefoto, dokumenterte iterasjoner og relevante appbilder.
+- [ ] Skriv en avgrenset pågående case etter [GripSense-planen](docs/portefolje/prosjekter/gripsense.md).
+- [ ] Skill nåværende maskinvare, eldre appdemo og validering som gjenstår.
+- [ ] Kontroller alle måle-/treningspåstander mot prosjektets gjeldende kilder.
+- [ ] Brage godkjenner egen rolle, fortellingen og det som kan vises offentlig.
 
-### Fase 0 — Ny hosting og nødfiks (på dagens kode)
+**Ferdig når:** casen viser designkompetanse uten å kreve at produktet er ferdig validert.
+Flytt den til første plass når teksten og dokumentasjonen er sterke nok.
 
-Mål: live-siden virker og er uavhengig av Lovable, mens vi bygger nytt.
+### Fase J4 – bredde og vedlikehold
 
-- [x] Prosjektkort bruker `<Link>` i stedet for `<a href>` (`src/components/ui/ProjectCard.tsx`)
-- [x] Slett gamle statiske prosjektsider som overstyrer React-sidene:
-      `public/projects/{headset,seaweed,sorting-guide}/index.html`,
-      `public/projects/sorting-guide/{prototype,gigamap}.html`, `public/projects/site-nav.css`,
-      `portfolio.html`
-- [x] Flytt Avfallsportalen-appen til `public/embeds/avfallsportalen/` og oppdater iframe + cover-sti
-- [x] Seaweed-cover: bytt WordPress-URL med lokalt bilde
-- [x] Sorting Guide: gigamap (fra .ai, kontaktinfo maskert) + stor versjon; død Adobe XD-embed
-      byttet med gjennomgangsvideo (20 MB, 720p) og tre skjermbilder
-- [x] Flytt `public/projects/headset-pictures/` (110 MB kildebilder, ubrukt av siden) ut av
-      `public/` til `_innboks/prosjekter/headset/kilde/`
-- [x] Fjern `lovable-tagger` og `.lovable/`
-- [x] Brage: Cloudflare-konto opprettet, repoet koblet til Workers Builds
-- [x] `wrangler.jsonc` (assets fra `dist/`, SPA-fallback) — første bygg feilet uten den;
-      verifisert lokalt med `wrangler dev`
-- [x] Grønt bygg i Cloudflare på PR #24 (forhåndsvisning verifisert: alle prosjekter via direkte lenke, 0 ødelagte bilder)
-- [x] Brage: bragesteen.no lagt til i Cloudflare, navnetjenere byttet hos Domeneshop
-      (aragorn/elsa.ns.cloudflare.com). Venter på at Norid tar inn endringen
-- [x] Gammel Lovable-A-post satt til «DNS only» så siden virker som før når sonen aktiveres
-- [x] Merge PR #24 → `main` (med Brages ja) → produksjonsbygg grønt, verifisert på
-      https://brage-steen-product-designer.brage-steen.workers.dev
-- [ ] Når sonen er aktiv og `main` er bygget: koble `bragesteen.no` + `www` som Custom Domain
-      på Workeren (erstatter Lovable-A-posten)
-- [x] Lagt til `ScrollToTop` (klientnavigasjon startet ellers midt på siden)
-- [x] Verifisert lokalt på produksjonsbygg (`vite preview`): klikk, direkte lenke, 0 ødelagte bilder, mobil uten horisontal scroll
-- [ ] Verifiser på live: alle prosjekter via klikk, direkte lenke og oppdatering — desktop og mobil
+- [ ] Caddy-camper med krav, to–tre designvalg, brukserfaring og fotografkreditering.
+- [ ] Korte oppføringer for Looping, Harkokt og festivalen der materiale/visningsrett er avklart.
+- [ ] Vurder om Looping bør utvides for tjenestedesignsøknader.
+- [ ] Rydd ubrukte filer og gamle preview-systemer først etter kontroll av referanser.
+- [ ] Vurder eventuell full engelsk presentasjon ved faktisk behov.
 
-### Fase 1 — Hvem du er (innhold, ingen kode)
+## 7. Materiale og avklaringer
 
-- [ ] Spisse tittel, forsidetekst og ingress for hvert prosjekt
-- [ ] Ny «Om meg»-tekst (fyll ut `_innboks/cv/cv-info.md`)
-- [ ] Bestemme hva CV-en skal inneholde, og om vi lager ny PDF eller bruker eksisterende
+[Kilderegisteret](docs/portefolje/kilder.md) viser hva som allerede er funnet. Det er ikke
+nødvendig å samle alt på nytt. Første gjennomgang fant komplett bachelorrapport, Seaweed-rapport,
+CV, Headset-materiale, GripSense-dokumentasjon og 24 krediterbare Caddy-foto.
 
-### Fase 2 — Astro-oppsett og designmal (gren `rebuild/astro`)
+Det viktigste Brage må avklare under innholdsarbeidet:
 
-- [ ] Nytt Astro-prosjekt i repoet (erstatter Vite-appen i grenen)
-- [ ] Tokens: farger, typografi, avstand, aksentfarger
-- [ ] Byggeklossene i seksjon 6
-- [ ] Prosjektmal + innholdsmodell (content collection med skjema)
-- [ ] Skjult stilguide-side (`/_stilguide`) som viser alle byggeklosser
-- [ ] Cloudflare forhåndsvisnings-URL for grenen
+- Bekreftet 2026-10-23: bachelorarbeidet ble gjort sammen med Regina gjennom hele prosjektet;
+  i Seaweed hadde Brage særlig ansvar for å utvikle testmetodene.
+- BS Climbing og GripSense: velg to–tre konkrete endringer som kom fra prototyping/tilbakemeldinger.
+- GripSense: hvilke fysiske bilder viser dagens stadium, og hvilke viser eldre revisjoner?
+- Caddy: hvilke krav styrte løsningen, hva bygget du selv og hva lærte du etter bruk?
+- CV: tilgjengelig fortløpende er bekreftet; oppdater dagens arbeid og kontroller periodene,
+  særlig NTNU/Aalto og etterfølgende arbeid.
+- Mer arbeid: hvilke kundeleveranser, bilder og resultater kan vises offentlig?
 
-### Fase 3 — Flytte eksisterende prosjekter
+Uavklart informasjon skal ikke fylles med antakelser. Lag tekstutkast av dokumentert materiale
+før Brage blir bedt om presise avklaringer. Fullstendige bakgrunnsintervjuer er ikke en forutsetning.
 
-- [ ] BS Climbing (vinkles om: produkt først)
-- [ ] Kildesortering (Sorting Guide + Avfallsportalen samlet)
-- [ ] Headset
-- [ ] Seaweed
-- [ ] Slett ubrukt: shadcn-komponenter, preview-systemet (`scripts/previews.mjs`,
-      `.githooks/`, alle `previews/`-mapper), gamle `work/ about/ contact/`-oppføringer
+## 8. Lanseringskontroll
 
-### Fase 4 — Nytt innhold
+- [ ] Test forside, alle synlige prosjekter, Om meg, CV og kontakt ved klikk, direkte URL og refresh.
+- [ ] Test også fragmenter, tilbake/frem og gamle URL-er med/uten avsluttende skråstrek.
+- [ ] Kontroller desktop og mobil (minst 390 og 1440 px), bildeutsnitt, lesbarhet og horisontal scroll.
+- [ ] Test alle gallerier, video start/pause/søk, gigamap, 3D-innlasting og tydelige reservebilder/lenker.
+- [ ] Avfallsportalen: åtte steg begge veier, ti spørsmål, riktig/feil svar, forrige, resultat, omstart,
+  kommunevalg, lik kommune, grafdetaljer og tema. Kilder/data kontrolleres separat fra funksjonen.
+- [ ] Tastatur: synlig fokus, ingen skjulte tab-stopp, fungerende meny, gallerier og knapper.
+- [ ] Redusert bevegelse, 200 % zoom, alt-tekster, én meningsfull H1 og lesbare kontraster.
+- [ ] Bilder er web-klare og uten EXIF/GPS. Offentlige PDF-er og skjermbilder er gjennomgått for personopplysninger.
+- [ ] CV returnerer en PDF, ikke SPA-fallback med HTTP 200. Ukjent URL gir forståelig feilside;
+  håndter soft-404 korrekt når dette forbedres teknisk.
+- [ ] Sidetittel/beskrivelse/delingsbilde vurderes også i levert HTML for deling og søk, ikke bare etter JavaScript.
+- [ ] Bygg er grønt, korrekt gren deployet, produksjonen kontrollert og tilbakeføring til forrige Worker-versjon dokumentert.
 
-- [ ] GripSense (følg GripSense-prosjektets egne regler for tillatt produkttekst — ikke
-      påstå validert målenøyaktighet før det er dokumentert)
-- [ ] Caddy-camper
-- [ ] Om meg + CV-PDF + portrett
+Dette er en målrettet kvalitetssjekk, ikke en påstand om full tilgjengelighetssertifisering,
+full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 
-### Fase 5 — Lansering
+## 9. Fremdrift og beslutninger
 
-- [ ] `_redirects` for alle gamle URL-er
-- [ ] Unik `<title>`, beskrivelse og delingsbilde per side; absolutte `og:image`-URL-er
-- [ ] Sjekk mobil, tastaturnavigasjon, alt-tekster, bildestørrelser
-- [ ] Merge `rebuild/astro` → `main` (med Brages ja)
-- [ ] Rydd gamle `claude/*`-grener på GitHub (7 stk., alle utdaterte)
+### Verifisert
 
----
+- [x] 2026-10-22: Cloudflare-sone, begge domener, TLS og automatiske produksjons-/previewbygg kontrollert.
+- [x] 2026-10-22: Fem prosjektruter virker ved klikk, direkte lenke og refresh på desktop/mobil.
+- [x] 2026-10-22: Utvidet funksjons- og kildekontroll utført; funn og begrensninger i kontrollrapporten.
+- [x] 2026-10-22: Samlet plan, ni delplaner og kilderegister skrevet. Planen er ikke utført.
+- [x] 2026-10-23: Planverket ferdigstilt på `codex/portfolio-jobbsoking-plan`, basert på `main`.
+  Lokale lenker, dokumentstruktur og samsvar mellom funn og tiltak er kontrollert.
+- [x] 2026-10-23: J1 implementert med tre Luna-subagenter. Bygg, fem tester, TypeScript,
+  lint uten feil og 20 nettleserkontrollgrupper består lokalt. Arbeidslogg og skjermbilder lagret.
 
-## 8. Materiale Brage må levere
+### Beslutningslogg
 
-Alt legges i `_innboks/` (se `_innboks/README.md`). Ikke gi nytt navn, ikke komprimer —
-originaler er best; prosesseringen gjøres i repoet.
-
-| Hva | Hvor | Trengs i fase |
+| Dato | Beslutning | Grunnlag |
 |---|---|---|
-| Gigamap (høy oppløsning) fra bacheloren | `_innboks/prosjekter/kildesortering/` | 0 |
-| Skjermbilder/video av Sorting Guide-prototypen (XD er død) | `_innboks/prosjekter/kildesortering/` | 0 |
-| Bacheloroppgaven som PDF | `_innboks/prosjekter/kildesortering/` | 3 |
-| CV-informasjon + evt. eksisterende CV | `_innboks/cv/` | 1 |
-| Nye portrettbilder (valgfritt) | `_innboks/portrett/` | 4 |
-| Bilder av fysiske GripSense-prototyper, testing | `_innboks/prosjekter/gripsense/` | 4 |
-| Bilder av BS Climbing-blokker i bruk, måling, print | `_innboks/prosjekter/bs-climbing/` | 3 |
-| Caddy-camper: før/under/etter, skisser, plantegning, el-skjema | `_innboks/prosjekter/caddy-camper/` | 4 |
-| Stikkord/historie per prosjekt | `notater.md` i hver prosjektmappe | 1–4 |
+| 2026-10-22 | Behold eksisterende Vite/React-portefølje og forbedre den | Brage: «enig» etter anbefalingen om å beholde den gamle |
+| 2026-10-22 | Dagens Astro-utkast brukes ikke | Brage avviste uttrykket; rammeverksmigrering inngår ikke i jobbsøkingsplanen |
+| 2026-10-22 | Produktdesigner med prototyping som styrke videreføres | Tidligere godkjent posisjonering |
+| 2026-10-22 | Planen skiller første søknadsversjon fra senere utvidelse | Anbefalt gjennomføringsrekkefølge; nyinnhold skal ikke stanse søknader |
+| 2026-10-22 | Norsk prosjektpresentasjon med engelske originalvedlegg anbefales | Viderefører språkvalget fra 2026-10-13; Brage tok bachelorens språk opp på nytt |
+| 2026-10-23 | Også målrette fullstack-/AI-utvikling og implementering | Brages eksplisitte presisering av roller; hovedstyrken er rask vei fra idé til fungerende prototype |
+| 2026-10-23 | Bachelor var felles arbeid; Seaweed-testmetoder var Brages hovedansvar; Headset var solo, NTNU 2021, fire måneder | Bekreftet direkte av Brage, inkludert emnet Design for Industrialization |
 
----
-
-## 9. Fremdrift
-
-Logg med dato, nyeste nederst.
-
-- 2026-10-13 — Gjennomgang av live-side og repo. Funn: prosjektkort laster gamle statiske
-  sider med ødelagte bilder (Headset 18/18, Sorting Guide 9/9, Seaweed 9/9); Seaweed-cover
-  fra WordPress ødelagt; `gigamap.png` mangler; Adobe XD-embed blank. Plan skrevet,
-  dokumentasjon ryddet, `_innboks/` opprettet.
-- 2026-10-13 — Fase 0 kodeendringer ferdig på gren `fase-0/hosting-og-nodfiks`. Gjenstår:
-  Cloudflare Pages + DNS (Brage). Merk: gigamap-originalen hadde e-post/telefon til Brage og
-  Regina nederst — maskert i nettversjonen. Video komprimert lokalt med Swift/AVFoundation
-  (ffmpeg ikke installert).
-- 2026-10-13 — Grenen pushet, PR #24 åpnet. Cloudflare opprettet en Worker (ikke Pages);
-  bygget feilet uten konfig → lagt til `wrangler.jsonc` + `wrangler` som dev-avhengighet.
-  DNS-flytting pågår (Brage).
-- 2026-10-13 — Cloudflare-oppsett gjennomgått i dashbordet. Bygg feilet pga. utdatert
-  `bun.lock` (Lovable-rest) → fjernet. Forhåndsvisning krevde `"previews": {}` i
-  `wrangler.jsonc` → lagt til. Preview-URL-er slått på. Bygget grønt; forhåndsvisning:
-  https://fase-0-hosting-og-nodfiks-brage-steen-product-designer.brage-steen.workers.dev
-  Domeneshop: navnetjenere byttet, ingen DS-poster i ny konfig (gamle DNSSEC-nøkler hos
-  Norid forsvinner med endringen). Norid viste fortsatt hyp.net kl. 10.00.
-- 2026-10-13 — PR #24 merget, produksjon bygget og verifisert. Custom Domain kan ikke
-  legges til før Lovable-A-posten (185.158.133.1) slettes i Cloudflare-DNS; slettingen må
-  Brage gjøre/godkjenne selv. Norid viste fortsatt hyp.net etter merge.
-
-## 10. Beslutningslogg
-
-| Dato | Beslutning | Begrunnelse |
-|---|---|---|
-| 2026-10-13 | Bygge på nytt med samme innhold | Fem prosjekter med hver sin stil, duplikater og hardkodet innhold — raskere å strukturere riktig én gang |
-| 2026-10-13 | Norsk språk overalt | Målgruppe: jobb og frilans i Norge; blandet språk ser uferdig ut |
-| 2026-10-13 | Rekkefølge etter hva Brage vil vise, ikke år | Sterkeste prosjekter først |
-| 2026-10-13 | Sorting Guide + Avfallsportalen = én historie | Samme tema, viser utvikling 2020 → 2026 |
-| 2026-10-13 | GripSense og Caddy-camper med; Air PnP og Bryggr ikke | Styrker prototyping-profilen |
-| 2026-10-13 | Posisjonering: produktdesigner, prototyping som styrke; kode/elektronikk er verktøy | Brage søker ikke kode-/kretskortjobber |
-| 2026-10-13 | Bort fra Lovable → Astro + Cloudflare Pages | Lovable-abonnement avsluttet; Astro passer innholdsdrevet portefølje |
-| 2026-10-13 | Cloudflare Workers (statiske filer) i stedet for Pages | Cloudflare satte opp Workers Builds; samme gratis hosting, konfig i `wrangler.jsonc` |
-| 2026-10-13 | Råmateriale i `_innboks/`, ikke i git | Offentlig repo; råbilder er store og kan ha GPS/EXIF; CV kan inneholde personopplysninger |
-
-## 11. Åpne spørsmål
-
-- Endelig tittel og forsidetekst (fase 1).
-- Skal CV-en lages på nytt (f.eks. generert fra `cv-info.md`) eller bruker vi en eksisterende?
-- Plassering av Caddy-camper i rekkefølgen — vurderes når bildene er inne.
+Tidligere beslutninger og gjennomført hosting-/Astro-arbeid er bevart i
+[den historiske ombyggingsplanen](docs/portefolje/arkiv/ombyggingsplan-2026-10-13.md).
+De gamle Astro-fasene er ikke aktive arbeidsoppgaver.
