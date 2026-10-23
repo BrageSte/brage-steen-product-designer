@@ -1,10 +1,10 @@
 // Shared navigation sections for all Sorting Guide pages
 export const sortingGuideSections = [
-  { id: "challenge", label: "Challenge" },
+  { id: "challenge", label: "Utgangspunkt" },
   { id: "team", label: "Team" },
-  { id: "research", label: "Research" },
-  { id: "insights", label: "Insights" },
-  { id: "solution", label: "Solution" },
+  { id: "research", label: "Undersøkelse" },
+  { id: "insights", label: "Innsikt" },
+  { id: "solution", label: "Konsept" },
   { id: "gigamap", label: "Gigamap" },
   { id: "prototype", label: "Prototype" },
 ];

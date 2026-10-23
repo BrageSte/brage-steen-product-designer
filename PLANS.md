@@ -3,8 +3,9 @@
 Oppdatert 2026-10-23. Dette er gjeldende plan for bragesteen.no. Nettside- og kildekontrollen
 ble utført 2026-10-22; planen ble ferdigstilt og kvalitetssikret 2026-10-23.
 **Retning godkjent av Brage:** behold den eksisterende Vite/React-siden og forbedre den.
-Dagens Astro-design skal ikke brukes. J1 er implementert og kontrollert lokalt på egen gren;
-produksjonsstatus føres separat. Se [arbeidsloggen for J1](docs/portefolje/implementering/j1-2026-10-23.md).
+Dagens Astro-design skal ikke brukes. J1 er merget i PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`)
+og produksjonskontrollert med 20 beståtte nettleserkontrollgrupper. J2 er implementert på
+`codex/portfolio-j2-jobbsoking`; lokal QA er gjennomført. Se [arbeidsloggen for J1](docs/portefolje/implementering/j1-2026-10-23.md).
 
 ## 1. Målet og hvem vi skriver for
 
@@ -124,20 +125,24 @@ Ingen merge til `main` uten Brages ja. Omfang under er anbefalt rekkefølge; ing
 - [x] Mobilmeny lokalt kontrollert for Tab, Escape, fokusretur, lenkevalg og historikknavigasjon.
 - [x] Hele grafetiketter og Seaweeds mobilintro visuelt kontrollert.
 
-**Ferdig når:** samme scenarier som i [kontrollrapporten](docs/portefolje/kontroll/2026-10-22.md)
-er kontrollert på nytt, og påstander/sitater er sporbare. Avkrysningene over gjelder lokal
-implementering og verifikasjon 2026-10-23; merge og kontroll av publisert produksjon gjenstår.
+**Ferdig:** samme scenarier som i [kontrollrapporten](docs/portefolje/kontroll/2026-10-22.md)
+ble kontrollert på nytt, og påstander/sitater er sporbare. J1 ble merget i PR #25
+(`95744f581d7794262d85fa4ca017f0445cbd0ca5`); 20 nettleserkontrollgrupper bestod i produksjon.
 
 ### Fase J2 – gjør eksisterende portefølje jobbsøkingsklar
 
-- [ ] Spiss forside og BS Climbing mot produktdesign og prototyping.
-- [ ] Ferdigstill norsk bachelor- og Headset-case med personlig rolle og dokumentert læring.
-- [ ] Gjør Seaweed kortere og tydelig; knytt Avfallsportalen til bachelorens historie.
-- [ ] Ferdigstill [Om meg og CV](docs/portefolje/om-meg-og-cv.md), med en faktisk PDF-lenke.
-- [ ] Komprimer tunge foto/renders og gi bilder dimensjoner; behold skarpe tegninger og fullstørrelsesvedlegg.
-- [ ] Oppdater sidetitler, beskrivelser, absolutte delingsbilder og canonical-adresser.
-- [ ] Bygg og test norske ruter og nødvendige 301-er samlet. Behold fungerende gamle innganger.
-- [ ] Sett HTTP og `www` til den kanoniske HTTPS-adressen med sti/query bevart.
+Status: implementert og kontrollert lokalt på `codex/portfolio-j2-jobbsoking`. Avkrysningene
+under gjelder lokal QA, bortsett fra HTTP/www som er kontrollert i produksjon.
+Forhåndsvisning og produksjon føres i [J2-loggen](docs/portefolje/implementering/j2-2026-10-23.md).
+
+- [x] Spiss forside og BS Climbing mot produktdesign og prototyping.
+- [x] Ferdigstill norsk bachelor- og Headset-case med personlig rolle og dokumentert læring.
+- [x] Gjør Seaweed kortere og tydelig; knytt Avfallsportalen til bachelorens historie.
+- [x] Ferdigstill [Om meg og CV](docs/portefolje/om-meg-og-cv.md), med en faktisk PDF-lenke.
+- [x] Komprimer tunge foto/renders og gi bilder dimensjoner; behold skarpe tegninger og fullstørrelsesvedlegg.
+- [x] Oppdater sidetitler, beskrivelser, absolutte delingsbilder og canonical-adresser.
+- [x] Bygg og test norske ruter og nødvendige 301-er samlet. Behold fungerende gamle innganger.
+- [x] Sett HTTP og `www` til den kanoniske HTTPS-adressen med sti/query bevart.
 - [ ] Gjennomfør lanseringskontrollen i seksjon 8 og få Brages godkjenning av innhold/merge.
 
 **Ferdig når:** «Første jobbsøkingsklare versjon» er kontrollert på live. Søknader kan bruke
@@ -172,11 +177,17 @@ Det viktigste Brage må avklare under innholdsarbeidet:
 
 - Bekreftet 2026-10-23: bachelorarbeidet ble gjort sammen med Regina gjennom hele prosjektet;
   i Seaweed hadde Brage særlig ansvar for å utvikle testmetodene.
-- BS Climbing og GripSense: velg to–tre konkrete endringer som kom fra prototyping/tilbakemeldinger.
+- BS Climbing: Brage bekrefter omtrent 40 printede prototyper med variasjoner i tekstur,
+  proporsjoner, toleranser og avrundinger. Headset: vinkler, toleranser og proporsjoner.
+  Konkrete før/etter-bilder og kundetilbakemeldinger kan fortsatt styrke casene.
+- GripSense: velg to–tre konkrete endringer som kom fra prototyping/tilbakemeldinger.
 - GripSense: hvilke fysiske bilder viser dagens stadium, og hvilke viser eldre revisjoner?
 - Caddy: hvilke krav styrte løsningen, hva bygget du selv og hva lærte du etter bruk?
-- CV: tilgjengelig fortløpende er bekreftet; oppdater dagens arbeid og kontroller periodene,
-  særlig NTNU/Aalto og etterfølgende arbeid.
+- CV: `src/content/profil.json` er oppdatert med tilgjengelighet fortløpende; BS Climbing / Steen
+  Consulting (2025–nå) innen produktutvikling, design, produksjon og salg; nettbutikk med
+  web-konfigurator; og øvrig arbeid, utdanning og ferdigheter. Brage har godkjent formuleringen
+  «Industriell design ved NTNU, med utveksling i Creative Sustainability ved Aalto.
+  Mastergraden ble ikke fullført.» Perioden august 2021–mai 2022 kommer fra den nye CV-kilden.
 - Mer arbeid: hvilke kundeleveranser, bilder og resultater kan vises offentlig?
 
 Uavklart informasjon skal ikke fylles med antakelser. Lag tekstutkast av dokumentert materiale
@@ -213,6 +224,12 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
   Lokale lenker, dokumentstruktur og samsvar mellom funn og tiltak er kontrollert.
 - [x] 2026-10-23: J1 implementert med tre Luna-subagenter. Bygg, fem tester, TypeScript,
   lint uten feil og 20 nettleserkontrollgrupper består lokalt. Arbeidslogg og skjermbilder lagret.
+- [x] 2026-10-23: J1 merget i PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`);
+  20 nettleserkontrollgrupper bestod i produksjon.
+- [x] 2026-10-23: J2 implementert og lokalt kontrollert på `codex/portfolio-j2-jobbsoking`: 22 hovedgrupper
+  og sju mediegrupper på 1440/390 px. Bygg, fem enhetstester, TypeScript og lint uten feil består.
+- [x] 2026-10-23: HTTP/www gir 301 til kanonisk HTTPS med sti/query bevart i produksjon.
+- [ ] J2: Brages vurdering av forhåndsvisningen og godkjenning av merge, deretter produksjonskontroll.
 
 ### Beslutningslogg
 
@@ -225,6 +242,10 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 | 2026-10-22 | Norsk prosjektpresentasjon med engelske originalvedlegg anbefales | Viderefører språkvalget fra 2026-10-13; Brage tok bachelorens språk opp på nytt |
 | 2026-10-23 | Også målrette fullstack-/AI-utvikling og implementering | Brages eksplisitte presisering av roller; hovedstyrken er rask vei fra idé til fungerende prototype |
 | 2026-10-23 | Bachelor var felles arbeid; Seaweed-testmetoder var Brages hovedansvar; Headset var solo, NTNU 2021, fire måneder | Bekreftet direkte av Brage, inkludert emnet Design for Industrialization |
+| 2026-10-23 | CV-profilen oppdatert med BS Climbing / Steen Consulting fra 2025–nå, nåværende arbeid, tidligere erfaring, utdanning og ferdigheter; offentlig NTNU/Aalto-formulering godkjent | Kilde: `src/content/profil.json`; Brage godkjente ordlyden direkte, datoene august 2021–mai 2022 kommer fra ny CV |
+| 2026-10-23 | J1 er merget og produksjonskontrollert; J2 kontrolleres på egen gren | J1 PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`), 20 nettleserkontrollgrupper bestod i produksjon |
+| 2026-10-23 | Behold full rapport, gigamap og video som offentlige bachelorvedlegg | Brages eksplisitte godkjenning etter gjennomgang av underskrifter og hjemmebesøk i rapporten |
+| 2026-10-23 | Vis rundt 40 BS Climbing-prototyper som oppgitt omfang; beskriv utforskning av tekstur/avrundinger og Headset-vinkler/toleranser/proporsjoner | Brages direkte beskrivelse; ingen spesifikke før/etter-resultater er funnet på |
 
 Tidligere beslutninger og gjennomført hosting-/Astro-arbeid er bevart i
 [den historiske ombyggingsplanen](docs/portefolje/arkiv/ombyggingsplan-2026-10-13.md).

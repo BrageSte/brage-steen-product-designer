@@ -186,7 +186,7 @@
   }
 
   .project-card {
-    @apply block rounded-2xl border border-border bg-card p-5 transition-all duration-300;
+    @apply block min-w-0 rounded-2xl border border-border bg-card p-5 transition-all duration-300;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   }
 
@@ -225,6 +225,8 @@
 
   .tag-pill {
     @apply inline-flex items-center rounded-full border border-border px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-muted-foreground;
+    max-width: 100%;
+    overflow-wrap: anywhere;
     background: transparent;
   }
 
@@ -254,6 +256,7 @@
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;

@@ -31,7 +31,8 @@ Eksakt lokal plassering står i [kilderegisteret](../kilder.md).
   sitatet. Fjern den inntil en egen kilde eventuelt dokumenterer den.
 - [ ] **Fem hjemmebesøk:** s. 26 lister fem husholdninger; dette gir kildegrunnlag for antallet.
   Presiser hva dere observerte og hva det påvirket.
-- [ ] «40+ ideas», effektpåstander og eventuell karakter kontrolleres før bruk.
+- [ ] «40+ ideas» og effektpåstander kontrolleres før bruk.
+- [x] Karakter A er oppgitt i den nye CV-en fra Brage (SixSides, mottatt 2026-10-23); eksternt vitnemål er ikke kontrollert.
   «Creating Value» beskrives som forventet verdi, med mindre faktisk effekt er dokumentert.
 
 ## Plan for fortellingen
@@ -48,6 +49,14 @@ Eksakt lokal plassering står i [kilderegisteret](../kilder.md).
 
 Videoen spiller (kontrollert avspillingsposisjon >30 sekunder, varighet ca. 5 min 33 sek).
 Gigamap-lenken åpner bildet på 3200 × 7357 px. Dette erstatter den gamle døde XD-embedden.
+
+J2-implementasjonen inkluderer nå åpne lenker til hele bachelorrapporten
+(`public/dokumenter/the-sorting-guide-rapport.pdf`), gigamap-PDF-en
+(`public/dokumenter/kildesortering-gigamap.pdf`) og prototypevideoen
+(`public/projects/sorting-guide/prototype-gjennomgang.mp4`). De fullstendige vedleggene
+er del av nettstedets offentlige innhold. Brage har godkjent publisering og sagt: «tenker det går
+helt fint. behold rapport, gigamap og video». Lokal QA pågår; tilgjengelighet ved direkte lenke,
+nedlasting/avspilling og produksjonsstatus er ikke krysset av før de kontrollene er gjort.
 
 - [ ] Bytt «Try Prototype» til «Se prototypegjennomgang»: knappen leder til video, ikke en klikkbar XD-prototype.
 - [ ] Fiks direkte `#prototype`-lenke og kontroller at video/ankre havner under fast toppmeny.

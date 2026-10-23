@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "playwright";
+import { readFile } from "node:fs/promises";
 
 // Kjøres mot et ferdig bygg i Wrangler: node scripts/kontroller-portefolje.mjs [base-URL]
 const base = process.argv[2] || "http://127.0.0.1:8787";
-const output = "output/playwright/j1";
+const output = process.env.PORTFOLIO_CHECK_OUTPUT || "output/playwright/j2";
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({
   headless: true,
@@ -12,10 +13,10 @@ const browser = await chromium.launch({
 });
 const results = [];
 const errors = [];
-const cases = ["bsclimbing", "sorting-guide", "headset", "seaweed", "avfallsportalen"];
+const cases = ["bs-climbing", "kildesortering", "headset", "seaweed", "avfallsportalen"];
 const fragments = [
   { slug: "headset", id: "model" },
-  { slug: "sorting-guide", id: "prototype" },
+  { slug: "kildesortering", id: "prototype" },
   { slug: "seaweed", id: "reflection" },
 ];
 
@@ -34,6 +35,34 @@ async function aligned(page, id) {
 }
 
 try {
+  const api = await browser.newContext();
+  const sider = JSON.parse(await readFile("src/content/sider.json", "utf8"));
+  const redirects = JSON.parse(await readFile("src/content/videresendinger.json", "utf8"));
+  for (const side of sider.filter((side) => !side.noindex)) {
+    const response = await api.request.get(`${base}${side.path}`);
+    const html = await response.text();
+    assert.equal(response.status(), 200, side.path);
+    assert.ok(html.includes(`<title>${side.title}</title>`), `${side.path}: unik tittel i levert HTML`);
+    assert.ok(html.includes(`rel="canonical" href="https://bragesteen.no${side.path}"`));
+    assert.ok(html.includes(`content="https://bragesteen.no${side.image}"`));
+  }
+  results.push({ check: "sju norske ruter med metadata i levert HTML", status: "bestått" });
+  for (const [from, to] of Object.entries(redirects)) {
+    for (const slash of ["", "/"]) {
+      const response = await api.request.get(`${base}${from}${slash}?fra=jobb`, { maxRedirects: 0 });
+      assert.equal(response.status(), 301, from + slash);
+      const location = new URL(response.headers().location, base);
+      assert.equal(location.pathname, to.split("#")[0]);
+      assert.equal(location.searchParams.get("fra"), "jobb", "Query beholdes i videresending");
+    }
+  }
+  assert.equal((await api.request.get(`${base}/denne-siden-finnes-ikke`)).status(), 404);
+  const cv = await api.request.get(`${base}/cv/brage-steen-cv.pdf`);
+  assert.equal(cv.status(), 200);
+  assert.ok(cv.headers()["content-type"].includes("application/pdf"));
+  assert.equal((await cv.body()).subarray(0, 4).toString(), "%PDF");
+  results.push({ check: "16 ekte 301-er med query, riktig 404 og faktisk CV-PDF", status: "bestått" });
+  await api.close();
   for (const width of [1440, 390]) {
     const context = await browser.newContext({
       viewport: { width, height: width === 390 ? 844 : 1000 },
@@ -43,25 +72,34 @@ try {
     page.on("pageerror", (error) => errors.push({ width, url: page.url(), error: error.message }));
 
     for (const slug of cases) {
-      const response = await page.goto(`${base}/projects/${slug}`);
+      const response = await page.goto(`${base}/prosjekter/${slug}`);
       assert.equal(response.status(), 200);
       await page.locator("main").waitFor();
+      const imageErrors = await page.evaluate(async () => {
+        const images = [...document.querySelectorAll("main img")];
+        images.forEach((image) => image.loading = "eager");
+        await Promise.all(images.map((image) => image.decode().catch(() => {})));
+        return images.filter((image) => !image.naturalWidth).map((image) => image.currentSrc || image.src);
+      });
+      assert.deepEqual(imageErrors, [], `${slug}: alle bilder kan lastes`);
+      assert.equal(await page.locator("main h1").count(), 1, `${slug}: én hovedoverskrift`);
+      await page.screenshot({ path: `${output}/${slug}-${width}.png` });
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false,
         `${slug}: horisontal sidescroll ved ${width}px`);
     }
     results.push({ width, check: "fem prosjektruter", status: "bestått" });
 
     for (const { slug, id } of fragments) {
-      await page.goto(`${base}/projects/${slug}#${id}`);
+      await page.goto(`${base}/prosjekter/${slug}#${id}`);
       await aligned(page, id);
       await page.reload();
       await aligned(page, id);
       results.push({ width, check: `${slug}#${id}: direkte og oppdatering`, status: "bestått" });
     }
 
-    await page.goto(`${base}/projects/headset`);
+    await page.goto(`${base}/prosjekter/headset`);
     await page.getByRole("navigation", { name: "Prosjektmeny" })
-      .getByRole("link", { name: "3D Model", exact: true }).click();
+      .getByRole("link", { name: "3D-modell", exact: true }).click();
     assert.equal(new URL(page.url()).hash, "#model");
     await aligned(page, "model");
     await page.goBack();
@@ -92,14 +130,14 @@ try {
       await open.click();
       await page.getByRole("navigation", { name: "Mobilmeny" })
         .getByRole("link", { name: "Om meg", exact: true }).click();
-      await page.waitForURL("**/about/");
+      await page.waitForURL("**/om-meg");
       assert.equal(await open.getAttribute("aria-expanded"), "false");
       assert.equal(await page.evaluate(() => document.body.style.overflow), "");
       results.push({ width, check: "mobilmeny: Tab, Escape, fokusretur og navigasjon", status: "bestått" });
 
-      await page.goto(`${base}/projects/headset`);
+      await page.goto(`${base}/prosjekter/headset`);
       await page.getByRole("navigation", { name: "Prosjektmeny" })
-        .getByRole("link", { name: "3D Model", exact: true }).click();
+        .getByRole("link", { name: "3D-modell", exact: true }).click();
       await aligned(page, "model");
       await open.click();
       await page.waitForFunction(() => document.getElementById("mobile-navigation")?.contains(document.activeElement));
@@ -111,7 +149,7 @@ try {
       results.push({ width, check: "tilbake med åpen meny: lukking og fokusretur", status: "bestått" });
     }
 
-    await page.goto(`${base}/projects/avfallsportalen`);
+    await page.goto(`${base}/prosjekter/avfallsportalen`);
     await page.locator("iframe").scrollIntoViewIfNeeded();
     const demo = page.frameLocator("iframe");
     await demo.getByRole("button", { name: "Avfallsreisen", exact: true }).waitFor();
@@ -122,6 +160,12 @@ try {
     await demo.getByRole("button", { name: /Ta quizen/ }).click();
     for (let question = 1; question <= 10; question++) {
       await demo.getByText(`Spørsmål ${question} av 10`, { exact: true }).waitFor();
+      if (question === 2) {
+        await demo.locator("#quizQuestion").getByRole("button", { name: "← Forrige", exact: true }).click();
+        await demo.getByText("Spørsmål 1 av 10", { exact: true }).waitFor();
+        assert.equal(await demo.locator("#quizQuestion").getByRole("button", { pressed: true }).count(), 1);
+        await demo.getByRole("button", { name: "Neste →", exact: true }).click();
+      }
       const answer = question === 10
         ? demo.getByRole("button", { name: "19%", exact: true })
         : demo.locator("#quizQuestion").getByRole("button", { pressed: false }).first();
@@ -150,6 +194,11 @@ try {
     await page.screenshot({ path: `${output}/kommuner-${width}.png` });
     results.push({ width, check: "kommunevalg og samme kommune", status: "bestått" });
 
+    const theme = demo.getByRole("button", { name: "Bytt mellom lyst og mørkt tema", exact: true });
+    await theme.click();
+    assert.equal(await demo.locator("body").getAttribute("data-theme"), "dark");
+    await theme.click();
+    assert.equal(await demo.locator("body").getAttribute("data-theme"), "light");
     await demo.getByRole("button", { name: "Dashboard", exact: true }).click();
     const graphLabel = demo.locator("#page-dashboard .bar-value").getByText("19%", { exact: true });
     await graphLabel.scrollIntoViewIfNeeded();
@@ -172,13 +221,13 @@ try {
     assert.equal(await infoCard.getAttribute("aria-expanded"), "false");
     results.push({ width, check: "åtte steg tilbake og infokort med tastatur", status: "bestått" });
 
-    await page.goto(`${base}/projects/seaweed`);
+    await page.goto(`${base}/prosjekter/seaweed`);
     await page.screenshot({ path: `${output}/seaweed-${width}.png` });
     await context.close();
   }
   assert.deepEqual(errors, [], "JavaScript-feil i nettleseren");
-  console.log(JSON.stringify({ results, errors }, null, 2));
+  console.log(JSON.stringify({ base, results, errors }, null, 2));
 } finally {
-  await writeFile(`${output}/resultater.json`, JSON.stringify({ results, errors }, null, 2));
+  await writeFile(`${output}/resultater.json`, JSON.stringify({ base, results, errors }, null, 2));
   await browser.close();
 }

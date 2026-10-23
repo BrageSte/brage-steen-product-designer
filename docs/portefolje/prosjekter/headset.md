@@ -53,3 +53,9 @@ og er ikke en faktakilde. Godkjent eksisterende design beholdes som utgangspunkt
 - [ ] Begge gallerier virker frem/tilbake og med tastatur; tegninger kan leses.
 - [ ] 3D lastes/roteres på en reell desktop- og mobilenhet, eller har en tydelig reservevisning.
 - [ ] Direkte lenke og refresh til `#model` fungerer.
+
+## J2 – lokal kontroll 2026-10-23
+
+Se [J2-arbeidsloggen](../implementering/j2-2026-10-23.md) for gjennomførte kontroller,
+kildefakta, mediegrenser og produksjonsstatus. Punktene over bevarer opprinnelig plan/funn.
+Brage bekrefter at vinkler, toleranser og proporsjoner var hovedtemaene i fysisk utprøving.

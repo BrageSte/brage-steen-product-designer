@@ -1,0 +1,51 @@
+[
+  {
+    "path": "/",
+    "title": "Brage Steen – produktdesigner og prototyping",
+    "description": "Produktdesigner med styrke fra idé til fungerende prototype. Industridesign, tjenestedesign og digitale løsninger. Tilgjengelig fortløpende.",
+    "image": "/images/og-image.jpg"
+  },
+  {
+    "path": "/om-meg",
+    "title": "Om Brage Steen – erfaring og CV",
+    "description": "Produktdesigner med erfaring fra fysisk produktutvikling, tjenester og digitale prototyper. Se erfaring, utdanning og last ned CV.",
+    "image": "/images/portrait.jpg"
+  },
+  {
+    "path": "/prosjekter/bs-climbing",
+    "title": "BS Climbing – tilpasset produkt og digital konfigurator",
+    "description": "Fra fingermål til fysisk klatreprodukt: produktdesign, parametrisk modellering, prototyping og en digital bestillingsflyt av Brage Steen.",
+    "image": "/projects/bsclimbing/nett/hero-product.jpg"
+  },
+  {
+    "path": "/prosjekter/kildesortering",
+    "title": "The Sorting Guide – tjenestedesign for kildesortering",
+    "description": "Bachelorprosjekt av Brage Steen og Regina von Koch med IKEA Norge. Fra brukerinnsikt og systemkartlegging til tjenestekonsept og prototype.",
+    "image": "/projects/sorting-guide/nett/images-153.jpg"
+  },
+  {
+    "path": "/prosjekter/headset",
+    "title": "Headset – industridesign og fysiske prototyper",
+    "description": "Et sammenleggbart headset utviklet av Brage Steen ved NTNU i 2021. Skisser, CAD og 3D-printede prototyper med sprøytestøping som premiss.",
+    "image": "/projects/headset/nett/details-render-2.jpg"
+  },
+  {
+    "path": "/prosjekter/seaweed",
+    "title": "Ting av tang – materialutforskning og prototyping",
+    "description": "Materialforsøk med tang fra 2019. Testmetoder, tørking, sprekker og læring i et prosjekt av Brage Steen, Thomas Rokstad og Ly Nguyen.",
+    "image": "/projects/seaweed/nett/overview.jpg"
+  },
+  {
+    "path": "/prosjekter/avfallsportalen",
+    "title": "Avfallsportalen – interaktiv demonstrator",
+    "description": "Brage Steens videre utforskning fra 2026 av formidling og interaksjon rundt avfall. En prototype med historiske og illustrative eksempeldata.",
+    "image": "/projects/avfallsportalen/nett/cover.jpg"
+  },
+  {
+    "path": "/404",
+    "title": "Siden finnes ikke – Brage Steen",
+    "description": "Siden finnes ikke. Gå til Brage Steens portefølje eller finn kontaktinformasjon og CV.",
+    "image": "/images/og-image.jpg",
+    "noindex": true
+  }
+]

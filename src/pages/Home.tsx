@@ -11,19 +11,22 @@ const Home = () => {
           <div className="container relative z-10">
             <p className="eyebrow">Produktdesigner</p>
             <h1 className="text-display-xl mt-6 text-balance">
-              <span className="block">Jeg designer produkter og tjenester</span>
-              <span className="block">med funksjon, klarhet og varighet.</span>
+              <span className="block">Fra idé til en prototype</span>
+              <span className="block">som fungerer på kort tid.</span>
             </h1>
             <p className="text-body-lg mt-6 max-w-2xl">
-              Tjenestedesign, industridesign og bærekraftig innovasjon.
+              Jeg er produktdesigner og utvikler fysiske og digitale produkter. Jeg søker også roller innen fullstack- og AI-implementering.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a className="btn btn-primary" href="#arbeid">
                 Se arbeid
               </a>
-              <Link className="btn btn-ghost" to="/about/">
+              <Link className="btn btn-ghost" to="/om-meg">
                 Om meg
               </Link>
+              <a className="btn btn-ghost" href="/cv/brage-steen-cv.pdf">
+                Last ned CV
+              </a>
             </div>
           </div>
           <div className="hero-orb" aria-hidden="true" />
@@ -37,8 +40,7 @@ const Home = () => {
                 <h2 className="text-display-md mt-3">Utvalgte prosjekter</h2>
               </div>
               <p className="text-sm md:text-base text-muted-foreground max-w-xl">
-                Et rolig, kuratert utsnitt av prosjekter som viser metode, form og
-                funksjon.
+                Fra tilpassede klatreprodukter til tjenestedesign, industridesign og materialutforskning.
               </p>
             </div>
             <div className="mt-10">

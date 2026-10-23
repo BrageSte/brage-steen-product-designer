@@ -13,6 +13,12 @@ Brages egne notater beskriver et soloprosjekt, mange forsøk med tekstur/styrke/
 endringer etter kundetilbakemeldinger og arbeid med både fysisk produkt og målegrensesnitt.
 Resultattall og dokumenterte effekter er ikke oppgitt i notatene.
 
+Den oppdaterte CV-profilen (`src/content/profil.json`) bekrefter rollen gründer og
+produktutvikler i BS Climbing / Steen Consulting fra 2025–nå, med arbeid innen
+produktutvikling, design, produksjon og salg, inkludert nettbutikk og web-konfigurator.
+Profilen støtter prosjektperiode og omfang, men tilfører ingen konkrete prototyperevisjoner
+eller målbare kunde-/produkteffekter.
+
 ## Plan
 
 - [ ] Erstatt «Fullstack», «AI-utvikling», «Fullstack Side Project» og «Claude Code og Codex
@@ -49,3 +55,10 @@ samlet ennå; det betyr ikke at materialet mangler i kildemappene.
 - [ ] Minst to konkrete iterasjoner har bilde, begrunnelse og observert læring.
 - [ ] Siden er norsk, mobilvennlig og fri for udokumenterte effekt-/resultatpåstander.
 - [ ] Butikklenken fungerer og porteføljecasens verdi er forståelig uten å gjennomføre et kjøp.
+
+## J2 – lokal kontroll 2026-10-23
+
+Se [J2-arbeidsloggen](../implementering/j2-2026-10-23.md) for gjennomførte kontroller,
+kildefakta, mediegrenser og produksjonsstatus. Punktene over bevarer opprinnelig plan/funn.
+Brage bekrefter omtrent 40 printede prototyper med variasjoner i tekstur, proporsjoner,
+toleranser og avrundinger. Konkrete før/etter-bilder og kundesitat gjenstår som mulig styrking.

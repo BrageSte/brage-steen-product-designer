@@ -1,0 +1,8 @@
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/cv/brage-steen-cv.pdf
+  Content-Disposition: attachment; filename="brage-steen-cv.pdf"
+
+/embeds/*
+  X-Robots-Tag: noindex

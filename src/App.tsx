@@ -1,8 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "@/pages/Home";
-import Work from "@/pages/Work";
 import About from "@/pages/About";
-import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
 import ScrollToTop from "@/components/ScrollToTop";
 import HeadsetProject from "@/pages/projects/HeadsetProject";
@@ -10,21 +8,29 @@ import SortingGuideProject from "@/pages/projects/SortingGuideProject";
 import SeaweedProject from "@/pages/projects/SeaweedProject";
 import AvfallsportalenProject from "@/pages/projects/AvfallsportalenProject";
 import BSClimbingProject from "@/pages/projects/BSClimbingProject";
+import SideMetadata from "@/components/SideMetadata";
+import videresendinger from "@/content/videresendinger.json";
+
+function GammelAdresse({ til }: { til: string }) {
+  const { search, hash } = useLocation();
+  const [path, fragment] = til.split("#");
+  return <Navigate replace to={`${path}${search}${fragment ? `#${fragment}` : hash}`} />;
+}
 
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <SideMetadata />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/work/*" element={<Work />} />
-        <Route path="/about/*" element={<About />} />
-        <Route path="/contact/*" element={<Contact />} />
-        <Route path="/projects/headset" element={<HeadsetProject />} />
-        <Route path="/projects/sorting-guide" element={<SortingGuideProject />} />
-        <Route path="/projects/seaweed" element={<SeaweedProject />} />
-        <Route path="/projects/avfallsportalen" element={<AvfallsportalenProject />} />
-        <Route path="/projects/bsclimbing" element={<BSClimbingProject />} />
+        <Route path="/om-meg" element={<About />} />
+        <Route path="/prosjekter/headset" element={<HeadsetProject />} />
+        <Route path="/prosjekter/kildesortering" element={<SortingGuideProject />} />
+        <Route path="/prosjekter/seaweed" element={<SeaweedProject />} />
+        <Route path="/prosjekter/avfallsportalen" element={<AvfallsportalenProject />} />
+        <Route path="/prosjekter/bs-climbing" element={<BSClimbingProject />} />
+        {Object.entries(videresendinger).map(([fra, til]) => <Route key={fra} path={fra} element={<GammelAdresse til={til} />} />)}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

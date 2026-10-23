@@ -27,7 +27,7 @@ function ScrollHarness() {
     <>
       <output data-testid="location">{`${location.pathname}${location.hash}`}</output>
       <button onClick={() => navigate(-1)}>Tilbake</button>
-      <button onClick={() => navigate("/projects/headset")}>Til prosjektstart</button>
+      <button onClick={() => navigate("/prosjekter/headset")}>Til prosjektstart</button>
       <header className="site-header" />
       <ProjectBar title="Prosjekt" sections={[{ label: "Modell", id: "model" }]} />
       <img alt="" src="/before-anchor.jpg" />
@@ -62,7 +62,7 @@ describe("project fragment navigation", () => {
     let targetTop = 400;
 
     render(
-      <MemoryRouter initialEntries={["/projects/headset#model"]}>
+      <MemoryRouter initialEntries={["/prosjekter/headset#model"]}>
         <ScrollHarness />
       </MemoryRouter>,
     );
@@ -102,7 +102,7 @@ describe("project fragment navigation", () => {
     vi.spyOn(window, "scrollTo").mockImplementation(() => {});
 
     render(
-      <MemoryRouter initialEntries={["/projects/headset"]}>
+      <MemoryRouter initialEntries={["/prosjekter/headset"]}>
         <ScrollHarness />
       </MemoryRouter>,
     );
@@ -111,7 +111,7 @@ describe("project fragment navigation", () => {
     await waitFor(() => expect(screen.getByTestId("location")).toHaveTextContent("#model"));
 
     fireEvent.click(screen.getByRole("button", { name: "Tilbake" }));
-    await waitFor(() => expect(screen.getByTestId("location")).toHaveTextContent("/projects/headset"));
+    await waitFor(() => expect(screen.getByTestId("location")).toHaveTextContent("/prosjekter/headset"));
     expect(screen.getByTestId("location")).not.toHaveTextContent("#model");
   });
 });
@@ -119,7 +119,7 @@ describe("project fragment navigation", () => {
 describe("mobile navigation accessibility", () => {
   it("returns focus after history navigation only when focus was in the open menu", async () => {
     render(
-      <MemoryRouter initialEntries={["/work/", "/about/"]} initialIndex={1}>
+      <MemoryRouter initialEntries={["/", "/om-meg"]} initialIndex={1}>
         <LayoutHarness />
       </MemoryRouter>,
     );
@@ -137,7 +137,7 @@ describe("mobile navigation accessibility", () => {
       .focus();
     fireEvent.click(back);
 
-    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/work/"));
+    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/"));
     await waitFor(() => expect(trigger).toHaveFocus());
     expect(panel).toHaveAttribute("inert");
 
@@ -147,18 +147,18 @@ describe("mobile navigation accessibility", () => {
     forward.focus();
     fireEvent.click(forward);
 
-    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/about/"));
+    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/om-meg"));
     expect(forward).toHaveFocus();
     expect(panel).toHaveAttribute("inert");
 
     fireEvent.click(back);
-    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/work/"));
+    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/"));
     expect(forward).toHaveFocus();
   });
 
   it("removes the closed panel from focus, closes with Escape and returns focus", async () => {
     render(
-      <MemoryRouter initialEntries={["/work/"]}>
+      <MemoryRouter initialEntries={["/"]}>
         <LayoutHarness />
       </MemoryRouter>,
     );
@@ -187,7 +187,7 @@ describe("mobile navigation accessibility", () => {
     const openMobileNavigation = await screen.findByRole("navigation", { name: "Mobilmeny" });
     fireEvent.click(within(openMobileNavigation).getByRole("link", { name: "Om meg" }));
 
-    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/about/"));
+    await waitFor(() => expect(screen.getByTestId("route")).toHaveTextContent("/om-meg"));
     await waitFor(() => expect(trigger).toHaveAttribute("aria-expanded", "false"));
     expect(panel).toHaveAttribute("inert");
   });

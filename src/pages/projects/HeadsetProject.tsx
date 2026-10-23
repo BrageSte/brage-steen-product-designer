@@ -1,3 +1,4 @@
+import Prosjektbilde from "@/components/Prosjektbilde";
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +11,6 @@ import ProjectBar from "@/components/ProjectBar";
 
 const basePath = "/projects/headset";
 
-// Brief item component
 function BriefItem({ label, value }: { label: string; value: string }) {
   return (
     <div>
@@ -22,53 +22,54 @@ function BriefItem({ label, value }: { label: string; value: string }) {
   );
 }
 
-// Hero Section - Full screen, edge-to-edge, NO text
 function HeroSection() {
   return (
-    <section className="h-screen w-full bg-neutral-950">
-      <img
-        src={`${basePath}/Header.png`}
-        className="h-full w-full object-cover"
-        alt="Exploded view of headset components"
+    <section className="relative h-[58svh] min-h-[430px] max-h-[760px] w-full overflow-hidden bg-neutral-950 md:h-[78vh]">
+      <Prosjektbilde
+        src={`${basePath}/nett/header.jpg`}
+        className="h-full w-full object-cover object-center"
+        alt="Sprengskisse av det sammenleggbare headsettet og komponentene"
         fetchPriority="high"
         decoding="async"
       />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 mx-auto max-w-6xl px-6 pb-8 text-white md:px-8 md:pb-12">
+        <p className="text-caption text-white/75">Industridesign · NTNU · 2021</p>
+        <h1 className="text-display-md mt-3 text-white">Et sammenleggbart headset</h1>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
+          Et individuelt prosjekt over fire måneder i Design for Industrialization, utviklet med sprøytestøping som premiss.
+        </p>
+      </div>
     </section>
   );
 }
 
-// Overview Section - 2-column grid
 function OverviewSection() {
   return (
     <section id="overview" className="py-24 px-8">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         <div className="opacity-0 animate-fade-in-up">
-          <span className="text-caption">Overview</span>
-          <h2 className="text-display-md mt-4 mb-6">Project Brief</h2>
+          <span className="text-caption">Oppgaven</span>
+          <h2 className="text-display-md mt-4 mb-6">Oppgave og rammer</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            An individual project at NTNU in 2021 for Design for
-            Industrialization.
+            Jeg utviklet et headset for pendlere og kontorbruk, med en form som kunne legges sammen for transport og daglig bruk.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            The brief asked for a commuter- and office-friendly headset with a
-            focus on industrialized production and a foldable form for travel
-            and everyday use.
+            Oppgaven satte prisnivået 200–300 USD og et produksjonsmål på 100&nbsp;000 enheter. Dette var mål i oppgaven, ikke dokumentasjon på produksjon eller salg.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">
-              Production Considerations:
+              Produksjonspremiss:
             </strong>{" "}
-            Plastic injection molding was the production premise, so part
-            geometry was developed with mold release in mind.
+            Delene ble utviklet med sprøytestøping i tankene, blant annet med hensyn til form og uttak fra form.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-border">
-            <BriefItem label="Duration" value="4 months" />
-            <BriefItem label="Brief price target" value="$200–$300" />
-            <BriefItem label="Brief production target" value="100,000 units" />
-            <BriefItem label="Materials" value="Polyethylene, Steel" />
-            <BriefItem label="Method" value="Injection Molding" />
-            <BriefItem label="Tools" value="Fusion 360" />
+            <BriefItem label="Varighet" value="Fire måneder" />
+            <BriefItem label="Prisnivå i oppgaven" value="200–300 USD" />
+            <BriefItem label="Produksjonsmål i oppgaven" value="100 000 enheter" />
+            <BriefItem label="Produksjonspremiss" value="Sprøytestøping" />
+            <BriefItem label="Verktøy" value="Fusion 360" />
           </div>
         </div>
 
@@ -76,9 +77,9 @@ function OverviewSection() {
           className="opacity-0 animate-fade-in-up"
           style={{ animationDelay: "0.1s" }}
         >
-          <img
-            src={`${basePath}/details-render.png`}
-            alt="Headset detail close-up"
+          <Prosjektbilde
+            src={`${basePath}/nett/details-render.jpg`}
+            alt="Detaljutsnitt av headsetdesignet"
             className="w-full rounded-2xl"
             loading="lazy"
             decoding="async"
@@ -89,30 +90,27 @@ function OverviewSection() {
   );
 }
 
-// Ideation Section - Sketch grid
 function IdeationSection() {
   return (
     <section id="ideation" className="py-24 px-8">
       <div className="max-w-6xl mx-auto">
-        <span className="text-caption">01 — Ideation</span>
-        <h2 className="text-display-md mt-4 mb-6">Sketches & Exploration</h2>
+        <span className="text-caption">01 — Idéutvikling</span>
+        <h2 className="text-display-md mt-4 mb-6">Skisser og formutforsking</h2>
         <p className="text-muted-foreground max-w-2xl mb-12">
-          The initial phase involved exploring various joint types and form
-          languages. A significant focus was placed on designing the headset cup
-          holder, aiming for a visually distinct back piece.
+          Jeg utforsket ulike ledd og former, med særlig oppmerksomhet på ørekoppen og holderen. Skissene undersøker hvordan bakstykket kunne få et særpreget uttrykk.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <img
-            src={`${basePath}/sketch-1.png`}
-            alt="Earcup concept sketches"
+          <Prosjektbilde
+            src={`${basePath}/nett/sketch-1.png`}
+            alt="Skisser av ulike former på ørekopp og holder"
             className="rounded-2xl bg-white"
             loading="lazy"
             decoding="async"
           />
-          <img
-            src={`${basePath}/sketch-2.png`}
-            alt="Button and detail sketches"
+          <Prosjektbilde
+            src={`${basePath}/nett/sketch-2.png`}
+            alt="Skisser av knapper og headsetdetaljer"
             className="rounded-2xl bg-white"
             loading="lazy"
             decoding="async"
@@ -123,40 +121,37 @@ function IdeationSection() {
   );
 }
 
-// Prototyping Section
 function PrototypingSection() {
   const prototypeImages = [
-    "prototype-2.jpg",
-    "prototype-3.jpg",
-    "prototype-4.jpg",
-    "prototype-5.jpg",
+    "nett/prototype-2.jpg",
+    "nett/prototype-3.jpg",
+    "nett/prototype-4.jpg",
+    "nett/prototype-5.jpg",
   ];
 
   return (
     <section id="prototyping" className="py-24 px-8">
       <div className="max-w-6xl mx-auto">
-        <span className="text-caption">02 — Prototyping</span>
-        <h2 className="text-display-md mt-4 mb-6">From Digital to Physical</h2>
+        <span className="text-caption">02 — Prototyper</span>
+        <h2 className="text-display-md mt-4 mb-6">Fra digital modell til fysisk form</h2>
+        <p className="text-muted-foreground max-w-2xl mb-5">
+          3D-printede prototyper gjorde det mulig å sammenligne formvarianter og vurdere passform og komfort uformelt. Dette var utforskende utprøving, ikke dokumentert ergonomisk validering.
+        </p>
         <p className="text-muted-foreground max-w-2xl mb-12">
-          Perfecting the angles for both aesthetics and functionality was a
-          challenge, requiring numerous iterations to achieve the ideal fit.
-          Since the headset is designed for injection molding, careful attention
-          was given to draft angles. 3D printing allowed rapid testing of
-          variations for informal fit and comfort checks. This was exploratory
-          prototype use, not a documented ergonomic validation.
+          Med fysiske prototyper utforsket og justerte jeg vinkler, toleranser og proporsjoner, og vurderte CAD-modellen i fysisk form.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <img
-            src={`${basePath}/prototype-1.png`}
-            alt="Testing the prototype"
+          <Prosjektbilde
+            src={`${basePath}/nett/prototype-1.jpg`}
+            alt="Utprøving av en fysisk headsetprototype"
             className="rounded-2xl"
             loading="lazy"
             decoding="async"
           />
-          <img
-            src={`${basePath}/Prototype.png`}
-            alt="White 3D printed prototype"
+          <Prosjektbilde
+            src={`${basePath}/nett/prototype.jpg`}
+            alt="Hvit 3D-printet prototype av headsettet"
             className="rounded-2xl"
             loading="lazy"
             decoding="async"
@@ -167,9 +162,9 @@ function PrototypingSection() {
           <CarouselContent className="-ml-4">
             {prototypeImages.map((img) => (
               <CarouselItem key={img} className="pl-4 md:basis-1/3 lg:basis-1/4">
-                <img
+                <Prosjektbilde
                   src={`${basePath}/${img}`}
-                  alt="3D printed prototype parts"
+                  alt="Deler til 3D-printede headsetprototyper"
                   className="rounded-xl h-56 object-cover w-full"
                   loading="lazy"
                   decoding="async"
@@ -185,23 +180,22 @@ function PrototypingSection() {
   );
 }
 
-// Product Showcase - WHITE background (Functions first, then full render)
 function ProductShowcase() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-5xl mx-auto px-8">
-        <img
-          src={`${basePath}/Functions.png`}
-          alt="Headset with annotated features"
+        <Prosjektbilde
+          src={`${basePath}/nett/functions.jpg`}
+          alt="Headset med forklaringer av funksjonene"
           className="w-full"
           loading="lazy"
           decoding="async"
         />
       </div>
       <div className="max-w-4xl mx-auto px-8 mt-16">
-        <img
-          src={`${basePath}/full-headset.png`}
-          alt="Complete headset design"
+        <Prosjektbilde
+          src={`${basePath}/nett/full-headset.jpg`}
+          alt="Samlet visualisering av headsetdesignet"
           className="w-full"
           loading="lazy"
           decoding="async"
@@ -211,47 +205,47 @@ function ProductShowcase() {
   );
 }
 
-// 3D Model Section
 function ModelSection() {
   return (
     <section id="model" className="py-24 bg-neutral-900 text-white">
       <div className="max-w-4xl mx-auto px-8">
-        <span className="text-xs uppercase tracking-widest text-amber-400 font-medium">03 — 3D Model</span>
-        <h2 className="text-display-md mt-4 mb-6 text-white">Interactive Model</h2>
+        <span className="text-xs uppercase tracking-widest text-amber-400 font-medium">03 — 3D-modell</span>
+        <h2 className="text-display-md mt-4 mb-6 text-white">Utforsk modellen</h2>
         <p className="text-neutral-300 mb-8">
-          Explore the complete 3D model with all components. The design features
-          modular construction for easy assembly and serviceability.
+          Se komponentene i 3D-modellen. Modellen viser prosjektets sammenstilling og konstruksjon.
         </p>
 
         <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden bg-neutral-800">
           <iframe
-            title="Headset 3D Model"
+            title="3D-modell av headsettet"
             className="absolute inset-0 w-full h-full"
             src="https://sketchfab.com/models/dd8b8b2a1f0645b6b65a4f19227cc69d/embed"
+            loading="lazy"
             allowFullScreen
           />
         </div>
+        <p className="mt-4 text-sm text-neutral-300">
+          <a className="underline underline-offset-4" href="https://sketchfab.com/3d-models/dd8b8b2a1f0645b6b65a4f19227cc69d" target="_blank" rel="noopener noreferrer">Åpne 3D-modellen hos Sketchfab</a>
+        </p>
       </div>
     </section>
   );
 }
 
-// Technical Drawings Section
 function TechnicalSection() {
   const technicalImages = [
-    "Technical-drawing-1.png",
-    "technical-drawing-3.png",
-    "technical-drawing-4.png",
+    "nett/technical-drawing-1.png",
+    "nett/technical-drawing-3.png",
+    "nett/technical-drawing-4.png",
   ];
 
   return (
     <section id="technical" className="py-24">
       <div className="max-w-4xl mx-auto px-8 mb-12">
-        <span className="text-caption">04 — Technical</span>
-        <h2 className="text-display-md mt-4 mb-6">Production Drawings</h2>
+        <span className="text-caption">04 — Tegninger</span>
+        <h2 className="text-display-md mt-4 mb-6">Tekniske tegninger</h2>
         <p className="text-muted-foreground">
-          Technical drawings document component dimensions and tolerances. The
-          production premise was plastic injection molding.
+          Tegningene viser mål og toleranser for komponentene. Sprøytestøping var produksjonspremisset i oppgaven.
         </p>
       </div>
 
@@ -260,9 +254,9 @@ function TechnicalSection() {
           {technicalImages.map((img) => (
             <CarouselItem key={img} className="pl-4 md:basis-4/5">
               <div className="bg-white border border-border rounded-2xl p-6">
-                <img
+                <Prosjektbilde
                   src={`${basePath}/${img}`}
-                  alt="Technical drawing"
+                  alt="Teknisk tegning av en headsetkomponent"
                   className="w-full"
                   loading="lazy"
                   decoding="async"
@@ -275,11 +269,20 @@ function TechnicalSection() {
         <CarouselNext className="right-4" />
       </Carousel>
 
+      <div className="max-w-5xl mx-auto px-8 mt-6">
+        <p className="text-sm">Åpne en tegning i full størrelse:</p>
+        <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {technicalImages.map((img, index) => <li key={img}>
+            <a className="underline underline-offset-4" href={`${basePath}/${img}`} target="_blank" rel="noopener noreferrer">Tegning {index + 1} (PNG)</a>
+          </li>)}
+        </ul>
+      </div>
+
       {/* Closing image — full bleed */}
       <div className="mt-16">
-        <img
-          src={`${basePath}/jadda.65.png`}
-          alt="Final technical overview"
+        <Prosjektbilde
+          src={`${basePath}/nett/jadda-65.jpg`}
+          alt="Avsluttende teknisk oversikt over headsettet"
           className="w-full"
           loading="lazy"
           decoding="async"
@@ -291,11 +294,11 @@ function TechnicalSection() {
 
 // Main Component
 const headsetSections = [
-  { id: "overview", label: "Overview" },
-  { id: "ideation", label: "Ideation" },
-  { id: "prototyping", label: "Prototyping" },
-  { id: "model", label: "3D Model" },
-  { id: "technical", label: "Technical" },
+  { id: "overview", label: "Oppgaven" },
+  { id: "ideation", label: "Idéutvikling" },
+  { id: "prototyping", label: "Prototyper" },
+  { id: "model", label: "3D-modell" },
+  { id: "technical", label: "Tegninger" },
 ];
 
 export default function HeadsetProject() {

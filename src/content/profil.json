@@ -1,0 +1,103 @@
+{
+  "navn": "Brage Steen",
+  "tittel": "Produktdesigner",
+  "epost": "brage.steen@gmail.com",
+  "nettside": "https://bragesteen.no",
+  "tilgjengelighet": "Tilgjengelig fortløpende",
+  "profil": "Jeg er produktdesigner og liker å ta en idé frem til en prototype som fungerer på kort tid. Jeg kombinerer brukerinnsikt, form og materialer med fysisk prototyping og digitale verktøy jeg bygger med AI.",
+  "roller": "Jeg søker arbeid innen produktutvikling, produktdesign og industridesign, og er også åpen for fullstack- og AI-implementering.",
+  "erfaring": [
+    {
+      "rolle": "Gründer og produktutvikler",
+      "sted": "BS Climbing / Steen Consulting",
+      "periode": "2025 - nå",
+      "beskrivelse": "Eget merke for klatreprodukter, fra idé og design til produksjon og salg.",
+      "punkter": [
+        "Parametrisk modellering i Fusion 360, 3D-print og utprøving av fysiske produkter.",
+        "Nettbutikk og konfigurator som kobler kundens fingermål til tilpasset produktgeometri.",
+        "Pågående arbeid med GripSense: fysisk prototype og digital visualisering av last under grep."
+      ]
+    },
+    {
+      "rolle": "Tjenestedesigner, innleid",
+      "sted": "Looping AS",
+      "periode": "Aug. 2021 - des. 2021",
+      "beskrivelse": "Utforsket hvordan erfaring med utleie, produksjon og sporing kunne brukes i tjenester for andre næringer.",
+      "punkter": [
+        "Utviklet sammen med Looping et kontrollsystem for produktflåten til Algeco / Modulaire Group.",
+        "Kartla produktenes livsløp fra produksjon og bruk til reparasjon og avhending."
+      ]
+    },
+    {
+      "rolle": "Klatreinstruktør og rutesetter",
+      "sted": "Gneis Lilleaker",
+      "periode": "Aug. 2023 - nå",
+      "beskrivelse": "Barnegrupper, teknikkurs for voksne, klatrevakt, resepsjon og rutesetting.",
+      "punkter": []
+    },
+    {
+      "rolle": "Kjøttkonsulent",
+      "sted": "TT Meat Oslo",
+      "periode": "Jan. 2024 - juni 2025",
+      "beskrivelse": "Med fra åpningen av butikken i Oslo. Salg og kundebehandling i spesialforretning for norsk storfe.",
+      "punkter": []
+    },
+    {
+      "rolle": "Medgründer og ko-festivalsjef",
+      "sted": "Kaia Tel Han Kai",
+      "periode": "2020 - 2022",
+      "beskrivelse": "Samskapingsfestival i Nord-Norge med musikk, design og workshops, startet av tre venner og med 300 deltakere.",
+      "punkter": [
+        "Koordinering, logistikk, bygging, budsjett, søknader og praktisk gjennomføring."
+      ]
+    },
+    {
+      "rolle": "Murer",
+      "sted": "Mur Med Mer",
+      "periode": "Mai 2022 - jan. 2024",
+      "beskrivelse": "Bad, hus og garasjer sammen med murermester, samt oppussing og snekkerarbeid. Praktisk erfaring med byggteknikk og materialer.",
+      "punkter": []
+    },
+    {
+      "rolle": "Skoleassistent",
+      "sted": "Asker kommune, Den alternative skolen",
+      "periode": "Mars 2021 - juni 2021",
+      "beskrivelse": "Arbeid med ungdomsskoleelever som trengte ekstra støtte. Underviste i 3D-print, tredreiing og seiling.",
+      "punkter": []
+    }
+  ],
+  "utdanning": [
+    {
+      "tittel": "Masteremner i industriell design",
+      "sted": "NTNU og Aalto University",
+      "periode": "Aug. 2021 - mai 2022",
+      "beskrivelse": "Påbegynt master ved NTNU med utveksling i Creative Sustainability ved Aalto. Emner i tjenestedesign, design for industrialisering og bærekraftige omstillinger. Mastergraden ble ikke fullført."
+    },
+    {
+      "tittel": "Bachelor i produktdesign",
+      "sted": "OsloMet",
+      "periode": "Aug. 2017 - juni 2020",
+      "beskrivelse": "Form, funksjon, materialvalg, brukerorientert design og prototyping i verksted. Bacheloroppgaven The Sorting Guide, i samarbeid med IKEA Norge og Grønt Punkt, fikk karakter A."
+    }
+  ],
+  "ferdigheter": [
+    {
+      "gruppe": "Design og metode",
+      "tekst": "Brukerinnsikt, workshops, systemkartlegging, tjenestedesign, sirkulær design og prototyping."
+    },
+    {
+      "gruppe": "CAD og verksted",
+      "tekst": "Fusion 360 og parametrisk modellering, 3D-print, laserkutting, CNC og Adobe-verktøy."
+    },
+    {
+      "gruppe": "Digitalt og AI",
+      "tekst": "Digitale prototyper og implementering med Claude Code og OpenAI Codex. Supabase, GitHub og MCP."
+    },
+    {
+      "gruppe": "Prosjekt og samarbeid",
+      "tekst": "Prosjektledelse, budsjett, søknader, kursholding, veiledning, salg og kundekontakt."
+    }
+  ],
+  "sprak": "Norsk som morsmål. Engelsk flytende.",
+  "sertifikater": "Førerkort klasse B"
+}

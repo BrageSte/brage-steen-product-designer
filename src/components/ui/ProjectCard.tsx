@@ -1,3 +1,4 @@
+import Prosjektbilde from "@/components/Prosjektbilde";
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import TagPill from "./TagPill";
@@ -24,7 +25,7 @@ const ProjectCard = ({ project, index = 0 }: ProjectCardProps) => {
         }
       >
         {project.cover && (
-          <img src={project.cover} alt={project.title} loading="lazy" />
+          <Prosjektbilde src={project.cover} alt={project.title} loading="lazy" />
         )}
       </div>
 

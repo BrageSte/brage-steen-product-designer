@@ -142,7 +142,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
               aria-label="Hovedmeny"
             >
               <NavLink
-                to="/work/"
+                to="/#arbeid"
                 className={({ isActive }) =>
                   cn("nav-link", isActive && "nav-link-active")
                 }
@@ -150,17 +150,19 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
                 Arbeid
               </NavLink>
               <NavLink
-                to="/about/"
+                to="/om-meg"
+                aria-current={location.hash === "#kontakt" ? false : "page"}
                 className={({ isActive }) =>
-                  cn("nav-link", isActive && "nav-link-active")
+                  cn("nav-link", isActive && location.hash !== "#kontakt" && "nav-link-active")
                 }
               >
                 Om meg
               </NavLink>
               <NavLink
-                to="/contact/"
+                to="/om-meg#kontakt"
+                aria-current={location.hash === "#kontakt" ? "location" : false}
                 className={({ isActive }) =>
-                  cn("nav-link", isActive && "nav-link-active")
+                  cn("nav-link", isActive && location.hash === "#kontakt" && "nav-link-active")
                 }
               >
                 Kontakt
@@ -238,7 +240,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
             aria-label="Mobilmeny"
           >
             <NavLink
-              to="/work/"
+              to="/#arbeid"
               onClick={() => closeMobileMenu(true)}
               className={({ isActive }) =>
                 cn(
@@ -250,24 +252,26 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
               Arbeid
             </NavLink>
             <NavLink
-              to="/about/"
+              to="/om-meg"
+                aria-current={location.hash === "#kontakt" ? false : "page"}
               onClick={() => closeMobileMenu(true)}
               className={({ isActive }) =>
                 cn(
                   "py-3 text-lg border-b border-[rgba(26,26,26,0.08)] text-[rgba(26,26,26,0.7)]",
-                  isActive && "text-foreground font-medium"
+                  isActive && location.hash !== "#kontakt" && "text-foreground font-medium"
                 )
               }
             >
               Om meg
             </NavLink>
             <NavLink
-              to="/contact/"
+              to="/om-meg#kontakt"
+                aria-current={location.hash === "#kontakt" ? "location" : false}
               onClick={() => closeMobileMenu(true)}
               className={({ isActive }) =>
                 cn(
                   "py-3 text-lg border-b border-[rgba(26,26,26,0.08)] text-[rgba(26,26,26,0.7)]",
-                  isActive && "text-foreground font-medium"
+                  isActive && location.hash === "#kontakt" && "text-foreground font-medium"
                 )
               }
             >
@@ -285,6 +289,7 @@ const SiteLayout = ({ children }: SiteLayoutProps) => {
               <a className="nav-link" href="mailto:brage.steen@gmail.com">
                 brage.steen@gmail.com
               </a>
+              <a className="nav-link" href="/cv/brage-steen-cv.pdf">CV (PDF)</a>
               <a className="nav-link" href="https://bsclimbing.no">
                 bsclimbing.no
               </a>
