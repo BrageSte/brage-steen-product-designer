@@ -18,13 +18,13 @@ Mastergraden ble ikke fullført.» Datoene august 2021–mai 2022 kommer fra den
 
 ## Plan
 
-- [ ] Kort introduksjon: produktdesigner, fysisk/digital prototyping og aktuelle typer arbeid.
-- [ ] Kort erfaringsoversikt med Looping, egne produktprosjekter og relevant praktisk arbeid.
-- [ ] Utdanning med presise datoer og status. Bachelor og ufullført master må ikke kunne forveksles.
+- [x] Kort introduksjon: produktdesigner, fysisk/digital prototyping og aktuelle typer arbeid.
+- [x] Kort erfaringsoversikt med Looping, egne produktprosjekter og relevant praktisk arbeid.
+- [x] Utdanning med presise datoer og status. Bachelor og ufullført master må ikke kunne forveksles.
 - [x] Brage har godkjent offentlig utdanningsformulering for NTNU og Aalto; datoene er kontrollert mot ny CV-kilde.
-- [ ] Kort verktøy-/arbeidsmåteseksjon: design, CAD, verksted, prototyping og digitale verktøy.
-- [ ] Behold et godt portrett og en personlig setning der den tilfører noe konkret.
-- [ ] Tydelig e-post og «Last ned CV (PDF)», også fra relevant sted på forsiden.
+- [x] Kort verktøy-/arbeidsmåteseksjon: design, CAD, verksted, prototyping og digitale verktøy.
+- [x] Behold et godt portrett og en personlig setning der den tilfører noe konkret.
+- [x] Tydelig e-post og «Last ned CV (PDF)», også fra relevant sted på forsiden.
 - [ ] Avklar LinkedIn-lenke og publiser den bare dersom den er riktig og oppdatert.
 
 ## CV-grunnlag
@@ -50,19 +50,21 @@ publiseringsprofilen ligger i `src/content/profil.json` og gir følgende arbeids
 Brage er bekreftet tilgjengelig fortløpende og åpen for produktutvikling, produktdesign,
 industridesign og fullstack-/AI-implementering. `cv-info.md` er fortsatt en tom mal.
 
-- [ ] Lag en ryddig 1–2 siders CV med samme navn, rolle, prosjektstatus og datoer som nettsiden;
+- [x] Lag en ryddig 1–2 siders CV med samme navn, rolle, prosjektstatus og datoer som nettsiden;
   bruk den godkjente NTNU/Aalto-formuleringen og perioden august 2021–mai 2022.
-- [ ] Fjern adresse, fødselsdato og telefon fra den offentlige CV-kopien. Kun e-post publiseres,
+- [x] Fjern adresse, fødselsdato og telefon fra den offentlige CV-kopien. Kun e-post publiseres,
   i tråd med repoets personvernregel. En eventuell privat søknadsversjon holdes separat.
 - [ ] Fjern private metadata og test tekstmarkering/leserekkefølge, klikkbare lenker og utskrift.
-- [ ] Legg publiseringsklar kopi i `public/cv/brage-steen-cv.pdf`; originalen i `_innboks` skal bevares urørt.
-- [ ] Kontroller at nedlastingen faktisk er en PDF med riktig innholdstype, ikke SPA-fallback.
+- [x] Legg publiseringsklar kopi i `public/cv/brage-steen-cv.pdf`; originalen i `_innboks` skal bevares urørt.
+- [x] Kontroller at nedlastingen faktisk er en PDF med riktig innholdstype, ikke SPA-fallback.
 
-## Avklaringer
+## J2 – lokal kontroll 2026-10-23
 
-Hvilke roller søker Brage nå? Hva er korrekt nåværende arbeid og tilgjengelighet?
-Er erfarings-/utdanningsdatoene og forklaringen på masterløpet fortsatt riktige?
-Ikke publiser en fullført grad eller en aktuell ansettelse som kildene ikke støtter.
+Avkrysningene gjelder lokal visning og publiseringskopien, ikke produksjonsmerge.
+Begge CV-sider er rendret og visuelt kontrollert. HTML/PDF har konsistente perioder og roller.
+Ingen private kontaktfelt er funnet i publiseringskopien; originalen er bevart.
+Se [J2-loggen](implementering/j2-2026-10-23.md) for kontroller og videre publisering.
+Roller, nåværende arbeid, tilgjengelighet og utdanningsformulering er avklart; LinkedIn er utelatt.
 
 ## Ferdig når
 

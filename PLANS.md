@@ -133,6 +133,7 @@ ble kontrollert på nytt, og påstander/sitater er sporbare. J1 ble merget i PR 
 
 Status: implementert og kontrollert lokalt på `codex/portfolio-j2-jobbsoking`. Avkrysningene
 under gjelder lokal QA, bortsett fra HTTP/www som er kontrollert i produksjon.
+Alle 29 kontrollgrupper består også i Cloudflare-forhåndsvisningen for kodecommit `0de429b`.
 Forhåndsvisning og produksjon føres i [J2-loggen](docs/portefolje/implementering/j2-2026-10-23.md).
 
 - [x] Spiss forside og BS Climbing mot produktdesign og prototyping.
@@ -229,6 +230,8 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 - [x] 2026-10-23: J2 implementert og lokalt kontrollert på `codex/portfolio-j2-jobbsoking`: 22 hovedgrupper
   og sju mediegrupper på 1440/390 px. Bygg, fem enhetstester, TypeScript og lint uten feil består.
 - [x] 2026-10-23: HTTP/www gir 301 til kanonisk HTTPS med sti/query bevart i produksjon.
+- [x] 2026-10-23: J2 pushet i PR #26; Cloudflare-build er grønt, alle 29 nettleser-/mediegrupper
+  består i forhåndsvisningen, og full bachelorrapport er lastet ned med identisk SHA-256.
 - [ ] J2: Brages vurdering av forhåndsvisningen og godkjenning av merge, deretter produksjonskontroll.
 
 ### Beslutningslogg

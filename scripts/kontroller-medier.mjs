@@ -20,6 +20,15 @@ try {
   assert.equal(outside.status,416);
   await outside.body?.cancel();
   results.push({check:'video: ekte byteområder, riktige bytes og 416 utenfor filen',status:'bestått'});
+  for(const file of ['/dokumenter/the-sorting-guide-rapport.pdf','/dokumenter/kildesortering-gigamap.pdf']) {
+    const response=await fetch(base+file,{signal:AbortSignal.timeout(30000)});
+    assert.equal(response.status,200);
+    assert.ok(response.headers.get('content-type').includes('application/pdf'));
+    const reader=response.body.getReader();
+    const first=await reader.read();
+    assert.equal(Buffer.from(first.value).subarray(0,4).toString(),'%PDF');
+    await reader.cancel();
+  }
   for(const width of [1440,390]) {
     const context=await browser.newContext({viewport:{width,height:width===390?844:1000},reducedMotion:'reduce'});
     const page=await context.newPage();page.setDefaultTimeout(12000);
@@ -69,9 +78,6 @@ try {
     assert.ok(duration>330&&duration<336);
     assert.equal(await video.evaluate(v=>v.paused),true);
     await page.screenshot({path:`${output}/video-${width}.png`});
-    for(const file of ['/dokumenter/the-sorting-guide-rapport.pdf','/dokumenter/kildesortering-gigamap.pdf']) {
-      const response=await context.request.get(base+file);assert.equal(response.status(),200);assert.ok(response.headers()['content-type'].includes('application/pdf'));assert.equal((await response.body()).subarray(0,4).toString(),'%PDF');
-    }
     results.push({width,check:'video start/pause/søk og begge PDF-vedlegg',duration,status:'bestått'});
     await context.close();
   }

@@ -19,18 +19,18 @@ produktutvikling, design, produksjon og salg, inkludert nettbutikk og web-konfig
 Profilen støtter prosjektperiode og omfang, men tilfører ingen konkrete prototyperevisjoner
 eller målbare kunde-/produkteffekter.
 
-## Plan
+## Plan – avkrysning gjelder lokal J2-kontroll
 
-- [ ] Erstatt «Fullstack», «AI-utvikling», «Fullstack Side Project» og «Claude Code og Codex
+- [x] Erstatt «Fullstack», «AI-utvikling», «Fullstack Side Project» og «Claude Code og Codex
   som utviklingsteam» med produktdesignerens rolle og relevante disipliner.
 - [ ] Start med produktet i en hånd og forklar hvilket behov tilpasset geometri skal møte.
-- [ ] Vis målemetoden, fysisk geometri og digital innmating som én sammenhengende designoppgave.
+- [x] Vis målemetoden, fysisk geometri og digital innmating som én sammenhengende designoppgave.
 - [ ] Velg tre prototyper med ulike designvalg: passform, overflate og konstruksjon er kandidater,
   men læringen må knyttes til faktiske forsøk/notater.
 - [ ] Vis én reell endring etter kundetilbakemelding, anonymisert og med avklart sitatbruk.
-- [ ] Dokumenter fra mål → forhåndsvisning → produksjonsunderlag → ferdig produkt.
-- [ ] Flytt teknologistakken ned til en kort verktøyseksjon.
-- [ ] Behold tydelig lenke til bsclimbing.no, med nyttige bilder/video som fungerer også hvis butikken er utilgjengelig.
+- [x] Dokumenter fra mål → forhåndsvisning → produksjonsunderlag → ferdig produkt.
+- [x] Flytt teknologistakken ned til en kort verktøyseksjon.
+- [x] Behold tydelig lenke til bsclimbing.no, med nyttige bilder/video som fungerer også hvis butikken er utilgjengelig.
 
 ## Kontrollerte forhold og avgrensning
 

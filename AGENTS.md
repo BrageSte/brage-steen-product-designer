@@ -14,8 +14,8 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
 - Retning godkjent 2026-10-22: **behold og forbedre eksisterende Vite + React + Tailwind-side**.
 - Fase 0/hosting er verifisert på live. J1 er merget gjennom PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`)
   og produksjonskontrollert: 20 nettleserkontrollgrupper bestod.
-- J2 er implementert og lokalt kontrollert på `codex/portfolio-j2-jobbsoking`. Skill mellom implementert,
-  lokalt kontrollert og verifisert på live.
+- J2 er implementert på `codex/portfolio-j2-jobbsoking`, PR #26. Alle 29 kontrollgrupper består
+  lokalt og i Cloudflare-forhåndsvisningen. Brages godkjenning av merge og produksjonskontroll gjenstår.
 - Dagens `rebuild/astro` er et forkastet designutkast og skal ikke merges eller publiseres.
 - Kodeforbedringer starter fra oppdatert `main` i egen gren. Ikke ta med Astro-implementasjonen
   som følge av at plan eller historikk tidligere lå på den grenen.
