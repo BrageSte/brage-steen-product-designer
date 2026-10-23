@@ -10,6 +10,8 @@ Casen bør vise eksperimentell arbeidsmåte, prøver som feilet, endringer i fre
 hva gruppen lærte. En ærlig forklaring av begrensningene er sterkere enn udokumenterte
 løfter om et ferdig bærekraftig materiale.
 
+Bekreftet av Brage 2026-10-23: hans hovedansvar var å utvikle testmetodene.
+
 ## Kildegrunnlag og avvik
 
 Originalrapporten `BAPD3100.TingavTANG.pdf` er funnet og gjennomgått målrettet.

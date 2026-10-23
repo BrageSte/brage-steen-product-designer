@@ -3,6 +3,9 @@
 Tilbake til [hovedplanen](../../../PLANS.md). Prioritet: J1 fakta/funksjon, J2 norsk case.
 Side: https://bragesteen.no/projects/headset
 
+Bekreftet av Brage 2026-10-23: soloprosjekt ved NTNU i 2021, emnet Design for
+Industrialization, varighet fire måneder. Materialspesifikasjonen er fortsatt et eget kildepunkt.
+
 ## Historien
 
 Et sammenleggbart headset utviklet med sprøytestøping som premiss, undersøkt gjennom

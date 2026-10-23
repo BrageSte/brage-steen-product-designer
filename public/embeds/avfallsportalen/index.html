@@ -9,25 +9,25 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="Interaktiv læringsportal om avfallshåndtering og resirkulering i Norge. Lær om sorteringssystemer, quiz, sammenlign kommuner og se statistikk."/>
+<meta name="description" content="Interaktiv Avfallsportalen-prototype fra 2026. Tallene er historiske eller illustrative eksempler, ikke verifiserte oppdaterte kommunedata."/>
 <meta name="keywords" content="avfall, resirkulering, Norge, sortering, miljø, bærekraft, gjenvinning"/>
 <meta name="author" content="Avfallsportalen"/>
 
 <!-- Open Graph / Social Media -->
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Avfallsportalen - Lær om resirkulering i Norge"/>
-<meta property="og:description" content="Interaktiv læringsportal om avfallshåndtering og resirkulering i Norge."/>
+<meta property="og:title" content="Avfallsportalen – interaktiv prototype"/>
+<meta property="og:description" content="En interaktiv prototype fra 2026 med historiske og illustrative eksempler."/>
 <meta property="og:locale" content="nb_NO"/>
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Avfallsportalen"/>
-<meta name="twitter:description" content="Lær om avfallshåndtering og resirkulering i Norge"/>
+<meta name="twitter:title" content="Avfallsportalen – interaktiv prototype"/>
+<meta name="twitter:description" content="Historiske og illustrative eksempler fra en interaktiv prototype."/>
 
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>"/>
 
-<title>Avfallsportalen - Lær om resirkulering i Norge</title>
+<title>Avfallsportalen – interaktiv prototype</title>
 <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -153,6 +153,18 @@
         .nav-item.active {
             background: var(--green-primary);
             color: white;
+        }
+
+        .nav-item:focus-visible,
+        .theme-toggle:focus-visible,
+        .stat-card[role="button"]:focus-visible,
+        .info-card[role="button"]:focus-visible,
+        .dashboard-stat[role="button"]:focus-visible,
+        .quiz-option:focus-visible,
+        .quiz-dot:focus-visible,
+        .compare-select:focus-visible {
+            outline: 3px solid var(--blue-primary);
+            outline-offset: 3px;
         }
 
         .nav-controls {
@@ -348,6 +360,23 @@
             margin: 0 auto;
         }
 
+        .prototype-notice {
+            max-width: 1200px;
+            margin: 24px auto 0;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--orange-primary);
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .prototype-notice strong {
+            color: var(--text-primary);
+        }
+
         /* Step content */
         .step-content {
             display: none;
@@ -446,6 +475,12 @@
             transform: translateY(-5px);
             border-color: var(--step-color);
             box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .stat-card[role="button"],
+        .info-card[role="button"],
+        .dashboard-stat[role="button"] {
+            cursor: pointer;
         }
 
         .stat-number {
@@ -624,42 +659,6 @@
         .sorting-system:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 50px var(--shadow);
-        }
-
-        .sorting-system.best {
-            border-color: var(--green-primary);
-            background: linear-gradient(135deg, color-mix(in srgb, var(--green-primary) 8%, var(--bg-card)), var(--bg-card));
-        }
-
-        .sorting-system.worst {
-            border-color: var(--red-primary);
-            background: linear-gradient(135deg, color-mix(in srgb, var(--red-primary) 8%, var(--bg-card)), var(--bg-card));
-        }
-
-        .sorting-system.best::before {
-            content: '⭐ BEST';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--green-primary);
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-
-        .sorting-system.worst::before {
-            content: '⚠️ LAVEST';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--red-primary);
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
         }
 
         /* Sorting Illustrations */
@@ -928,16 +927,8 @@
             margin-bottom: 5px;
         }
 
-        .sorting-system.best .sorting-percent {
-            color: var(--green-primary);
-        }
-
-        .sorting-system.worst .sorting-percent {
-            color: var(--red-primary);
-        }
-
-        .sorting-system:not(.best):not(.worst) .sorting-percent {
-            color: var(--orange-primary);
+        .sorting-percent {
+            color: var(--blue-primary);
         }
 
         .sorting-bar {
@@ -954,16 +945,8 @@
             transition: width 1s ease;
         }
 
-        .sorting-system.best .sorting-fill {
-            background: linear-gradient(90deg, var(--green-light), var(--green-primary));
-        }
-
-        .sorting-system.worst .sorting-fill {
-            background: linear-gradient(90deg, #FFCDD2, var(--red-primary));
-        }
-
-        .sorting-system:not(.best):not(.worst) .sorting-fill {
-            background: linear-gradient(90deg, var(--orange-light), var(--orange-primary));
+        .sorting-fill {
+            background: linear-gradient(90deg, var(--blue-light), var(--blue-primary));
         }
 
         .sorting-desc {
@@ -1124,36 +1107,64 @@
 
         .quiz-progress {
             display: flex;
-            gap: 8px;
+            gap: 4px;
             justify-content: center;
             margin: 30px 0;
             flex-wrap: wrap;
         }
 
         .quiz-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+
+        .quiz-dot::before {
+            content: '';
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background: var(--border-color);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .quiz-dot:hover {
+            background: transparent;
+        }
+
+        .quiz-dot:hover::before {
             transform: scale(1.2);
         }
 
         .quiz-dot.active {
+            background: transparent;
+        }
+
+        .quiz-dot.active::before {
             background: var(--blue-primary);
             transform: scale(1.3);
             box-shadow: 0 0 10px var(--blue-primary);
         }
 
         .quiz-dot.correct {
+            background: transparent;
+        }
+
+        .quiz-dot.correct::before {
             background: var(--green-primary);
         }
 
         .quiz-dot.wrong {
+            background: transparent;
+        }
+
+        .quiz-dot.wrong::before {
             background: var(--red-primary);
         }
 
@@ -1167,6 +1178,11 @@
             padding: 40px;
             border: 2px solid var(--border-color);
             margin-bottom: 30px;
+        }
+
+        .question-text,
+        .quiz-result-title {
+            scroll-margin-top: 100px;
         }
 
         .question-number {
@@ -1190,6 +1206,7 @@
         }
 
         .quiz-option {
+            width: 100%;
             padding: 18px 25px;
             border-radius: 12px;
             border: 2px solid var(--border-color);
@@ -1198,6 +1215,9 @@
             transition: all 0.3s ease;
             font-size: 16px;
             text-align: left;
+            font-family: inherit;
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
         .quiz-option:hover:not(.selected):not(.correct):not(.wrong) {
@@ -1288,6 +1308,11 @@
         .quiz-result {
             text-align: center;
             padding: 50px;
+        }
+
+        .quiz-result-title {
+            margin-bottom: 20px;
+            font-size: 28px;
         }
 
         .quiz-score {
@@ -1414,196 +1439,18 @@
 
         .compare-stat-value {
             font-weight: 700;
-            color: var(--green-primary);
-        }
-
-        /* Compare Analysis Section */
-        .compare-analysis {
-            grid-column: 1 / -1;
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 35px;
-            border: 2px solid var(--border-color);
-            margin-top: 15px;
-        }
-
-        .compare-analysis h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-align: center;
             color: var(--text-primary);
-            letter-spacing: -0.3px;
+            text-align: right;
         }
 
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .analysis-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 16px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
+        .compare-empty {
+            grid-column: 1 / -1;
+            padding: 24px;
             border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
-
-        .analysis-item:hover {
-            border-color: var(--green-primary);
-            transform: translateY(-2px);
-        }
-
-        .analysis-category {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .analysis-winner {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 600;
-            font-size: 12px;
-        }
-
-        .analysis-winner.green {
-            color: var(--green-primary);
-        }
-
-        .analysis-winner.blue {
-            color: var(--blue-primary);
-        }
-
-        .analysis-winner.tie {
-            color: var(--text-muted);
-        }
-
-        .analysis-diff {
-            font-size: 10px;
-            font-weight: 600;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: color-mix(in srgb, var(--green-primary) 15%, transparent);
-            color: var(--green-primary);
-        }
-
-        .compare-summary {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 25px;
-            align-items: center;
-            padding: 30px 25px;
+            border-radius: 12px;
             background: var(--bg-secondary);
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-        }
-
-        .summary-side {
-            text-align: center;
-        }
-
-        .summary-name {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
             color: var(--text-secondary);
-        }
-
-        .summary-score {
-            font-size: 42px;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 4px;
-            color: var(--text-muted);
-        }
-
-        .summary-score.leading {
-            color: var(--green-primary);
-        }
-
-        .summary-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-        }
-
-        .summary-divider {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        .summary-vs {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-muted);
-            background: var(--border-color);
-            padding: 6px 12px;
-            border-radius: 6px;
-        }
-
-        .compare-verdict {
             text-align: center;
-            margin-top: 20px;
-            padding: 18px 25px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
-            border-left: 4px solid var(--green-primary);
-        }
-
-        .verdict-text {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .verdict-text strong {
-            color: var(--green-primary);
-            font-weight: 600;
-        }
-
-        .compare-card.winner {
-            border-color: var(--green-primary);
-            background: linear-gradient(135deg, color-mix(in srgb, var(--green-primary) 5%, var(--bg-card)), var(--bg-card));
-        }
-
-        .compare-card.winner::before {
-            content: '🏆 VINNER';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--green-primary);
-            color: white;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 15px;
-            border-radius: 20px;
-        }
-
-        .compare-card {
-            position: relative;
-        }
-
-        .compare-stat-value.winner {
-            color: var(--green-primary);
-        }
-
-        .compare-stat-value.loser {
-            color: var(--red-primary);
         }
 
         /* ===== DASHBOARD PAGE ===== */
@@ -1710,6 +1557,7 @@
 
         .bar-track {
             flex: 1;
+            min-width: 0;
             height: 24px;
             background: var(--border-color);
             border-radius: 12px;
@@ -1727,6 +1575,14 @@
             font-weight: 700;
             color: white;
             transition: width 1s ease;
+        }
+
+        .bar-value {
+            min-width: 2.8rem;
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 700;
+            text-align: right;
         }
 
         .pie-legend {
@@ -1883,16 +1739,6 @@
             .compare-results {
                 grid-template-columns: 1fr;
             }
-            .compare-summary {
-                padding: 20px 15px;
-                gap: 15px;
-            }
-            .summary-score {
-                font-size: 36px;
-            }
-            .summary-name {
-                font-size: 14px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -1910,8 +1756,16 @@
                 padding: 8px 12px;
                 font-size: 12px;
             }
-            .nav-item span:not(.icon) {
-                display: none;
+            .nav-item .nav-label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
             }
             .timeline-header {
                 padding: 15px 20px;
@@ -1927,6 +1781,9 @@
             .main-content {
                 padding: 20px;
             }
+            .prototype-notice {
+                margin: 16px 20px 0;
+            }
             .content-title {
                 font-size: 28px;
             }
@@ -1939,64 +1796,38 @@
             .sorting-comparison {
                 grid-template-columns: 1fr;
             }
-            .analysis-grid {
-                grid-template-columns: 1fr;
+            .bar-label {
+                width: 90px;
             }
-            .analysis-item {
-                padding: 12px 14px;
-            }
-            .analysis-category {
-                font-size: 11px;
-            }
-            .analysis-winner {
-                font-size: 11px;
-            }
-            .compare-analysis {
-                padding: 20px;
-            }
-            .compare-analysis h3 {
-                font-size: 16px;
-            }
-            .compare-summary {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                text-align: center;
-            }
-            .summary-divider {
-                padding: 10px 0;
-            }
-            .summary-score {
-                font-size: 32px;
-            }
-            .verdict-text {
-                font-size: 13px;
+            .bar-item {
+                gap: 8px;
             }
         }
     </style>
 </head>
 <body data-theme="light">
 <!-- Main Navigation -->
-<nav class="main-nav">
+<nav class="main-nav" aria-label="Hovedmeny">
 <div class="nav-brand">
 <span>♻️</span>
             Avfallsportalen
         </div>
 <div class="nav-menu">
-<button class="nav-item active" onclick="showPage('journey', this)">
+<button class="nav-item active" aria-label="Avfallsreisen" aria-current="page" onclick="showPage('journey', this)">
 <span class="icon">🗺️</span>
-<span>Reisen</span>
+<span class="nav-label">Avfallsreisen</span>
 </button>
-<button class="nav-item" onclick="showPage('quiz', this)">
+<button class="nav-item" aria-label="Quiz" onclick="showPage('quiz', this)">
 <span class="icon">❓</span>
-<span>Quiz</span>
+<span class="nav-label">Quiz</span>
 </button>
-<button class="nav-item" onclick="showPage('compare', this)">
+<button class="nav-item" aria-label="Kommuner" onclick="showPage('compare', this)">
 <span class="icon">⚖️</span>
-<span>Sammenlign</span>
+<span class="nav-label">Kommuner</span>
 </button>
-<button class="nav-item" onclick="showPage('dashboard', this)">
+<button class="nav-item" aria-label="Dashboard" onclick="showPage('dashboard', this)">
 <span class="icon">📊</span>
-<span>Dashboard</span>
+<span class="nav-label">Dashboard</span>
 </button>
 </div>
 <div class="nav-controls">
@@ -2042,6 +1873,7 @@
 </div>
 </div>
 </div>
+<p class="prototype-notice" role="note"><strong>Prototype (2026):</strong> Tallene er historiske eller illustrative og ikke verifiserte eller oppdaterte data.</p>
 <div class="main-content">
 <!-- Step 0: Verden -->
 <div class="step-content active" data-step="0" style="--step-color: var(--world)">
@@ -2056,11 +1888,11 @@
 <span>Scroll ned for mer</span>
 </div>
 <div class="stats-grid">
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">29. juli</div>
 <div class="stat-label">Earth Overshoot Day 2019</div>
 <div class="stat-description">Dagen verden brukte opp årets ressurser</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p><strong>Hva er Earth Overshoot Day?</strong></p>
 <p>Dette er dagen i kalenderåret da verden har brukt opp alle de fornybare ressursene som jorden kan regenerere på ett år.</p>
 <p>I 2019 var denne dagen 29. juli – det betyr at vi fra 30. juli levde "på kreditt" resten av året.</p>
@@ -2068,40 +1900,29 @@
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">1.75</div>
 <div class="stat-label">Jordkloder</div>
 <div class="stat-description">Vi lever som om vi har nesten 2 jordkloder</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p><strong>Hva betyr dette?</strong></p>
 <p>Menneskheten bruker naturens ressurser 1.75 ganger raskere enn planetens økosystemer kan regenerere dem.</p>
 <p>Dette er ikke bærekraftig på lang sikt og fører til tap av biologisk mangfold, overfiske, avskoging og klimaendringer.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
-<div class="stat-number">186</div>
-<div class="stat-label">Land i Paris-avtalen</div>
-<div class="stat-description">Mål: Holde temperaturøkningen under 2°C</div>
-<div class="expand-info">
-<p><strong>Paris-avtalen</strong></p>
-<p>En internasjonal avtale som forplikter landene til å redusere klimagassutslipp og holde global oppvarming under 2°C.</p>
-<p>Avfallshåndtering er en viktig del av løsningen – sirkulær økonomi reduserer behovet for nye ressurser.</p>
-</div>
-<div class="expand-hint">Klikk for mer info ↓</div>
-</div>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">⚠️</span> Avfallskrisen 2018</h3>
 <p>Da Kina stoppet import av avfall fra resten av verden, oppsto en global krise.</p>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Kina tok imot <strong>45% av verdens plastavfall</strong> for resirkulering. Da de innførte forbud mot import av 24 typer avfall, hadde mange land plutselig ingen steder å sende søppelet sitt.</p>
 <p>Dette avslørte hvor avhengige vi var av å eksportere problemene våre i stedet for å løse dem lokalt.</p>
 <p>Resultatet: Mange land måtte bygge opp egen infrastruktur for avfallshåndtering, og fokuset på å redusere avfall økte dramatisk.</p>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">🎯</span> FNs Bærekraftsmål</h3>
 <p>17 globale mål for 2030 fokuserer på planeten og mennesker.</p>
 <ul>
@@ -2109,15 +1930,11 @@
 <li>Mål 13: Stoppe klimaendringene</li>
 <li>Mål 14 &amp; 15: Beskytte liv</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p><strong>Mål 12.5:</strong> Innen 2030, vesentlig redusere avfallsmengden gjennom forebygging, reduksjon, materialgjenvinning og ombruk.</p>
 <p>Dette krever endringer i hvordan vi designer produkter, hvordan vi forbruker, og hvordan vi håndterer avfall.</p>
 </div>
 </div>
-</div>
-<div class="quote-box">
-<p class="quote-text">"Avfall er ikke avfall, men en brukt ressurs med kapasitet for gjenbruk og fornyelse."</p>
-<p class="quote-author">— Paris-avtalen om sirkulær økonomi</p>
 </div>
 </div>
 <!-- Step 1-4 abbreviated for space, keeping step 5 with illustrations -->
@@ -2126,7 +1943,7 @@
 <div class="content-header">
 <span class="content-icon" onclick="spinIcon(this)">🏭</span>
 <h1 class="content-title">Sortering</h1>
-<p class="content-subtitle">Teknologien gjør ENORM forskjell. Moderne sorteringsanlegg kan oppnå over fire ganger bedre resultater.</p>
+<p class="content-subtitle">Ulike sorteringssystemer vises med illustrative prosenter fra denne prototypen, uten rangering.</p>
 </div>
 <div class="scroll-indicator">
 <span class="arrow">↓</span>
@@ -2134,7 +1951,7 @@
 </div>
 <div class="sorting-comparison">
 <!-- Sentralisert sortering -->
-<div class="sorting-system best">
+<div class="sorting-system">
 <div class="sorting-illustration">
 <div class="illustration-centralized">
 <div class="scanner-beam"></div>
@@ -2151,7 +1968,7 @@
 <div class="sorting-name">Sentralisert sortering</div>
 <div class="sorting-percent">86%</div>
 <div class="sorting-bar"><div class="sorting-fill" style="width: 86%;"></div></div>
-<div class="sorting-desc">Moderne teknologi skanner avfallet og sorterer automatisk. Mindre rom for brukerfeil = høy effektivitet.</div>
+<div class="sorting-desc">Eksempel på automatisk sortering med sensorer og maskiner.</div>
 
 </div>
 <!-- Hentesystem -->
@@ -2173,7 +1990,7 @@
 <div class="sorting-name">Hentesystem</div>
 <div class="sorting-percent">34%</div>
 <div class="sorting-bar"><div class="sorting-fill" style="width: 34%;"></div></div>
-<div class="sorting-desc">Renovasjon henter sortert avfall hjemme. Krever at brukeren sorterer riktig i flere beholdere.</div>
+<div class="sorting-desc">Eksempel på innsamling der avfall hentes hjemme.</div>
 
 </div>
 <!-- Bringesystem -->
@@ -2199,11 +2016,11 @@
 <div class="sorting-name">Bringesystem</div>
 <div class="sorting-percent">31%</div>
 <div class="sorting-bar"><div class="sorting-fill" style="width: 31%;"></div></div>
-<div class="sorting-desc">Innbyggere leverer avfall på returpunkter. Krever ekstra innsats fra brukeren.</div>
+<div class="sorting-desc">Eksempel på innsamling via returpunkter.</div>
 
 </div>
 <!-- Optibag -->
-<div class="sorting-system worst">
+<div class="sorting-system">
 <div class="sorting-illustration">
 <div class="illustration-optibag">
 <div class="colored-bags">
@@ -2218,15 +2035,15 @@
 <div class="sorting-name">Optibag (Oslo)</div>
 <div class="sorting-percent">19%</div>
 <div class="sorting-bar"><div class="sorting-fill" style="width: 19%;"></div></div>
-<div class="sorting-desc">Fargebasert system med poser. Høyt press på brukeren = lav effektivitet.</div>
+<div class="sorting-desc">Eksempel på fargebaserte poser som sorteres etter innsamling.</div>
 
 </div>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">✅</span> Hvorfor sentralisert fungerer</h3>
 <p>Moderne anlegg bruker sensorer, AI og roboter til å skanne og sortere avfall automatisk.</p>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p><strong>Fordeler:</strong></p>
 <ul>
 <li>Mindre avhengig av brukerens sortering</li>
@@ -2236,10 +2053,10 @@
 </ul>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">❌</span> Optibag-utfordringen</h3>
 <p>Systemet setter for stort press på brukeren.</p>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p><strong>Problemer:</strong></p>
 <ul>
 <li>Poser over 600g blir automatisk restavfall</li>
@@ -2264,31 +2081,31 @@
 <span>Scroll ned for mer informasjon</span>
 </div>
 <div class="stats-grid">
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">30%</div>
 <div class="stat-label">Plast resirkulert</div>
 <div class="stat-description">Kun 30% av plastavfall resirkuleres i Europa</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Tallet er enda lavere i Sør- og Øst-Europa på grunn av manglende infrastruktur.</p>
 <p>Resten går til forbrenning (med energigjenvinning) eller deponi.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">65%</div>
 <div class="stat-label">EU-mål 2035</div>
 <div class="stat-description">Målet er å mer enn doble resirkuleringen</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>EU har satt ambisiøse mål gjennom Circular Economy Action Plan.</p>
 <p>Dette krever massive investeringer i infrastruktur og endringer i forbrukeratferd.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">475 kg</div>
 <div class="stat-label">Per person/år</div>
 <div class="stat-description">Gjennomsnittlig avfall i Europa</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Norge ligger langt over dette gjennomsnittet med 739 kg per person.</p>
 <p>De nordiske landene har generelt høyere avfallsmengder, delvis på grunn av høyere levestandard og forbruk.</p>
 </div>
@@ -2300,10 +2117,10 @@
 <p class="quote-author">— César Aliaga, Prosjektkoordinator ITENE</p>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">📉</span> Utfordringen</h3>
 <p>Mange land mangler infrastruktur og teknologi for effektiv avfallshåndtering.</p>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Plastresirkulering er spesielt utfordrende fordi:</p>
 <ul>
 <li>Det finnes hundrevis av plasttyper</li>
@@ -2313,7 +2130,7 @@
 </ul>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">💡</span> Løsningen</h3>
 <p><strong>"Å redusere tap av ressurser fra avfallshåndtering er nøkkelen til sirkulær økonomi."</strong></p>
 <ul>
@@ -2321,7 +2138,7 @@
 <li>Ny sorteringsteknologi</li>
 <li>Felles europeiske standarder</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>ITENE i Valencia leder et prosjekt med 20 europeiske partnere for å forbedre plastgjenvinning gjennom:</p>
 <ul>
 <li>Kjemisk resirkulering</li>
@@ -2344,49 +2161,39 @@
 <span>Scroll ned for mer informasjon</span>
 </div>
 <div class="stats-grid">
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">739 kg</div>
 <div class="stat-label">Per person/år</div>
 <div class="stat-description">Nest høyest i Europa!</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Bare Luxembourg har mer avfall per innbygger enn Norge.</p>
 <p>Dette henger sammen med høy levestandard, mye forbruk, og relativt liten befolkning.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">18. april</div>
 <div class="stat-label">Norges Overshoot Day</div>
 <div class="stat-description">Kun 4 måneder inn i året!</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Hvis alle i verden levde som nordmenn, ville vi trenge over 3 jordkloder.</p>
 <p>Norge bruker opp sin andel av jordens ressurser blant de tidligste i verden.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">39%</div>
 <div class="stat-label">Til resirkulering</div>
 <div class="stat-description">I 2017 ble 39% sendt til gjenvinning</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Resten går til forbrenning (energigjenvinning) eller deponi.</p>
 <p>EU-målet på 65% innen 2035 krever betydelig forbedring.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
-<div class="stat-number">373</div>
-<div class="stat-label">Elefanter</div>
-<div class="stat-description">Vekten av Norges husholdningsavfall</div>
-<div class="expand-info">
-<p>21% av alt avfall i Norge kommer fra private husholdninger.</p>
-<p>Det tilsvarer <strong>2 419 000 tonn</strong> per år!</p>
-</div>
-<div class="expand-hint">Klikk for mer info ↓</div>
-</div>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">📊</span> Norges avfallsfordeling</h3>
 <ul>
 <li>21% fra private husholdninger</li>
@@ -2395,15 +2202,15 @@
 <li>14% fra industrien</li>
 <li>20% uspesifisert</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Bygg og anlegg er den største kilden, hovedsakelig på grunn av rivning og renovering.</p>
 <p>Mye av dette kan gjenvinnes, men krever bedre sortering på byggeplassen.</p>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">⚖️</span> Regelverk</h3>
 <p><strong>Fra januar 2018:</strong> Bedrifter med over 1000 kg emballasje må være medlem av godkjent returselskap.</p>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p><strong>Grønt Punkt og Norsirk</strong> sørger for at emballasje blir levert til resirkulering.</p>
 <p>Forurensningsloven pålegger alle kommuner ansvar for å samle inn husholdningsavfall.</p>
 <p><strong>Norges miljømål 4.3</strong> sier at avfallsveksten skal være lavere enn økonomisk vekst – men dette målet er IKKE nådd.</p>
@@ -2423,31 +2230,31 @@
 <span>Scroll ned for mer informasjon</span>
 </div>
 <div class="stats-grid">
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">60%+</div>
 <div class="stat-label">Ikke resirkulert</div>
 <div class="stat-description">Over 60% sendes IKKE til resirkulering</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Hovedårsaken er feilsortering hjemme hos folk.</p>
 <p>Når avfall er feilsortert, er det ofte for sent å redde materialene.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">65,7%</div>
 <div class="stat-label">Feilsortert i Oslo</div>
 <div class="stat-description">Andelen restavfall som er sortert feil</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>I Oslo tilsvarer dette 54 857 tonn avfall årlig som aldri blir resirkulert riktig.</p>
 <p>Matavfall utgjør hele 36,3% av dette!</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">37%</div>
 <div class="stat-label">Googler for hjelp</div>
 <div class="stat-description">Bare 18% bruker emballasjeinfo</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Dette viser at informasjonen ikke når frem til folk på en effektiv måte.</p>
 <p>LOOP har derfor utviklet nye, enklere symboler.</p>
 </div>
@@ -2455,7 +2262,7 @@
 </div>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">🤔</span> Hvordan resirkulere?</h3>
 <ul>
 <li>Du MÅ sortere – det er lovpålagt!</li>
@@ -2463,12 +2270,12 @@
 <li>Ha en praktisk løsning hjemme</li>
 <li>Gjør det enkelt – ellers gjør du det ikke</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p><strong>Viktig:</strong> Systemene varierer mellom kommuner, så det som gjelder i Oslo gjelder ikke nødvendigvis i Bergen!</p>
 <p>Sjekk din kommunes nettsider for spesifikke regler.</p>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">🚧</span> Barrierer mot sortering</h3>
 <p><strong>Kantar-undersøkelse</strong> viser hovedårsakene:</p>
 <ul>
@@ -2477,7 +2284,7 @@
 <li>Mangel på gode løsninger</li>
 <li>"Det nytter jo ikke uansett"</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Folk som ikke sorterer plast føler ofte at det ikke finnes gode løsninger i deres kommune.</p>
 <p>Mange tror faktisk at det ikke hjelper å sortere – men det gjør det!</p>
 </div>
@@ -2496,7 +2303,7 @@
 <span>Scroll ned for mer informasjon</span>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">🏙️</span> Oslo: Optibag-systemet</h3>
 <p>Hovedstaden bruker fargebasert sortering:</p>
 <ul>
@@ -2504,15 +2311,15 @@
 <li>🟢 Grønn pose = Matavfall</li>
 <li>⚪ Vanlig pose = Restavfall</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Alt går i <strong>samme søppeldunk!</strong> Papir og glass/metall sorteres separat.</p>
 <p>Systemet krever at brukeren kjøper spesielle poser og sorterer riktig.</p>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">⚠️</span> Problemet med Optibag</h3>
 <p>Hvis blå plastpose veier over 600 gram, sorteres den automatisk som restavfall – uansett hva som er i den!</p>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Dette setter stort press på at brukeren sorterer riktig og ikke fyller posen for full.</p>
 <p>Resultatet er at mye plast ender opp i forbrenningen.</p>
 </div>
@@ -2534,31 +2341,31 @@
 <span>Scroll ned for mer informasjon</span>
 </div>
 <div class="stats-grid">
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">54,5%</div>
 <div class="stat-label">Forbrent</div>
 <div class="stat-description">Over halvparten brennes for energi</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Forbrenning gir fjernvarme og elektrisitet, men materialene er tapt for alltid.</p>
 <p>Det gir også CO2-utslipp.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">~40%</div>
 <div class="stat-label">Materialgjenvinning</div>
 <div class="stat-description">Blir til nye produkter</div>
-<div class="expand-info">
-<p>Dette er det beste utfallet – materialene får nytt liv.</p>
+<div class="expand-info" aria-hidden="true">
+<p>Dette er ønsket utfall i demonstrasjonen – materialene kan brukes på nytt.</p>
 <p>Glass, metall, papir og noe plast kan gjenvinnes mange ganger.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">~3%</div>
 <div class="stat-label">Deponi</div>
-<div class="stat-description">Graves ned – blant lavest i Europa</div>
-<div class="expand-info">
+<div class="stat-description">Graves ned – vist her som et eksempel</div>
+<div class="expand-info" aria-hidden="true">
 <p>Norge har svært lite deponi sammenlignet med mange andre land.</p>
 <p>Forbrenning har i stor grad erstattet deponering.</p>
 </div>
@@ -2566,7 +2373,7 @@
 </div>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">🗑️</span> Hva er i restavfallet?</h3>
 <p>I Oslo kommune (65,7% feilsortert!):</p>
 <ul>
@@ -2575,15 +2382,15 @@
 <li>9,0% Papir (feilsortert)</li>
 <li>8,6% Plast (feilsortert)</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Alt dette brennes! Materialene er tapt for alltid.</p>
 <p>54 857 tonn i 2019 – bare i Oslo!</p>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">💀</span> Hvorfor er dette så ille?</h3>
 <p>I nesten alle kommuner brennes restavfall for elektrisitet og fjernvarme.</p>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p><strong>Konsekvensene:</strong></p>
 <ul>
 <li>Materialer går tapt FOR ALLTID</li>
@@ -2607,31 +2414,31 @@
 <span>Scroll ned for å se hva DU kan gjøre</span>
 </div>
 <div class="stats-grid">
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">65%</div>
 <div class="stat-label">EU-mål 2035</div>
 <div class="stat-description">Målet for materialgjenvinning</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Med riktig teknologi og atferd er dette mulig å nå.</p>
 <p>Sentralisert sortering viser at 86% er oppnåelig!</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">10</div>
 <div class="stat-label">Nye LOOP-symboler</div>
 <div class="stat-description">Enklere sortering fra 2020</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>LOOP har utviklet nye, intuitive symboler som gjør det lettere å vite hvor ting skal.</p>
 <p>Symbolene kommer på både emballasje og avfallsbeholdere.</p>
 </div>
 <div class="expand-hint">Klikk for mer info ↓</div>
 </div>
-<div class="stat-card" onclick="toggleExpand(this)">
+<div class="stat-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleExpand(this)">
 <div class="stat-number">86%</div>
 <div class="stat-label">Mulig effektivitet</div>
 <div class="stat-description">Med riktig teknologi</div>
-<div class="expand-info">
+<div class="expand-info" aria-hidden="true">
 <p>Sentralisert sortering beviser at høy effektivitet er mulig.</p>
 <p>Flere kommuner vurderer nå å oppgradere systemene sine.</p>
 </div>
@@ -2639,7 +2446,7 @@
 </div>
 </div>
 <div class="info-section">
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">🔄</span> Nye resirkuleringssymboler</h3>
 <p>LOOP har utviklet 10 nye symboler:</p>
 <ul>
@@ -2648,12 +2455,12 @@
 <li>Farlig avfall, Batterier</li>
 <li>Tekstiler, EE-avfall</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Symbolene er designet for å være intuitive og lette å forstå.</p>
 <p>De rulles ut på emballasje og avfallsbeholdere over hele Norge.</p>
 </div>
 </div>
-<div class="info-card" onclick="toggleCardExpand(this)">
+<div class="info-card" role="button" tabindex="0" aria-expanded="false" onkeydown="activateCard(event, this)" onclick="toggleCardExpand(this)">
 <h3><span class="icon">💪</span> Hva kan DU gjøre?</h3>
 <ul>
 <li>Lær deg systemet i din kommune</li>
@@ -2662,15 +2469,11 @@
 <li>Ikke gi opp – det NYTTER!</li>
 <li>Spre kunnskapen videre</li>
 </ul>
-<div class="expand-content">
+<div class="expand-content" aria-hidden="true">
 <p>Hver gang du sorterer riktig, bidrar du til at verdifulle materialer får nytt liv.</p>
 <p>Sammen kan vi nå målene og skape en mer bærekraftig fremtid!</p>
 </div>
 </div>
-</div>
-<div class="quote-box">
-<p class="quote-text">"Dette kan oppnås gjennom langvarig design, vedlikehold, reparasjon, gjenbruk, re-produksjon, oppussing og resirkulering."</p>
-<p class="quote-author">— Paris-avtalen om sirkulær økonomi</p>
 </div>
 
 </div>
@@ -2690,11 +2493,13 @@
 <h1>🎯 Test kunnskapen din!</h1>
 <p style="color: var(--text-secondary);">10 spørsmål basert på Avfallsreisen</p>
 </div>
+<p class="prototype-notice" role="note"><strong>Prototype (2026):</strong> Quizens tall er eksempler, ikke verifiserte eller oppdaterte data.</p>
 <div class="quiz-progress" id="quizProgress"></div>
 <div id="quizContent">
-<div class="quiz-question" id="quizQuestion"></div>
+<div class="quiz-question" id="quizQuestion" aria-live="polite" aria-atomic="true"></div>
 </div>
-<div class="quiz-result" id="quizResult" style="display: none;">
+<div class="quiz-result" id="quizResult" role="region" aria-labelledby="quizResultHeading" style="display: none;">
+<h2 class="quiz-result-title" id="quizResultHeading" tabindex="-1">Resultat</h2>
 <div class="quiz-score" id="quizScore">0/10</div>
 <div class="quiz-message" id="quizMessage">Bra jobbet!</div>
 <div class="quiz-summary" id="quizSummary"></div>
@@ -2709,11 +2514,12 @@
 <div class="compare-container">
 <div class="compare-header">
 <h1>⚖️ Sammenlign kommuner</h1>
-<p style="color: var(--text-secondary);">Se hvordan ulike kommuner håndterer avfall</p>
+<p style="color: var(--text-secondary);">Se hvordan prototypen viser kommunale eksempelverdier</p>
 </div>
+<p class="prototype-notice" role="note"><strong>Eksempelverdier:</strong> Kilde og årstall er ikke dokumentert. Tallene er ikke oppdaterte kommunedata og kan ikke brukes til rangering.</p>
 <div class="compare-selectors">
-<select class="compare-select" id="kommune1" onchange="updateComparison()">
-<option value="oslo">Oslo</option>
+<select class="compare-select" id="kommune1" aria-label="Første kommune" onchange="updateComparison()">
+<option value="oslo" selected>Oslo</option>
 <option value="bergen">Bergen</option>
 <option value="trondheim">Trondheim</option>
 <option value="stavanger">Stavanger</option>
@@ -2721,9 +2527,9 @@
 <option value="tromso">Tromsø</option>
 <option value="drammen">Drammen</option>
 </select>
-<span class="compare-vs">VS</span>
-<select class="compare-select" id="kommune2" onchange="updateComparison()">
-<option value="trondheim">Trondheim</option>
+<span class="compare-vs">og</span>
+<select class="compare-select" id="kommune2" aria-label="Andre kommune" onchange="updateComparison()">
+<option value="trondheim" selected>Trondheim</option>
 <option value="oslo">Oslo</option>
 <option value="bergen">Bergen</option>
 <option value="stavanger">Stavanger</option>
@@ -2732,33 +2538,34 @@
 <option value="drammen">Drammen</option>
 </select>
 </div>
-<div class="compare-results" id="compareResults"></div>
+<div class="compare-results" id="compareResults" role="region" aria-live="polite" aria-label="Eksempelverdier for valgte kommuner"></div>
 </div>
 </div>
 <!-- ===== DASHBOARD PAGE ===== -->
 <div class="page" id="page-dashboard">
 <div class="dashboard-container">
 <div class="dashboard-header">
-<h1>📊 Avfallsdashboard Norge</h1>
-<p style="color: var(--text-secondary);">Klikk på et tall for detaljert informasjon</p>
+<h1>📊 Avfallsdashboard – prototype</h1>
+<p style="color: var(--text-secondary);">Klikk på et eksempel for å åpne detaljvisningen</p>
 </div>
+<p class="prototype-notice" role="note"><strong>Prototype (2026):</strong> Dashboardets tall er historiske eller illustrative eksempler, ikke verifisert eller oppdatert statistikk.</p>
 <div class="dashboard-grid">
-<div class="dashboard-stat" onclick="showDashboardDetail('avfall')">
+<div class="dashboard-stat" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-avfall" onkeydown="activateCard(event, this)" onclick="showDashboardDetail('avfall', this)">
 <div class="dashboard-stat-icon">⚖️</div>
 <div class="dashboard-stat-value">739 kg</div>
 <div class="dashboard-stat-label">Avfall per person/år</div>
 </div>
-<div class="dashboard-stat" onclick="showDashboardDetail('resirkulering')">
+<div class="dashboard-stat" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-resirkulering" onkeydown="activateCard(event, this)" onclick="showDashboardDetail('resirkulering', this)">
 <div class="dashboard-stat-icon">♻️</div>
 <div class="dashboard-stat-value">39%</div>
 <div class="dashboard-stat-label">Til materialgjenvinning</div>
 </div>
-<div class="dashboard-stat" onclick="showDashboardDetail('forbrenning')">
+<div class="dashboard-stat" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-forbrenning" onkeydown="activateCard(event, this)" onclick="showDashboardDetail('forbrenning', this)">
 <div class="dashboard-stat-icon">🔥</div>
 <div class="dashboard-stat-value">54,5%</div>
 <div class="dashboard-stat-label">Til forbrenning</div>
 </div>
-<div class="dashboard-stat" onclick="showDashboardDetail('maal')">
+<div class="dashboard-stat" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-maal" onkeydown="activateCard(event, this)" onclick="showDashboardDetail('maal', this)">
 <div class="dashboard-stat-icon">🎯</div>
 <div class="dashboard-stat-value">65%</div>
 <div class="dashboard-stat-label">EU-mål 2035</div>
@@ -2766,31 +2573,35 @@
 </div>
 <div class="dashboard-charts">
 <div class="dashboard-chart">
-<h3>📈 Sorteringseffektivitet per system</h3>
+<h3>📈 Illustrative sorteringstall per system</h3>
 <div class="bar-chart">
 <div class="bar-item">
 <span class="bar-label">Sentralisert</span>
 <div class="bar-track">
-<div class="bar-fill" style="width: 86%; background: var(--green-primary);">86%</div>
+<div class="bar-fill" style="width: 86%; background: var(--blue-primary);"></div>
 </div>
+<span class="bar-value">86%</span>
 </div>
 <div class="bar-item">
 <span class="bar-label">Hentesystem</span>
 <div class="bar-track">
-<div class="bar-fill" style="width: 34%; background: var(--orange-primary);">34%</div>
+<div class="bar-fill" style="width: 34%; background: var(--blue-primary);"></div>
 </div>
+<span class="bar-value">34%</span>
 </div>
 <div class="bar-item">
 <span class="bar-label">Bringesystem</span>
 <div class="bar-track">
-<div class="bar-fill" style="width: 31%; background: var(--orange-primary);">31%</div>
+<div class="bar-fill" style="width: 31%; background: var(--blue-primary);"></div>
 </div>
+<span class="bar-value">31%</span>
 </div>
 <div class="bar-item">
 <span class="bar-label">Optibag</span>
 <div class="bar-track">
-<div class="bar-fill" style="width: 19%; background: var(--red-primary);">19%</div>
+<div class="bar-fill" style="width: 19%; background: var(--blue-primary);"></div>
 </div>
+<span class="bar-value">19%</span>
 </div>
 </div>
 </div>
@@ -2833,7 +2644,6 @@
 <h4>📊 Nøkkeltall</h4>
 <ul>
 <li><span>Total per person/år</span><span>739 kg</span></li>
-<li><span>Rangering i Europa</span><span>#2</span></li>
 <li><span>EU-gjennomsnitt</span><span>475 kg</span></li>
 <li><span>Fra husholdninger</span><span>21%</span></li>
 <li><span>Totalt husholdning</span><span>2,4 mill. tonn</span></li>
@@ -2868,9 +2678,6 @@
 <li><span>Engangskultur</span><span>+</span></li>
 <li><span>Store boliger</span><span>+</span></li>
 </ul>
-<div class="detail-highlight">
-<p>2,4 millioner tonn husholdningsavfall = vekten av 373 elefanter!</p>
-</div>
 </div>
 </div>
 </div>
@@ -3017,7 +2824,10 @@
         // ===== PAGE NAVIGATION =====
         function showPage(pageId, navElement) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => {
+                n.classList.remove('active');
+                n.removeAttribute('aria-current');
+            });
             
             document.getElementById('page-' + pageId).classList.add('active');
 
@@ -3039,6 +2849,9 @@
                     }
                 });
             }
+
+            const activeNav = document.querySelector('.nav-item.active');
+            if (activeNav) activeNav.setAttribute('aria-current', 'page');
             
             if (pageId === 'quiz') initQuiz();
             if (pageId === 'compare') updateComparison();
@@ -3123,12 +2936,25 @@
         });
 
         // ===== EXPANDABLE CARDS =====
+        function activateCard(event, element) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                element.click();
+            }
+        }
+
         function toggleExpand(element) {
             element.classList.toggle('expanded');
+            const expanded = element.classList.contains('expanded');
+            element.setAttribute('aria-expanded', String(expanded));
+            element.querySelector('.expand-info')?.setAttribute('aria-hidden', String(!expanded));
         }
 
         function toggleCardExpand(element) {
             element.classList.toggle('expanded');
+            const expanded = element.classList.contains('expanded');
+            element.setAttribute('aria-expanded', String(expanded));
+            element.querySelector('.expand-content')?.setAttribute('aria-hidden', String(!expanded));
         }
 
         // ===== ICON ANIMATIONS =====
@@ -3146,58 +2972,58 @@
                 explanation: "29. juli 2019 var dagen verden hadde brukt opp alle fornybare ressurser for året."
             },
             {
-                question: "Hvor mye avfall produserer en gjennomsnittlig nordmann per år?",
+                question: "Hvilket eksempel på årlig avfallsmengde per person er brukt i prototypen?",
                 options: ["492 kg", "587 kg", "739 kg", "824 kg"],
                 correct: 2,
-                explanation: "Norge har 739 kg avfall per person per år - nest høyest i Europa!"
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert aktuell måling."
             },
             {
-                question: "Hvor stor andel av plastavfall resirkuleres i Europa?",
+                question: "Hvilket eksempel på andel plastgjenvinning er brukt i prototypen?",
                 options: ["18,5%", "30%", "42,3%", "56,8%"],
                 correct: 1,
-                explanation: "Kun 30% av plastavfall blir resirkulert i Europa."
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert aktuell måling."
             },
             {
-                question: "Hva er effektiviteten til sentralisert sortering?",
+                question: "Hvilket prosenttall viser prototypen for sentralisert sortering?",
                 options: ["54%", "68%", "79%", "86%"],
                 correct: 3,
-                explanation: "Sentralisert sortering har 86% effektivitet mot Optibags 19%."
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert måling av et sorteringsanlegg."
             },
             {
-                question: "Hvor stor andel av restavfallet i Oslo er feilsortert?",
+                question: "Hvilket eksempel på feilsortering i Oslo er brukt i prototypen?",
                 options: ["42,3%", "54,9%", "65,7%", "78,2%"],
                 correct: 2,
-                explanation: "65,7% av restavfallet i Oslo er feilsortert!"
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert aktuell måling."
             },
             {
-                question: "Hva er EUs mål for materialgjenvinning innen 2035?",
+                question: "Hvilket mål for 2035 viser prototypen?",
                 options: ["50%", "55%", "60%", "65%"],
                 correct: 3,
-                explanation: "EU har satt mål om 65% materialgjenvinning innen 2035."
+                explanation: "Dette er tallverdien som brukes i prototypen; spørsmålet bekrefter ikke gjeldende EU-regelverk."
             },
             {
-                question: "Hvor stor del av restavfallet i Oslo er matavfall (feilsortert)?",
+                question: "Hvilket eksempel på matavfall i restavfallet i Oslo er brukt i prototypen?",
                 options: ["22,8%", "36,3%", "44,7%", "51,2%"],
                 correct: 1,
-                explanation: "Matavfall utgjør 36,3% av det feilsorterte restavfallet."
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert aktuell måling."
             },
             {
-                question: "Hvor mange prosent googler når de er usikre på sortering?",
+                question: "Hvilket eksempel på andel som googler ved sorteringsusikkerhet er brukt i prototypen?",
                 options: ["18%", "29%", "37%", "46%"],
                 correct: 2,
-                explanation: "37% googler, mens bare 18% bruker info på emballasjen."
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert aktuell måling."
             },
             {
-                question: "Hvor stor andel av husholdningsavfall brennes i Norge?",
+                question: "Hvilket eksempel på andel husholdningsavfall til forbrenning er brukt i prototypen?",
                 options: ["38,2%", "46,7%", "54,5%", "62,3%"],
                 correct: 2,
-                explanation: "54,5% av husholdningsavfall brennes for energigjenvinning."
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert aktuell måling."
             },
             {
-                question: "Hva er effektiviteten til Optibag-systemet i Oslo?",
+                question: "Hvilket prosenttall viser prototypen for Optibag i Oslo?",
                 options: ["12%", "19%", "27%", "34%"],
                 correct: 1,
-                explanation: "Optibag har kun 19% sorteringseffektivitet for plast."
+                explanation: "Dette er en eksempelverdi i prototypen, ikke en verifisert måling av et sorteringsanlegg."
             }
         ];
 
@@ -3213,6 +3039,7 @@
             document.getElementById('quizContent').style.display = 'block';
             renderQuizProgress();
             renderQuizQuestion();
+            focusQuizTarget(document.querySelector('#quizQuestion .question-text'));
         }
 
         function renderQuizProgress() {
@@ -3220,11 +3047,14 @@
             container.innerHTML = quizQuestions.map((_, i) => {
                 let classes = 'quiz-dot';
                 if (i === currentQuizQuestion) classes += ' active';
+                let status = 'ikke besvart';
                 if (quizAnswers[i] !== null) {
                     classes += quizAnswers[i].correct ? ' correct' : ' wrong';
                     classes += ' answered';
+                    status = quizAnswers[i].correct ? 'besvart riktig' : 'besvart feil';
                 }
-                return `<div class="${classes}" onclick="goToQuizQuestion(${i})"></div>`;
+                const current = i === currentQuizQuestion;
+                return `<button type="button" class="${classes}" aria-label="Spørsmål ${i + 1} av ${quizQuestions.length}, ${status}" ${current ? 'aria-current="step"' : ''} ${quizAnswers[i] === null && !current ? 'disabled' : ''} onclick="goToQuizQuestion(${i})"></button>`;
             }).join('');
         }
 
@@ -3238,14 +3068,15 @@
                     if (i === q.correct) classes += ' correct';
                     else if (i === quizAnswers[currentQuizQuestion]?.selected) classes += ' wrong';
                 }
-                return `<div class="${classes}" onclick="${answered ? '' : `selectAnswer(${i})`}" style="${answered ? 'cursor: default;' : ''}">${opt}</div>`;
+                const pressed = answered && i === quizAnswers[currentQuizQuestion].selected;
+                return `<button type="button" class="${classes}" aria-pressed="${pressed}" onclick="selectAnswer(${i})">${opt}</button>`;
             }).join('');
 
             let feedbackHtml = '';
             if (answered) {
                 const isCorrect = quizAnswers[currentQuizQuestion].correct;
                 feedbackHtml = `
-                    <div class="quiz-feedback show ${isCorrect ? 'correct' : 'wrong'}">
+                    <div class="quiz-feedback show ${isCorrect ? 'correct' : 'wrong'}" role="status">
                         ${isCorrect ? '✓ Riktig!' : '✗ Feil.'} ${q.explanation}
                     </div>
                 `;
@@ -3253,7 +3084,7 @@
 
             document.getElementById('quizQuestion').innerHTML = `
                 <div class="question-number">Spørsmål ${currentQuizQuestion + 1} av ${quizQuestions.length}</div>
-                <div class="question-text">${q.question}</div>
+                <h2 class="question-text" tabindex="-1">${q.question}</h2>
                 <div class="quiz-options">${optionsHtml}</div>
                 ${feedbackHtml}
                 <div class="quiz-nav-buttons">
@@ -3282,6 +3113,16 @@
             
             renderQuizProgress();
             renderQuizQuestion();
+            focusQuizTarget(document.querySelector(`#quizQuestion .quiz-option[aria-pressed="true"]`));
+        }
+
+        function focusQuizTarget(element) {
+            if (!element) return;
+            element.focus({ preventScroll: true });
+            element.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+                block: 'start'
+            });
         }
 
         function goToQuizQuestion(index) {
@@ -3289,6 +3130,7 @@
                 currentQuizQuestion = index;
                 renderQuizProgress();
                 renderQuizQuestion();
+                focusQuizTarget(document.querySelector('#quizQuestion .question-text'));
             }
         }
 
@@ -3299,6 +3141,7 @@
                 currentQuizQuestion++;
                 renderQuizProgress();
                 renderQuizQuestion();
+                focusQuizTarget(document.querySelector('#quizQuestion .question-text'));
             } else {
                 showQuizResult();
             }
@@ -3309,6 +3152,7 @@
                 currentQuizQuestion--;
                 renderQuizProgress();
                 renderQuizQuestion();
+                focusQuizTarget(document.querySelector('#quizQuestion .question-text'));
             }
         }
 
@@ -3339,6 +3183,7 @@
                 `;
             });
             document.getElementById('quizSummary').innerHTML = summaryHtml;
+            focusQuizTarget(document.querySelector('#quizResult .quiz-result-title'));
         }
 
         function resetQuiz() {
@@ -3357,156 +3202,59 @@
         };
 
         function updateComparison() {
-            const k1 = kommuneData[document.getElementById('kommune1').value];
-            const k2 = kommuneData[document.getElementById('kommune2').value];
-            
-            // Helper to parse percentage strings
-            const parsePercent = (str) => parseFloat(str.replace('%', '').replace(',', '.'));
-            
-            // Define comparison categories (higher is better, except incineration)
-            const categories = [
-                { key: 'efficiency', label: 'Sorteringseffektivitet', higherBetter: true, icon: '🎯' },
-                { key: 'recycling', label: 'Til resirkulering', higherBetter: true, icon: '♻️' },
-                { key: 'plastic', label: 'Plast gjenvunnet', higherBetter: true, icon: '🥤' },
-                { key: 'food', label: 'Mat gjenvunnet', higherBetter: true, icon: '🍎' },
-                { key: 'incineration', label: 'Til forbrenning', higherBetter: false, icon: '🔥' }
-            ];
-            
-            let k1Wins = 0;
-            let k2Wins = 0;
-            let ties = 0;
-            
-            // Calculate winners for each category
-            const results = categories.map(cat => {
-                const v1 = parsePercent(k1[cat.key]);
-                const v2 = parsePercent(k2[cat.key]);
-                const diff = Math.abs(v1 - v2);
-                
-                let winner, winnerName;
-                if (v1 === v2) {
-                    winner = 'tie';
-                    winnerName = 'Likt';
-                    ties++;
-                } else if (cat.higherBetter) {
-                    winner = v1 > v2 ? 'k1' : 'k2';
-                    winnerName = v1 > v2 ? k1.name : k2.name;
-                    if (v1 > v2) k1Wins++; else k2Wins++;
-                } else {
-                    // Lower is better (incineration)
-                    winner = v1 < v2 ? 'k1' : 'k2';
-                    winnerName = v1 < v2 ? k1.name : k2.name;
-                    if (v1 < v2) k1Wins++; else k2Wins++;
-                }
-                
-                return { ...cat, v1, v2, diff, winner, winnerName };
-            });
-            
-            // Determine overall winner
-            const overallWinner = k1Wins > k2Wins ? k1.name : (k2Wins > k1Wins ? k2.name : 'Uavgjort');
-            const k1Class = k1Wins > k2Wins ? 'winner' : '';
-            const k2Class = k2Wins > k1Wins ? 'winner' : '';
-            
-            // Generate analysis items HTML
-            const analysisItemsHtml = results.map(r => {
-                const colorClass = r.winner === 'k1' ? 'green' : (r.winner === 'k2' ? 'blue' : 'tie');
-                const icon = r.winner === 'tie' ? '🤝' : '🏆';
-                return `
-                    <div class="analysis-item">
-                        <span class="analysis-category">${r.icon} ${r.label}</span>
-                        <div class="analysis-winner ${colorClass}">
-                            ${icon} ${r.winnerName}
-                            ${r.diff > 0 ? `<span class="analysis-diff">+${r.diff.toFixed(1)}%</span>` : ''}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            
-            // Generate verdict
-            let verdictText = '';
-            if (k1Wins > k2Wins) {
-                const diff = k1Wins - k2Wins;
-                verdictText = `<strong>${k1.name}</strong> vinner sammenligningen med ${k1Wins} av ${categories.length} kategorier. 
-                    Hovedfordelen er ${k1.system}-systemet med <strong>${k1.efficiency}</strong> sorteringseffektivitet. 
-                    ${k2.name} scorer bedre på ${k2Wins} kategori${k2Wins !== 1 ? 'er' : ''}.`;
-            } else if (k2Wins > k1Wins) {
-                const diff = k2Wins - k1Wins;
-                verdictText = `<strong>${k2.name}</strong> vinner sammenligningen med ${k2Wins} av ${categories.length} kategorier. 
-                    Hovedfordelen er ${k2.system}-systemet med <strong>${k2.efficiency}</strong> sorteringseffektivitet. 
-                    ${k1.name} scorer bedre på ${k1Wins} kategori${k1Wins !== 1 ? 'er' : ''}.`;
-            } else {
-                verdictText = `Det er <strong>uavgjort</strong> mellom ${k1.name} og ${k2.name}! 
-                    Begge kommuner vinner ${k1Wins} kategorier hver. 
-                    ${k1.name} bruker ${k1.system} mens ${k2.name} bruker ${k2.system}.`;
+            const first = kommuneData[document.getElementById('kommune1').value];
+            const second = kommuneData[document.getElementById('kommune2').value];
+            const results = document.getElementById('compareResults');
+
+            if (!first || !second) {
+                results.innerHTML = '<p class="compare-empty" role="status">Velg to kommuner for å vise prototypeeksemplene.</p>';
+                return;
             }
-            
-            // Helper function to determine value class
-            const getValueClass = (cat, isK1) => {
-                const result = results.find(r => r.key === cat);
-                if (!result || result.winner === 'tie') return '';
-                if (isK1) return result.winner === 'k1' ? 'winner' : 'loser';
-                return result.winner === 'k2' ? 'winner' : 'loser';
-            };
-            
-            document.getElementById('compareResults').innerHTML = `
-                <div class="compare-card ${k1Class}">
-                    <h3>${k1.name}</h3>
-                    <div class="compare-stat"><span class="compare-stat-label">System</span><span class="compare-stat-value">${k1.system}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Sorteringseffektivitet</span><span class="compare-stat-value ${getValueClass('efficiency', true)}">${k1.efficiency}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Befolkning</span><span class="compare-stat-value">${k1.population}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Til resirkulering</span><span class="compare-stat-value ${getValueClass('recycling', true)}">${k1.recycling}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Til forbrenning</span><span class="compare-stat-value ${getValueClass('incineration', true)}">${k1.incineration}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Plast gjenvunnet</span><span class="compare-stat-value ${getValueClass('plastic', true)}">${k1.plastic}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Mat gjenvunnet</span><span class="compare-stat-value ${getValueClass('food', true)}">${k1.food}</span></div>
-                </div>
-                <div class="compare-card ${k2Class}">
-                    <h3>${k2.name}</h3>
-                    <div class="compare-stat"><span class="compare-stat-label">System</span><span class="compare-stat-value">${k2.system}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Sorteringseffektivitet</span><span class="compare-stat-value ${getValueClass('efficiency', false)}">${k2.efficiency}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Befolkning</span><span class="compare-stat-value">${k2.population}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Til resirkulering</span><span class="compare-stat-value ${getValueClass('recycling', false)}">${k2.recycling}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Til forbrenning</span><span class="compare-stat-value ${getValueClass('incineration', false)}">${k2.incineration}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Plast gjenvunnet</span><span class="compare-stat-value ${getValueClass('plastic', false)}">${k2.plastic}</span></div>
-                    <div class="compare-stat"><span class="compare-stat-label">Mat gjenvunnet</span><span class="compare-stat-value ${getValueClass('food', false)}">${k2.food}</span></div>
-                </div>
-                
-                <div class="compare-analysis">
-                    <h3>📊 Kategori-analyse</h3>
-                    
-                    <div class="analysis-grid">
-                        ${analysisItemsHtml}
-                    </div>
-                    
-                    <div class="compare-summary">
-                        <div class="summary-side">
-                            <div class="summary-name">${k1.name}</div>
-                            <div class="summary-score ${k1Wins > k2Wins ? 'leading' : ''}">${k1Wins}</div>
-                            <div class="summary-label">kategorier vunnet</div>
+
+            if (first.name === second.name) {
+                results.innerHTML = `<p class="compare-empty" role="status">Du har valgt ${first.name} på begge sider. Velg to ulike kommuner for å vise to sett med eksempelverdier.</p>`;
+                return;
+            }
+
+            const fields = [
+                ['System', 'system'],
+                ['Sorteringseffektivitet', 'efficiency'],
+                ['Befolkning', 'population'],
+                ['Til resirkulering', 'recycling'],
+                ['Til forbrenning', 'incineration'],
+                ['Plast gjenvunnet', 'plastic'],
+                ['Mat gjenvunnet', 'food']
+            ];
+
+            const renderCard = (municipality) => `
+                <div class="compare-card">
+                    <h3>${municipality.name}</h3>
+                    ${fields.map(([label, key]) => `
+                        <div class="compare-stat">
+                            <span class="compare-stat-label">${label}</span>
+                            <span class="compare-stat-value">${municipality[key]}</span>
                         </div>
-                        <div class="summary-divider">
-                            <span class="summary-vs">VS</span>
-                        </div>
-                        <div class="summary-side">
-                            <div class="summary-name">${k2.name}</div>
-                            <div class="summary-score ${k2Wins > k1Wins ? 'leading' : ''}">${k2Wins}</div>
-                            <div class="summary-label">kategorier vunnet</div>
-                        </div>
-                    </div>
-                    
-                    <div class="compare-verdict">
-                        <p class="verdict-text">${verdictText}</p>
-                    </div>
+                    `).join('')}
                 </div>
+            `;
+
+            results.innerHTML = `
+                ${renderCard(first)}
+                ${renderCard(second)}
             `;
         }
 
         // ===== DASHBOARD DETAILS =====
-        function showDashboardDetail(type) {
+        function showDashboardDetail(type, element) {
             // Remove active from all stats and details
-            document.querySelectorAll('.dashboard-stat').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.dashboard-stat').forEach(s => {
+                s.classList.remove('active');
+                s.setAttribute('aria-expanded', 'false');
+            });
             document.querySelectorAll('.dashboard-detail').forEach(d => d.classList.remove('active'));
             
-            // Find the clicked stat and add active
-            event.currentTarget.classList.add('active');
+            element.classList.add('active');
+            element.setAttribute('aria-expanded', 'true');
             
             // Show the detail panel
             const detailPanel = document.getElementById('detail-' + type);
@@ -3527,6 +3275,7 @@
         // Initialize
         updateTimeline();
         updateComparison();
+        document.querySelector('.nav-item.active')?.setAttribute('aria-current', 'page');
     </script>
 </body>
 </html>

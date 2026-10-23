@@ -3,8 +3,8 @@
 Oppdatert 2026-10-23. Dette er gjeldende plan for bragesteen.no. Nettside- og kildekontrollen
 ble utført 2026-10-22; planen ble ferdigstilt og kvalitetssikret 2026-10-23.
 **Retning godkjent av Brage:** behold den eksisterende Vite/React-siden og forbedre den.
-Dagens Astro-design skal ikke brukes. Arbeidet nedenfor er planlagt, med mindre et punkt
-uttrykkelig er merket verifisert. Ingen av forbedringene er publisert gjennom denne planen.
+Dagens Astro-design skal ikke brukes. J1 er implementert og kontrollert lokalt på egen gren;
+produksjonsstatus føres separat. Se [arbeidsloggen for J1](docs/portefolje/implementering/j1-2026-10-23.md).
 
 ## 1. Målet og hvem vi skriver for
 
@@ -12,6 +12,11 @@ En arbeidsgiver skal raskt forstå at Brage er **produktdesigner med prototyping
 og kunne følge konkrete valg fra problem og innsikt til fysisk/digital prototype og læring.
 Hovedretning: produktutvikling der fysisk og digitalt møtes, med industridesign og
 tjenestedesign som dokumentert bredde. Kode, elektronikk og AI omtales som verktøy.
+
+**Brages presisering 2026-10-23:** søker produktutvikling, produktdesign og industridesign,
+men også fullstack-/AI-utvikling og implementering. Styrken er «fra idé til en prototype som
+fungerer på kort tid». Tilgjengelig fortløpende. Dette utvider det tidligere rollevalget;
+det digitale arbeidet skal synliggjøres relevant, samtidig som produktdesigner er hovedprofilen.
 
 **UX-strategi**
 
@@ -111,16 +116,17 @@ Ingen merge til `main` uten Brages ja. Omfang under er anbefalt rekkefølge; ing
 
 ### Fase J1 – rett troverdighets- og funksjonsfeil
 
-- [ ] Bachelor: avklar «67+», korriger sitat mot originalen og fjern/nyanser udokumentert effekt.
-- [ ] Headset: skill produksjonsmål fra faktisk produksjon; kontroller «2% draft angles» mot tegninger.
-- [ ] Seaweed: avgrens miljøpåstander og sett verkstedforsøk i riktig kontekst.
-- [ ] Avfallsportalen: merk historiske/illustrative data, fjern usikre kommunerangeringer og korriger regnefeil.
-- [ ] Fiks fragmentlenker og oppdatering (`#model`, `#prototype`, `#reflection`).
-- [ ] Fjern lukket mobilmeny fra tab-rekkefølgen; kontroller åpning, lukking, Escape og fokusretur.
-- [ ] Rett avkuttede tall i Avfallsportalens grafer og overlapp i Seaweeds mobile toppseksjon.
+- [x] Bachelor: «67+» korrigert mot rapporten, sitatet forkortet og forventet effekt avgrenset.
+- [x] Headset: produksjonsmål skilt fra faktisk produksjon; udokumentert draft-vinkel utelatt.
+- [x] Seaweed: miljøpåstander avgrenset og verkstedforsøk satt i riktig kontekst.
+- [x] Avfallsportalen: prototypedata merket, usikre rangeringer og feil regneeksempel fjernet.
+- [x] Fragmentlenker og oppdatering lokalt kontrollert (`#model`, `#prototype`, `#reflection`).
+- [x] Mobilmeny lokalt kontrollert for Tab, Escape, fokusretur, lenkevalg og historikknavigasjon.
+- [x] Hele grafetiketter og Seaweeds mobilintro visuelt kontrollert.
 
 **Ferdig når:** samme scenarier som i [kontrollrapporten](docs/portefolje/kontroll/2026-10-22.md)
-er kontrollert på nytt, og påstander/sitater er sporbare. Ingen av disse feilene er rettet ennå.
+er kontrollert på nytt, og påstander/sitater er sporbare. Avkrysningene over gjelder lokal
+implementering og verifikasjon 2026-10-23; merge og kontroll av publisert produksjon gjenstår.
 
 ### Fase J2 – gjør eksisterende portefølje jobbsøkingsklar
 
@@ -164,11 +170,13 @@ CV, Headset-materiale, GripSense-dokumentasjon og 24 krediterbare Caddy-foto.
 
 Det viktigste Brage må avklare under innholdsarbeidet:
 
-- Eget bidrag i bacheloren og Seaweed: hva gjorde du selv, og hva gjorde dere sammen?
+- Bekreftet 2026-10-23: bachelorarbeidet ble gjort sammen med Regina gjennom hele prosjektet;
+  i Seaweed hadde Brage særlig ansvar for å utvikle testmetodene.
 - BS Climbing og GripSense: velg to–tre konkrete endringer som kom fra prototyping/tilbakemeldinger.
 - GripSense: hvilke fysiske bilder viser dagens stadium, og hvilke viser eldre revisjoner?
 - Caddy: hvilke krav styrte løsningen, hva bygget du selv og hva lærte du etter bruk?
-- CV: oppdater dagens arbeid/tilgjengelighet og kontroller periodene, særlig NTNU/Aalto og etterfølgende arbeid.
+- CV: tilgjengelig fortløpende er bekreftet; oppdater dagens arbeid og kontroller periodene,
+  særlig NTNU/Aalto og etterfølgende arbeid.
 - Mer arbeid: hvilke kundeleveranser, bilder og resultater kan vises offentlig?
 
 Uavklart informasjon skal ikke fylles med antakelser. Lag tekstutkast av dokumentert materiale
@@ -203,6 +211,8 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 - [x] 2026-10-22: Samlet plan, ni delplaner og kilderegister skrevet. Planen er ikke utført.
 - [x] 2026-10-23: Planverket ferdigstilt på `codex/portfolio-jobbsoking-plan`, basert på `main`.
   Lokale lenker, dokumentstruktur og samsvar mellom funn og tiltak er kontrollert.
+- [x] 2026-10-23: J1 implementert med tre Luna-subagenter. Bygg, fem tester, TypeScript,
+  lint uten feil og 20 nettleserkontrollgrupper består lokalt. Arbeidslogg og skjermbilder lagret.
 
 ### Beslutningslogg
 
@@ -213,6 +223,8 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 | 2026-10-22 | Produktdesigner med prototyping som styrke videreføres | Tidligere godkjent posisjonering |
 | 2026-10-22 | Planen skiller første søknadsversjon fra senere utvidelse | Anbefalt gjennomføringsrekkefølge; nyinnhold skal ikke stanse søknader |
 | 2026-10-22 | Norsk prosjektpresentasjon med engelske originalvedlegg anbefales | Viderefører språkvalget fra 2026-10-13; Brage tok bachelorens språk opp på nytt |
+| 2026-10-23 | Også målrette fullstack-/AI-utvikling og implementering | Brages eksplisitte presisering av roller; hovedstyrken er rask vei fra idé til fungerende prototype |
+| 2026-10-23 | Bachelor var felles arbeid; Seaweed-testmetoder var Brages hovedansvar; Headset var solo, NTNU 2021, fire måneder | Bekreftet direkte av Brage, inkludert emnet Design for Industrialization |
 
 Tidligere beslutninger og gjennomført hosting-/Astro-arbeid er bevart i
 [den historiske ombyggingsplanen](docs/portefolje/arkiv/ombyggingsplan-2026-10-13.md).

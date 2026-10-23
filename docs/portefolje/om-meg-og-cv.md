@@ -9,6 +9,11 @@ Nåværende side: https://bragesteen.no/about/
 Den nåværende biografien er lang og generell før den kommer til relevant erfaring.
 Personlige erfaringer kan gi særpreg når koblingen til designarbeidet er konkret.
 
+Bekreftet av Brage 2026-10-23: tilgjengelig fortløpende. Søker produktutvikling,
+produktdesigner-/industridesignerroller og fullstack-/AI-utvikling og implementering.
+Egen beskrivelse av styrken: fra idé til en prototype som fungerer på kort tid.
+Nåværende arbeid og siste erfaringsdatoer er ennå ikke avklart.
+
 ## Plan
 
 - [ ] Kort introduksjon: produktdesigner, fysisk/digital prototyping og aktuelle typer arbeid.

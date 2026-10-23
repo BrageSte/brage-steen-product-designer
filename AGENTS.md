@@ -12,8 +12,8 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
 ## Status
 
 - Retning godkjent 2026-10-22: **behold og forbedre eksisterende Vite + React + Tailwind-side**.
-- Fase 0/hosting er verifisert på live. Jobbsøkingsplanen er skrevet; implementeringen av
-  J1–J4 er ikke startet gjennom planarbeidet.
+- Fase 0/hosting er verifisert på live. J1 implementeres på `codex/portfolio-j1-kvalitet`;
+  lokal kontroll og forhåndsvisning må skilles fra ferdig publisert produksjon.
 - Dagens `rebuild/astro` er et forkastet designutkast og skal ikke merges eller publiseres.
 - Kodeforbedringer starter fra oppdatert `main` i egen gren. Ikke ta med Astro-implementasjonen
   som følge av at plan eller historikk tidligere lå på den grenen.
@@ -40,7 +40,10 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
   skjermbilder og sitater som tydelig merkede vedlegg. Se språkvalget i PLANS.md.
 - Nye URL-er er norske. Flytt eksisterende URL-er bare sammen med fungerende nye ruter og testede 301-er.
 - Brage er **produktdesigner med prototyping som styrke**. Kode, elektronikk og AI er verktøy.
-  Brage er den som designer og bestemmer. Ikke posisjoner ham som utvikler eller elektronikkingeniør.
+  Styrke: «Fra idé til en prototype som fungerer på kort tid». Brage er den som designer og bestemmer.
+  Oppdatert 2026-10-23: Brage søker også fullstack-/AI-utvikling og implementering, i tillegg til
+  produktutvikling, produktdesign og industridesign. Vis dette med dokumentert arbeid;
+  produktdesigner er fortsatt hovedprofilen. Ikke posisjoner ham som elektronikkingeniør.
 - Skill mål/brief, konsept, prototype, levert produkt og dokumentert resultat.
 - GripSense: les prosjektets gjeldende kildegrunnlag og påstandsregler. Ikke påstå validert
   måling, treningseffekt eller skadeforebygging. Merk eldre revisjoner og demodata presist.

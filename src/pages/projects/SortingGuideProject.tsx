@@ -75,9 +75,8 @@ function HeroSection() {
           className="text-lg max-w-xl mb-12"
           style={{ color: "rgba(255,255,255,0.75)", fontWeight: 300 }}
         >
-          A service design project empowering Norwegian households to recycle
-          correctly through personalized guidance and smart product
-          recommendations.
+          A service design concept exploring how personalized guidance and
+          product recommendations could help Norwegian households sort waste.
         </p>
 
         <div className="flex flex-wrap justify-center gap-16 max-md:flex-col max-md:gap-6 max-md:items-center">
@@ -345,9 +344,12 @@ function ResearchSection() {
                   color: colors.greenMain,
                 }}
               >
-                67+
+                60
               </p>
-              <p className="text-sm text-gray-500 mt-1">Workshop participants</p>
+              <p className="text-sm text-gray-500 mt-1">
+                People across two workshops: 27 participants, 30 students and
+                3 professors
+              </p>
             </div>
             <div className="relative bg-white p-6 rounded-2xl" style={{ boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}>
               <p
@@ -360,7 +362,9 @@ function ResearchSection() {
               >
                 5
               </p>
-              <p className="text-sm text-gray-500 mt-1">Home visits conducted</p>
+              <p className="text-sm text-gray-500 mt-1">
+                Household visits documented in the 2020 report
+              </p>
             </div>
           </div>
         </div>
@@ -506,9 +510,9 @@ function InsightsSection() {
 function ProcessSection() {
   const steps = [
     { num: 1, title: "Research", desc: "Qualitative methods to gain empathy and map insights" },
-    { num: 2, title: "Ideation", desc: "40+ ideas generated and evaluated against criteria" },
+    { num: 2, title: "Ideation", desc: "Ideas generated and evaluated against criteria" },
     { num: 3, title: "Prototyping", desc: "From paper wireframes to interactive Adobe XD prototype" },
-    { num: 4, title: "Implementation", desc: "User testing, validation with partners, and refinement" },
+    { num: 4, title: "Feedback", desc: "User testing, partner feedback, and refinement" },
   ];
 
   return (
@@ -703,7 +707,7 @@ function SolutionSection() {
                   className="inline-block px-10 py-4 bg-white rounded-lg font-semibold text-[0.95rem] transition-all hover:-translate-y-0.5 hover:shadow-lg"
                   style={{ color: colors.greenMain }}
                 >
-                  Try Prototype
+                  Se prototypegjennomgang
                 </a>
               </div>
             </div>
@@ -802,7 +806,7 @@ function ValueSection() {
         </svg>
       ),
       title: "For Users",
-      desc: "Customized solutions that fit their home constraints, increased knowledge, and confidence in making correct sorting decisions.",
+      desc: "The concept aims to offer sorting guidance tailored to household constraints and local rules.",
     },
     {
       icon: (
@@ -811,7 +815,7 @@ function ValueSection() {
         </svg>
       ),
       title: "For Business",
-      desc: "Higher customer satisfaction through personalized offerings, opportunity for up-selling, and strengthened brand position in sustainability.",
+      desc: "The concept could support personalized product recommendations and give IKEA a way to connect products with sorting needs.",
     },
     {
       icon: (
@@ -820,7 +824,7 @@ function ValueSection() {
         </svg>
       ),
       title: "For Environment",
-      desc: "Higher recycling rates reduce waste lost in the system, increase material reuse, and lower demand for virgin products.",
+      desc: "The intended value was to make sorting guidance easier to access. The project did not measure changes in recycling rates or material reuse.",
     },
   ];
 
@@ -832,7 +836,7 @@ function ValueSection() {
             className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
             style={{ color: colors.greenMain }}
           >
-            Impact
+            Expected value
           </span>
           <h2
             className="mb-6"
@@ -843,12 +847,13 @@ function ValueSection() {
               lineHeight: 1.15,
             }}
           >
-            Creating Value Across the Chain
+            Intended Value Across the Chain
           </h2>
           <p className="text-lg text-gray-600 max-w-[640px] mx-auto leading-relaxed">
-            By empowering the first-line of recycling with the necessary tools
-            and resources, The Sorting Guide creates added value along the
-            entire recycling value chain.
+            The Sorting Guide explored how guidance and recommendations could
+            support households and connect sorting needs with available
+            products. These are expected benefits of the concept, not measured
+            outcomes.
           </p>
         </div>
 
@@ -895,8 +900,7 @@ function ValueSection() {
               fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
             }}
           >
-            "You are spot on. There is definitely a need for this concept. You are
-            contributing to limiting the largest leakage in the recycling system."
+            "You are spot on. There is definitely a need for this concept."
           </blockquote>
           <div className="text-sm" style={{ color: colors.greenPale }}>
             <strong className="block text-white font-semibold mb-1">
@@ -947,9 +951,8 @@ function TeamSection() {
             <p className="text-gray-600 text-[1.05rem] mb-8">
               This bachelor project was developed at Oslo Metropolitan
               University as the concluding thesis for a three-year Product
-              Design education. Our shared passion for sustainability and making
-              a real difference drove us to tackle the complex challenge of
-              household recycling.
+              Design education. Regina von Koch and I worked on the project
+              together and shared the work across the project.
             </p>
             <div className="flex gap-8 flex-wrap">
               {[

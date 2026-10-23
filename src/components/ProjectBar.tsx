@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 interface ProjectLink {
   label: string;
   id?: string;      // For anchor links (scrolls to section)
@@ -9,24 +11,31 @@ interface ProjectBarProps {
   sections: ProjectLink[];
 }
 
-// Scroll offset to account for sticky headers
-const SCROLL_OFFSET = 140;
+export default function ProjectBar({ title, sections }: ProjectBarProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-function handleAnchorClick(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
-  e.preventDefault();
-  const element = document.getElementById(id);
-  if (element) {
-    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({
-      top: elementPosition - SCROLL_OFFSET,
-      behavior: "smooth",
+  function handleAnchorClick(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+    if (
+      e.button !== 0 ||
+      e.metaKey ||
+      e.ctrlKey ||
+      e.shiftKey ||
+      e.altKey
+    ) {
+      return;
+    }
+
+    e.preventDefault();
+    navigate({
+      pathname: location.pathname,
+      search: location.search,
+      hash: `#${encodeURIComponent(id)}`,
     });
   }
-}
 
-export default function ProjectBar({ title, sections }: ProjectBarProps) {
   return (
-    <div className="sticky top-[72px] z-[1500] bg-[rgba(250,249,247,0.96)] border-b border-[rgba(26,26,26,0.12)] backdrop-blur-[10px]">
+    <div data-project-bar className="sticky top-[72px] z-[1500] bg-[rgba(250,249,247,0.96)] border-b border-[rgba(26,26,26,0.12)] backdrop-blur-[10px]">
       <div className="max-w-[1200px] mx-auto px-8 py-3 flex items-center justify-between gap-4 max-md:px-4 max-md:flex-col max-md:items-start max-md:gap-2">
         {/* Title - hidden on mobile for more space */}
         <div className="flex-shrink-0 max-md:hidden">

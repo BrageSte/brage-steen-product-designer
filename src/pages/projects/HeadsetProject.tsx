@@ -46,23 +46,26 @@ function OverviewSection() {
           <span className="text-caption">Overview</span>
           <h2 className="text-display-md mt-4 mb-6">Project Brief</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Design a commuter- and office-friendly headset with a focus on
-            industrialized production. The foldable design ensures portability
-            for travel and everyday use.
+            An individual project at NTNU in 2021 for Design for
+            Industrialization.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            The brief asked for a commuter- and office-friendly headset with a
+            focus on industrialized production and a foldable form for travel
+            and everyday use.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">
               Production Considerations:
             </strong>{" "}
-            Every component is optimized for plastic injection molding to ensure
-            cost-efficient mass production. This includes designing parts with
-            appropriate draft angles to allow easy release from molds.
+            Plastic injection molding was the production premise, so part
+            geometry was developed with mold release in mind.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-border">
             <BriefItem label="Duration" value="4 months" />
-            <BriefItem label="Target" value="$200–$300" />
-            <BriefItem label="Production" value="100,000 units" />
+            <BriefItem label="Brief price target" value="$200–$300" />
+            <BriefItem label="Brief production target" value="100,000 units" />
             <BriefItem label="Materials" value="Polyethylene, Steel" />
             <BriefItem label="Method" value="Injection Molding" />
             <BriefItem label="Tools" value="Fusion 360" />
@@ -139,7 +142,8 @@ function PrototypingSection() {
           challenge, requiring numerous iterations to achieve the ideal fit.
           Since the headset is designed for injection molding, careful attention
           was given to draft angles. 3D printing allowed rapid testing of
-          variations to validate comfort and ergonomics.
+          variations for informal fit and comfort checks. This was exploratory
+          prototype use, not a documented ergonomic validation.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -246,9 +250,8 @@ function TechnicalSection() {
         <span className="text-caption">04 — Technical</span>
         <h2 className="text-display-md mt-4 mb-6">Production Drawings</h2>
         <p className="text-muted-foreground">
-          Detailed technical drawings with dimensions and tolerances for all
-          components. Designed for injection molding with 2% draft angles
-          throughout.
+          Technical drawings document component dimensions and tolerances. The
+          production premise was plastic injection molding.
         </p>
       </div>
 

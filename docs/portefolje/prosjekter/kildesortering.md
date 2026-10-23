@@ -9,6 +9,9 @@ Avfallsportalen har en [egen delplan](avfallsportalen.md).
 Tjenestedesign og systemforståelse: fra undersøkelser av sortering i hjemmet og hos IKEA til
 innsikt, tjenestekonsept og prototype. Gjør Brages bidrag tydelig innen teamarbeidet med Regina von Koch.
 
+Bekreftet av Brage 2026-10-23: han og Regina gjorde arbeidet sammen gjennom hele prosjektet.
+Ikke fordel innsikt, prototyping eller andre leveranser kunstig mellom dem.
+
 ## Språk og historisk ramme
 
 Behold navnet «The Sorting Guide» og engelske originalvedlegg. Prosjektsiden anbefales på norsk.

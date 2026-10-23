@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Lokale kontrollfiler og Cloudflare-cache
+/output/
+/.wrangler/
+/.playwright-cli/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
