@@ -23,21 +23,21 @@
     "width": 1824,
     "height": 1217
   },
-  "/projects/headset/nett/functions.jpg": {
-    "width": 1440,
-    "height": 1226
+  "/projects/gripsense/nett/app-live.png": {
+    "width": 390,
+    "height": 844
   },
-  "/projects/headset/nett/header.jpg": {
-    "width": 2400,
-    "height": 1500
+  "/projects/gripsense/nett/app-protokollvalg.png": {
+    "width": 390,
+    "height": 844
   },
-  "/projects/headset/nett/prototype.jpg": {
+  "/projects/gripsense/nett/fingerputer-konsept-05.jpg": {
+    "width": 1600,
+    "height": 1200
+  },
+  "/projects/headset/nett/20211128-174645.jpg": {
     "width": 2400,
     "height": 1800
-  },
-  "/projects/headset/nett/technical-drawing-1.png": {
-    "width": 2339,
-    "height": 1653
   },
   "/projects/headset/nett/details-render-2.jpg": {
     "width": 1920,
@@ -50,6 +50,14 @@
   "/projects/headset/nett/full-headset.jpg": {
     "width": 1343,
     "height": 1600
+  },
+  "/projects/headset/nett/functions.jpg": {
+    "width": 1440,
+    "height": 1226
+  },
+  "/projects/headset/nett/header.jpg": {
+    "width": 2400,
+    "height": 1500
   },
   "/projects/headset/nett/jadda-65.jpg": {
     "width": 2400,
@@ -75,6 +83,10 @@
     "width": 2400,
     "height": 1800
   },
+  "/projects/headset/nett/prototype.jpg": {
+    "width": 2400,
+    "height": 1800
+  },
   "/projects/headset/nett/sketch-1.png": {
     "width": 2400,
     "height": 1943
@@ -82,6 +94,10 @@
   "/projects/headset/nett/sketch-2.png": {
     "width": 1726,
     "height": 1920
+  },
+  "/projects/headset/nett/technical-drawing-1.png": {
+    "width": 2339,
+    "height": 1653
   },
   "/projects/headset/nett/technical-drawing-3.png": {
     "width": 2339,
