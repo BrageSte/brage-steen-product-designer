@@ -25,6 +25,7 @@ try {
     assert.equal(await page.locator('main img').count(),3);
     assert.equal(await page.locator('main img:not([alt]), main img[alt=""]').count(),0);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+    assert.equal(await page.locator('main figure').first().evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight+3),true,'Første bilde og CAD-merking skal være synlige i første skjerm');
     await page.screenshot({path:`${out}/gripsense-${width}.png`,fullPage:true});
     results.push({width,check:'visning, tre bilder med alt-tekst, én H1 og ingen sidescroll',status:'bestått'});
     await page.getByRole('navigation',{name:'Prosjektmeny'}).getByRole('link',{name:'Gripeflate',exact:true}).click();

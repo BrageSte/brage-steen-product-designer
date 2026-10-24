@@ -16,7 +16,8 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
   og produksjonskontrollert: 20 nettleserkontrollgrupper bestod.
 - J2 er merget i PR #26 (`e280808417f67dd59d6f7f794bbe1e2927461e49`) og publisert.
   Alle 29 kontrollgrupper bestod i produksjon 2026-10-24.
-- Aktiv fase: J3, GripSense-case på `codex/portfolio-j3-gripsense`.
+- Aktiv fase: J3, GripSense-utkast på `codex/portfolio-j3-gripsense`, kladd-PR #27.
+  Egen rute med noindex; rolle og fysiske bilder må avklares før hovedplassering.
 - Dagens `rebuild/astro` er et forkastet designutkast og skal ikke merges eller publiseres.
 - Kodeforbedringer starter fra oppdatert `main` i egen gren. Ikke ta med Astro-implementasjonen
   som følge av at plan eller historikk tidligere lå på den grenen.

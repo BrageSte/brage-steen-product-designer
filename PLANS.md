@@ -240,7 +240,8 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 - [x] 2026-10-24: J2 publisert gjennom PR #26, merge `e280808417f67dd59d6f7f794bbe1e2927461e49`.
   Cloudflare-build `2abb5ec7-1288-42e6-934c-ac842972aae4` er grønt; 29 grupper består i produksjon.
 - [x] 2026-10-24: GripSense-utkast bygget på `codex/portfolio-j3-gripsense`, med oppdaterte kilder,
-  tydelig merket CAD-konsept og nye tomme appbilder. Sju lokale nettlesergrupper består.
+  tydelig merket CAD-konsept og nye tomme appbilder. Sju nettlesergrupper består lokalt
+  og i Cloudflare-forhåndsvisningen. Kladd-PR #27 er opprettet.
 - [ ] J3: Brages rolle og aktuelle fysiske prototypebilder/iterasjoner må bekreftes før hovedplassering.
 
 ### Beslutningslogg

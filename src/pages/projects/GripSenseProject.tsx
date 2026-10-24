@@ -16,14 +16,14 @@ export default function GripSenseProject() {
     <ProjectBar title="GripSense" sections={sections} />
     <main id="main-content" className="[overflow-wrap:anywhere]">
       <section className="bg-[#edf2f5]">
-        <div className="container pt-12 md:pt-16 animate-fade-in-up">
+        <div className="container pt-12 animate-fade-in-up">
           <p className="eyebrow text-[#1267ae]">Produktutvikling · pågående</p>
           <h1 className="text-display-xl mt-4">GripSense</h1>
           <p className="text-body-lg mt-5 max-w-2xl">Fra fysisk gripeflate til forståelig tilbakemelding om last under et grep.</p>
           <p className="mt-5 max-w-2xl text-sm leading-relaxed">Prosjektet kombinerer mekanikk, elektronikk og et digitalt grensesnitt. Målevalidering og valg av første brukssituasjon pågår.</p>
         </div>
         <figure className="mt-8 md:mt-10">
-          <Prosjektbilde src={`${base}/fingerputer-konsept-05.jpg`} alt="CAD-konsept med fire fingerputer i ulike høyder og feste under gripeflatene" fetchPriority="high" className="w-full max-h-[600px] object-contain" />
+          <Prosjektbilde src={`${base}/fingerputer-konsept-05.jpg`} alt="CAD-konsept med fire fingerputer i ulike høyder og feste under gripeflatene" fetchPriority="high" className="w-full h-auto max-h-[520px] object-contain md:h-[max(180px,calc(100svh_-_500px))]" />
           <figcaption className="container py-5 text-sm text-muted-foreground">CAD-konsept 05: utskiftbare fingerputer. Illustrasjonen viser en konstruksjonsidé, ikke en ferdig fysisk prototype.</figcaption>
         </figure>
       </section>
