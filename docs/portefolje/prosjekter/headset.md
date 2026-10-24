@@ -12,7 +12,7 @@ Et sammenleggbart headset utviklet med sprøytestøping som premiss, undersøkt 
 skisser, CAD og 3D-printede prototyper. Hovedverdien er form, mekanikk, ergonomiske vurderinger
 og forståelse av produksjon. Det skal ikke presenteres som et ferdig serieprodusert produkt.
 
-## Kontrollerte forhold
+## Historiske funn fra kontrollen 2026-10-22
 
 Bilder laster. Neste-knappene i prototype- og tegningsgalleri reagerer og aktiverer Forrige.
 Sketchfab-modellen laster etter «3D». Rotasjon via dra ble ikke fullført i testnettleseren;
@@ -21,22 +21,22 @@ det er en testbegrensning, ikke en dokumentert feil ved modellen.
 Siden starter med et helt skjermhøyt bilde uten prosjekttittel. H1 mangler; på mobil
 beskjæres sprengskissen kraftig. Direkte `#model`-lenke havner øverst på siden.
 
-## Plan
+## Plan – avkrysning gjelder lokal J1/J2-kontroll
 
-- [ ] Legg tittel, norsk ingress og år/rolle ved første bilde. Behold en god sprengskisse,
+- [x] Legg tittel, norsk ingress og år/rolle ved første bilde. Behold en god sprengskisse,
   med et eget bildeutsnitt eller tilpasset høyde på mobil.
-- [ ] Forklar oppgavepremisset: prisnivå og 100 000 enheter er mål/rammer i briefen,
+- [x] Forklar oppgavepremisset: prisnivå og 100 000 enheter er mål/rammer i briefen,
   ikke dokumentert produksjon eller salg.
 - [ ] Vis to–tre konstruksjonsvalg: ørekopp/holder, ledd og sammenlegging, knapper eller justering.
 - [ ] Knytt skisser og prototyper til valg: hva passet ikke, hva ble endret og hva ble vurdert fysisk?
-- [ ] Skill uformell utprøving fra dokumentert ergonomisk validering.
+- [x] Skill uformell utprøving fra dokumentert ergonomisk validering.
 - [ ] Avklar materiale, emne/oppdragsgiver, prosjektperiode og om arbeidet var individuelt.
-- [ ] Kontroller teksten «2% draft angles» mot faktiske tegninger. Ikke bytt blindt til 2°;
+- [x] Kontroller teksten «2% draft angles» mot faktiske tegninger. Ikke bytt blindt til 2°;
   prosent og vinkel er forskjellige størrelser, og riktig verdi må dokumenteres.
-- [ ] Oversett navigasjon, forklaringer, alt-tekster og galleriknapper til norsk.
-- [ ] Fiks fragmentlenker og gi tekniske tegninger en tydelig visning i større størrelse.
-- [ ] Komprimer store renders; `details-render.png` alene er ca. 6,38 MB i produksjonskilden.
-- [ ] Last 3D-visning etter behov og tilby et godt stillbilde/ekstern lenke som reserve.
+- [x] Oversett navigasjon, forklaringer, alt-tekster og galleriknapper til norsk.
+- [x] Fiks fragmentlenker og gi tekniske tegninger en tydelig visning i større størrelse.
+- [x] Komprimer store renders; `details-render.png` alene er ca. 6,38 MB i produksjonskilden.
+- [x] Last 3D-visning etter behov og tilby et godt stillbilde/ekstern lenke som reserve.
 
 ## Materiale
 
@@ -53,3 +53,9 @@ og er ikke en faktakilde. Godkjent eksisterende design beholdes som utgangspunkt
 - [ ] Begge gallerier virker frem/tilbake og med tastatur; tegninger kan leses.
 - [ ] 3D lastes/roteres på en reell desktop- og mobilenhet, eller har en tydelig reservevisning.
 - [ ] Direkte lenke og refresh til `#model` fungerer.
+
+## J2 – lokal kontroll 2026-10-23
+
+Se [J2-arbeidsloggen](../implementering/j2-2026-10-23.md) for gjennomførte kontroller,
+kildefakta, mediegrenser og produksjonsstatus. Punktene over bevarer opprinnelig plan/funn.
+Brage bekrefter at vinkler, toleranser og proporsjoner var hovedtemaene i fysisk utprøving.

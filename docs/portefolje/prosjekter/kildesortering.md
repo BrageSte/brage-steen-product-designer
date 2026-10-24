@@ -18,42 +18,52 @@ Behold navnet «The Sorting Guide» og engelske originalvedlegg. Prosjektsiden a
 Skriv en kort, selvstendig fortelling; ikke oversett rapportens 106 sider inn i nettsiden.
 Merk funn, statistikk, partnerroller og uttalelser med prosjektåret 2020.
 
-## Kildekontroll som må håndteres først
+## Kildekontroll – avkrysning gjelder J1/J2 lokalt
 
 Komplett rapport funnet: `TheSortingGuide_Report.pdf`, 106 sider, datert mai 2020, ca. 19,4 MB.
 Eksakt lokal plassering står i [kilderegisteret](../kilder.md).
 
-- [ ] **Workshopdeltakere:** nettstedet sier «67+». Rapportens s. 35 beskriver 27 deltakere,
+- [x] **Workshopdeltakere:** nettstedet sier «67+». Rapportens s. 35 beskriver 27 deltakere,
   30 studenter og 3 professorer, til sammen 60 i de to beskrevne workshopene. Korriger til
   dokumentert formulering eller finn bevis for et annet omfang. Ikke tell alle møter automatisk som workshop.
-- [ ] **IKEA-sitat:** på s. 95 står en kort uttalelse om at konseptet treffer et behov.
+- [x] **IKEA-sitat:** på s. 95 står en kort uttalelse om at konseptet treffer et behov.
   Nettsidens ekstra setning om «limiting the largest leakage» er ikke i det tilsvarende
   sitatet. Fjern den inntil en egen kilde eventuelt dokumenterer den.
-- [ ] **Fem hjemmebesøk:** s. 26 lister fem husholdninger; dette gir kildegrunnlag for antallet.
+- [x] **Fem hjemmebesøk:** s. 26 lister fem husholdninger; dette gir kildegrunnlag for antallet.
   Presiser hva dere observerte og hva det påvirket.
-- [ ] «40+ ideas», effektpåstander og eventuell karakter kontrolleres før bruk.
+- [x] «40+ ideas» og effektpåstander kontrolleres før bruk.
+- [x] Karakter A er oppgitt i den nye CV-en fra Brage (SixSides, mottatt 2026-10-23); eksternt vitnemål er ikke kontrollert.
   «Creating Value» beskrives som forventet verdi, med mindre faktisk effekt er dokumentert.
 
 ## Plan for fortellingen
 
-- [ ] Kort intro: problem, hvem det gjaldt, år, skole, partner og egen rolle.
+- [x] Kort intro: problem, hvem det gjaldt, år, skole, partner og egen rolle.
 - [ ] Tre innsikter med spor til observasjon og tilhørende designvalg; bruk prosjektmaterialet.
-- [ ] Vis samarbeid og metode uten å gjøre siden til en lang liste over metoder.
-- [ ] Velg én forståelig gjennomgang av tjenesten: behov hjemme → anbefalt løsning → lokale regler.
+- [x] Vis samarbeid og metode uten å gjøre siden til en lang liste over metoder.
+- [x] Velg én forståelig gjennomgang av tjenesten: behov hjemme → anbefalt løsning → lokale regler.
 - [ ] Forklar hva partnerfeedback endret, og skill dette fra målt samfunnseffekt eller lansering.
-- [ ] Avslutt med konkret læring og avgrenset «Videre utforskning i 2026» som lenker til Avfallsportalen.
-- [ ] Behold 2020 og 2026 som forskjellige leveranser; ikke fremstill Avfallsportalen som del av den innleverte bacheloren.
+- [x] Avslutt med konkret læring og avgrenset «Videre utforskning i 2026» som lenker til Avfallsportalen.
+- [x] Behold 2020 og 2026 som forskjellige leveranser; ikke fremstill Avfallsportalen som del av den innleverte bacheloren.
 
 ## Funksjon og medier
 
 Videoen spiller (kontrollert avspillingsposisjon >30 sekunder, varighet ca. 5 min 33 sek).
 Gigamap-lenken åpner bildet på 3200 × 7357 px. Dette erstatter den gamle døde XD-embedden.
 
+J2-implementasjonen inkluderer nå åpne lenker til hele bachelorrapporten
+(`public/dokumenter/the-sorting-guide-rapport.pdf`), gigamap-PDF-en
+(`public/dokumenter/kildesortering-gigamap.pdf`) og prototypevideoen
+(`public/projects/sorting-guide/prototype-gjennomgang.mp4`). De fullstendige vedleggene
+er del av nettstedets offentlige innhold. Brage har godkjent publisering og sagt: «tenker det går
+helt fint. behold rapport, gigamap og video». Direkte lenker og PDF-innholdstype, video start/pause/søk og
+fragmentlenker er kontrollert lokalt på desktop/mobil. Produksjon gjenstår; se
+[J2-loggen](../implementering/j2-2026-10-23.md).
+
 - [ ] Bytt «Try Prototype» til «Se prototypegjennomgang»: knappen leder til video, ikke en klikkbar XD-prototype.
-- [ ] Fiks direkte `#prototype`-lenke og kontroller at video/ankre havner under fast toppmeny.
-- [ ] Gi videoen en kort forklaring, varighet og meningsfullt posterbilde; vurder kort utdrag med valgfri full versjon.
-- [ ] Legg til nedlastbar originalrapport etter kontroll av personopplysninger, rettigheter og filstørrelse.
-- [ ] Behold liten gigamap-forhåndsvisning og en tydelig fullstørrelseslenke med zoommulighet.
+- [x] Fiks direkte `#prototype`-lenke og kontroller at video/ankre havner under fast toppmeny.
+- [x] Gi videoen en kort forklaring, varighet og meningsfullt posterbilde; vurder kort utdrag med valgfri full versjon.
+- [x] Legg til nedlastbar originalrapport etter kontroll av personopplysninger, rettigheter og filstørrelse.
+- [x] Behold liten gigamap-forhåndsvisning og en tydelig fullstørrelseslenke med zoommulighet.
 - [ ] Sikre at bilde-/figurtekst kan leses på mobil; skriv ut de viktigste funnene som HTML-tekst.
 
 ## Ferdig når

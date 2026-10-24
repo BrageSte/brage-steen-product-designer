@@ -11,8 +11,7 @@ const Work = () => {
             <p className="eyebrow">Arbeid</p>
             <h1 className="text-display-lg mt-4">Utvalgte prosjekter</h1>
             <p className="text-body-lg mt-4 max-w-2xl">
-              Et kuratert utvalg prosjekter — fra tjeneste- og industridesign til
-              materialutforskning.
+              Jeg utvikler fysiske og digitale produkter, fra innsikt og form til fungerende prototyper.
             </p>
           </div>
         </section>

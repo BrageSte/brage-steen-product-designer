@@ -12,14 +12,17 @@ Porteføljen til Brage Steen, live på https://bragesteen.no. Repoet er **offent
 ## Status
 
 - Retning godkjent 2026-10-22: **behold og forbedre eksisterende Vite + React + Tailwind-side**.
-- Fase 0/hosting er verifisert på live. J1 implementeres på `codex/portfolio-j1-kvalitet`;
-  lokal kontroll og forhåndsvisning må skilles fra ferdig publisert produksjon.
+- Fase 0/hosting er verifisert på live. J1 er merget gjennom PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`)
+  og produksjonskontrollert: 20 nettleserkontrollgrupper bestod.
+- J2 er implementert på `codex/portfolio-j2-jobbsoking`, PR #26. Alle 29 kontrollgrupper består
+  lokalt og i Cloudflare-forhåndsvisningen. Brages godkjenning av merge og produksjonskontroll gjenstår.
 - Dagens `rebuild/astro` er et forkastet designutkast og skal ikke merges eller publiseres.
 - Kodeforbedringer starter fra oppdatert `main` i egen gren. Ikke ta med Astro-implementasjonen
   som følge av at plan eller historikk tidligere lå på den grenen.
 - Produksjonscaser: `src/pages/projects/`; kortdata: `src/content/projects/index.ts`.
   Gjenbruk `SiteLayout`, `ProjectBar` og eksisterende byggeklosser/visuelt uttrykk.
-- Hosting: Cloudflare Workers med statiske filer, `wrangler.jsonc`. `main` er produksjon;
+- Hosting: Cloudflare Workers med statiske filer, `wrangler.jsonc`. `worker.js` håndterer bare
+  byteområder for bachelorvideoen; øvrige ressurser serveres statisk. `main` er produksjon;
   egne grener har Cloudflare-forhåndsvisning. Lovable brukes ikke lenger; ikke legg til Lovable-avhengigheter.
 - Den tidligere ombyggingsplanen ligger i `docs/portefolje/arkiv/` som historikk, ikke arbeidsordre.
 

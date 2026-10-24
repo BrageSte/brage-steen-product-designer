@@ -1,3 +1,4 @@
+import Prosjektbilde from "@/components/Prosjektbilde";
 import SiteLayout from "@/components/SiteLayout";
 import ProjectBar from "@/components/ProjectBar";
 
@@ -15,7 +16,6 @@ const colors = {
   accent: "#7fb069",
 };
 
-// Hero Section
 function HeroSection() {
   return (
     <section
@@ -51,7 +51,7 @@ function HeroSection() {
           className="text-xs uppercase tracking-[0.3em] mb-8 max-md:mb-4"
           style={{ color: colors.accent }}
         >
-          Material Research Project
+          Materialutforsking · 2019
         </p>
         <h1
           className="mb-6 max-md:mb-4"
@@ -62,7 +62,7 @@ function HeroSection() {
             lineHeight: 0.9,
           }}
         >
-          Seaweed
+          Ting av tang
           <span
             className="block italic"
             style={{
@@ -70,22 +70,20 @@ function HeroSection() {
               color: colors.sand,
             }}
           >
-            Ting av Tang
+            Materialutforsking
           </span>
         </h1>
         <p
           className="text-lg max-w-[500px] mx-auto mb-12 max-md:mb-8 max-md:text-base"
           style={{ color: colors.sand }}
         >
-          Exploring seaweed as a material for product concepts through hands-on
-          experiments.
+          Vi undersøkte hvordan tang kunne bearbeides til et materiale for enkle produktkonsepter, og hva som skjedde når prøvene tørket.
         </p>
         <div className="flex flex-wrap gap-12 justify-center text-sm max-md:flex-col max-md:gap-6">
           {[
-            { label: "Team", value: "Brage Steen, Thomas Rokstad, Ly Nguyen" },
-            { label: "Brage's contribution", value: "Developing test methods" },
-            { label: "Duration", value: "11 Weeks" },
-            { label: "Year", value: "2019" },
+            { label: "Gruppe", value: "Brage Steen, Thomas Rokstad og Ly Nguyen" },
+            { label: "Brages hovedansvar", value: "Utvikling av testmetoder" },
+            { label: "År", value: "2019" },
           ].map((item) => (
             <span
               key={item.label}
@@ -99,20 +97,6 @@ function HeroSection() {
             </span>
           ))}
         </div>
-      </div>
-
-      {/* Scroll indicator - positioned above waves */}
-      <div
-        className="absolute bottom-[190px] max-md:static max-md:translate-x-0 max-md:mt-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] z-10"
-        style={{ color: colors.sand }}
-      >
-        SCROLL
-        <span
-          className="w-px h-10"
-          style={{
-            background: `linear-gradient(to bottom, ${colors.sand}, transparent)`,
-          }}
-        />
       </div>
 
       {/* Wave container */}
@@ -155,7 +139,6 @@ function HeroSection() {
   );
 }
 
-// Overview Section
 function OverviewSection() {
   return (
     <section
@@ -169,7 +152,7 @@ function OverviewSection() {
             className="text-[0.7rem] uppercase tracking-[0.3em] mb-4"
             style={{ color: colors.kelpLight }}
           >
-            The Challenge
+            Spørsmålet
           </p>
           <h2
             className="mb-8"
@@ -179,26 +162,22 @@ function OverviewSection() {
               maxWidth: "800px",
             }}
           >
-            Can we develop a material from seaweed that can be used to design
-            simple products?
+            Kan tang bearbeides til et materiale for enkle produktkonsepter?
           </h2>
           <p
             className="text-lg leading-relaxed"
             style={{ color: colors.oceanMid, maxWidth: "700px" }}
           >
-            The team explored whether seaweed could be processed into a material
-            for simple product concepts. The experiments documented challenges
-            with drying, cracking and shrinkage; they did not establish
-            environmental or commercial performance.
+            Vi utforsket spørsmålet gjennom materialforsøk. Prøvene var vanskelige å tørke, sprakk og krympet. Arbeidet ga læring om fremgangsmåten, men dokumenterte ikke miljøegenskaper eller kommersiell ytelse.
           </p>
         </div>
         <div
           className="relative overflow-hidden"
           style={{ aspectRatio: "4/5", borderRadius: "0 100px 0 100px" }}
         >
-          <img
-            src={`${basePath}/overview.png`}
-            alt="Seaweed material research"
+          <Prosjektbilde
+            src={`${basePath}/nett/overview.jpg`}
+            alt="Tangprøver fra materialutforskningen"
             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
             loading="lazy"
             decoding="async"
@@ -217,113 +196,27 @@ function OverviewSection() {
   );
 }
 
-// Background Section
-function BackgroundSection() {
-  const cards = [
-    {
-      title: "Project question",
-      desc: "Could seaweed be developed into a material for simple product concepts? The team explored this through hands-on material experiments.",
-    },
-    {
-      title: "Material experiments",
-      desc: "The report describes processing, additives and drying trials, including difficulties with cracking and shrinkage.",
-    },
-    {
-      title: "Product directions",
-      desc: "The project explored packaging, servingware and plant pots as possible applications.",
-    },
-  ];
-
-  return (
-    <section
-      className="py-32 px-8 md:px-16 relative overflow-hidden text-white"
-      style={{ background: colors.oceanDeep }}
-    >
-      {/* Background gradient */}
-      <div
-        className="absolute -top-1/2 -right-[20%] w-[80%] h-[200%] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(74, 124, 89, 0.15) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="max-w-[1140px] mx-auto relative z-10">
-        <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.accent }}>
-          Context
-        </p>
-        <h2
-          className="mb-8 text-white"
-          style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: "clamp(2.5rem, 5vw, 4rem)",
-            maxWidth: "800px",
-          }}
-        >
-          Seaweed has deep roots in Norwegian coastal traditions
-        </h2>
-        <p
-          className="text-lg leading-relaxed max-w-[700px]"
-          style={{ color: colors.sand }}
-        >
-          Harvesting seaweed has long traditions along the Norwegian coast,
-          serving as a supplementary industry and food source. One of Norway's
-          oldest laws, the "Frostatingsloven," states that seaweed belongs to
-          the farm it lies by.
-        </p>
-
-        <div className="grid md:grid-cols-3 gap-12 mt-16 max-lg:grid-cols-1">
-          {cards.map((card) => (
-            <div
-              key={card.title}
-              className="p-8 rounded-lg transition-all duration-400 hover:-translate-y-1"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <h3
-                className="text-2xl mb-4"
-                style={{
-                  fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  color: colors.sand,
-                }}
-              >
-                {card.title}
-              </h3>
-              <p className="text-[0.95rem]" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {card.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Process Section
 function ProcessSection() {
   const steps = [
     {
       num: 1,
-      title: "Harvesting",
-      desc: "We collected seaweed ourselves and received dried sugar kelp from SES (Seaweed Energy Solutions). We primarily used Sagtang, Blæretang, Sukkertare, and Tarmgrønske.",
+      title: "Prøver",
+      desc: "Gruppen samlet og forberedte tangprøver til videre forsøk.",
     },
     {
       num: 2,
-      title: "Processing",
-      desc: "The report describes grinding and boiling seaweed with sodium carbonate to make a workable paste; the method was part of the team's material experiments.",
+      title: "Bearbeiding",
+      desc: "Rapporten beskriver bearbeiding av tang til en masse som kunne formes.",
     },
     {
       num: 3,
-      title: "Testing Additives",
-      desc: "We systematically tested organic additives like flour, rice, oat fiber, and oat juice at different ratios (20/80 to 80/20) to improve material stability.",
+      title: "Ulike blandinger",
+      desc: "Gruppen undersøkte blandinger og tilsetninger som del av materialforsøkene.",
     },
     {
       num: 4,
-      title: "Drying Methods",
-      desc: "We experimented with wood molds, plaster forms, vacuum chambers, hydraulic presses, and ceramic kilns to find methods that controlled shrinkage and cracking.",
+      title: "Tørking og form",
+      desc: "Tørkingen var vanskelig å kontrollere. Prøvene sprakk og krympet, og dette påvirket valg av videre forsøk.",
     },
   ];
 
@@ -337,7 +230,7 @@ function ProcessSection() {
       <div
         className="absolute inset-0 opacity-[0.08] pointer-events-none"
         style={{
-          backgroundImage: `url("${basePath}/seaweed-collection.jpg")`,
+          backgroundImage: `url("${basePath}/nett/seaweed-collection.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "blur(8px) grayscale(50%)",
@@ -345,7 +238,7 @@ function ProcessSection() {
       />
       <div className="max-w-[1140px] mx-auto relative z-10">
         <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.kelpLight }}>
-          Methodology
+          Arbeidsmåte
         </p>
         <h2
           className="mb-8"
@@ -355,12 +248,10 @@ function ProcessSection() {
             maxWidth: "800px",
           }}
         >
-          Research & Development Process
+          Forsøk med bearbeiding og tørking
         </h2>
         <p className="text-lg leading-relaxed max-w-[700px]" style={{ color: colors.oceanMid }}>
-          We developed a systematic approach to processing seaweed, experimenting
-          with different species, cooking methods, and additives to find the
-          optimal material composition.
+          Jeg hadde hovedansvar for å utvikle testmetoder. Arbeidet besto av praktiske forsøk med prøver, blandinger og tørking; det fant ikke fram til en dokumentert, optimal materialoppskrift.
         </p>
 
         <div className="grid md:grid-cols-4 gap-8 mt-16 max-lg:grid-cols-2 max-md:grid-cols-1">
@@ -396,15 +287,14 @@ function ProcessSection() {
   );
 }
 
-// Materials Gallery Section
 function MaterialsSection() {
   const images = [
-    { src: `${basePath}/seaweed-collection.jpg`, alt: "Seaweed collection" },
-    { src: `${basePath}/material-processing.jpg`, alt: "Material processing" },
-    { src: `${basePath}/lab-work.jpg`, alt: "Lab work" },
-    { src: `${basePath}/material-testing.jpg`, alt: "Material testing" },
-    { src: `${basePath}/research-process.jpg`, alt: "Research process" },
-    { src: `${basePath}/material-samples.png`, alt: "Material samples" },
+    { src: `${basePath}/nett/seaweed-collection.jpg`, alt: "Tang samlet til materialforsøk" },
+    { src: `${basePath}/nett/material-processing.jpg`, alt: "Bearbeiding av tangprøver" },
+    { src: `${basePath}/nett/lab-work.jpg`, alt: "Arbeid med prøver på verkstedet" },
+    { src: `${basePath}/nett/material-testing.jpg`, alt: "Utprøving av tangbaserte prøver" },
+    { src: `${basePath}/nett/research-process.jpg`, alt: "Prøver fra arbeidsprosessen" },
+    { src: `${basePath}/nett/material-samples.jpg`, alt: "Ulike materialprøver" },
   ];
 
   return (
@@ -416,7 +306,7 @@ function MaterialsSection() {
     >
       <div className="max-w-[1140px] mx-auto">
         <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.kelpLight }}>
-          Experiments
+          Prøvene
         </p>
         <h2
           className="mb-8"
@@ -426,29 +316,27 @@ function MaterialsSection() {
             maxWidth: "800px",
           }}
         >
-          Material Testing & Analysis
+          Materialprøver
         </h2>
         <p className="text-lg leading-relaxed max-w-[700px]" style={{ color: colors.oceanMid }}>
-          We made material samples and compared combinations for properties
-          such as texture and appearance. The report also describes a focus
-          group; these explorations were not standardized material testing.
+          Prøvene viste utfordringer med tørking, sprekker og krymp. Rapporten omtaler også en fokusgruppe. Forsøkene var utforskende og utgjorde ikke standardisert materialtesting.
         </p>
 
         <div className="grid grid-cols-3 gap-4 mt-16 max-md:grid-cols-2">
           {images.map((img) => (
             <div
               key={img.src}
-              className="aspect-square relative overflow-hidden rounded-xl cursor-pointer group"
+              className="aspect-square relative overflow-hidden rounded-xl"
             >
-              <img
+              <Prosjektbilde
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4"
+                className="absolute inset-x-0 bottom-0 flex items-end p-4"
                 style={{
                   background: `linear-gradient(to top, rgba(10, 22, 40, 0.8) 0%, transparent 60%)`,
                 }}
@@ -463,26 +351,25 @@ function MaterialsSection() {
   );
 }
 
-// Concepts Section
 function ConceptsSection() {
   const concepts = [
     {
       num: "01",
-      title: "Takeaway packaging concept",
-      desc: "Packaging for takeaway food.",
-      image: `${basePath}/takeaway.jpg`,
+      title: "Emballasje til takeaway",
+      desc: "Et konsept for takeaway-emballasje.",
+      image: `${basePath}/nett/takeaway.jpg`,
     },
     {
       num: "02",
-      title: "Servingware concept",
-      desc: "Servingware for restaurant settings.",
-      image: `${basePath}/servering.png`,
+      title: "Serveringsprodukter",
+      desc: "Et konsept for servering i restaurant.",
+      image: `${basePath}/nett/servering.jpg`,
     },
     {
       num: "03",
-      title: "Plant pot concept",
-      desc: "A plant pot for growing plants.",
-      image: `${basePath}/blomsterpotte.png`,
+      title: "Blomsterpotte",
+      desc: "Et konsept for en blomsterpotte.",
+      image: `${basePath}/nett/blomsterpotte.jpg`,
     },
   ];
 
@@ -494,7 +381,7 @@ function ConceptsSection() {
     >
       <div className="max-w-[1140px] mx-auto">
         <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.accent }}>
-          Design Applications
+          Konsepter
         </p>
         <h2
           className="mb-20 text-white"
@@ -504,11 +391,10 @@ function ConceptsSection() {
             maxWidth: "800px",
           }}
         >
-          Three seaweed-based product concepts
+          Tre produktkonsepter
         </h2>
         <p className="text-lg leading-relaxed max-w-[700px] mb-12" style={{ color: colors.sand }}>
-          These were concept proposals. The project did not validate the
-          material for packaging, servingware or planting.
+          Konseptene utforsket mulige bruksområder. Prosjektet dokumenterte ikke at materialet var egnet til emballasje, serveringsprodukter eller blomsterpotter.
         </p>
 
         <div className="space-y-0">
@@ -522,7 +408,7 @@ function ConceptsSection() {
             >
               <div className="py-8" style={{ direction: "ltr" }}>
                 <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.accent }}>
-                  Concept {concept.num}
+                  Konsept {concept.num}
                 </p>
                 <h3
                   className="text-4xl mb-6"
@@ -541,7 +427,7 @@ function ConceptsSection() {
                 className="overflow-hidden rounded-xl relative"
                 style={{ aspectRatio: "4/3", direction: "ltr" }}
               >
-                <img
+                <Prosjektbilde
                   src={concept.image}
                   alt={concept.title}
                   className="w-full h-full object-cover"
@@ -557,7 +443,6 @@ function ConceptsSection() {
   );
 }
 
-// Research Data Section
 function ResearchDataSection() {
   return (
     <section
@@ -584,17 +469,16 @@ function ResearchDataSection() {
           <div className="flex flex-col gap-8 md:sticky md:top-[148px]">
             <div className="p-6 rounded-lg" style={{ background: colors.sandLight }}>
               <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.kelpLight }}>
-                Method
+                Forsøksramme
               </p>
               <p className="leading-relaxed" style={{ color: colors.oceanMid }}>
-                The team prepared seaweed samples, explored additives and
-                compared drying methods.
+                Rapporten beskriver flere verkstedforsøk med små prøver. De gir ikke en standardisert materialmåling.
               </p>
             </div>
           </div>
           <div>
             <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.kelpLight }}>
-              Key Findings
+              Observasjoner
             </p>
             <h3
               className="text-3xl mb-4"
@@ -603,17 +487,13 @@ function ResearchDataSection() {
                 color: colors.oceanDeep,
               }}
             >
-              Challenges & Discoveries
+              Tørking og sprekker
             </h3>
             <p className="mb-6" style={{ color: colors.oceanMid }}>
-              Drying the mixture proved difficult: samples cracked and shrank,
-              which made it hard to control the final form.
+              Prøvene sprakk og krympet under tørking. Det var vanskelig å styre sluttformen, og dette ble et sentralt problem i arbeidet.
             </p>
             <p className="mb-6" style={{ color: colors.oceanMid }}>
-              In one workshop trial, small dry pieces were placed between steel
-              plates in a hydraulic press. The report says the press was stopped
-              at 15 tons; this was not a standardized strength test or a general
-              material tolerance.
+              I ett verkstedforsøk la gruppen små, tørre biter mellom stålplater i en hydraulisk presse. Rapporten sier at pressen ble stoppet på 15 tonn. Forsøket var avgrenset og gir ikke en standardisert styrkemåling eller generell materialgrense.
             </p>
 
           </div>
@@ -623,7 +503,6 @@ function ResearchDataSection() {
   );
 }
 
-// Reflection Section
 function ReflectionSection() {
   return (
     <section
@@ -635,7 +514,7 @@ function ReflectionSection() {
     >
       <div className="max-w-[900px] mx-auto">
         <p className="text-[0.7rem] uppercase tracking-[0.3em] mb-4" style={{ color: colors.accent }}>
-          Conclusion
+          Læring
         </p>
         <h2
           className="mb-8 text-white"
@@ -644,7 +523,7 @@ function ReflectionSection() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)",
           }}
         >
-          Looking Forward
+          Hva vi lærte
         </h2>
         <p
           className="text-xl leading-relaxed"
@@ -653,9 +532,7 @@ function ReflectionSection() {
             color: colors.sand,
           }}
         >
-          One lesson from the project: evaluate the methods and change direction
-          earlier when drying, cracking and shrinkage become persistent
-          obstacles.
+          Når tørking, sprekker og krymp stadig hindret arbeidet, burde vi ha stoppet tidligere for å evaluere metodene og vurdere en ny retning.
         </p>
       </div>
     </section>
@@ -664,23 +541,22 @@ function ReflectionSection() {
 
 // Main Component
 const seaweedSections = [
-  { id: "overview", label: "Overview" },
-  { id: "process", label: "Process" },
-  { id: "concepts", label: "Concepts" },
-  { id: "reflection", label: "Reflection" },
+  { id: "overview", label: "Oppgaven" },
+  { id: "process", label: "Forsøk" },
+  { id: "concepts", label: "Konsepter" },
+  { id: "reflection", label: "Læring" },
 ];
 
 export default function SeaweedProject() {
   return (
     <SiteLayout>
       <ProjectBar
-        title="Seaweed — Ting av Tang"
+        title="Ting av tang"
         sections={seaweedSections}
       />
       <main id="main-content" className="bg-background">
         <HeroSection />
         <OverviewSection />
-        <BackgroundSection />
         <ProcessSection />
         <MaterialsSection />
         <ConceptsSection />

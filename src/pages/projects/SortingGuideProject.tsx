@@ -1,1248 +1,284 @@
+import Prosjektbilde from "@/components/Prosjektbilde";
 import SiteLayout from "@/components/SiteLayout";
 import ProjectBar from "@/components/ProjectBar";
 import { sortingGuideSections, colors, basePath } from "./sorting-guide/navigation";
+import type { ReactNode } from "react";
 
-// Hero Section
+function SectionHeading({ eyebrow, title, children, light = false }: {
+  eyebrow: string;
+  title: string;
+  children?: ReactNode;
+  light?: boolean;
+}) {
+  return (
+    <div className="mb-14 max-w-[760px]">
+      <span className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4" style={{ color: light ? colors.greenPale : colors.greenMain }}>
+        {eyebrow}
+      </span>
+      <h2 className={`mb-5 ${light ? "text-white" : "text-gray-900"}`} style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: "clamp(2.5rem, 5vw, 3.5rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
+        {title}
+      </h2>
+      {children && <p className={`text-lg leading-relaxed ${light ? "text-white/70" : "text-gray-600"}`}>{children}</p>}
+    </div>
+  );
+}
+
 function HeroSection() {
+  const details = [
+    { label: "Periode", value: "Januar–mai 2020" },
+    { label: "Samarbeidspartner", value: "IKEA Norge" },
+    { label: "Utdanning", value: "Produktdesign, OsloMet" },
+    { label: "Fagområde", value: "Tjenestedesign" },
+  ];
+
   return (
-    <section
-      className="min-h-screen relative flex flex-col overflow-hidden"
-      style={{ background: colors.greenDeep }}
-    >
-      {/* Background Image */}
+    <section className="min-h-screen relative flex flex-col overflow-hidden" style={{ background: colors.greenDeep }}>
       <div className="absolute inset-0 z-0">
-        <img
-          src={`${basePath}/images-153.png`}
-          alt="Let's Sort This Out - Campaign mockup"
-          className="w-full h-full object-cover object-center"
-          fetchPriority="high"
-          decoding="async"
-        />
+        <Prosjektbilde src={`${basePath}/nett/images-153.jpg`} alt="Kampanjeutkastet «Let's Sort This Out» fra bachelorprosjektet" className="w-full h-full object-cover object-center" fetchPriority="high" decoding="async" />
       </div>
-
-      {/* Overlay */}
-      <div
-        className="absolute inset-0 z-[1]"
-        style={{
-          background: `linear-gradient(135deg, rgba(26, 51, 41, 0.85) 0%, rgba(45, 90, 71, 0.75) 50%, rgba(26, 51, 41, 0.85) 100%)`,
-        }}
-      />
-
-      {/* Content */}
-      <div className="flex-1 flex flex-col justify-center items-center text-center px-8 py-24 relative z-[2]">
-        <span
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider mb-10"
-          style={{
-            background: "rgba(255,255,255,0.08)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            color: "rgba(255,255,255,0.85)",
-            backdropFilter: "blur(8px)",
-          }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: colors.greenPale }}
-          />
-          Bachelor Project 2020
+      <div className="absolute inset-0 z-[1]" style={{ background: "linear-gradient(135deg, rgba(26,51,41,.88), rgba(45,90,71,.76) 50%, rgba(26,51,41,.9))" }} />
+      <div className="flex-1 flex flex-col justify-center items-center text-center px-6 py-24 relative z-[2]">
+        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-medium uppercase tracking-wider mb-8 text-white/85 border border-white/15 bg-white/10">
+          <span className="w-1.5 h-1.5 rounded-full" style={{ background: colors.greenPale }} /> Bachelorprosjekt · 2020
         </span>
-
-        <h1
-          className="text-white mb-2"
-          style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
-            fontSize: "clamp(3.5rem, 10vw, 7rem)",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.15,
-          }}
-        >
-          The Sorting Guide
-        </h1>
-
-        <p
-          className="mb-8"
-          style={{
-            fontFamily: "'Instrument Serif', serif",
-            fontStyle: "italic",
-            fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
-            color: colors.greenPale,
-            opacity: 0.9,
-          }}
-        >
-          Kildesorteringsguiden
+        <h1 className="text-white mb-2" style={{ fontFamily: "'Instrument Serif', Georgia, serif", fontSize: "clamp(3.5rem, 10vw, 7rem)", letterSpacing: "-0.03em", lineHeight: 1.15 }}>The Sorting Guide</h1>
+        <p className="mb-8" style={{ fontFamily: "'Instrument Serif', serif", fontStyle: "italic", fontSize: "clamp(1.5rem, 4vw, 2.5rem)", color: colors.greenPale }}>Kildesorteringsguiden</p>
+        <p className="text-lg max-w-2xl mb-12 leading-relaxed text-white/80">
+          Et tjenestekonsept som utforsker hvordan personlig veiledning og produktforslag kan gjøre det enklere for norske husholdninger å sortere avfall.
         </p>
-
-        <p
-          className="text-lg max-w-xl mb-12"
-          style={{ color: "rgba(255,255,255,0.75)", fontWeight: 300 }}
-        >
-          A service design concept exploring how personalized guidance and
-          product recommendations could help Norwegian households sort waste.
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-16 max-md:flex-col max-md:gap-6 max-md:items-center">
-          {[
-            { label: "Duration", value: "Jan – May 2020" },
-            { label: "Partner", value: "IKEA Norway" },
-            { label: "Institution", value: "OsloMet University" },
-            { label: "Discipline", value: "Service Design" },
-          ].map((item) => (
-            <div key={item.label} className="text-left max-md:text-center">
-              <p
-                className="text-[0.7rem] uppercase tracking-[1.5px] mb-1"
-                style={{ color: "rgba(255,255,255,0.45)" }}
-              >
-                {item.label}
-              </p>
-              <p
-                className="text-[0.95rem] font-medium"
-                style={{ color: "rgba(255,255,255,0.9)" }}
-              >
-                {item.value}
-              </p>
-            </div>
-          ))}
+        <div className="flex flex-wrap justify-center gap-x-14 gap-y-6 max-md:flex-col max-md:items-center">
+          {details.map((item) => <div key={item.label} className="text-left max-md:text-center">
+            <p className="text-[0.7rem] uppercase tracking-[1.5px] mb-1 text-white/55">{item.label}</p>
+            <p className="text-[0.95rem] font-medium text-white/90">{item.value}</p>
+          </div>)}
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="pb-8 flex flex-col items-center gap-3 relative z-[2]"
-        style={{ color: "rgba(255,255,255,0.4)" }}
-      >
-        <span className="text-xs uppercase tracking-wider">Scroll</span>
-        <div
-          className="w-px h-[60px]"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)",
-          }}
-        />
+      <div className="pb-8 flex flex-col items-center gap-3 relative z-[2] text-white/50" aria-hidden="true">
+        <span className="text-xs uppercase tracking-wider">Bla videre</span>
+        <div className="w-px h-[60px] bg-gradient-to-b from-white/30 to-transparent" />
       </div>
     </section>
   );
 }
 
-// Problem Section
-function ProblemSection() {
-  return (
-    <section id="challenge" className="py-28 px-8" style={{ background: colors.warmGray }}>
-      <div className="max-w-[1140px] mx-auto">
-        <span
-          className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-          style={{ color: colors.greenMain }}
-        >
-          The Challenge
-        </span>
-        <h2
-          className="mb-6"
-          style={{
-            fontFamily: "'Instrument Serif', Georgia, serif",
-            fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.15,
-          }}
-        >
-          A System Under Pressure
-        </h2>
-        <p className="text-lg text-gray-600 max-w-[640px] leading-relaxed">
-          In the complex system of systems that is recycling, there is a major
-          responsibility resting on the household's shoulders – the first line
-          of recycling.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-20 mt-16 items-center max-lg:grid-cols-1 max-lg:gap-12">
-          {/* Visual */}
-          <div className="relative">
-            <div
-              className="rounded-3xl overflow-hidden"
-              style={{ boxShadow: "0 40px 80px rgba(0,0,0,0.12)" }}
-            >
-              <img
-                src={`${basePath}/images-010.png`}
-                alt="Haraldrud sorting station in Oslo"
-                className="w-full block"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            {/* Floating stats */}
-            <div
-              className="absolute -top-5 -right-8 bg-white py-6 px-8 rounded-2xl max-lg:static max-lg:mt-4 max-lg:inline-block"
-              style={{ boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}
-            >
-              <p
-                className="leading-none"
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "2.5rem",
-                  color: colors.greenMain,
-                }}
-              >
-                60%
-              </p>
-              <p className="text-sm text-gray-500 mt-1">
-                of household waste
-                <br />
-                not recycled
-              </p>
-            </div>
-            <div
-              className="absolute -bottom-5 -left-8 bg-white py-6 px-8 rounded-2xl max-lg:static max-lg:mt-4 max-lg:inline-block max-lg:ml-4"
-              style={{ boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}
-            >
-              <p
-                className="leading-none"
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "2.5rem",
-                  color: colors.greenMain,
-                }}
-              >
-                #2
-              </p>
-              <p className="text-sm text-gray-500 mt-1">
-                Norway's waste
-                <br />
-                per capita in Europe
-              </p>
-            </div>
-          </div>
-
-          {/* Content */}
-          <div>
-            <h3
-              className="text-3xl mb-6"
-              style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-            >
-              The First Line of Recycling
-            </h3>
-            <p className="text-gray-600 mb-5 text-[1.05rem]">
-              Most households are uneducated on the topic of recycling and not
-              equipped with the resources necessary to recycle correctly. When
-              sorting errors are made at the household level, it creates major
-              challenges for the entire recycling process.
-            </p>
-            <p className="text-gray-600 text-[1.05rem]">
-              Different municipalities have different systems, making it
-              confusing for people who move or travel. The complexity alienates
-              people from participating fully in the recycling mission.
-            </p>
-            <div
-              className="mt-8 p-8 rounded-2xl text-white"
-              style={{ background: colors.greenDeep }}
-            >
-              <p className="text-[0.95rem]" style={{ color: "rgba(255,255,255,0.85)" }}>
-                <strong style={{ color: colors.greenPale }}>
-                  Earth Overshoot Day 2019:
-                </strong>{" "}
-                July 29th – the day when humanity had used all the regenerative
-                resources of that year. Improving recycling rates is crucial for
-                a sustainable future.
-              </p>
-            </div>
+function ChallengeSection() {
+  return <section id="challenge" className="py-24 px-6 md:px-8" style={{ background: colors.warmGray }}>
+    <div className="max-w-[1140px] mx-auto">
+      <SectionHeading eyebrow="Utgangspunkt · 2020" title="Sorteringen begynner hjemme">
+        Husholdningen er første ledd i kildesorteringen, men systemet kan være vanskelig å forstå og praktisere. Regler varierer mellom kommuner, og hjemmene har ulike behov og ulik plass til sorteringsløsninger.
+      </SectionHeading>
+      <div className="grid md:grid-cols-2 gap-14 items-center max-lg:grid-cols-1">
+        <figure className="rounded-3xl overflow-hidden bg-white" style={{ boxShadow: "0 30px 70px rgba(0,0,0,.12)" }}>
+          <Prosjektbilde src={`${basePath}/nett/images-010.jpg`} alt="Haraldrud avfallsanlegg i Oslo, besøkt i forbindelse med bachelorprosjektet" className="w-full block" loading="lazy" decoding="async" />
+          <figcaption className="px-5 py-3 text-sm text-gray-500">Avfallssystemet sett fra et større perspektiv. Undersøkelsesmateriale fra 2020.</figcaption>
+        </figure>
+        <div>
+          <h3 className="text-3xl mb-5" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>Fra komplisert system til hverdagsvalg</h3>
+          <p className="text-gray-600 mb-5 text-[1.05rem] leading-relaxed">Prosjektet undersøkte hvordan folk sorterer hjemme, hvor de finner informasjon, og hvordan løsninger og produkter kan passe inn i hverdagen. Målet var å gjøre kunnskap og praktisk veiledning lettere å finne.</p>
+          <div className="mt-8 p-7 md:p-8 rounded-2xl text-white" style={{ background: colors.greenDeep }}>
+            <p className="text-[0.75rem] uppercase tracking-[1.5px] mb-3" style={{ color: colors.greenPale }}>Designspørsmål · oversatt fra engelsk</p>
+            <p className="text-lg leading-relaxed text-white/90" style={{ fontFamily: "'Instrument Serif', serif" }}>Hvordan kan vi veilede folk til informasjon og tilbud som passer husholdningens behov, slik at det blir enklere å sortere riktig?</p>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
 
-// Design Question Section
-function QuestionSection() {
-  return (
-    <section
-      className="py-20 px-8 text-center"
-      style={{ background: colors.greenForest }}
-    >
-      <div className="max-w-[860px] mx-auto">
-        <blockquote
-          className="text-white leading-relaxed"
-          style={{
-            fontFamily: "'Instrument Serif', serif",
-            fontSize: "clamp(1.4rem, 3vw, 2rem)",
-            fontStyle: "italic",
-          }}
-        >
-          <span style={{ color: colors.greenPale, opacity: 0.5 }}>"</span>
-          How can we improve household recycling by guiding people looking for
-          recycling solutions, to information and offerings based on their
-          household needs, that leads to minimizing general waste?
-          <span style={{ color: colors.greenPale, opacity: 0.5 }}>"</span>
-        </blockquote>
+function TeamSection() {
+  return <section id="team" className="py-24 px-6 md:px-8 bg-white">
+    <div className="max-w-[1140px] mx-auto">
+      <div className="grid md:grid-cols-2 gap-16 items-center max-lg:grid-cols-1">
+        <figure className="rounded-3xl overflow-hidden" style={{ boxShadow: "0 35px 70px rgba(0,0,0,.1)" }}>
+          <Prosjektbilde src={`${basePath}/nett/images-016.jpg`} alt="Bachelorteamet Regina von Koch og Brage Steen" className="w-full block" loading="lazy" decoding="async" />
+          <figcaption className="px-5 py-3 text-sm text-gray-500">Brage Steen og Regina von Koch. Foto fra bachelorprosjektet i 2020.</figcaption>
+        </figure>
+        <div>
+          <SectionHeading eyebrow="Team og rammer" title="Et felles bachelorprosjekt">
+            Regina von Koch og jeg utviklet prosjektet sammen gjennom hele perioden. Vi delte arbeidet med undersøkelser, konseptutvikling og prototype.
+          </SectionHeading>
+          <p className="text-gray-600 leading-relaxed">The Sorting Guide var bacheloroppgaven vår i produktdesign ved OsloMet. IKEA Norge var hovedpartner. Vi samarbeidet også med Grønt Punkt og Loop om innsikt og tilbakemeldinger.</p>
+          <div className="flex gap-8 flex-wrap mt-8">
+            {[{ initials: "BS", name: "Brage Steen" }, { initials: "RK", name: "Regina von Koch" }].map((member) => <div key={member.name} className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center font-semibold" style={{ background: colors.greenPale, color: colors.greenDeep }}>{member.initials}</div>
+              <span className="font-semibold">{member.name}</span>
+            </div>)}
+          </div>
+          <p className="mt-8 text-sm text-gray-500">Samarbeidspartnere: IKEA Norge, Grønt Punkt og Loop.</p>
+          <a href="/dokumenter/the-sorting-guide-rapport.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-ghost mt-6">Les bachelorrapporten (engelsk, PDF)</a>
+          <p className="mt-2 text-sm text-gray-500">106 sider · 19,4 MB · Originalrapport fra 2020.</p>
+        </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
 
-// Research Section
-function ResearchSection() {
-  const methods = [
-    "Home Visits",
-    "Workshops",
-    "Field Research",
-    "User Interviews",
-    "Design Probes",
-    "Journey Mapping",
-  ];
-
+function UndersøkelseSection() {
   const galleryImages = [
-    { src: "images-044.png", caption: "Co-creation sessions with partners" },
-    { src: "images-030.png", caption: "Field research at IKEA" },
-    { src: "images-063.png", caption: "OBOS Living Lab visit" },
-    { src: "images-154.png", caption: "User journey mapping" },
-    { src: "images-016.png", caption: "The project team" },
-    { src: "images-137.png", caption: "Service marketing concept" },
+    { src: "nett/images-044.jpg", caption: "Samskapingsøkt med prosjektpartnere", alt: "Deltakere arbeider sammen i en samskapingsøkt" },
+    { src: "nett/images-030.jpg", caption: "Undersøkelse hos IKEA", alt: "Undersøkelse og observasjon i IKEA-varehus" },
+    { src: "nett/images-063.jpg", caption: "Besøk i OBOS Living Lab", alt: "Prosjektgruppen besøker OBOS Living Lab" },
+    { src: "nett/images-154.jpg", caption: "Kartlegging av brukerreisen", alt: "Brukerreise tegnet opp som del av bachelorprosjektet" },
+    { src: "nett/images-016.jpg", caption: "Brage Steen og Regina von Koch", alt: "Prosjektteamet Brage Steen og Regina von Koch" },
+    { src: "nett/images-137.jpg", caption: "Utkast til tjenesteformidling", alt: "Visuelt utkast til formidling av tjenestekonseptet" },
   ];
-
-  return (
-    <section id="research" className="py-28 px-8" style={{ background: colors.cream }}>
-      <div className="max-w-[1140px] mx-auto">
-        <div className="grid md:grid-cols-[1.3fr_0.7fr] gap-16 mb-20 items-start max-lg:grid-cols-1">
-          <div className="pt-4">
-            <span
-              className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-              style={{ color: colors.greenMain }}
-            >
-              Research Phase
-            </span>
-            <h2
-              className="mb-6"
-              style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
-                fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-              }}
-            >
-              Understanding the Complexity
-            </h2>
-            <p className="text-lg text-gray-600 max-w-[640px] leading-relaxed">
-              The research process was conducted using a qualitative approach.
-              We used observation, interviews, design probes, and desktop
-              research to gain empathy and understand the complexity of the
-              recycling problem.
-            </p>
-            <div className="flex flex-wrap gap-3 mt-8">
-              {methods.map((method) => (
-                <span
-                  key={method}
-                  className="px-4 py-2 rounded-full text-sm font-medium"
-                  style={{ background: colors.greenPale, color: colors.greenDeep }}
-                >
-                  {method}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-6">
-            <div className="relative bg-white p-6 rounded-2xl" style={{ boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}>
-              <p
-                className="leading-none"
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "2.5rem",
-                  color: colors.greenMain,
-                }}
-              >
-                60
-              </p>
-              <p className="text-sm text-gray-500 mt-1">
-                People across two workshops: 27 participants, 30 students and
-                3 professors
-              </p>
-            </div>
-            <div className="relative bg-white p-6 rounded-2xl" style={{ boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}>
-              <p
-                className="leading-none"
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "2.5rem",
-                  color: colors.greenMain,
-                }}
-              >
-                5
-              </p>
-              <p className="text-sm text-gray-500 mt-1">
-                Household visits documented in the 2020 report
-              </p>
-            </div>
-          </div>
+  return <section id="research" className="py-24 px-6 md:px-8" style={{ background: colors.cream }}>
+    <div className="max-w-[1140px] mx-auto">
+      <SectionHeading eyebrow="Undersøkelse · 2020" title="Se sorteringen i sammenheng">
+        Vi kombinerte observasjon og intervjuer med hjemmebesøk, designprober og undersøkelser hos IKEA. Det ga oss innblikk i både sorteringen i hjemmet og informasjonen og løsningene folk møter når de leter etter hjelp.
+      </SectionHeading>
+      <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div className="p-7 rounded-2xl bg-white" style={{ boxShadow: "0 12px 35px rgba(0,0,0,.06)" }}>
+          <p className="leading-none mb-2" style={{ fontFamily: "'Instrument Serif', serif", fontSize: "2.5rem", color: colors.greenMain }}>5</p>
+          <p className="font-semibold mb-1">hjemmebesøk</p>
+          <p className="text-sm text-gray-600">Vi fulgte sorteringshverdagen i fem husholdninger, slik det er dokumentert i bachelorrapporten.</p>
         </div>
-
-        {/* Gallery */}
-        <div className="grid grid-cols-12 gap-5 max-lg:grid-cols-2 max-md:grid-cols-1">
-          {galleryImages.map((img, i) => {
-            const colSpan =
-              i === 0
-                ? "col-span-5 max-lg:col-span-2 max-md:col-span-1"
-                : i === 1
-                ? "col-span-3 max-lg:col-span-1"
-                : i === 2
-                ? "col-span-4 max-lg:col-span-1"
-                : i === 3
-                ? "col-span-4 max-lg:col-span-1"
-                : i === 4
-                ? "col-span-4 max-lg:col-span-1"
-                : "col-span-4 max-lg:col-span-2 max-md:col-span-1";
-            return (
-              <div
-                key={img.src}
-                className={`${colSpan} rounded-2xl overflow-hidden relative group h-[280px] max-lg:h-[220px]`}
-              >
-                <img
-                  src={`${basePath}/${img.src}`}
-                  alt={img.caption}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,51,41,0.8)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-6">
-                  <span className="text-white text-sm font-medium">
-                    {img.caption}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
+        <div className="p-7 rounded-2xl bg-white" style={{ boxShadow: "0 12px 35px rgba(0,0,0,.06)" }}>
+          <p className="leading-none mb-2" style={{ fontFamily: "'Instrument Serif', serif", fontSize: "2.5rem", color: colors.greenMain }}>60</p>
+          <p className="font-semibold mb-1">deltakere i to workshops</p>
+          <p className="text-sm text-gray-600">27 deltakere i den første workshopen, og 30 studenter og 3 professorer i den andre.</p>
         </div>
       </div>
-    </section>
-  );
+      <div className="grid grid-cols-12 gap-5 max-lg:grid-cols-2 max-md:grid-cols-1">
+        {galleryImages.map((img, i) => {
+          const span = i === 0 ? "col-span-5 max-lg:col-span-2 max-md:col-span-1" : i === 5 ? "col-span-4 max-lg:col-span-2 max-md:col-span-1" : "col-span-3 max-lg:col-span-1";
+          return <figure key={img.src} className={`${span} rounded-2xl overflow-hidden bg-white`}>
+            <Prosjektbilde src={`${basePath}/${img.src}`} alt={img.alt} className="w-full h-[250px] object-cover" loading="lazy" decoding="async" />
+            <figcaption className="px-4 py-3 text-sm text-gray-600">{img.caption}</figcaption>
+          </figure>;
+        })}
+      </div>
+    </div>
+  </section>;
 }
 
-// Insights Section
 function InsightsSection() {
   const insights = [
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-7 h-7 stroke-white stroke-[1.5] fill-none">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-      ),
-      title: "Availability",
-      description:
-        "The placement and availability of recycling bins directly impact recycling rates. More space and convenient placement lead to increased recycling. Space constraints in homes limit where people can place sorting solutions.",
-    },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-7 h-7 stroke-white stroke-[1.5] fill-none">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-        </svg>
-      ),
-      title: "Education",
-      description:
-        "People lack sufficient knowledge to recycle efficiently. The complexity of the system and variety of materials confuse and alienate people, distancing them from the recycling mission.",
-    },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-7 h-7 stroke-white stroke-[1.5] fill-none">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      ),
-      title: "Trust",
-      description:
-        "Personal barriers include lack of trust in the system. When people don't understand the system, they don't believe in it. It becomes difficult to see how individual actions make a difference.",
-    },
+    { title: "Tilgjengelighet", finding: "Plass og plassering av beholdere påvirker hvordan sortering kan organiseres hjemme.", response: "Konseptet tar utgangspunkt i husholdningens behov når det foreslår en løsning." },
+    { title: "Kunnskap", finding: "Det kan være vanskelig å vite hvor og hvordan ulike materialer skal sorteres.", response: "Tjenesten samler veiledning om lokale sorteringsregler." },
+    { title: "Tillit", finding: "Når systemet er vanskelig å forstå, kan det være vanskelig å se hvordan egen innsats hjelper.", response: "Konseptet prøver å gjøre informasjonen mer konkret og lettere å finne." },
   ];
-
-  return (
-    <section id="insights" className="py-28 px-8 bg-white">
-      <div className="max-w-[1140px] mx-auto">
-        <div className="text-center mb-16">
-          <span
-            className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-            style={{ color: colors.greenMain }}
-          >
-            Key Findings
-          </span>
-          <h2
-            className="mb-6"
-            style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
-            }}
-          >
-            Three Barriers to Recycling
-          </h2>
-          <p className="text-lg text-gray-600 max-w-[640px] mx-auto leading-relaxed">
-            After mapping insights from research, we identified three critical
-            barriers that prevent households from recycling effectively.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-lg:grid-cols-1">
-          {insights.map((insight) => (
-            <div
-              key={insight.title}
-              className="p-10 rounded-3xl transition-all duration-400 hover:-translate-y-2 hover:shadow-xl max-lg:text-center"
-              style={{ background: colors.warmGray }}
-            >
-              <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 max-lg:mx-auto"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.greenMain}, ${colors.greenForest})`,
-                }}
-              >
-                {insight.icon}
-              </div>
-              <h4
-                className="text-2xl mb-4"
-                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-              >
-                {insight.title}
-              </h4>
-              <p className="text-gray-600 text-[0.95rem] leading-relaxed">
-                {insight.description}
-              </p>
-            </div>
-          ))}
-        </div>
+  return <section id="insights" className="py-24 px-6 md:px-8 bg-white">
+    <div className="max-w-[1140px] mx-auto">
+      <SectionHeading eyebrow="Innsikt → designvalg" title="Tre barrierer formet konseptet">
+        Gjennom å sammenstille funn fra ulike metoder identifiserte vi tre barrierer. Dette er historiske funn fra bachelorarbeidet i 2020, ikke en måling av dagens sorteringsvaner.
+      </SectionHeading>
+      <div className="grid md:grid-cols-3 gap-6 max-lg:grid-cols-1">
+        {insights.map((item) => <article key={item.title} className="p-8 rounded-3xl" style={{ background: colors.warmGray }}>
+          <span className="inline-flex w-10 h-10 rounded-full items-center justify-center text-white font-semibold mb-5" style={{ background: colors.greenMain }}>{item.title.slice(0, 1)}</span>
+          <h3 className="text-2xl mb-3" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>{item.title}</h3>
+          <p className="text-gray-600 text-[0.95rem] leading-relaxed mb-5">{item.finding}</p>
+          <p className="pt-4 border-t border-gray-200 text-sm leading-relaxed"><strong>Designrespons:</strong> {item.response}</p>
+        </article>)}
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
 
-// Process Section
-function ProcessSection() {
-  const steps = [
-    { num: 1, title: "Research", desc: "Qualitative methods to gain empathy and map insights" },
-    { num: 2, title: "Ideation", desc: "Ideas generated and evaluated against criteria" },
-    { num: 3, title: "Prototyping", desc: "From paper wireframes to interactive Adobe XD prototype" },
-    { num: 4, title: "Feedback", desc: "User testing, partner feedback, and refinement" },
-  ];
-
-  return (
-    <section className="py-28 px-8 text-white" style={{ background: colors.greenDeep }}>
-      <div className="max-w-[1140px] mx-auto">
-        <div className="text-center mb-8">
-          <span
-            className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-            style={{ color: colors.greenPale }}
-          >
-            Design Process
-          </span>
-          <h2
-            className="mb-6 text-white"
-            style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
-            }}
-          >
-            From Research to Solution
-          </h2>
-          <p
-            className="text-lg max-w-[640px] mx-auto leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.7)" }}
-          >
-            Our iterative design process moved through four core activities,
-            continuously overlapping to refine our understanding and solution.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-4 gap-8 mt-16 relative max-lg:grid-cols-2 max-md:grid-cols-2">
-          {/* Connection line */}
-          <div
-            className="absolute top-12 left-[12.5%] right-[12.5%] h-0.5 max-lg:hidden"
-            style={{ background: "rgba(255,255,255,0.15)" }}
-          />
-          {steps.map((step) => (
-            <div key={step.num} className="text-center relative z-10">
-              <div
-                className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.greenSoft}, ${colors.greenMain})`,
-                  boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "1.75rem",
-                }}
-              >
-                {step.num}
-              </div>
-              <h4
-                className="text-lg mb-2"
-                style={{
-                  fontFamily: "'Instrument Serif', Georgia, serif",
-                  color: colors.greenPale,
-                }}
-              >
-                {step.title}
-              </h4>
-              <p
-                className="text-sm max-w-[180px] mx-auto"
-                style={{ color: "rgba(255,255,255,0.75)" }}
-              >
-                {step.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Solution Section
 function SolutionSection() {
-  const features = [
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-current stroke-2 fill-none">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-        </svg>
-      ),
-      title: "Personalized",
-      desc: "Solutions based on your specific needs",
-    },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-current stroke-2 fill-none">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M2 12h20" />
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-        </svg>
-      ),
-      title: "Local Guidelines",
-      desc: "Adapted to your municipality's rules",
-    },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-current stroke-2 fill-none">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-          <line x1="3" y1="9" x2="21" y2="9" />
-          <line x1="9" y1="21" x2="9" y2="9" />
-        </svg>
-      ),
-      title: "Product Database",
-      desc: "Curated IKEA recycling products",
-    },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-current stroke-2 fill-none">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-        </svg>
-      ),
-      title: "Tips & Tricks",
-      desc: "Smart workarounds for easier sorting",
-    },
+  const steps = [
+    { num: "01", title: "Kartlegg behov hjemme", desc: "Brukeren beskriver husholdningen og rammene for sortering." },
+    { num: "02", title: "Få en anbefaling", desc: "Konseptet foreslår en sorteringsløsning tilpasset behovene." },
+    { num: "03", title: "Finn lokale regler", desc: "Veiledningen knytter løsningen til sorteringsreglene der brukeren bor." },
   ];
-
-  const featureCards = [
-    {
-      num: "01",
-      title: "Home Recycling Builder",
-      desc: "The core feature allows users to create a personalized home recycling system based on their living situation, local municipal guidelines, and available products. Enter basic details and receive a tailored setup with clear instructions.",
-    },
-    {
-      num: "02",
-      title: "Recycling in Your Area",
-      desc: "A user-friendly directory providing quick access to location-specific recycling information. Simply enter your zip code to understand exactly what and how to sort in your municipality.",
-    },
-    {
-      num: "03",
-      title: "Product Guide",
-      desc: "Products are tagged by waste type, with filter functions helping users quickly find items matching their specific recycling needs. No more guessing which bin works for what.",
-    },
-    {
-      num: "04",
-      title: "Tips & Tricks",
-      desc: "Smart solutions and practical workarounds gathered during research to make recycling easier and more convenient for everyday life.",
-    },
-  ];
-
-  return (
-    <section id="solution" className="py-28 px-8" style={{ background: colors.cream }}>
-      <div className="max-w-[1140px] mx-auto">
-        {/* Hero */}
-        <div className="grid md:grid-cols-[1.1fr_1fr] gap-20 items-center mb-24 max-lg:grid-cols-1">
-          {/* Mockup */}
-          <div className="relative">
-            <div
-              className="bg-white rounded-2xl overflow-hidden"
-              style={{ boxShadow: "0 50px 100px rgba(0,0,0,0.15)" }}
-            >
-              <div
-                className="flex items-center gap-2 px-5 py-4"
-                style={{
-                  background: colors.warmGray,
-                  borderBottom: "1px solid rgba(0,0,0,0.05)",
-                }}
-              >
-                <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-              </div>
-              <div
-                className="px-8 py-12 min-h-[380px] flex flex-col items-center justify-center text-center text-white"
-                style={{ background: colors.greenMain }}
-              >
-                <div
-                  className="text-4xl mb-2"
-                  style={{
-                    fontFamily: "'Instrument Serif', serif",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  S♻RTING
-                </div>
-                <div
-                  className="text-base font-light uppercase tracking-[3px] mb-6"
-                  style={{ color: colors.greenPale }}
-                >
-                  guide
-                </div>
-                <p
-                  className="text-lg mb-8 max-w-[300px]"
-                  style={{ color: colors.cream }}
-                >
-                  Build your perfect home recycling system
-                </p>
-                <a
-                  href="#prototype"
-                  className="inline-block px-10 py-4 bg-white rounded-lg font-semibold text-[0.95rem] transition-all hover:-translate-y-0.5 hover:shadow-lg"
-                  style={{ color: colors.greenMain }}
-                >
-                  Se prototypegjennomgang
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Text */}
-          <div>
-            <span
-              className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-              style={{ color: colors.greenMain }}
-            >
-              The Solution
-            </span>
-            <h3
-              className="text-4xl mb-6"
-              style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              The Sorting Guide
-            </h3>
-            <p className="text-gray-600 text-[1.05rem] mb-5">
-              A multi-purpose service platform that serves as both a recycling
-              product store and an educational tool. It brings together key
-              stakeholders – IKEA, local municipalities, and users – to provide
-              personalized recycling guidance.
-            </p>
-            <p className="text-gray-600 text-[1.05rem]">
-              By incorporating education into the purchasing process of
-              recycling solutions, we impact users when they're most receptive
-              to learning and retaining information.
-            </p>
-
-            <div className="grid grid-cols-2 gap-6 mt-12 max-sm:grid-cols-1">
-              {features.map((f) => (
-                <div key={f.title} className="flex gap-4 items-start">
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: colors.greenPale, color: colors.greenDeep }}
-                  >
-                    {f.icon}
-                  </div>
-                  <div>
-                    <h5 className="font-semibold mb-1">{f.title}</h5>
-                    <p className="text-sm text-gray-500">{f.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+  return <section id="solution" className="py-24 px-6 md:px-8" style={{ background: colors.cream }}>
+    <div className="max-w-[1140px] mx-auto">
+      <SectionHeading eyebrow="Konsept" title="Fra behov hjemme til lokal veiledning">
+        The Sorting Guide ble utformet som en tjenesteplattform som samler personlig sorteringsveiledning, lokale regler og forslag til IKEA-produkter. Dette er et konsept utviklet i bachelorprosjektet.
+      </SectionHeading>
+      <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-14 items-center max-lg:grid-cols-1">
+        <div className="rounded-2xl overflow-hidden bg-white" style={{ boxShadow: "0 35px 80px rgba(0,0,0,.12)" }}>
+          <div className="flex items-center gap-2 px-5 py-4" style={{ background: colors.warmGray }} aria-hidden="true"><span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"/><span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]"/><span className="w-2.5 h-2.5 rounded-full bg-[#28c840]"/></div>
+          <div className="px-8 py-12 min-h-[340px] flex flex-col items-center justify-center text-center text-white" style={{ background: colors.greenMain }}>
+            <div className="text-4xl mb-2" style={{ fontFamily: "'Instrument Serif', serif" }}>S♻RTING</div>
+            <div className="text-base font-light uppercase tracking-[3px] mb-6" style={{ color: colors.greenPale }}>guide</div>
+            <p className="text-lg mb-8 max-w-[300px]">Bygg en sorteringsløsning for hjemmet</p>
+            <a href="#prototype" className="inline-block px-8 py-3 bg-white rounded-lg font-semibold text-[0.95rem] transition-all hover:-translate-y-0.5" style={{ color: colors.greenMain }}>Se prototypegjennomgang</a>
           </div>
         </div>
-
-        {/* Feature cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-lg:grid-cols-1">
-          {featureCards.map((card) => (
-            <div
-              key={card.num}
-              className="bg-white p-10 rounded-3xl border border-[rgba(0,0,0,0.04)] transition-all hover:-translate-y-1.5 hover:shadow-xl"
-              style={{ boxShadow: "0 4px 40px rgba(0,0,0,0.04)" }}
-            >
-              <p
-                className="text-5xl leading-none mb-4"
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  color: colors.greenPale,
-                }}
-              >
-                {card.num}
-              </p>
-              <h4
-                className="text-xl mb-3"
-                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-              >
-                {card.title}
-              </h4>
-              <p className="text-gray-600 text-[0.95rem]">{card.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Value Section
-function ValueSection() {
-  const values = [
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-white stroke-[1.5] fill-none">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-          <line x1="9" y1="9" x2="9.01" y2="9" />
-          <line x1="15" y1="9" x2="15.01" y2="9" />
-        </svg>
-      ),
-      title: "For Users",
-      desc: "The concept aims to offer sorting guidance tailored to household constraints and local rules.",
-    },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-white stroke-[1.5] fill-none">
-          <path d="M3 3h18v18H3zM21 9H3M21 15H3M12 3v18" />
-        </svg>
-      ),
-      title: "For Business",
-      desc: "The concept could support personalized product recommendations and give IKEA a way to connect products with sorting needs.",
-    },
-    {
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-white stroke-[1.5] fill-none">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-        </svg>
-      ),
-      title: "For Environment",
-      desc: "The intended value was to make sorting guidance easier to access. The project did not measure changes in recycling rates or material reuse.",
-    },
-  ];
-
-  return (
-    <section className="py-28 px-8" style={{ background: colors.warmGray }}>
-      <div className="max-w-[1140px] mx-auto">
-        <div className="text-center mb-16">
-          <span
-            className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-            style={{ color: colors.greenMain }}
-          >
-            Expected value
-          </span>
-          <h2
-            className="mb-6"
-            style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
-            }}
-          >
-            Intended Value Across the Chain
-          </h2>
-          <p className="text-lg text-gray-600 max-w-[640px] mx-auto leading-relaxed">
-            The Sorting Guide explored how guidance and recommendations could
-            support households and connect sorting needs with available
-            products. These are expected benefits of the concept, not measured
-            outcomes.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-lg:grid-cols-1">
-          {values.map((v) => (
-            <div
-              key={v.title}
-              className="p-10 rounded-3xl text-center"
-              style={{
-                background: `linear-gradient(145deg, ${colors.greenMain}, ${colors.greenForest})`,
-              }}
-            >
-              <div
-                className="w-[60px] h-[60px] rounded-full flex items-center justify-center mx-auto mb-6"
-                style={{ background: "rgba(255,255,255,0.2)" }}
-              >
-                {v.icon}
-              </div>
-              <h4
-                className="text-xl mb-3 text-white"
-                style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}
-              >
-                {v.title}
-              </h4>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: colors.cream }}
-              >
-                {v.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Testimonial integrated */}
-        <div
-          className="mt-16 p-10 rounded-3xl text-center"
-          style={{ background: colors.greenDeep }}
-        >
-          <blockquote
-            className="text-white mb-6 leading-relaxed"
-            style={{
-              fontFamily: "'Instrument Serif', serif",
-              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
-            }}
-          >
-            "You are spot on. There is definitely a need for this concept."
+        <div className="space-y-4">
+          {steps.map((step) => <div key={step.num} className="flex gap-5 p-5 md:p-6 rounded-2xl bg-white" style={{ boxShadow: "0 4px 25px rgba(0,0,0,.04)" }}>
+            <span className="text-3xl leading-none" style={{ fontFamily: "'Instrument Serif', serif", color: colors.greenMain }}>{step.num}</span>
+            <div><h3 className="font-semibold mb-1">{step.title}</h3><p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p></div>
+          </div>)}
+          <p className="text-sm text-gray-500 pt-2">IKEA-partner Kenneth Skauge ga denne tilbakemeldingen i 2020:</p>
+          <blockquote className="p-6 rounded-2xl text-white" style={{ background: colors.greenDeep }}>
+            <p className="text-xl leading-relaxed" style={{ fontFamily: "'Instrument Serif', serif" }}>“You are spot on. There is definitely a need for this concept.”</p>
+            <footer className="mt-3 text-sm text-white/70">Kenneth Skauge, Sustainability Business Partner, IKEA Norge · sitat på engelsk</footer>
           </blockquote>
-          <div className="text-sm" style={{ color: colors.greenPale }}>
-            <strong className="block text-white font-semibold mb-1">
-              Kenneth Skauge
-            </strong>
-            Sustainability Business Partner, IKEA Norway
-          </div>
+          <p className="text-sm text-gray-500">Tilbakemeldingen uttrykker vurdering av konseptets behov. Prosjektet målte ikke endringer i sorteringsgrad eller miljøeffekt.</p>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
 
-// Team Section (includes Partners)
-function TeamSection() {
-  return (
-    <section id="team" className="py-28 px-8 bg-white">
-      <div className="max-w-[1140px] mx-auto">
-        <div className="grid md:grid-cols-2 gap-20 items-center max-lg:grid-cols-1">
-          <div
-            className="rounded-3xl overflow-hidden"
-            style={{ boxShadow: "0 40px 80px rgba(0,0,0,0.1)" }}
-          >
-            <img
-              src={`${basePath}/images-016.png`}
-              alt="Team photo - Regina von Koch and Brage Steen"
-              className="w-full block"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div>
-            <span
-              className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-              style={{ color: colors.greenMain }}
-            >
-              The Team
-            </span>
-            <h3
-              className="text-4xl mb-6"
-              style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Designed with Purpose
-            </h3>
-            <p className="text-gray-600 text-[1.05rem] mb-8">
-              This bachelor project was developed at Oslo Metropolitan
-              University as the concluding thesis for a three-year Product
-              Design education. Regina von Koch and I worked on the project
-              together and shared the work across the project.
-            </p>
-            <div className="flex gap-8 flex-wrap">
-              {[
-                { initials: "BS", name: "Brage Steen", role: "Product Designer" },
-                { initials: "RK", name: "Regina von Koch", role: "Product Designer" },
-              ].map((member) => (
-                <div key={member.name} className="flex items-center gap-4">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center font-semibold"
-                    style={{
-                      background: `linear-gradient(135deg, ${colors.greenPale}, ${colors.greenSoft})`,
-                      color: colors.greenDeep,
-                      fontSize: "1.1rem",
-                    }}
-                  >
-                    {member.initials}
-                  </div>
-                  <div>
-                    <h5 className="font-semibold">{member.name}</h5>
-                    <span className="text-sm text-gray-500">{member.role}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Partners subsection */}
-        <div className="mt-20 pt-16 border-t border-gray-100 text-center">
-          <span
-            className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-            style={{ color: colors.greenMain }}
-          >
-            In Collaboration With
-          </span>
-          <div className="flex justify-center gap-16 flex-wrap mt-6">
-            {["IKEA", "Grønt Punkt", "Loop"].map((partner) => (
-              <span
-                key={partner}
-                className="text-xl font-semibold opacity-40 hover:opacity-80 transition-opacity"
-                style={{ color: colors.greenDeep }}
-              >
-                {partner}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Gigamap Section
 function GigamapSection() {
-  const stats = [
-    {
-      value: "739 kg",
-      title: "Waste Per Capita",
-      desc: "Total waste generated per person per year in Norway, making it the second highest in Europe.",
-    },
-    {
-      value: "60%",
-      title: "Not Recycled",
-      desc: "Over 60% of household waste is not sent to recycling after the waste management facility.",
-    },
-    {
-      value: "21%",
-      title: "Household Waste",
-      desc: "In Norway, 21% of all waste comes from households - the first line of recycling.",
-    },
-    {
-      value: "186",
-      title: "Paris Agreement",
-      desc: "Countries signed the Paris Agreement to combat climate change through sustainable practices.",
-    },
-  ];
-
-  return (
-    <section id="gigamap" className="py-28 px-8" style={{ background: colors.cream }}>
-      <div className="max-w-[1400px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span
-            className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-            style={{ color: colors.greenMain }}
-          >
-            Research Visualization
-          </span>
-          <h2
-            className="mb-4"
-            style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
-            }}
-          >
-            Gigamap: Waste in the World
-          </h2>
-          <p className="text-lg text-gray-600 max-w-[640px] mx-auto leading-relaxed">
-            For a better understanding of the current waste situation, we
-            developed a research map explaining the world of waste. This has
-            provided a foundation for choices made throughout the project.
-          </p>
-        </div>
-
-        {/* Key Insights - Statistics Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {stats.map((stat) => (
-            <div
-              key={stat.title}
-              className="bg-white rounded-2xl p-8 transition-all hover:-translate-y-1 hover:shadow-lg"
-              style={{ boxShadow: "0 4px 30px rgba(0,0,0,0.04)" }}
-            >
-              <p
-                className="leading-none mb-2"
-                style={{
-                  fontFamily: "'Instrument Serif', serif",
-                  fontSize: "2.5rem",
-                  color: colors.greenMain,
-                }}
-              >
-                {stat.value}
-              </p>
-              <h4 className="font-semibold text-lg mb-2">{stat.title}</h4>
-              <p className="text-gray-600 text-sm">{stat.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Gigamap Image */}
-        <div
-          className="bg-white rounded-3xl p-6 md:p-8"
-          style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}
-        >
-          <a
-            href={`${basePath}/gigamap-stor.jpg`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block rounded-2xl overflow-hidden max-w-[900px] mx-auto"
-            style={{ background: colors.warmGray }}
-          >
-            <img
-              src={`${basePath}/gigamap.jpg`}
-              alt="Gigamap «Resource Map»: avfall i verden, Europa, Norge og Oslo, og hvordan folk sorterer hjemme"
-              width={1400}
-              height={3219}
-              className="w-full h-auto block"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
-          <p className="text-center text-sm text-gray-500 mt-6">
-            <a
-              href={`${basePath}/gigamap-stor.jpg`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:text-gray-800"
-            >
-              Open full-size gigamap
-            </a>
-          </p>
-        </div>
+  return <section id="gigamap" className="py-24 px-6 md:px-8" style={{ background: colors.warmGray }}>
+    <div className="max-w-[1200px] mx-auto">
+      <SectionHeading eyebrow="Innsiktskart · 2020" title="Gigamap: et system i flere nivåer">
+        Gigamapen samler kunnskap om avfall og sortering fra et større systemperspektiv og ned til hverdagen hjemme. Den var et arbeidsverktøy for å se sammenhenger gjennom prosjektet. Originalen er på engelsk.
+      </SectionHeading>
+      <div className="bg-white rounded-3xl p-5 md:p-8" style={{ boxShadow: "0 20px 60px rgba(0,0,0,.08)" }}>
+        <a href="/dokumenter/kildesortering-gigamap.pdf" target="_blank" rel="noopener noreferrer" className="block rounded-2xl overflow-hidden max-w-[900px] mx-auto" style={{ background: colors.warmGray }} aria-label="Åpne gigamapen som PDF i full størrelse i ny fane">
+          <Prosjektbilde src={`${basePath}/nett/gigamap.jpg`} alt="Gigamap «Resource Map» på engelsk: sammenhenger mellom avfallssystemet, Norge, Oslo og sortering i hjemmet" width={1400} height={3219} className="w-full h-auto block" loading="lazy" decoding="async" />
+        </a>
+        <p className="text-center text-sm text-gray-500 mt-5">Gigamap fra bachelorprosjektet, 2020. Originalen er på engelsk.</p>
+        <p className="text-center mt-3"><a href="/dokumenter/kildesortering-gigamap.pdf" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-gray-800">Åpne gigamapen for å zoome (PDF)</a></p>
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
 
-// Prototype Section
 function PrototypeSection() {
   const screens = [
-    {
-      src: `${basePath}/prototype-forside.jpg`,
-      alt: "Forsiden i Sorting Guide-prototypen med Home Recycling Builder",
-      caption: "Front page",
-    },
-    {
-      src: `${basePath}/prototype-anbefaling.jpg`,
-      alt: "Anbefalt sorteringsløsning basert på brukerens svar",
-      caption: "Personal recommendation",
-    },
-    {
-      src: `${basePath}/prototype-ditt-omrade.jpg`,
-      alt: "Sorteringsregler for brukerens kommune",
-      caption: "Recycling in your area",
-    },
+    { src: `${basePath}/nett/prototype-forside.jpg`, alt: "Prototypeforsiden med inngang til Home Recycling Builder", caption: "Prototypeforside · skjermbilde med engelsk tekst" },
+    { src: `${basePath}/nett/prototype-anbefaling.jpg`, alt: "Skjermbilde av anbefalt sorteringsløsning i prototypen", caption: "Personlig anbefaling · skjermbilde med engelsk tekst" },
+    { src: `${basePath}/nett/prototype-ditt-omrade.jpg`, alt: "Skjermbilde med sorteringsinformasjon for brukerens område", caption: "Sortering i ditt område · skjermbilde med engelsk tekst" },
   ];
-
-  return (
-    <section
-      id="prototype"
-      className="py-28 px-8"
-      style={{ background: colors.greenDeep }}
-    >
-      <div className="max-w-[1400px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span
-            className="inline-block text-[0.7rem] font-semibold uppercase tracking-[2px] mb-4"
-            style={{ color: colors.greenPale }}
-          >
-            Prototype
-          </span>
-          <h2
-            className="text-white mb-4"
-            style={{
-              fontFamily: "'Instrument Serif', Georgia, serif",
-              fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.15,
-            }}
-          >
-            Walkthrough of the Sorting Guide
-          </h2>
-          <p
-            className="text-lg max-w-[640px] mx-auto leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.7)" }}
-          >
-            A guided walkthrough of the clickable prototype: from the front page,
-            through the Home Recycling Builder, to local guidelines, tips and
-            the product guide.
-          </p>
-        </div>
-
-        <div
-          className="rounded-2xl overflow-hidden mx-auto bg-black"
-          style={{
-            maxWidth: "1200px",
-            boxShadow: "0 50px 100px rgba(0,0,0,0.3)",
-          }}
-        >
-          <video
-            src={`${basePath}/prototype-gjennomgang.mp4`}
-            poster={`${basePath}/prototype-gjennomgang-poster.jpg`}
-            controls
-            preload="none"
-            playsInline
-            className="w-full h-auto block aspect-video"
-          >
-            <a href={`${basePath}/prototype-gjennomgang.mp4`}>Last ned videoen</a>
-          </video>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-3 mt-12 max-w-[1200px] mx-auto">
-          {screens.map((screen) => (
-            <figure key={screen.src}>
-              <img
-                src={screen.src}
-                alt={screen.alt}
-                width={1600}
-                height={1000}
-                className="w-full h-auto rounded-xl bg-white"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption
-                className="mt-3 text-sm"
-                style={{ color: "rgba(255,255,255,0.6)" }}
-              >
-                {screen.caption}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+  return <section id="prototype" className="py-24 px-6 md:px-8" style={{ background: colors.greenDeep }}>
+    <div className="max-w-[1200px] mx-auto">
+      <SectionHeading eyebrow="Prototype og læring" title="Gjør tjenesteflyten konkret" light>
+        Vi laget en klikkbar Adobe XD-prototype for å vise hvordan brukeren kan gå fra behov i hjemmet til anbefalt løsning, lokale regler, tips og produktguide. Videoen viser en gjennomgang av prototypen; tjenesten ble ikke lansert som et ferdig produkt.
+      </SectionHeading>
+      <figure className="rounded-2xl overflow-hidden mx-auto bg-black" style={{ boxShadow: "0 40px 90px rgba(0,0,0,.3)" }}>
+        <video src={`${basePath}/prototype-gjennomgang.mp4`} poster={`${basePath}/nett/prototype-gjennomgang-poster.jpg`} controls preload="none" playsInline className="w-full h-auto block aspect-video" aria-label="Videogjennomgang av The Sorting Guide-prototypen">
+          <a href={`${basePath}/prototype-gjennomgang.mp4`}>Last ned videogjennomgangen</a>
+        </video>
+        <figcaption className="px-5 py-3 text-sm text-white/70">Videogjennomgang av den klikkbare prototypen · ca. 5 min 33 sek · 2020.</figcaption>
+      </figure>
+      <div className="grid gap-6 md:grid-cols-3 mt-9">
+        {screens.map((screen) => <figure key={screen.src}>
+          <Prosjektbilde src={screen.src} alt={screen.alt} width={1600} height={1000} className="w-full h-auto rounded-xl bg-white" loading="lazy" decoding="async" />
+          <figcaption className="mt-3 text-sm text-white/65">{screen.caption}</figcaption>
+        </figure>)}
       </div>
-    </section>
-  );
+      <div className="mt-12 p-7 md:p-8 rounded-2xl bg-white/5 border border-white/10 max-w-[850px]">
+        <h3 className="text-2xl text-white mb-3" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>Læring fra arbeidet</h3>
+        <p className="text-white/70 leading-relaxed">Prototypen gjorde det mulig å diskutere en samlet tjenesteflyt fra husholdningens behov til lokale regler og produktforslag. Den viste hvordan konseptet kunne henge sammen, men dokumenterte ikke at tjenesten endret sorteringsvaner.</p>
+      </div>
+      <div className="mt-16 pt-10 border-t border-white/15 max-w-[800px]">
+        <p className="text-xs uppercase tracking-[1.5px] mb-3" style={{ color: colors.greenPale }}>Videre utforskning · 2026</p>
+        <h3 className="text-3xl text-white mb-3" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>En ny utforskning av avfallsinformasjon</h3>
+        <p className="text-white/70 leading-relaxed mb-5">Avfallsportalen er en separat utforskning fra 2026 av hvordan informasjon om sortering kan formidles. Den er ikke del av bachelorleveransen fra 2020.</p>
+        <a href="/prosjekter/avfallsportalen" className="inline-flex items-center gap-2 text-white underline underline-offset-4 hover:text-white/80">Se Avfallsportalen <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>;
 }
 
-// Main Component
 export default function SortingGuideProject() {
-  return (
-    <SiteLayout>
-      <ProjectBar
-        title="The Sorting Guide — Kildesorteringsguiden"
-        sections={sortingGuideSections}
-      />
-      <main id="main-content" className="bg-background">
-        <HeroSection />
-        <ProblemSection />
-        <TeamSection />
-        <QuestionSection />
-        <ResearchSection />
-        <InsightsSection />
-        <ProcessSection />
-        <SolutionSection />
-        <ValueSection />
-        <GigamapSection />
-        <PrototypeSection />
-      </main>
-    </SiteLayout>
-  );
+  return <SiteLayout>
+    <ProjectBar title="The Sorting Guide — Kildesorteringsguiden" sections={sortingGuideSections} />
+    <main id="main-content" className="bg-background">
+      <HeroSection />
+      <ChallengeSection />
+      <TeamSection />
+      <UndersøkelseSection />
+      <InsightsSection />
+      <SolutionSection />
+      <GigamapSection />
+      <PrototypeSection />
+    </main>
+  </SiteLayout>;
 }

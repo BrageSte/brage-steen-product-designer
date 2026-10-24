@@ -1,3 +1,4 @@
+import Prosjektbilde from "@/components/Prosjektbilde";
 import SiteLayout from "@/components/SiteLayout";
 import ProjectBar from "@/components/ProjectBar";
 
@@ -37,7 +38,7 @@ function HeroSection() {
           className="text-xs uppercase tracking-[0.3em] mb-8 max-md:mb-5"
           style={{ color: colors.terracottaLight }}
         >
-          Fullstack Side Project
+          Produktdesign · fysisk og digitalt
         </p>
         <h1
           className="mb-6 max-md:mb-4"
@@ -55,20 +56,20 @@ function HeroSection() {
           className="text-xl max-w-[520px] mx-auto mb-14 max-md:mb-8 max-md:text-base"
           style={{ color: colors.mutedLight }}
         >
-          Klatreblokker som passer hånden din — fra mål til ferdig 3D-printet tak
+          Klatreblokker formet etter fingermål — fra fysisk prototype til digital konfigurator og produksjonsunderlag
         </p>
         <div
           className="flex flex-wrap justify-center gap-6 text-sm max-md:gap-4 max-md:text-xs"
           style={{ color: colors.mutedLight }}
         >
           <span>
-            <strong style={{ color: colors.chalk }}>År</strong> 2026
+            <strong style={{ color: colors.chalk }}>Periode</strong> 2025–nå
           </span>
           <span>
-            <strong style={{ color: colors.chalk }}>Stack</strong> React · Supabase · Stripe
+            <strong style={{ color: colors.chalk }}>Rolle</strong> Solo · produkt og digital løsning
           </span>
           <span>
-            <strong style={{ color: colors.chalk }}>AI</strong> Claude Code · Codex
+            <strong style={{ color: colors.chalk }}>Verktøy</strong> Fusion 360 · 3D-print · kode
           </span>
         </div>
       </div>
@@ -100,21 +101,18 @@ function ProblemSection() {
                 color: colors.slate,
               }}
             >
-              Standardtak er laget for gjennomsnittshender
+              Klatreblokker med geometri tilpasset fingrene
             </h2>
             <p className="text-base leading-relaxed mb-4" style={{ color: colors.muted }}>
-              Klatreblokker og stepper-tak kommer i faste størrelser. Men ingen hender er like
-              — bredde på fingre, høydeforskjeller mellom knokene og gripedybde varierer mye fra person til person.
+              Klatreblokker har geometri som påvirker hvordan fingrene møter produktet. Jeg ville utforske hvordan fingerbredde og høydeprofil kunne brukes til å forme en blokk etter individuelle mål.
             </p>
             <p className="text-base leading-relaxed" style={{ color: colors.muted }}>
-              For nybegynnere og erfarne klatrere med avvikende håndgeometri betyr dette suboptimale
-              tak som kan gi unødvendig belastning. Problemet finnes, men ingen hadde laget en løsning
-              som lot brukeren ta mål og få et tak spesialsydd til sin hånd.
+              Oppgaven omfattet både den fysiske formen og måten brukeren registrerer målene på. Jeg arbeidet alene med produktutforming, prototyper og den digitale flyten fra måling til konfigurering.
             </p>
           </div>
           <div className="relative">
-            <img
-              src={`${basePath}/why-custom-action.jpg`}
+            <Prosjektbilde
+              src={`${basePath}/nett/why-custom-action.jpg`}
               alt="Klatrer på vegg med stepper-tak"
               className="w-full rounded-2xl object-cover"
               style={{ aspectRatio: "4/3" }}
@@ -148,13 +146,13 @@ function SolutionSection() {
             color: colors.slate,
           }}
         >
-          Mål fingrene dine. Vi lager resten.
+          Mål, konfigurer og se formen
         </h2>
 
         <div className="grid grid-cols-2 gap-16 items-center max-md:grid-cols-1 max-md:gap-10">
           <div>
-            <img
-              src={`${basePath}/why-custom-product.jpg`}
+            <Prosjektbilde
+              src={`${basePath}/nett/why-custom-product.jpg`}
               alt="Ferdig 3D-printet klatreblokk"
               className="w-full rounded-2xl object-cover mb-6"
               style={{ aspectRatio: "4/3" }}
@@ -162,19 +160,16 @@ function SolutionSection() {
           </div>
           <div>
             <p className="text-base leading-relaxed mb-6" style={{ color: colors.muted }}>
-              Konfiguratoren lar deg taste inn bredde og høydeforskjell per finger — pekefinger,
-              langfinger, ringfinger og lillefinger. Basert på input genererer systemet et
-              skreddersydd parametrisk blokk med 3D-preview i sanntid.
+              Jeg utviklet en måleflyt og konfigurator der brukeren legger inn bredde og høydeprofil for pekefinger, langfinger, ringfinger og lillefinger. Målene styrer en parametrisk form som vises i en 3D-forhåndsvisning.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: colors.muted }}>
-              Etter betaling via Stripe eksporteres parameterne automatisk som en Fusion 360-kompatibel
-              CSV. Filen lastes ned, importeres i Fusion og modellen genereres — klar for 3D-print.
+              Valgte mål blir til et produksjonsunderlag som tas videre til Fusion 360. Der brukes parameterne til å generere den fysiske modellen. Slik knyttes brukerens inndata til produktgeometrien.
             </p>
 
             <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
               <div className="rounded-xl overflow-hidden">
-                <img
-                  src={`${basePath}/finger-width.jpg`}
+                <Prosjektbilde
+                  src={`${basePath}/nett/finger-width.jpg`}
                   alt="Måling av fingerbredde"
                   className="w-full object-cover"
                   style={{ aspectRatio: "1/1" }}
@@ -182,13 +177,13 @@ function SolutionSection() {
                 <p className="text-xs mt-2" style={{ color: colors.mutedLight }}>Mål fingerbredde</p>
               </div>
               <div className="rounded-xl overflow-hidden">
-                <img
-                  src={`${basePath}/height-differences.jpg`}
+                <Prosjektbilde
+                  src={`${basePath}/nett/height-differences.jpg`}
                   alt="Måling av høydeforskjell"
                   className="w-full object-cover"
                   style={{ aspectRatio: "1/1" }}
                 />
-                <p className="text-xs mt-2" style={{ color: colors.mutedLight }}>Mål høydeforskjell</p>
+                <p className="text-xs mt-2" style={{ color: colors.mutedLight }}>Mål høydeprofil</p>
               </div>
             </div>
           </div>
@@ -202,21 +197,21 @@ function FlowSection() {
   const steps = [
     {
       number: "01",
-      title: "Konfigurer",
+      title: "Mål og konfigurer",
       description:
-        "Skriv inn mål for alle fire fingre. 3D-preview oppdateres i sanntid mens du justerer. React + Three.js.",
+        "Registrer bredde og høydeprofil for fingrene. Den parametriske formen oppdateres i 3D-forhåndsvisningen.",
     },
     {
       number: "02",
-      title: "Betal",
+      title: "Lag produksjonsunderlag",
       description:
-        "Checkout-flyten validerer priser server-side via Supabase edge functions og Stripe. Kunden får ordrebekreftelse på e-post.",
+        "Målene eksporteres som parametere til et underlag som kan importeres i Fusion 360.",
     },
     {
       number: "03",
-      title: "Produser",
+      title: "Form produktet",
       description:
-        "Fusion 360 CSV-fil genereres automatisk med produksjonsnummer. Importér, kjør parametrisk modell, 3D-print.",
+        "Den parametriske modellen brukes videre til å lage klatreblokken med den valgte geometrien.",
     },
   ];
 
@@ -240,7 +235,7 @@ function FlowSection() {
             color: colors.slate,
           }}
         >
-          Fra nettleser til 3D-printer
+          Fra fingermål til fysisk produkt
         </h2>
 
         <div className="grid grid-cols-3 gap-8 max-md:grid-cols-1 max-md:gap-6">
@@ -276,7 +271,7 @@ function FlowSection() {
   );
 }
 
-function AISection() {
+function DevelopmentSection() {
   return (
     <section
       id="utvikling"
@@ -297,7 +292,7 @@ function AISection() {
               className="text-xs uppercase tracking-[0.2em] mb-5"
               style={{ color: colors.terracottaLight }}
             >
-              AI-drevet utvikling
+              Utvikling og prototyper
             </p>
             <h2
               className="mb-6 leading-tight"
@@ -307,30 +302,20 @@ function AISection() {
                 color: colors.chalk,
               }}
             >
-              Claude Code og Codex som utviklingsteam
+              Rundt 40 fysiske prototyper
             </h2>
-            <p className="text-base leading-relaxed mb-4" style={{ color: colors.mutedLight }}>
-              Hele prosjektet ble bygget med Claude Code og GitHub Copilot/Codex som primære
-              utviklingsverktøy. I stedet for å separere agent-arbeidet ble det satt opp et
-              felles planleggingsrom i <code style={{ color: colors.terracottaLight }}>docs/plans/</code> —
-              et delt workspace der begge agenter kunne lese, skrive og koordinere arbeid.
-            </p>
-            <p className="text-base leading-relaxed mb-4" style={{ color: colors.mutedLight }}>
-              Mønsteret som emergerte: Claude planla arkitektur og datamodell, Codex implementerte.
-              Resultatet var dokumentert i prosjektet som{" "}
-              <em style={{ color: colors.chalk }}>"Fusjon av Codex-plan og Claude-plan — datamodell fra Codex, implementasjonsstruktur fra Claude."</em>
-            </p>
             <p className="text-base leading-relaxed" style={{ color: colors.mutedLight }}>
-              Governance-dokumenter i <code style={{ color: colors.terracottaLight }}>docs/ops/agent-governance.md</code> definerte
-              hvordan agenter og mennesker tok beslutninger, løste konflikter og håndterte
-              sikkerhetsgrenser — tilsvarende et team-charter.
+              Jeg printet dem for å utforske tekstur, proporsjoner, toleranser og avrundinger. Arbeidet med den fysiske formen sto sentralt i utviklingen av klatreblokken.
+            </p>
+            <p className="text-base leading-relaxed mt-4" style={{ color: colors.mutedLight }}>
+              Jeg koblet også produktutformingen til måleflyten og konfiguratoren. Kode og AI-verktøy støttet utviklingen av den digitale løsningen; produktets form og designbeslutninger var mine.
             </p>
           </div>
 
           <div className="relative">
-            <img
-              src={`${basePath}/hero-product.jpg`}
-              alt="BS Climbing produkt"
+            <Prosjektbilde
+              src={`${basePath}/nett/hero-product.jpg`}
+              alt="Klatreblokk utviklet for BS Climbing"
               className="w-full rounded-2xl object-cover"
               style={{ aspectRatio: "4/5" }}
             />
@@ -341,10 +326,10 @@ function AISection() {
               }}
             >
               <p className="text-xs uppercase tracking-widest mb-1" style={{ color: colors.mutedLight }}>
-                Workflow
+                Fysisk prototyping
               </p>
               <p className="text-sm" style={{ color: colors.chalk }}>
-                Human → Claude Code → Codex → Human → Deploy
+                Formutforsking → 3D-print → konfigurator
               </p>
             </div>
           </div>
@@ -356,9 +341,8 @@ function AISection() {
 
 function TechSection() {
   const tools = [
-    "React 18", "TypeScript", "Vite", "Tailwind CSS",
-    "Three.js", "Supabase", "Stripe", "Fusion 360",
-    "Claude Code", "GitHub Copilot / Codex", "Vitest",
+    "React", "TypeScript", "Three.js", "Supabase", "Stripe",
+    "Fusion 360", "Claude Code", "Codex",
   ];
 
   return (
@@ -372,7 +356,7 @@ function TechSection() {
           className="text-xs uppercase tracking-[0.2em] mb-5 text-center"
           style={{ color: colors.terracotta }}
         >
-          Tech-stack
+          Verktøy
         </p>
         <h2
           className="text-center mb-12 leading-tight"
@@ -382,7 +366,7 @@ function TechSection() {
             color: colors.slate,
           }}
         >
-          Verktøykassen
+          Digitale verktøy og produksjon
         </h2>
 
         <div className="flex flex-wrap gap-3 justify-center mb-16 max-md:gap-2">
@@ -403,7 +387,7 @@ function TechSection() {
 
         <div className="text-center">
           <p className="text-sm mb-6" style={{ color: colors.muted }}>
-            Prosjektet er live og åpent for bestilling
+            Se produktet og den digitale løsningen
           </p>
           <a
             href="https://bsclimbing.no"
@@ -436,15 +420,15 @@ export default function BSClimbingProject() {
           sections={[
             { label: "Problemet", id: "problem" },
             { label: "Løsningen", id: "losning" },
-            { label: "AI-utvikling", id: "utvikling" },
-            { label: "Tech", id: "tech" },
+            { label: "Prototyper", id: "utvikling" },
+            { label: "Verktøy", id: "tech" },
             { label: "bsclimbing.no", href: "https://bsclimbing.no" },
           ]}
         />
         <ProblemSection />
         <SolutionSection />
         <FlowSection />
-        <AISection />
+        <DevelopmentSection />
         <TechSection />
       </main>
     </SiteLayout>

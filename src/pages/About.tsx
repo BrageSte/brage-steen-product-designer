@@ -1,55 +1,74 @@
-import type { CSSProperties } from "react";
+import Prosjektbilde from "@/components/Prosjektbilde";
 import SiteLayout from "@/components/SiteLayout";
+import profil from "@/content/profil.json";
 
-const aboutParagraphs = [
-  "Jeg heter Brage – en nysgjerrig og engasjert designer som drives av å skape meningsfulle, funksjonelle og bærekraftige løsninger. Jeg har en bachelorgrad i produktdesign fra OsloMet, og fullførte ett år av en master i industriell design ved NTNU før jeg valgte andre muligheter som passet bedre med min hands-on mentalitet og eventyrlyst.",
-  "Nysgjerrigheten min startet tidlig. Som 12-åring seilte jeg jorda rundt med familien i ett år – en erfaring som lærte meg robusthet, tilpasningsevne og kreativ problemløsning. Jeg vokste opp med friluftsliv, teltturer med pappa, klatring og sykling, og brukte utallige timer i garasjen med å fikse ting eller jobbe på båten. Det har formet måten jeg tenker design på: praktisk, løsningsorientert og alltid ivrig etter å forstå hvordan ting fungerer.",
-  "Jeg trives best når jeg får kombinere kreativitet med struktur, og når jeg kan samarbeide med andre om komplekse utfordringer – enten det handler om å utvikle produkter, forbedre tjenester eller bygge prototyper som tar ideer videre. Utenom jobb finner du meg ofte i fjellet, i et klatretau, på vei mot en ny seildestinasjon, eller midt i neste store eventyr.",
-];
-
-const About = () => {
+export default function About() {
   return (
     <SiteLayout>
       <main id="main-content">
         <section className="section">
-          <div className="container">
-            <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-              <div>
-                <p className="eyebrow">Om meg</p>
-                <h1 className="text-display-lg mt-4">Designer med nysgjerrighet og driv</h1>
-                <div className="mt-6 space-y-5">
-                  {aboutParagraphs.map((paragraph) => (
-                    <p key={paragraph} className="text-base md:text-lg leading-relaxed">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </div>
-              <div className="relative">
-                <div
-                  className="project-cover"
-                  style={
-                    {
-                      "--cover-gradient":
-                        "linear-gradient(140deg, #ece6df 0%, #f8f4ef 55%, #e2ddd6 100%)",
-                      aspectRatio: "4 / 5",
-                    } as CSSProperties
-                  }
-                >
-                  <img
-                    src="/images/portrait.jpg"
-                    alt="Portrett av Brage Steen"
-                    className="h-full w-full object-cover"
-                    style={{ objectPosition: "center 15%" }}
-                  />
-                </div>
+          <div className="container grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <p className="eyebrow">Om meg</p>
+              <h1 className="text-display-lg mt-4">Fra idé til en prototype som fungerer.</h1>
+              <p className="text-body-lg mt-6">{profil.profil}</p>
+              <p className="mt-5 text-base leading-relaxed">{profil.roller}</p>
+              <p className="mt-5 font-medium">{profil.tilgjengelighet}.</p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a className="btn btn-primary" href="/cv/brage-steen-cv.pdf">Last ned CV (PDF)</a>
+                <a className="btn btn-ghost" href={`mailto:${profil.epost}`}>Send meg en e-post</a>
               </div>
             </div>
+            <Prosjektbilde src="/images/portrait.jpg" alt="Portrett av Brage Steen" width={960} height={1200}
+              className="aspect-[4/5] w-full rounded-2xl object-cover" style={{ objectPosition: "center 15%" }} />
+          </div>
+        </section>
+        <section className="section border-t border-border">
+          <div className="container grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <h2 className="text-display-md">Erfaring</h2>
+              <div className="mt-8 space-y-8">
+                {profil.erfaring.map((jobb) => <article key={`${jobb.sted}-${jobb.rolle}`}>
+                  <p className="text-sm text-muted-foreground">{jobb.periode}</p>
+                  <h3 className="mt-1 text-xl font-medium">{jobb.rolle}</h3>
+                  <p className="mt-1 font-medium">{jobb.sted}</p>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{jobb.beskrivelse}</p>
+                </article>)}
+              </div>
+            </div>
+            <div className="space-y-12">
+              <section>
+                <h2 className="text-display-md">Utdanning</h2>
+                <div className="mt-8 space-y-8">
+                  {profil.utdanning.map((studie) => <article key={studie.tittel}>
+                    <p className="text-sm text-muted-foreground">{studie.periode}</p>
+                    <h3 className="mt-1 text-xl font-medium">{studie.tittel}</h3>
+                    <p className="mt-1 font-medium">{studie.sted}</p>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">{studie.beskrivelse}</p>
+                  </article>)}
+                </div>
+              </section>
+              <section>
+                <h2 className="text-display-md">Arbeidsmåte og verktøy</h2>
+                <div className="mt-8 space-y-6">
+                  {profil.ferdigheter.map((felt) => <div key={felt.gruppe}>
+                    <h3 className="text-lg font-medium">{felt.gruppe}</h3>
+                    <p className="mt-2 leading-relaxed text-muted-foreground">{felt.tekst}</p>
+                  </div>)}
+                  <p className="text-sm text-muted-foreground">{profil.sprak}</p>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+        <section id="kontakt" className="section border-t border-border">
+          <div className="container">
+            <h2 className="text-display-md">Har du et prosjekt eller en rolle i tankene?</h2>
+            <p className="text-body-lg mt-4 max-w-2xl">Jeg tar gjerne en prat om produktutvikling, design og digitale prototyper.</p>
+            <a className="btn btn-primary mt-6 max-w-full break-all" href={`mailto:${profil.epost}`}>{profil.epost}</a>
           </div>
         </section>
       </main>
     </SiteLayout>
   );
-};
-
-export default About;
+}

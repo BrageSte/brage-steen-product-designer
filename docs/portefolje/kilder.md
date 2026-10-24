@@ -79,8 +79,11 @@ produktflyt eller Rev E-integrasjon er testet i denne porteføljeoppgaven.
 
 - `~/Documents/Caddy the Baddie/`: 24 foto med Vilde Abrahamsens filnavn, egne foto og video.
   Tidligere godkjent bruk/kreditering videreføres. Bildeutvalg og prosjekthistorie er ikke ferdig.
-- `_innboks/cv/CV_BrageSteen.pdf`: relevant erfaring/utdanning er lest. CV-en støtter at Looping
-  og festivalen er relevante, men dagens datoer/tilgjengelighet må avklares. Ingen private kontaktfelt er gjengitt.
+- `_innboks/cv/CV – Brage Steen - SixSides.pdf` og `src/content/profil.json`: oppdatert
+  publiseringsgrunnlag for erfaring, tilgjengelighet, utdanning og ferdigheter. Profilen bekrefter
+  BS Climbing / Steen Consulting fra 2025–nå. Brage har godkjent offentlig formulering av
+  NTNU/Aalto-utdanningen: «Industriell design ved NTNU, med utveksling i Creative Sustainability
+  ved Aalto. Mastergraden ble ikke fullført.» Perioden august 2021–mai 2022 kommer fra den nye CV-en.
 - `~/Documents/Markus Jobb/`: logo-/artboardfiler og mapper som må knyttes til riktig leveranse.
 - Flere `notater.md` og `cv-info.md` er tomme spørsmålsmaler. De er ikke bevis på at prosjektmaterialet
   mangler andre steder, men de gir ingen nye faktasvar.
