@@ -6,9 +6,11 @@ const root = resolve(import.meta.dirname, "..");
 const publicDir = resolve(root, "public");
 const metadata = {};
 const mapping = [];
+const onlyDimensions = process.argv.includes("--bare-dimensjoner");
 const sourceText = (await Promise.all((await sourceFiles(resolve(root, "src"))).map((file) => readFile(file, "utf8")))).join("\n");
 for (const project of await readdir(resolve(publicDir, "projects"), { withFileTypes: true })) {
   if (!project.isDirectory()) continue;
+  if (onlyDimensions) continue;
   const folder = resolve(publicDir, "projects", project.name);
   for (const file of await readdir(folder, { withFileTypes: true })) {
     if (!file.isFile() || !/\.(png|jpe?g)$/i.test(file.name) || file.name === "gigamap-stor.jpg") continue;
@@ -55,11 +57,22 @@ for (const file of await sourceFiles(resolve(root, "src"))) {
   }
   if (source !== original) await writeFile(file, source);
 }
+// Inkluder også ferdigprosesserte bilder som er lagt direkte i nett/, som CAD og appbilder.
+for (const project of await readdir(resolve(publicDir, "projects"), { withFileTypes: true })) {
+  if (!project.isDirectory()) continue;
+  const folder = resolve(publicDir, "projects", project.name, "nett");
+  for (const file of await readdir(folder).catch(() => [])) {
+    if (!/\.(png|jpe?g)$/i.test(file)) continue;
+    const { width, height, exif } = await sharp(resolve(folder, file)).metadata();
+    if (exif) throw new Error(`Nettbildet inneholder EXIF: ${project.name}/${file}`);
+    metadata[`/projects/${project.name}/nett/${file}`] = { width, height };
+  }
+}
 for (const file of ["portrait.jpg", "og-image.jpg"]) {
   const path = resolve(publicDir, "images", file);
   let buffer = await readFile(path);
   const before = await sharp(buffer).metadata();
-  if (before.exif || Math.max(before.width, before.height) > 2400 || buffer.length > 500_000) {
+  if (!onlyDimensions && (before.exif || Math.max(before.width, before.height) > 2400 || buffer.length > 500_000)) {
     buffer = await sharp(buffer).rotate().resize({ width: 2400, height: 2400, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 84, mozjpeg: true }).toBuffer();
     await writeFile(path, buffer);
   }
@@ -67,4 +80,4 @@ for (const file of ["portrait.jpg", "og-image.jpg"]) {
   metadata[`/images/${file}`] = { width, height };
 }
 await writeFile(resolve(root, "src/content/bilder.json"), JSON.stringify(metadata, null, 2) + "\n");
-console.log(`Laget ${mapping.length} nettklare bilder med dimensjoner og uten EXIF. Originalfiler er bevart.`);
+console.log(`Laget ${mapping.length} nettversjoner. Bildeoversikten har ${Object.keys(metadata).length} bilder med dimensjoner.`);

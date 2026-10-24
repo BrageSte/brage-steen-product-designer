@@ -42,6 +42,13 @@
     "image": "/projects/avfallsportalen/nett/cover.jpg"
   },
   {
+    "path": "/prosjekter/gripsense",
+    "title": "GripSense – pågående produktutvikling",
+    "description": "Et pågående prosjekt som utforsker fysisk gripeflate, utskiftbare fingerputer og digital visning av kanallast. CAD-konsept og grensesnitt under utvikling.",
+    "image": "/projects/gripsense/nett/fingerputer-konsept-05.jpg",
+    "noindex": true
+  },
+  {
     "path": "/404",
     "title": "Siden finnes ikke – Brage Steen",
     "description": "Siden finnes ikke. Gå til Brage Steens portefølje eller finn kontaktinformasjon og CV.",

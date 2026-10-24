@@ -8,6 +8,7 @@ import SortingGuideProject from "@/pages/projects/SortingGuideProject";
 import SeaweedProject from "@/pages/projects/SeaweedProject";
 import AvfallsportalenProject from "@/pages/projects/AvfallsportalenProject";
 import BSClimbingProject from "@/pages/projects/BSClimbingProject";
+import GripSenseProject from "@/pages/projects/GripSenseProject";
 import SideMetadata from "@/components/SideMetadata";
 import videresendinger from "@/content/videresendinger.json";
 
@@ -25,6 +26,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/om-meg" element={<About />} />
+        <Route path="/prosjekter/gripsense" element={<GripSenseProject />} />
         <Route path="/prosjekter/headset" element={<HeadsetProject />} />
         <Route path="/prosjekter/kildesortering" element={<SortingGuideProject />} />
         <Route path="/prosjekter/seaweed" element={<SeaweedProject />} />

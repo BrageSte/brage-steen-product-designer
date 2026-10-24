@@ -1,11 +1,12 @@
 # Portefølje klar for jobbsøking
 
-Oppdatert 2026-10-23. Dette er gjeldende plan for bragesteen.no. Nettside- og kildekontrollen
+Oppdatert 2026-10-24. Dette er gjeldende plan for bragesteen.no. Nettside- og kildekontrollen
 ble utført 2026-10-22; planen ble ferdigstilt og kvalitetssikret 2026-10-23.
 **Retning godkjent av Brage:** behold den eksisterende Vite/React-siden og forbedre den.
 Dagens Astro-design skal ikke brukes. J1 er merget i PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`)
-og produksjonskontrollert med 20 beståtte nettleserkontrollgrupper. J2 er implementert på
-`codex/portfolio-j2-jobbsoking`; lokal QA er gjennomført. Se [arbeidsloggen for J1](docs/portefolje/implementering/j1-2026-10-23.md).
+og produksjonskontrollert med 20 beståtte nettleserkontrollgrupper. J2 er merget i PR #26
+og produksjonskontrollert 2026-10-24: 29 kontrollgrupper består. Se
+[J2-loggen](docs/portefolje/implementering/j2-2026-10-23.md). J3 er påbegynt på egen gren.
 
 ## 1. Målet og hvem vi skriver for
 
@@ -34,14 +35,16 @@ Søknader trenger ikke vente på alle nye prosjekter. Første leveranse bruker e
 materiale og forbedrer BS Climbing, bacheloren og Headset. Seaweed beholdes etter nødvendig
 faktarydding; Avfallsportalen presenteres tydelig som en senere demonstrator.
 
-- [ ] Forsiden sier produktdesigner og viser relevant arbeid før lange forklaringer.
-- [ ] Minst tre sterke prosjekter har forståelig problem, egen rolle, designvalg, prototype og læring.
-- [ ] Alle synlige prosjekter har korrekte sitater/tall og tydelig skille mellom resultat, konsept og ambisjon.
-- [ ] Om meg og CV gir konsistente datoer, roller og utdanningsstatus. E-post og CV er lette å finne.
-- [ ] Norske introduksjoner, navigasjon, prosjekttekster og tilgjengelighetstekster er gjennomgått.
-- [ ] Ingen feil i prosjektlenker, medier, hovedflyter eller tastaturnavigasjon som er nødvendige for å vurdere arbeidet.
-- [ ] Direkte lenker, seksjonslenker og oppdatering virker i produksjon på desktop og mobil.
-- [ ] Forhåndsvisningen er visuelt kontrollert, Brage har godkjent merge, og produksjonen er kontrollert etterpå.
+- [x] Forsiden sier produktdesigner og viser relevant arbeid før lange forklaringer.
+- [x] Minst tre sterke prosjekter har forståelig problem, egen rolle, designvalg, prototype og læring.
+- [x] Alle synlige prosjekter har korrekte sitater/tall og tydelig skille mellom resultat, konsept og ambisjon.
+- [x] Om meg og CV gir konsistente datoer, roller og utdanningsstatus. E-post og CV er lette å finne.
+- [x] Norske introduksjoner, navigasjon, prosjekttekster og tilgjengelighetstekster er gjennomgått.
+- [x] Ingen feil i prosjektlenker, medier, hovedflyter eller tastaturnavigasjon som er nødvendige for å vurdere arbeidet.
+- [x] Direkte lenker, seksjonslenker og oppdatering virker i produksjon på desktop og mobil.
+- [x] Forhåndsvisningen er visuelt kontrollert, Brage har godkjent merge, og produksjonen er kontrollert etterpå.
+
+Verifisert gjennom J2 2026-10-24. Den målrettede kontrollens grenser er dokumentert i J2-loggen; dette er ikke full tilgjengelighetssertifisering eller ekstern validering av prosjektresultater.
 
 ### Utvidet portefølje
 
@@ -131,8 +134,8 @@ ble kontrollert på nytt, og påstander/sitater er sporbare. J1 ble merget i PR 
 
 ### Fase J2 – gjør eksisterende portefølje jobbsøkingsklar
 
-Status: implementert og kontrollert lokalt på `codex/portfolio-j2-jobbsoking`. Avkrysningene
-under gjelder lokal QA, bortsett fra HTTP/www som er kontrollert i produksjon.
+Status: merget og publisert 2026-10-24. Avkrysningene under er kontrollert lokalt,
+i forhåndsvisningen og på produksjon.
 Alle 29 kontrollgrupper består også i Cloudflare-forhåndsvisningen for kodecommit `0de429b`.
 Forhåndsvisning og produksjon føres i [J2-loggen](docs/portefolje/implementering/j2-2026-10-23.md).
 
@@ -144,7 +147,9 @@ Forhåndsvisning og produksjon føres i [J2-loggen](docs/portefolje/implementeri
 - [x] Oppdater sidetitler, beskrivelser, absolutte delingsbilder og canonical-adresser.
 - [x] Bygg og test norske ruter og nødvendige 301-er samlet. Behold fungerende gamle innganger.
 - [x] Sett HTTP og `www` til den kanoniske HTTPS-adressen med sti/query bevart.
-- [ ] Gjennomfør lanseringskontrollen i seksjon 8 og få Brages godkjenning av innhold/merge.
+- [x] Brage godkjente publisering 2026-10-24 («push og fortsett»). PR #26 er merget,
+  produksjonsbygget er grønt og alle 29 kontrollgrupper består på bragesteen.no.
+  Avgrensninger fra den målrettede lanseringskontrollen står i J2-loggen.
 
 **Ferdig når:** «Første jobbsøkingsklare versjon» er kontrollert på live. Søknader kan bruke
 siden mens J3/J4 fortsetter.
@@ -155,7 +160,8 @@ siden mens J3/J4 fortsetter.
 - [ ] Skriv en avgrenset pågående case etter [GripSense-planen](docs/portefolje/prosjekter/gripsense.md).
 - [ ] Skill nåværende maskinvare, eldre appdemo og validering som gjenstår.
 - [ ] Kontroller alle måle-/treningspåstander mot prosjektets gjeldende kilder.
-- [ ] Brage godkjenner egen rolle, fortellingen og det som kan vises offentlig.
+- [x] Brage bekrefter soloprosjekt og ansvar for hele GripSense. PCB, lastceller, oppkobling og app skal med.
+- [ ] Brage vurderer den ferdige fortellingen og legger inn aktuelle prototypebilder før hovedplassering.
 
 **Ferdig når:** casen viser designkompetanse uten å kreve at produktet er ferdig validert.
 Flytt den til første plass når teksten og dokumentasjonen er sterke nok.
@@ -232,7 +238,14 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 - [x] 2026-10-23: HTTP/www gir 301 til kanonisk HTTPS med sti/query bevart i produksjon.
 - [x] 2026-10-23: J2 pushet i PR #26; Cloudflare-build er grønt, alle 29 nettleser-/mediegrupper
   består i forhåndsvisningen, og full bachelorrapport er lastet ned med identisk SHA-256.
-- [ ] J2: Brages vurdering av forhåndsvisningen og godkjenning av merge, deretter produksjonskontroll.
+- [x] 2026-10-24: J2 publisert gjennom PR #26, merge `e280808417f67dd59d6f7f794bbe1e2927461e49`.
+  Cloudflare-build `2abb5ec7-1288-42e6-934c-ac842972aae4` er grønt; 29 grupper består i produksjon.
+- [x] 2026-10-24: GripSense-utkast bygget på `codex/portfolio-j3-gripsense`, med oppdaterte kilder,
+  tydelig merket CAD-konsept og nye tomme appbilder. Åtte nettlesergrupper består lokalt
+  og i Cloudflare-forhåndsvisningen. Kladd-PR #27 er opprettet.
+- [x] 2026-10-24: Brage bekrefter fullt ansvar for GripSense og ønsker PCB, lastceller, oppkobling og app.
+  Casen er utvidet med seks bilder, signalvei og original monteringstegning (PDF).
+- [ ] J3: Nye fysiske prototypebilder kommer fra Brage; aktuelle iterasjoner og hovedplassering ferdigstilles etterpå.
 
 ### Beslutningslogg
 
@@ -249,6 +262,7 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 | 2026-10-23 | J1 er merget og produksjonskontrollert; J2 kontrolleres på egen gren | J1 PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`), 20 nettleserkontrollgrupper bestod i produksjon |
 | 2026-10-23 | Behold full rapport, gigamap og video som offentlige bachelorvedlegg | Brages eksplisitte godkjenning etter gjennomgang av underskrifter og hjemmebesøk i rapporten |
 | 2026-10-23 | Vis rundt 40 BS Climbing-prototyper som oppgitt omfang; beskriv utforskning av tekstur/avrundinger og Headset-vinkler/toleranser/proporsjoner | Brages direkte beskrivelse; ingen spesifikke før/etter-resultater er funnet på |
+| 2026-10-24 | GripSense er Brages soloprosjekt med fullt ansvar; PCB, lastceller, oppkobling og app skal med. Prototypebilder kommer senere | Brages direkte svar; innboksmappen er kontrollert og klar |
 
 Tidligere beslutninger og gjennomført hosting-/Astro-arbeid er bevart i
 [den historiske ombyggingsplanen](docs/portefolje/arkiv/ombyggingsplan-2026-10-13.md).
