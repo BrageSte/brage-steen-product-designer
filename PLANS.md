@@ -160,7 +160,8 @@ siden mens J3/J4 fortsetter.
 - [ ] Skriv en avgrenset pågående case etter [GripSense-planen](docs/portefolje/prosjekter/gripsense.md).
 - [ ] Skill nåværende maskinvare, eldre appdemo og validering som gjenstår.
 - [ ] Kontroller alle måle-/treningspåstander mot prosjektets gjeldende kilder.
-- [ ] Brage godkjenner egen rolle, fortellingen og det som kan vises offentlig.
+- [x] Brage bekrefter soloprosjekt og ansvar for hele GripSense. PCB, lastceller, oppkobling og app skal med.
+- [ ] Brage vurderer den ferdige fortellingen og legger inn aktuelle prototypebilder før hovedplassering.
 
 **Ferdig når:** casen viser designkompetanse uten å kreve at produktet er ferdig validert.
 Flytt den til første plass når teksten og dokumentasjonen er sterke nok.
@@ -242,7 +243,9 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 - [x] 2026-10-24: GripSense-utkast bygget på `codex/portfolio-j3-gripsense`, med oppdaterte kilder,
   tydelig merket CAD-konsept og nye tomme appbilder. Sju nettlesergrupper består lokalt
   og i Cloudflare-forhåndsvisningen. Kladd-PR #27 er opprettet.
-- [ ] J3: Brages rolle og aktuelle fysiske prototypebilder/iterasjoner må bekreftes før hovedplassering.
+- [x] 2026-10-24: Brage bekrefter fullt ansvar for GripSense og ønsker PCB, lastceller, oppkobling og app.
+  Casen er utvidet med seks bilder, signalvei og original monteringstegning (PDF).
+- [ ] J3: Nye fysiske prototypebilder kommer fra Brage; aktuelle iterasjoner og hovedplassering ferdigstilles etterpå.
 
 ### Beslutningslogg
 
@@ -259,6 +262,7 @@ full nettbutikk-QA eller vitenskapelig validering av prosjektresultater.
 | 2026-10-23 | J1 er merget og produksjonskontrollert; J2 kontrolleres på egen gren | J1 PR #25 (`95744f581d7794262d85fa4ca017f0445cbd0ca5`), 20 nettleserkontrollgrupper bestod i produksjon |
 | 2026-10-23 | Behold full rapport, gigamap og video som offentlige bachelorvedlegg | Brages eksplisitte godkjenning etter gjennomgang av underskrifter og hjemmebesøk i rapporten |
 | 2026-10-23 | Vis rundt 40 BS Climbing-prototyper som oppgitt omfang; beskriv utforskning av tekstur/avrundinger og Headset-vinkler/toleranser/proporsjoner | Brages direkte beskrivelse; ingen spesifikke før/etter-resultater er funnet på |
+| 2026-10-24 | GripSense er Brages soloprosjekt med fullt ansvar; PCB, lastceller, oppkobling og app skal med. Prototypebilder kommer senere | Brages direkte svar; innboksmappen er kontrollert og klar |
 
 Tidligere beslutninger og gjennomført hosting-/Astro-arbeid er bevart i
 [den historiske ombyggingsplanen](docs/portefolje/arkiv/ombyggingsplan-2026-10-13.md).

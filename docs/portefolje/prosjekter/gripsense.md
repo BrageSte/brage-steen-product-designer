@@ -16,14 +16,16 @@ Dette er et tekstutkast, ikke en godkjent produktpåstand.
 
 Gjeldende prosjektgrunnlag er lest på nytt 2026-10-24. Roadmap fra 23. oktober og
 AGENTS.md beskriver første Rev E-kort med fire celler, Rev E-firmware og USB-overføring.
-Kalibrering, mekanisk krysstale og fysisk målevalidering står fortsatt åpne. BLE/iPhone
-og batteridrift står i neste utprøving. Eldre README/valideringstekst om oppstart uten fingre
+Kalibrering, mekanisk krysstale og fysisk målevalidering står fortsatt åpne. Nyere B-108/B-109
+dokumenterer USB/BLE-forsøk på Mac og observert pakketap. iPhone er ikke prøvd; videre
+batteridrift og transportkvalitet undersøkes. Eldre README/valideringstekst om oppstart uten fingre
 er ikke brukt som nyeste status. Appbilder viser grensesnitt, ikke bekreftet måleintegrasjon.
 `PRODUCT_SCOPE.md` og `ROADMAP.md` sier fortsatt at treningsverktøy kontra måleinstrument og
 første målgruppe undersøkes.
 
 J3-utkastet finnes på `/prosjekter/gripsense` på egen gren. Det er utelatt fra forsideutvalget
-og sitemap, og har noindex mens fysisk dokumentasjon og personlig rolle avklares.
+og sitemap, og har noindex mens fysisk dokumentasjon ferdigstilles. Brage har bekreftet
+soloprosjekt og ansvar for hele produktet, elektronikk/PCB, firmware og app, med AI som verktøy.
 Dette er ikke adgangskontroll: ruten og repoet er offentlige i en publisert preview.
 
 ## Plan
@@ -35,7 +37,7 @@ Dette er ikke adgangskontroll: ruten og repoet er offentlige i en publisert prev
 - [x] Merk simulering, gammel maskinvare og appdemo eksplisitt. Bruk korte opptak/skjermbilder
   som arbeidsgiveren kan forstå uten en fysisk enhet eller Bluetooth-tilgang.
 - [x] Avslutt med «Dette fungerer nå» og «Dette undersøker jeg videre», datert.
-- [ ] Forklar egen rolle og eventuelle bidrag fra andre. AI nevnes som et verktøy i arbeidsprosessen.
+- [x] Forklar egen rolle og eventuelle bidrag fra andre. AI nevnes som et verktøy i arbeidsprosessen.
 
 ## Påstandsgrenser
 
@@ -68,7 +70,8 @@ Hvilke bilder viser dagens prototype? Svarene skal gjøre casen konkret, ikke pr
 
 ## J3 – gjennomført lokalt 2026-10-24
 
-Bygg, TypeScript, fem enhetstester og lint uten feil består. Sju nettleserkontrollgrupper
+Bygg, TypeScript, fem enhetstester og lint uten feil består. Åtte nettleserkontrollgrupper
 består på 1440/390 px: metadata/noindex, bilder, H1, sidescroll, ankre, direkte lenke,
 refresh, historikk, 200 % tekst, fullstørrelsesbilder og neste prosjekt.
-Tre publiseringsbilder er nettklare og uten EXIF. Se [J3-arbeidsloggen](../implementering/j3-2026-10-24.md).
+Seks publiseringsbilder er nettklare og uten metadata. PCB-renderen er kildehash-kontrollert
+mot fase 6d; oppkoblings-/monteringstegningen ligger som en ryddet PDF på to sider. Se [J3-arbeidsloggen](../implementering/j3-2026-10-24.md).
